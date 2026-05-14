@@ -1,0 +1,4 @@
+#PBS -l nodes=1:ppn=1
+source ~/workdir/python3-new-venv/bin/activate
+cd /home/saf418/LRP_DipPy/
+python3 main.py -i ${FILENAME} -m dippyLL

@@ -1,0 +1,1084 @@
+inside minto.c
+
+MINTO, a Mixed INTeger Optimizer  --  version 3.0.1 (LINUX/CPLEX 8.1)
+Copyright (C) 1992-2004  --  M.W.P. Savelsbergh
+
+ILOG CPLEX 9.100, licensed to "lehigh university-bethlehem, pa ", options: e m b q 
+ a_mps.c is running
+Number of facilities: 5
+Number of customers: 25
+num_REQ=3 
+# of columns=1649, # of customers=4145 
+PairNum[0]=218 
+PairNum[1]=484 
+PairNum[2]=273 
+PairNum[3]=375 
+PairNum[4]=292 
+numselected=3 
+HeurFac[0]=0, HeurPairNum[0]=3 
+HeurFac[1]=3, HeurPairNum[1]=2 
+HeurFac[2]=4, HeurPairNum[2]=2 
+NumNZ=11803 ,NumCol=1685 ,NumRow=186 
+When exit loop of facility 0, k =218 
+When exit loop of facility 1, k =484 
+When exit loop of facility 2, k =273 
+When exit loop of facility 3, k =375 
+When exit loop of facility 4, k =292 
+end of a_mps.c file
+pairNum[0]:221
+pairNum[1]:484
+pairNum[2]:273
+pairNum[3]:377
+pairNum[4]:294
+route=
+ 2  15 
+route=
+ 6  24  21 
+unassigned customers:[ 7 ]
+number of paths is 3 
+route=
+ 9  14 
+route=
+ 19  13  22  5 
+route=
+ 16  23 
+unassigned customers:[]
+number of paths is 3 
+route=
+ 8  12  10 
+unassigned customers:[ 1 ]
+number of paths is 2 
+route=
+ 4  11  17 
+route=
+ 0  3  20 
+unassigned customers:[ 18 ]
+number of paths is 3 
+route=
+ 13  22  21  24 
+unassigned customers:[ 19 ]
+number of paths is 2 
+route=
+ 9  14 
+route=
+ 5  15 
+route=
+ 16  23 
+unassigned customers:[]
+number of paths is 3 
+route=
+ 2  7 
+route=
+ 8  12  10 
+unassigned customers:[ 1 ]
+number of paths is 3 
+route=
+ 20  3  6  17 
+route=
+ 18  0  11  4 
+unassigned customers:[]
+number of paths is 2 
+route=
+ 21  22  13  19 
+route=
+ 16  23 
+unassigned customers:[]
+number of paths is 2 
+route=
+ 2  7 
+route=
+ 5  14  15 
+route=
+ 6  24 
+unassigned customers:[]
+number of paths is 3 
+route=
+ 9  10 
+route=
+ 8  12 
+unassigned customers:[ 1 ]
+number of paths is 3 
+route=
+ 4  11  17 
+route=
+ 0  3  20 
+unassigned customers:[ 18 ]
+number of paths is 3 
+route=
+ 21  22  13  19 
+unassigned customers:[]
+number of paths is 1 
+route=
+ 7  12  15 
+route=
+ 6  24 
+unassigned customers:[ 2 ]
+number of paths is 3 
+route=
+ 9  10  5 
+route=
+ 16  23 
+unassigned customers:[ 14 ]
+number of paths is 3 
+route=
+ 4  11  17 
+route=
+ 0  3  20 
+route=
+ 1  8 
+unassigned customers:[ 18 ]
+number of paths is 4 
+route=
+ 9  14 
+route=
+ 5  15 
+route=
+ 19  13  22  21 
+route=
+ 16  23 
+unassigned customers:[]
+number of paths is 4 
+route=
+ 2  7 
+route=
+ 8  12  10 
+unassigned customers:[ 1  24 ]
+number of paths is 4 
+route=
+ 20  3  6  17 
+route=
+ 18  0  11  4 
+unassigned customers:[]
+number of paths is 2 
+route=
+ 13  22  21  24 
+route=
+ 14  15  5 
+route=
+ 16  23 
+unassigned customers:[ 19 ]
+number of paths is 4 
+route=
+ 2  7 
+route=
+ 9  10 
+route=
+ 8  12 
+unassigned customers:[ 1 ]
+number of paths is 4 
+route=
+ 20  3  6  17 
+route=
+ 18  0  11  4 
+unassigned customers:[]
+number of paths is 2 
+route=
+ 13  22  21  24 
+route=
+ 19  23 
+unassigned customers:[]
+number of paths is 2 
+route=
+ 5  14 
+route=
+ 2  15 
+route=
+ 9  12  10 
+unassigned customers:[ 16 ]
+number of paths is 4 
+route=
+ 18  0  11  4 
+route=
+ 20  3  6  7 
+route=
+ 1  8 
+unassigned customers:[ 17 ]
+number of paths is 4 
+
+
+Facility 0 is selected. Customers assigned are [ 
+ 5  13  14  15  16  19  21  22  23  24 ]
+Facility 3 is selected. Customers assigned are [ 
+ 1  2  7  8  9  10  12 ]
+Facility 4 is selected. Customers assigned are [ 
+ 0  3  4  6  11  17  18  20 ]
+route=
+ 13  22  21  24 
+route=
+ 14  15  5 
+route=
+ 16  23 
+unassigned customers:[ 19 ]
+number of paths is 4 
+route=
+ 2  7 
+route=
+ 9  10 
+route=
+ 8  12 
+unassigned customers:[ 1 ]
+number of paths is 4 
+route=
+ 20  3  6  17 
+route=
+ 18  0  11  4 
+unassigned customers:[]
+number of paths is 2 
+Total cost of location routing problem is 8090.500000 
+MINTO: Solving problem p11-f25-v1t1.txt
+MINTO: Problem statistics:
+
+    Number of constraints: 186
+    Number of variables:   1685 (0)
+    Number of nonzero's:   11803
+
+    Number of continuous variables: 0
+    Number of binary variables:     1680
+    Number of integer variables:    5
+
+MINTO: Initialization ... done
+APPL_INIT ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Row structure analysis (after preprocessing):
+    Number of constraints of type MIXEQ:        5
+    Number of constraints of type ALLBINUB:     1
+    Number of constraints of type BINSUMVARUB:  5
+    Number of constraints of type BINSUM1UB:    150
+    Number of constraints of type BINSUM1EQ:    25
+
+MINTO control parameters:
+    Objective sense     : minimization
+    Output level        : 2
+    Maximum cpu time    : 1000000
+    Maximum #nodes      : 1
+
+MINTO system function activity levels:
+    Bound improvement   : not active
+    Branching type      : 0
+    Node selection type : 0
+    Preprocessing level : 0
+    Primal heuristic    : active
+    Clique cuts         : not active
+    Implication cuts    : not active
+    Knapsack covers     : not active
+    GUB covers          : not active
+    Flow covers         : not active
+    Row management      : active
+    Restarts            : active
+    Force branching     : 1
+    Advanced basis      : not active
+    Names mode level    : 3
+
+APPL_INITLP ... entering a_initlp.c
+DONE
+MINTO: Initialization of root node ... done
+MINTO: Selected node (0,1)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-8072.817829)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=1,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 0 
+Route red. cost=-205.218023, and route=
+ 19  13  22  21 
+Route red. cost=-81.889535, and route=
+ 6  3  5 
+Route red. cost=-74.636628, and route=
+ 14  10  15 
+Route red. cost=-108.064438, and route=
+ 24  20 
+Route red. cost=-200.833333, and route=
+ 7  2 
+Route red. cost=-225.000000, and route=
+ 23  16 
+unassigned customers:[ 9: With red.cost=4.312016   18: With red.cost=88.263081  ]
+number of paths is 8 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 0 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_221: [13:6, 19:1, 21:4, 22:5, 24:3, 
+Y_0_222: [5:3, 14:1, 15:2, 19:5, 
+Y_0_223: [19:1, 21:4, 22:5, 24:3, 
+Y_0_224: [5:3, 14:1, 15:2, 21:6, 22:5, 
+Y_0_225: [19:4, 21:2, 24:1, 
+Y_0_226: [5:1, 21:4, 22:5, 24:2, 
+Y_0_227: [5:3, 14:1, 15:2, 21:5, 
+Y_0_228: [5:3, 21:1, 24:4, 
+Y_0_229: [5:3, 19:1, 21:4, 22:5, 
+Y_0_230: [5:2, 13:4, 14:1, 21:3, 
+Y_0_231: [5:1, 13:4, 22:3, 24:2, 
+Y_0_232: [13:1, 21:3, 22:2, 24:4, 
+Y_0_233: [5:1, 19:4, 21:2, 
+Y_0_234: [5:3, 13:4, 14:1, 15:2, 
+Number of columns added for facility 0 is 14
+*vcnt: 14
+current Facility is 1, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 1 
+Route red. cost=-218.013566, and route=
+ 12  8  7 
+Route red. cost=-187.005814, and route=
+ 15  14  5 
+Route red. cost=-132.076066, and route=
+ 20  3  6 
+Route red. cost=-135.218023, and route=
+ 21  22  13  19 
+Route red. cost=-90.140504, and route=
+ 17  11  4 
+Route red. cost=-85.494186, and route=
+ 10  9 
+Route red. cost=-210.000000, and route=
+ 23  16 
+unassigned customers:[ 1: With red.cost=-69.331395   2: With red.cost=-186.327519   18: With red.cost=-21.736919   24: With red.cost=-144.660853  ]
+number of paths is 11 
+X[1]=1 
+X[2]=0 
+X[3]=1 
+X[4]=0 
+X[5]=0 
+X[6]=1 
+X[7]=0 
+X[8]=0 
+X[9]=0 
+X[10]=0 
+X[11]=0 
+A pairing is constructed from routes 
+time=198 
+Y_1_484: [2:3, 5:7, 14:6, 15:5, 24:1, 
+Number of columns added for facility 1 is 1
+*vcnt: 15
+current Facility is 2, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 2 
+Route red. cost=-178.098353, and route=
+ 14  17  7 
+Route red. cost=-153.570736, and route=
+ 5  24  6 
+Route red. cost=19.004360, and route=
+ 20  15 
+Route red. cost=-155.799419, and route=
+ 21  22  13  19 
+Route red. cost=-225.000000, and route=
+ 23  16 
+Route red. cost=-200.988372, and route=
+ 9  1 
+Route red. cost=-180.310078, and route=
+ 10  12  8 
+unassigned customers:[ 2: With red.cost=-122.659884   3: With red.cost=72.562984   18: With red.cost=80.162306  ]
+number of paths is 10 
+X[1]=0 
+X[2]=0 
+X[3]=1 
+X[4]=0 
+X[5]=0 
+X[6]=0 
+X[7]=0 
+X[8]=1 
+X[9]=0 
+X[10]=0 
+A pairing is constructed from routes 
+time=215 
+Y_2_273: [2:1, 16:4, 23:3, 
+Number of columns added for facility 2 is 1
+*vcnt: 16
+current Facility is 3, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 3 
+Route red. cost=-163.827519, and route=
+ 14  1 
+Route red. cost=-141.807171, and route=
+ 18  17 
+Route red. cost=-225.000000, and route=
+ 7  2 
+Route red. cost=-174.166667, and route=
+ 11  4  20  3  6 
+Route red. cost=-209.505814, and route=
+ 16  9  10 
+Route red. cost=0.000000, and route=
+ 12  8 
+Route red. cost=-137.311047, and route=
+ 15  5  22  21 
+unassigned customers:[ 23: With red.cost=-9.660853   24: With red.cost=-74.660853  ]
+number of paths is 9 
+X[1]=0 
+X[2]=0 
+X[3]=0 
+X[4]=1 
+X[5]=1 
+X[6]=0 
+X[7]=0 
+X[8]=0 
+X[9]=0 
+A pairing is constructed from routes 
+time=190 
+Y_3_377: [2:5, 7:4, 17:2, 18:1, 
+Number of columns added for facility 3 is 1
+*vcnt: 17
+current Facility is 4, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 4 
+Route red. cost=-162.640504, and route=
+ 4  11  18 
+Route red. cost=-219.401647, and route=
+ 17  1 
+Route red. cost=-221.455911, and route=
+ 20  3  0 
+Route red. cost=-225.000000, and route=
+ 7  2 
+Route red. cost=-124.636628, and route=
+ 24  21  6 
+Route red. cost=-146.666667, and route=
+ 15  14  5 
+Route red. cost=-166.841085, and route=
+ 12  8 
+Route red. cost=-41.521318, and route=
+ 10  9 
+unassigned customers:[]
+number of paths is 8 
+X[1]=1 
+X[2]=0 
+X[3]=0 
+X[4]=1 
+X[5]=0 
+X[6]=0 
+X[7]=0 
+X[8]=0 
+A pairing is constructed from routes 
+time=198 
+Y_4_294: [2:6, 4:1, 7:5, 11:2, 18:3, 
+Number of columns added for facility 4 is 1
+*vcnt: 18
+Number of columns found: 18
+exiting a_vars.c
+DONE: SUCCESS (18)
+MINTO: Solving LP ... done (-7954.807469)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=2,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_235: [5:6, 6:4, 13:1, 15:5, 21:3, 22:2, 
+Y_0_236: [5:5, 6:2, 7:3, 15:4, 22:1, 
+Y_0_237: [5:1, 6:3, 13:5, 22:4, 24:2, 
+Y_0_238: [6:2, 13:5, 21:3, 22:4, 24:1, 
+Y_0_239: [6:3, 13:1, 21:2, 24:4, 
+Y_0_240: [5:4, 6:2, 22:1, 24:3, 
+Y_0_241: [5:1, 13:5, 15:2, 21:3, 22:4, 
+Number of columns added for facility 0 is 7
+*vcnt: 7
+current Facility is 1, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 1 
+Route red. cost=-225.000000, and route=
+ 12  8  7 
+Route red. cost=-136.864116, and route=
+ 15  14  5 
+Route red. cost=-190.132423, and route=
+ 20  3  6 
+Route red. cost=-70.923553, and route=
+ 21  22  13  19 
+Route red. cost=18.502701, and route=
+ 17  11  4 
+Route red. cost=-116.140964, and route=
+ 10  9 
+Route red. cost=-165.130929, and route=
+ 23  16 
+unassigned customers:[ 1: With red.cost=-32.661891   2: With red.cost=-54.314597   18: With red.cost=46.835981   24: With red.cost=-33.821287  ]
+number of paths is 11 
+X[1]=0 
+X[2]=0 
+X[3]=1 
+X[4]=0 
+X[5]=0 
+X[6]=0 
+X[7]=1 
+X[8]=0 
+X[9]=0 
+X[10]=0 
+X[11]=0 
+A pairing is constructed from routes 
+time=187 
+Y_1_485: [2:1, 3:4, 6:5, 20:3, 
+Number of columns added for facility 1 is 1
+*vcnt: 8
+current Facility is 2, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 2 
+Route red. cost=-138.593868, and route=
+ 14  17  7 
+Route red. cost=-209.531605, and route=
+ 5  24  6 
+Route red. cost=38.957859, and route=
+ 20  15 
+Route red. cost=-152.288259, and route=
+ 21  22  13  19 
+Route red. cost=-190.911873, and route=
+ 23  16 
+Route red. cost=-170.833333, and route=
+ 9  1 
+Route red. cost=-225.000000, and route=
+ 10  12  8 
+unassigned customers:[ 2: With red.cost=-34.088127   3: With red.cost=61.440581   18: With red.cost=105.598662  ]
+number of paths is 10 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 2 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_274: [5:6, 14:4, 15:5, 16:2, 23:1, 
+Y_2_275: [2:2, 5:4, 7:1, 14:6, 15:5, 
+Y_2_276: [5:4, 14:5, 16:2, 23:1, 
+Y_2_277: [14:5, 15:4, 16:2, 23:1, 
+Y_2_278: [5:4, 15:5, 16:2, 23:1, 
+Y_2_279: [5:5, 14:3, 15:4, 23:1, 
+Y_2_280: [5:1, 7:2, 14:5, 15:3, 
+Y_2_281: [2:2, 5:5, 7:1, 15:4, 
+Y_2_282: [14:4, 16:2, 23:1, 
+Y_2_283: [5:4, 16:2, 23:1, 
+Y_2_284: [15:4, 16:2, 23:1, 
+Y_2_285: [2:2, 7:1, 14:4, 
+Number of columns added for facility 2 is 12
+*vcnt: 20
+current Facility is 3, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 3 
+Route red. cost=-125.000000, and route=
+ 14  1 
+Route red. cost=-70.469342, and route=
+ 18  17 
+Route red. cost=-154.530658, and route=
+ 7  2 
+Route red. cost=-213.169564, and route=
+ 11  4  20  3  6 
+Route red. cost=-225.000000, and route=
+ 16  9  10 
+Route red. cost=-70.469342, and route=
+ 12  8 
+Route red. cost=-90.416667, and route=
+ 15  5  22  21 
+unassigned customers:[ 23: With red.cost=34.218395   24: With red.cost=1.405184  ]
+number of paths is 9 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 3 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+Y_3_378: [1:2, 2:5, 7:4, 12:1, 
+Y_3_379: [1:4, 2:1, 7:2, 17:5, 
+Y_3_380: [1:4, 2:1, 7:2, 8:5, 
+Y_3_381: [1:1, 2:4, 7:3, 
+Number of columns added for facility 3 is 4
+*vcnt: 24
+current Facility is 4, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 4 
+Route red. cost=-92.136009, and route=
+ 4  11  18 
+Route red. cost=-156.484671, and route=
+ 17  1 
+Route red. cost=-225.000000, and route=
+ 20  3  0 
+Route red. cost=-132.863991, and route=
+ 7  2 
+Route red. cost=-120.025864, and route=
+ 24  21  6 
+Route red. cost=-97.864939, and route=
+ 15  14  5 
+Route red. cost=-197.500000, and route=
+ 12  8 
+Route red. cost=-102.378282, and route=
+ 10  9 
+unassigned customers:[]
+number of paths is 8 
+X[1]=1 
+X[2]=1 
+X[3]=0 
+X[4]=0 
+X[5]=0 
+X[6]=0 
+X[7]=0 
+X[8]=0 
+A pairing is constructed from routes 
+time=202 
+Y_4_295: [1:6, 4:1, 11:2, 17:5, 18:3, 
+Number of columns added for facility 4 is 1
+*vcnt: 25
+Number of columns found: 25
+exiting a_vars.c
+DONE: SUCCESS (25)
+MINTO: Solving LP ... done (-7770.724359)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=3,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = 15.299389
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_242: [6:5, 19:1, 21:4, 22:3, 24:6, 
+Y_0_243: [6:3, 7:4, 15:5, 21:2, 22:1, 
+Y_0_244: [14:1, 19:2, 21:5, 22:4, 
+Y_0_245: [2:1, 6:2, 21:3, 22:4, 
+Number of columns added for facility 0 is 4
+*vcnt: 4
+current Facility is 1, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 1 
+Route red. cost=-209.700611, and route=
+ 12  8  7 
+Route red. cost=-54.436030, and route=
+ 15  14  5 
+Route red. cost=-169.279095, and route=
+ 20  3  6 
+Route red. cost=-168.631527, and route=
+ 21  22  13  19 
+Route red. cost=34.300120, and route=
+ 17  11  4 
+Route red. cost=-99.365982, and route=
+ 10  9 
+Route red. cost=-122.436362, and route=
+ 23  16 
+unassigned customers:[ 1: With red.cost=-24.501295   2: With red.cost=-40.421516   18: With red.cost=59.327554   24: With red.cost=-31.848911  ]
+number of paths is 11 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 1 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_486: [2:7, 3:5, 6:4, 7:1, 15:8, 24:3, 
+Y_1_487: [2:2, 3:6, 6:5, 7:1, 24:4, 
+Y_1_488: [2:5, 3:3, 6:2, 15:6, 24:1, 
+Y_1_489: [6:1, 7:4, 14:5, 15:6, 24:2, 
+Y_1_490: [2:5, 6:1, 7:6, 15:3, 24:2, 
+Y_1_491: [3:5, 6:4, 7:1, 24:3, 
+Y_1_492: [2:1, 3:5, 6:4, 24:3, 
+Y_1_493: [2:2, 6:5, 7:1, 24:4, 
+Y_1_494: [3:3, 6:4, 7:1, 20:2, 
+Y_1_495: [3:3, 6:4, 15:1, 24:5, 
+Y_1_496: [2:5, 6:2, 15:4, 24:1, 
+Number of columns added for facility 1 is 11
+*vcnt: 15
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_286: [2:2, 7:1, 16:4, 23:5, 
+Y_2_287: [6:3, 7:2, 15:1, 21:4, 22:5, 
+Y_2_288: [14:2, 15:1, 19:5, 23:4, 
+Y_2_289: [2:2, 15:1, 16:4, 23:5, 
+Y_2_290: [13:2, 19:1, 21:4, 22:3, 
+Y_2_291: [14:1, 19:4, 23:3, 
+Y_2_292: [2:2, 15:1, 23:4, 
+Y_2_293: [2:4, 15:3, 19:1, 
+Number of columns added for facility 2 is 8
+*vcnt: 23
+current Facility is 3, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+Y_3_382: [2:1, 7:2, 9:4, 10:5, 
+Y_3_383: [3:2, 6:3, 7:4, 20:1, 
+Number of columns added for facility 3 is 2
+*vcnt: 25
+current Facility is 4, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 4 
+Route red. cost=-89.000000, and route=
+ 4  11  18 
+Route red. cost=-136.000000, and route=
+ 17  1 
+Route red. cost=-225.000000, and route=
+ 20  3  0 
+Route red. cost=-136.000000, and route=
+ 7  2 
+Route red. cost=-175.076923, and route=
+ 24  21  6 
+Route red. cost=-25.483260, and route=
+ 15  14  5 
+Route red. cost=-218.435897, and route=
+ 12  8 
+Route red. cost=-123.242527, and route=
+ 10  9 
+unassigned customers:[]
+number of paths is 8 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 4 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 4 
+Y_4_296: [1:5, 4:1, 8:6, 11:2, 17:3, 
+Y_4_297: [3:3, 6:2, 7:1, 18:6, 20:4, 
+Y_4_298: [2:1, 4:6, 7:2, 11:7, 17:8, 18:4, 
+Y_4_299: [2:1, 7:2, 11:7, 17:6, 18:4, 
+Y_4_300: [1:4, 8:3, 17:1, 
+Y_4_301: [2:2, 6:1, 7:3, 18:5, 
+Y_4_302: [1:4, 8:3, 18:1, 
+Y_4_303: [3:3, 6:2, 7:1, 20:4, 
+Y_4_304: [2:1, 4:4, 7:2, 11:5, 17:6, 
+Y_4_305: [2:1, 7:2, 17:4, 18:5, 
+Y_4_306: [2:1, 7:2, 11:5, 17:4, 
+Number of columns added for facility 4 is 11
+*vcnt: 36
+Number of columns found: 36
+exiting a_vars.c
+DONE: SUCCESS (36)
+MINTO: Solving LP ... done (-7615.402266)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=4,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_246: [2:3, 5:4, 6:2, 13:1, 
+Y_0_247: [5:1, 13:3, 19:5, 21:2, 
+Y_0_248: [5:1, 6:3, 13:4, 24:2, 
+Number of columns added for facility 0 is 3
+*vcnt: 3
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_497: [6:1, 13:3, 21:4, 24:2, 
+Y_1_498: [5:6, 6:1, 14:5, 15:4, 24:2, 
+Y_1_499: [5:5, 6:1, 14:4, 24:2, 
+Y_1_500: [5:6, 6:1, 7:4, 15:5, 24:2, 
+Number of columns added for facility 1 is 4
+*vcnt: 7
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_294: [2:2, 9:4, 14:5, 15:1, 
+Y_2_295: [2:1, 5:2, 14:5, 19:4, 
+Y_2_296: [13:2, 14:5, 19:3, 21:1, 
+Y_2_297: [2:2, 14:5, 15:1, 19:4, 
+Y_2_298: [5:5, 6:3, 14:1, 24:4, 
+Y_2_299: [2:1, 5:2, 19:4, 
+Number of columns added for facility 2 is 6
+*vcnt: 13
+current Facility is 3, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+Y_3_384: [1:6, 2:1, 7:2, 8:5, 10:4, 
+Y_3_385: [1:5, 2:1, 8:4, 10:3, 
+Y_3_386: [1:2, 2:5, 8:1, 15:4, 
+Y_3_387: [2:1, 4:3, 6:2, 17:4, 
+Y_3_388: [1:3, 8:2, 10:1, 17:5, 
+Number of columns added for facility 3 is 5
+*vcnt: 18
+current Facility is 4, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 4 
+Y_4_307: [3:6, 4:3, 6:5, 17:4, 18:1, 20:7, 
+Y_4_308: [4:6, 6:3, 17:5, 18:1, 24:4, 
+Y_4_309: [0:2, 4:3, 17:4, 18:1, 
+Y_4_310: [0:3, 4:4, 18:1, 20:2, 
+Y_4_311: [3:4, 4:1, 6:3, 17:2, 20:5, 
+Y_4_312: [3:5, 6:4, 18:1, 24:3, 
+Y_4_313: [1:4, 4:5, 17:3, 18:1, 
+Y_4_314: [6:4, 18:1, 20:5, 24:3, 
+Number of columns added for facility 4 is 8
+*vcnt: 26
+Number of columns found: 26
+exiting a_vars.c
+DONE: SUCCESS (26)
+MINTO: Solving LP ... done (-7606.205633)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=5,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_249: [2:2, 6:3, 13:5, 15:1, 22:4, 
+Y_0_250: [2:3, 6:2, 13:1, 15:4, 
+Y_0_251: [6:2, 13:1, 15:4, 24:3, 
+Number of columns added for facility 0 is 3
+*vcnt: 3
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_501: [5:5, 6:1, 13:3, 22:4, 24:2, 
+Y_1_502: [6:5, 13:2, 21:3, 22:1, 24:4, 
+Number of columns added for facility 1 is 2
+*vcnt: 5
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_300: [5:1, 13:3, 14:6, 19:4, 22:2, 
+Y_2_301: [13:2, 14:4, 19:1, 22:3, 
+Y_2_302: [5:1, 13:3, 19:4, 22:2, 
+Number of columns added for facility 2 is 3
+*vcnt: 8
+current Facility is 3, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+Y_3_389: [1:1, 7:4, 9:2, 
+Number of columns added for facility 3 is 1
+*vcnt: 9
+current Facility is 4, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 4 
+Y_4_315: [0:1, 11:2, 17:3, 18:5, 
+Y_4_316: [2:2, 6:1, 7:3, 17:5, 
+Number of columns added for facility 4 is 2
+*vcnt: 11
+Number of columns found: 11
+exiting a_vars.c
+DONE: SUCCESS (11)
+MINTO: Solving LP ... done (-7604.326087)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=6,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_252: [6:4, 19:1, 21:3, 24:5, 
+Number of columns added for facility 0 is 1
+*vcnt: 1
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_503: [3:4, 6:3, 7:6, 20:5, 24:1, 
+Y_1_504: [5:7, 6:2, 7:1, 14:6, 15:5, 24:3, 
+Y_1_505: [1:3, 7:1, 8:4, 
+Number of columns added for facility 1 is 3
+*vcnt: 4
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_303: [9:2, 10:1, 14:5, 16:3, 
+Y_2_304: [9:1, 14:4, 16:2, 
+Y_2_305: [14:1, 16:3, 19:4, 
+Number of columns added for facility 2 is 3
+*vcnt: 7
+current Facility is 3, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+Y_3_390: [1:3, 9:4, 17:1, 
+Number of columns added for facility 3 is 1
+*vcnt: 8
+current Facility is 4, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 4 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 4 
+Solving EXACT PRICICING for facility 4 
+Pricing problem results 0 columns for facility 4 
+Number of columns found: 8
+exiting a_vars.c
+DONE: SUCCESS (8)
+MINTO: Solving LP ... done (-7604.279353)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=7,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 0 
+Solving EXACT PRICICING for facility 0 
+Pricing problem results 0 columns for facility 0 
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_506: [3:3, 5:6, 6:2, 15:5, 24:1, 
+Number of columns added for facility 1 is 1
+*vcnt: 1
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_306: [2:4, 7:3, 14:6, 19:1, 
+Y_2_307: [5:1, 14:3, 15:2, 19:6, 23:5, 
+Y_2_308: [2:3, 6:5, 7:4, 14:1, 
+Y_2_309: [9:2, 14:1, 19:4, 
+Number of columns added for facility 2 is 4
+*vcnt: 5
+current Facility is 3, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+Y_3_391: [1:5, 6:1, 7:3, 24:2, 
+Number of columns added for facility 3 is 1
+*vcnt: 6
+SKIPFAC=1, thus, skip pricing problem for Faciality 4
+Number of columns found: 6
+exiting a_vars.c
+DONE: SUCCESS (6)
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=8,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+SKIPFAC=1, thus, skip pricing problem for Faciality 0
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_507: [1:5, 2:2, 7:1, 8:4, 
+Y_1_508: [2:6, 3:3, 5:5, 6:2, 24:1, 
+Number of columns added for facility 1 is 2
+*vcnt: 2
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 2 
+Solving EXACT PRICICING for facility 2 
+Pricing problem results 0 columns for facility 2 
+current Facility is 3, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 3 
+Solving EXACT PRICICING for facility 3 
+Pricing problem results 0 columns for facility 3 
+SKIPFAC=1, thus, skip pricing problem for Faciality 4
+Number of columns found: 2
+exiting a_vars.c
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=9,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+SKIPFAC=1, thus, skip pricing problem for Faciality 0
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 1 
+Solving EXACT PRICICING for facility 1 
+Pricing problem results 0 columns for facility 1 
+SKIPFAC=1, thus, skip pricing problem for Faciality 2
+SKIPFAC=1, thus, skip pricing problem for Faciality 3
+SKIPFAC=1, thus, skip pricing problem for Faciality 4
+current Facility is 0, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 0 
+Solving EXACT PRICICING for facility 0 
+Pricing problem results 0 columns for facility 0 
+current Facility is 1, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 1 
+Solving EXACT PRICICING for facility 1 
+Pricing problem results 0 columns for facility 1 
+current Facility is 2, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 2 
+Solving EXACT PRICICING for facility 2 
+Pricing problem results 0 columns for facility 2 
+current Facility is 3, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 3 
+Solving EXACT PRICICING for facility 3 
+Pricing problem results 0 columns for facility 3 
+current Facility is 4, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 4 
+Solving EXACT PRICICING for facility 4 
+Pricing problem results 0 columns for facility 4 
+Final LP objective: -7601.510127
+No new column is generated
+exiting a_vars.c
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:0, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since counter and no newnode
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Primal heuristic ... done
+APPL_FEASIBLE ... DONE: YES
+MINTO: Updating primal (MINTO heuristic)
+       Value:     -7995.67  Elapsed time:     0.59  Node:       1
+APPL_EXIT ... My Integrality gap=0.000000 
+My True upper bound=12320.000000
+My Best integer solution=-7995.666667
+Number of variables in the model is 1817 
+DONE
+
+MINTO: Value of solution: 7995.666667
+MINTO: Non-zero variables in solution:
+    xopt[0] = 1.000000 (T_0)
+    xopt[2] = 1.000000 (T_2)
+    xopt[4] = 1.000000 (T_4)
+    xopt[5] = 1.000000 (V_0)
+    xopt[7] = 3.000000 (V_2)
+    xopt[9] = 3.000000 (V_4)
+    xopt[744] = 1.000000 (Y_2_6)
+    xopt[910] = 1.000000 (Y_2_172)
+    xopt[1643] = 1.000000 (Y_4_257)
+    xopt[1676] = 1.000000 (Y_4_290)
+    xopt[1679] = 1.000000 (Y_0_219)
+    xopt[1711] = 1.000000
+    xopt[1753] = 1.000000
+    zopt = 7995.666667
+
+MINTO: Value of LP-solution: 7601.510127
+MINTO: Non-zero variables in the LP-solution:
+    xlp[0] = 1.000000 (T_0)
+    xlp[2] = 1.000000 (T_2)
+    xlp[4] = 1.000000 (T_4)
+    xlp[5] = 1.231771 (V_0)
+    xlp[7] = 2.347656 (V_2)
+    xlp[9] = 2.381944 (V_4)
+    xlp[910] = 1.000000 (Y_2_172)
+    xlp[1667] = 0.309028 (Y_4_281)
+    xlp[1676] = 0.381944 (Y_4_290)
+    xlp[1677] = 0.309028 (Y_4_291)
+    xlp[1685] = 0.613715
+    xlp[1706] = 0.154514
+    xlp[1711] = 0.652344
+    xlp[1712] = 0.193142
+    xlp[1728] = 0.231771
+    xlp[1743] = 0.347656
+    xlp[1753] = 1.000000
+    xlp[1754] = 0.309028
+    xlp[1758] = 0.072917
+    xlp[1764] = 0.154514
+    xlp[1774] = 0.077257
+    xlp[1791] = 0.077257
+    xlp[1810] = 0.077257
+    zroot = 7601.510127
+    zinit = 8072.817829
+
+MINTO: Branch and bound statistics
+
+    Maximum number of unevaluated nodes           =     1
+    Number of evaluated nodes                     =     1
+    Depth of the tree                             =     0
+    Number of linear programs solved              =     9
+    Maximum number of rows in active LP           =   186 (186)
+
+MINTO: Cut generation statistics
+
+    Number of generated clique inequalities       =     0
+    Number of generated implication inequalities  =     0
+    Number of generated lifted knapsack covers    =     0
+        Knapsack covers            =     0
+        Knapsack covers with GUBs  =     0
+        Surrogate knapsack covers  =     0
+    Number of generated generalized flow covers   =     0
+
+APPL: Timing statistics (in seconds)
+
+    appl_bounds:                                     0.00
+    appl_constraints:                                0.00
+    appl_delconstraints:                             0.00
+    appl_divide:                                     0.00
+    appl_exit:                                       0.01
+    appl_fathom:                                     0.00
+    appl_feasible:                                   0.00
+    appl_init:                                       0.00
+    appl_initlp:                                     0.00
+    appl_mps:                                        0.01
+    appl_node:                                       0.00
+    appl_preprocessing:                              0.00
+    appl_primal:                                     0.00
+    appl_rank:                                       0.00
+    appl_terminatelp:                                0.00
+    appl_terminatenode:                              0.00
+    appl_variables:                                  0.44
+
+MINTO: Timing statistics (in seconds)
+
+    Reading MPS file:                                0.00
+    Restart:                                         0.00
+    Preprocessing and probing:                       0.00
+    Primal heuristic:                                0.04
+    Bound improvement:                               0.00
+    Clique cut generation:                           0.00
+    Implication cut generation:                      0.00
+    Knapsack cover generation:                       0.00
+    GUB cover generation:                            0.00
+    Surrogate knapsack cover generation:             0.00
+    Flow cover generation:                           0.00
+    Cut pool search:                                 0.00
+    Cut Management:                                  0.00
+    Branching:                                       0.00
+    Time LP solving:                                 0.08
+
+    Total elapsed time:                              0.61
+

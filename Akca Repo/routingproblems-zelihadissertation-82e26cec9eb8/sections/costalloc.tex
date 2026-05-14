@@ -1,0 +1,148 @@
+\subsection {Cost Allocation to Customers} 
+In LRS problems, the aim is to minimize total fixed and variable cost of distributing 
+demands to all customers. In real life, besides the total cost, companies also want to 
+know the cost of each customer to determine how to charge each customer for the service 
+or how to measure profitability of each customer. In literature, people 
+investigate for the methods to allocate total cost to each customer considering some
+objectives. Objectives might be to be fair for each customer, to find most suitable
+cost allocation method for the company, to find a method that is easy to calculate, 
+or to be rational. \citet{Tijs} state that not all methods are proper for 
+all objectives, thus the company has to decide priority of its objectives before 
+choosing a cost allocation method. Cost allocation methods may based on simple
+rules or intuition. Also, cooperative game theory is frequently used to define 
+cost allocation methods.
+
+We will look at the methods in which game theory is used. In these methods,
+a cost game is designed using cost allocation problem. In most of the literature,
+the cost game is represented with the pair $(N;c)$, where $N=\{1,2,..,n\}$ is 
+the set of players (the customers that we want to allocate cost) and $c$ is the cost 
+function defined on $2^N \to \mathbb{R}$. The subsets of N are called coalitions 
+and $c(S)$ is the least cost of serving customers in S. Also, it is assumed that 
+$c(\varnothing)=0$. $c$ is subadditive if $c(S \cup T) \leq c(S)+c(T)$ for all
+$S, T \subset N$ and $S \cap T = \varnothing$. A cost allocation method is a 
+function defined for all customers in N and cost function $c$ such that 
+$\beta(c)=(\beta_1(c),\beta_2(c),..,\beta_n(c))$ $\in \mathbb{R}^N$ where
+$\beta_i(c)$ is the cost assigned to customer i. 
+
+\citet{Tijs} investigate the cost allocation methods based on game theory.  
+They have listed properties of the cost allocation methods. For example, if $\beta$ 
+function satisfies $\sum_{i \in N}\beta_i(c)=c(N)$, then the method is {\em efficient}.    
+The cost allocation method is said to be {\em individually rational} if 
+$\beta_i(c) \leq c(\{i\})\ \ \forall i \in N$. The cost allocation method is 
+{\em stable} if $\beta(c)$ is in the {\bf core} of the game. The idea of the core is 
+an important solution approach for cooperative games. If $x_i$ is the charge for 
+player i, then the core of the game is defined as:
+\begin{eqnarray}
+\label{Core}
+CORE(c) = \{ x \in \mathbb{R}^N | \sum_{i \in S}x_i \leq c(S) \ \ \forall S \subset N, \ \ \sum_{i \in N}x_i=c(N)\}               
+\end {eqnarray}
+$CORE(c)$ is a closed, compact and convex subset of $\mathbb{R}^N$. The core might not 
+define a unique point. Also, the core might be empty. Shapley (1971) proved that if c is 
+concave, then the core of c is nonempty. c is concave if 
+$c(S \cup T)+c(S \cap T) \leq c(S)+c(T)$ $\forall S,T \subseteq N$. if c is concave, the 
+game is called convex. Also, it is possible that the core is non-empty when the game 
+is not convex.
+
+Finding the core is one of the solution methods for cost allocation problem. Other approach
+is finding the {\bf nucleolus}. Nucleolus concept was introduced by \citet{Schmeidler}. 
+The nucleolus minimizes maximum dissatisfaction. \citet{Young} 
+explains the nucleus concept by comparing two sets S and T. If 
+$(c(S)-\sum_{i \in S}x_i) > (c(T)-\sum_{i \in T}x_i)$, S is better than T. To define the
+problem that finds the nucleolus, define $e(x,S)=c(S)-\sum_{i \in S}x_i$ that is 
+called the excess of S relative to allocation x. To minimize maximum excess, we have to 
+solve:
+\begin{optprog}
+(P1) \qquad \qquad  Max & \objective{w_1} \nonumber \\
+subject to & e(x,S) &\geq & w_1 & \forall S \subset N \label{excess-const}\\
+           & \sum_{i \in N}x_i &=&c(N)
+\end{optprog} 
+Note that we have $2^{N-2}$ excess values ($e(x,S)$). By ordering these values from lowest
+to highest define vector $e(x)$. \citet{Schmeidler} defined the nucleolus as the vector x 
+that maximizes $e(x)$ lexicographically. From the definition of lexicographic order 
+(mathematical programming glossary), the vector $e(x)$ is lexicographically greater than 
+the vector $e(y)$ if $e(x)-e(y)$ is lexicographically positive that means that the first 
+non-zero coordinate of the vector $e(x)-e(y)$ is positive. Every two vectors are either 
+equal, or one is lexicographically greater than the other. \citet{Schmeidler} proved that 
+there is always a unique vector x (nucleolus) that maximizes e(x). If the core defines a 
+non-empty region, then the nucleolus is in the core. \citet{Young} states that the nucleolus 
+is the point inside the core that is as far as possible from the boundaries of the core. 
+The variations of nucleolus concept are applied in the literature. \cite{Grotte} 
+introduced the idea of normalized nucleolus. He defined the excess as 
+$e(x,S)=[c(S)-\sum_{i \in S}x_i] / |S|$. \citet{Engevall} defined the demand 
+nucleolus with $e(x,S)=[c(S)-\sum_{i \in S}x_i]\sum_{i \in S}D_i$ where $D_i$ is 
+the demand of customer i. 
+
+\citet{Kopelowitz} (see also \citet{Dragan}) introduced a method that solves sequence of 
+linear programms to find the nucleolus of the game. \citet{Engevall} explains the 
+details of the procedure. Procedure starts with the solution of (P1). If (P1) has a 
+unique primal solution $(x^*,w_1^*)$, then $x^*$ is the nucleolus of the game. If this is
+not the case, by investigating the values of dual variables for constraint 
+(\ref{excess-const}), the sets for which the constraint (\ref{excess-const}) is 
+binding and active are determined. Let $\pi_1^*(S)$ be the dual variable at optimal 
+solution for each $S \subset N$ corresponding to the constraint (\ref{excess-const}). 
+If $\pi_1^*(S)>0$, then the constraint (\ref{excess-const}) for set S is binding. By using 
+this information, $2^{nd}$ linear programming is defined:
+\begin{optprog}
+(P2) \qquad \qquad  Max & \objective{w_2} \nonumber \\
+subject to & e(x,S) &\geq & w_2 & \forall S \in \{S\subset N | \pi_1^*(S)=0\} \nonumber\\
+           & e(x,S) & = & w_1^* & \forall S \in \{S\subset N | \pi_1^*(S)>0\} \nonumber\\
+           & \sum_{i \in N}x_i &=&c(N)\nonumber
+\end{optprog} 
+If P2 has a unique primal solution ($x^*,w_2^*$), then, $x^*$ is the nucleolus, otherwise,
+the procedure continues in a similar way by defining P3 and so on. If we define 
+$K_q=\{S\subset N| \pi_q^*(S) >0\}$ (the subsets of N such that $w_q^*=e(x,S)$ in 
+linear programm at step q), then the problem in
+step t is:
+\begin{optprog}
+($P_t$) \qquad \qquad  Max & \objective{w_t} \nonumber \\
+subject to & e(x,S) &\geq & w_t & \forall S \subset N, S \notin \cup_{q=1}^{t-1}K_q \nonumber\\
+           & e(x,S) & = & w_q^* & \forall S \in K_q, q=1,..,t-1 \nonumber\\
+           & \sum_{i \in N}x_i &=&c(N)\nonumber
+\end{optprog} 
+The {\bf Shapley value} (introduced by \citet{Shapley}) is another approach for cost 
+allocation problems. In this method, players are joining some coalitions in some
+random order. A player is assigned the incremental cost that is the cost increase  
+for the coalition that the player is attending. The incremental cost for the player changes 
+according to the order that he attends. Thus, assuming all orders have same probability
+to occur, the expected cost for player i is found to be the following equation.
+\begin{eqnarray}
+\label{shapley-value}
+x_i = \sum_{S \subseteq N | i \in S} \frac{(|S|-1)!(|N|-|S|)!}{|N|!}(c(S)-c(S\backslash \{i\})              
+\end {eqnarray}
+\citet{Young} interprets Shapley value as the average marginal contribution of each player to
+the game if the coalition is obtained by adding one player in every step. The Shapley 
+value is a unique solution for the cost allocation, but \citet{Engevall} states that
+Shapley value may not be in the core of the game. 
+
+People use these cost allocation methods for practical applications. For example, \citet{Littlechild}
+calculate aircraft landing fees and suggest new allocations, \citet{Billera} calculate telephone billing 
+rates. In 1998 \citeauthor{Engevall} designed a traveling 
+salesman game to find cost allocation of a gas and oil company. They use the minimum cost of  
+hamiltonian cycle for the characteristic function (c) of the game. They prove that the core 
+of the game might be empty. They calculate the nucleolus and demand nucleolus of the game and 
+Shapley value for each customer. Also, they use cost gap allocation method introduced by \citet{Tijs} 
+to calculate the cost allocation. They compare the values with the costs
+assigned by the company. 
+
+In 2004, \citeauthor{Engevall2} design a vehicle routing game for the 
+same gas and oil company in \citet{Engevall}. They use the minimum cost of VRP  
+as a characteristic cost function for the game. They use set partitioning 
+formulation of VRP. They investigate wheather the core of the game is empty or not. If the core
+is not empty, they find a solution in the core.  %G\"othe-Lundgren
+\citet{Gothe-Lundgren} prove that
+the core of a vehicle routing game is non-empty if and only if LP relaxation of the set 
+partitioning formulation of VRP and optimal value of VRP over N customers are equal. Since the 
+feasible subsets of N customers are in exponential number, \citet{Engevall2} use a constraint 
+generation procedure to determine wheather the core (set \ref{Core}) 
+has a solution or not. They use constraint generation procedure to define new set $S \in N$ 
+to add the new constraint $\sum_{i \in S}x_i \leq c(S)$ to constraint set of the core.
+Additionally, they define an algorithm that uses constraint generation to calculate the 
+nucleolus of the game.
+
+In our research, we will define the vehicle routing and scheduling problem as a game similar to  
+the approaches in \citet{Engevall,Engevall2}. We will investigate properties
+of the game (convex, proper, monotone) and the characteristic function. We will define the 
+core of the game and determine wheather the core is empty or not. We will determine the cost
+of each customer by using different methods such as simple rules of tumb, Shapley value,   
+core and the nucleolus of the vehicle routing and scheduling game. 
+

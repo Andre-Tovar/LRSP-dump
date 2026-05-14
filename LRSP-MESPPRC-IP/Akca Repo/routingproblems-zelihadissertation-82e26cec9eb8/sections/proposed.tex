@@ -1,0 +1,505 @@
+\chapter{Proposed Research}
+\label{proposedRes}
+
+To date, we have developed two formulations for the LRS problem (the first formulations
+as far as we know), identified valid inequalities that strengthen the formulations, and
+developed a branch-and-price algorithm to solve instances. We have demonstrated that
+the algorithm can solve to optimality a variety of instances up to 30 customers 
+and 5 facilities. In this section, we describe our proposed research. 
+
+In section \ref{algo-dev}, we describe our plans for improving the implementation
+of the branch-and-price algorithm to solve larger instances. In section 
+\ref{sepecial-cases}, we present special cases of the LRS problem and explain how
+we can modify our current work to solve these special cases. In section 
+\ref{extentions}, we  present our ideas for the extensions of the LRS problem.   
+
+\section {Algorithmic Improvements}
+\label{algo-dev}
+We plan to further develop our branch-and-price algorithm with the goal of speeding 
+up our algorithm and solving larger instances. To do so, we will  
+improve our column generation algorithm, the methods for obtaining upper bounds 
+at the nodes of the tree and choosing a node to process in the branch-and-price tree.
+
+\begin{enumerate}
+\item {\bf Column generation} The branch-and-price algorithm spends the largest amount
+  of time on the column generation algorithm at each node of the tree. \citet{Vanderbeck2}
+  lists several reasons why this may happen.
+  One reason is that, as the solution gets closer to 
+  optimality, it becomes more difficult to find columns with negative reduced costs; 
+  this is known in the literature as the tailing-off effect. Another reason is the 
+  degeneracy in the RMP solution. The pairing structure causes degenerate solutions.
+  There may be two sets of pairings visiting the same customers with the same total costs  
+  but including different pairings. Degeneracy in the primal solution results in 
+  multiple optimal dual solutions. Therefore, for several iterations,  new 
+  columns are generated using different dual solutions, but the optimal cost of the 
+  RMP may not improve because the optimal primal solution is moving from one degenerate 
+  solution to another. To decrease the time spent on the column generation algorithm, 
+  we will make the following improvements to our current algorithm.
+
+  {\bf Improving the Initial Set of Columns:}
+
+  We will try to improve the initial set of columns that are provided to 
+  initialize the RMP at the root node. A better set of initial columns may result 
+  in better dual variables that can create columns that can be a part of the optimal
+  RMP solution. Therefore, a better initial set may reduce the number of iterations 
+  of the column generation algorithm. Currently, we are 
+  generating all feasible columns that include one customer, two customers and 
+  three customers. Each column represents a path in which the vehicle does not 
+  return to the depot before serving all customers in the path. However, since 
+  in our LRS problem, a column (pairing) may represent a set of routes, we may 
+  be able to improve the initial solution by generating columns including more 
+  than one route. This may result in needing fewer vehicles to serve all of the 
+  customers. Our idea is to use a heuristic designed for bin packing problems 
+  to combine the initial routes with one, two and three customers to create 
+  columns including more than one route.  
+    %The column generation algorithm starts with some initial set of columns and 
+    %creates columns based on the dual variable information. In the 
+    %first iterations, the quality of the created columns depends on the quality of 
+    %the initial columns. Therefore, if we generate better initial columns then
+    %the algorithm will skip some of the   
+  
+
+  {\bf Improving the Management of Columns:}
+  \begin{itemize}
+  \item Currently, we are solving the pricing problem to optimality during each 
+    iteration of the column generation algorithm. That means that we are finding 
+    the column with the most negative reduced cost as well as all possible columns 
+    with negative reduced costs. Although the column with the most negative reduced 
+    cost potentially reduces the objective function value by the largest value,  
+    solving the pricing problem to optimality gets more difficult as the number of 
+    customers in the problem increases. 
+    %We tried terminating the pricing problem after some number of columns generated. This 
+    %premature exit of the pricing problem did not give better solution times even 
+    %we saved time at each pricing problem. 
+    Our idea is to implement an approach similar to \citet{Larsen}. He creates a policy 
+    in which he sets two parameters, $m$ and $n$. He solves the pricing  problem to 
+    optimality until $m$ columns in total are added to the RMP, then he exits the pricing 
+    problem when optimality is reached or at least $n$ columns are generated. Therefore, 
+    he takes advantage of the best columns as well as the advantage of early termination. 
+    The parameter values need to be determined empirically. 
+    %The maximum number of 
+    %columns to be created before allowing premature exit of pricing problem 
+    %should be determined empirically.   
+
+  \item At each step of the column generation algorithm, typically more than one column is
+    generated, so more than one column typically is added to the RMP at each step.
+    The hope is that adding multiple columns will improve the solution 
+    of the RMP and reduce the number of iterations of the column generation algorithm.
+    However, since some of the columns might be similar to each other,  
+    adding all of them might be redundant. Furthermore, since solving the RMP becomes
+    more difficult as the number of columns increases, it is important
+    to add the right number of columns at each step of the column generation
+    algorithm. We will experiment with different policies for adding columns, 
+    such as adding the best column, adding the last $n$ columns in the list and 
+    adding $n$ random columns with negative reduced cost, and we will
+    compare the performance of the algorithm with different values of $n$.  
+
+    %Solving the pricing problem to optimality finds all possible columns 
+    %with negative reduced cost and therefore finds the column with the most 
+    %negative reduced cost that reduces the objective function most. However, 
+    %as the number of customers in the problem increases, solving the pricing 
+    %problem to optimality gets more difficult and therefore it takes more time
+    %to get the best column. Hoping to improve the solution of the RMP and to
+    %skip some iterations of the column generation algorithm, adding more than 
+    %one column at each step of the column generation algorithm is suggested in
+    %the literature. However, some of the columns might be similar to each other, 
+    %therefore adding all of them  might be redundant.   
+  \item In many column generation implementations, researchers report that 
+    creating a column pool decreases computation time. A column pool stores
+    columns that are generated but not added to the model. The idea is that 
+    instead of solving the pricing problem at each iteration, we first search 
+    the column pool for the columns with negative reduced costs calculated using 
+    the current dual variables. If there are columns, then we will select some 
+    of those to add to the model. Otherwise, we will solve the pricing problem
+    to get columns with negative reduced cost. 
+   
+   
+   %\item Creating column pool is one of the most common implementation improvements in branch-and-price algorithms.
+   % Currently we have a column pool, but this pool only includes the columns that are added to the formulation. 
+   % We are solving our pricing problem that is an ESPPRC to optimality and get the column that have most negative
+   % reduced cost and discard other feasible columns. We will update our column pool and store some of the columns 
+   % that are created in pricing problem and have negative reduced cost to use in next column generation steps. Also,
+   % we can solve the pricing problem for one facility and can use the column pool for the other facilities. 
+   % Instead of solving the ESPPRC for other facilities, we can simply check the reduced costs of columns and add 
+   % these columns to the formulation. 
+%**********************************888
+  %\item For large instances, we will not always solve the exact ESPPRC. We may terminate the algorithm as soon 
+   % as we find a column with negative cost. Also, if the pricing problem takes too much time for large instances 
+   % we will develop a heuristic to find feasile columns. In this heuristic, we might relax one of the resource 
+    %constraints and solve the ESPPRC. 
+ %****************************************8   
+   % We have a path pool in which we store the paths that are included in at least one 
+   % pairing. We can constuct proper sets of paths in which the paths can be combined to obtain pairings. Let 
+   % P1:(source-1-2-3-sink) and P2:(source-3-4-sink) be two paths. Since node 3 is in both paths, they cannot
+   % be combined to get a feasible pairing. We can solve knapsack problems over these proper sets to get a 
+   % pairing with negative reduced cost.   
+ %***********************************************   
+  \end{itemize}
+
+\item {\bf Upper bound (incumbent solution)} In branch-and-price algorithms,
+  having a good upper bound (incumbent solution) for the problem is very 
+  important since it can help to decrease the size of the tree. We are currently 
+  solving the IP model at the root node to optimality to find an upper bound, and
+  using the default primal heuristic in MINTO to find an incumbent solution at
+  the other nodes of the tree. One idea is to solve the IP models at the nodes 
+  to optimality from time to time to improve the upper bound. Another idea is to 
+  develop an application specific heuristic to find an upper bound. We can do 
+  this using VRP solvers to create routes in combination with bin packing 
+  heuristics to combine the routes.
+  %Our idea is to develop an application specific heuristic to 
+  %find an upper bound. We can do this using VRP heuristics to create routes
+  %in combination with bin packing heuristics to combine the routes. 
+\item {\bf Node selection policy} The order in which the nodes of the 
+  branch-and-price tree are processed is one factor that may impact the 
+  efficiency of the algorithm. Currently, we are using a best-bound node selection
+  policy, which seeks to improve the lower bound of the problem. Another common
+  selection policy is depth-first, which seeks to find an upper bound 
+  (incumbent integer solution) as quickly as possible in hopes of eliminating 
+  some of the branches of the tree. In some limited tests of using the depth-first 
+  search policy, we obtained worse computation times. However, it may be 
+  beneficial to use a combination of these two policies as in \citet{Vanderbeck}.
+  He first applies the depth-first search to get an incumbent solution. He uses 
+  the depth-first policy until the gap between the incumbent solution and the best 
+  bound in the tree is less than some prespecified value. After, he switches to 
+  the best-bound policy. 
+\end{enumerate}
+By implementing these improvements, we hope to be able to solve instances
+with at least 50 customers and 10 facilities in a reasonable time.   
+
+\section{Special Cases of the LRS Problem}
+\label{sepecial-cases}
+The LRS problem generalizes a number of problems that appear in the literature. 
+By relaxing some of the constraints and fixing some of the parameters of the 
+LRS problem, we can obtain some special cases, such as location-routing problems 
+(LRP), multi-depot vehicle routing problems (MDVRP) and vehicle routing problems with 
+multiple trips (VRPMT). For some of these problems, our algorithm can provide
+upper bounds, lower bounds or exact solutions, which would improve the results
+reported in the literature and contribute to the performance evaluations. In the 
+following sections, we explain the necessary modifications  to obtain those particular 
+problems and describe our potential contributions.
+
+\subsection{LRP}
+
+There are few exact algorithms for LRPs, especially for those with 
+capacitated facilities, capacitated vehicles and symmetric distance matrices, 
+and the literature only reports exact solutions for small instances. Therefore, 
+an algorithm that solves larger instances of capacitated LRPs to optimality 
+will add great value to the literature. \citet{Laporte86} report solving 
+to optimality instances of symmetric LRPs (with capacitated facilities
+and capacitated vehicles) with at most 20 customers and 8 depots. \citet{Hansen} 
+give optimal solutions for instances with 15 customers and 3 depots. 
+Clearly, there is a need for algorithms that can solve LRPs of practical 
+size, which is why many papers develop heuristic algorithms. Because exact algorithms
+are not available for large problems, however, the results of heuristics 
+often are evaluated only by comparing them with the results of other heuristic algorithms. 
+%because LBs are not availale. 
+\citet{Perl} present lower bounds for their instances (up to 55 customers 
+and 15 depots) and report average 5.2\% gap between their heuristic results 
+and lower bounds. However, \citet{Srivastava}, \citet{Srivastava2} and 
+\citet{Tuzun} compare their results with other heuristics and do not report 
+lower bounds. Therefore, being able to obtain lower bounds and 
+upper bounds (if  not optimal solutions) from our algorithm would allow researchers to 
+better evaluate 
+the performance of their heuristics. 
+
+To construct an LRP from the LRS problem, we drop the time constraints for 
+the vehicles and assume a one-to-one relationship between vehicles and routes 
+in the relaxed model. For an {\em LRP with capacitated facilities and capacitated 
+vehicles}, we can use the set partitioning-based formulation AUG-SPP-LRS 
+but with a different interpretation of a column. A column will represent a
+feasible vehicle route instead of a pairing (a set of feasible vehicle routes). 
+A vehicle route is feasible if the vehicle starts and ends at the same depot, 
+the sum of the demands of the customers on the route is at most the vehicle 
+capacity and each customer is visited at most once. Changing the column
+definition changes the pricing problem, so the network defined in section 
+\ref{form-pricing-prob} must be modified to create columns representing 
+the vehicle routes. The modified pricing problem will still be an elementary 
+shortest path problem with resource constraints,  but the vehicle capacity 
+will be the only resource. In the network, all arcs leaving the sink node 
+are deleted, which means we will not allow the sink node to be visited more 
+than once. In  this case, a path originating at the source must end at the 
+sink but cannot be extended from the sink node. The modified pricing problem 
+will be easier to solve than the current pricing problem, since the number of 
+resources is smaller and the number of possible paths that can be created 
+is smaller. 
+
+Furthermore, by removing constraints (\ref{spp_con2}) and (\ref{lb-open-fac}) 
+from the AUG-SPP-LRS formulation, we can get an 
+{\em LRP problem with uncapacitated facilities}. Dropping the constraints 
+requires that we update the definition of the reduced cost of a column. 
+The reduced cost will be similar to the expression (\ref{red-cost}), except
+that it will not include the dual variables associated with the dropped 
+constraints: 
+$\hat{C}_{jp}=C_{jp}-\sum_{i\in N}a_{ipj}.\pi_{i}+\sum_{i \in N}a_{ipj}.\sigma_{ji}$.
+
+We will modify our current model and solution algorithm to solve capacitated and
+uncapacitated LRPs. We expect to be able to solve or at least provide a feasible
+solution  for instances
+as large as 100 customers. 
+%We will provide lower bounds for the location
+%routing benchmark problems and compare our optimal or best integer solutions 
+%with the solutions provided so far. 
+
+\subsection{MDVRP}
+
+As noted in the literature survey section for the VRP (section \ref{lit-vrp}), 
+there are only two papers that develop exact algorithms for the MDVRP. 
+\citet{Laporte6} solve symmetric MDVRPs with instances as large as 
+ 50 customers and 8 depots using branch-and-bound algorithm. \citet{Laporte7} 
+solve asymmetric MDVRPs with instances up to 80 customers and 3 depots. 
+As with the LRP, heuristics are used to solve large instances (up to 360 customers 
+and 9 depots) and they are evaluated by comparing their results with the best 
+reported results. Because lower bounds for the instances are not known, the 
+integrality gaps are not known. Using our formulation and solution algorithm, 
+we hope to be able to generate at least good lower bounds if not optimal
+solutions for MDVRPs. Because set partitioning-based models tend to generate 
+tight lower bounds, even generating lower bounds would provide another measure 
+for the quality of the existing heuristic solutions. 
+%answer the question of how good a heuristic solution is compared to the optimal solution.        
+
+To define an MDVRP from the LRS problem, we drop the time constraints for the 
+vehicles. In addition, we set the fixed cost of the facilities to zero.  Moreover, 
+in an MDVRP, it is assumed that the facilities are already constructed. Therefore, 
+we no longer need the location variable $T_j$ that shows whether the candidate 
+location $j$ is selected as a facility or not. We can simplify our set 
+partitioning-based formulation (AUG-SPP-LRS) to construct a formulation for the MDVRP
+by removing the $T_j$ variables and the constraints (\ref{lb-open-fac}) and (\ref{relation}). 
+Similar to the LRP, a column in the MDVRP formulation represents a feasible vehicle 
+route. Therefore, we will make the same modifications to the pricing problem to 
+create feasible vehicle routes instead of pairings. Here, however, the reduced cost 
+definition of a column will change to 
+$\hat{C}_{jp}=C_{jp}-\sum_{i\in N}a_{ipj}.\pi_{i}+\sum_{i \in N}a_{ipj}.d_{i}.\mu_{j}-v_j$
+in which we do not have the dual variable $\sigma_{ji}$ associated with the linking 
+constraint (\ref{relation}). 
+%Since in an MDVRP, it is assumed that the facilities are already constructed, we will no 
+%longer need the location variable, $T_j$ that shows whether the candidate location $j$ is 
+%selected as a facility or not. The set partitioning formulation that we will use to solve 
+%an MDVRP is:
+\begin{optprog}
+{\bf(SPP-MDVRP)} Minimize & \objective{\sum_{j \in M} \sum_{p\in P_{j}} C_{jp} Z_{jp}} \label{mdvrp-obj}\\
+subject to & \sum_{j \in M} \sum_{p \in P_{j}} a_{ipj} Z_{jp} & = & 1 & \forall i \in N \label{spp_mdvrp} \\
+           & \sum_{p \in P_j} \sum_{i \in N} a_{ipj} d_i Z_{jp} & \leq & CapF_{j} & \forall j \in M \label{spp_mdvrp2} \\
+           & \sum_{p \in P_j} Z_{jp} & = & nV_j & \forall j \in M \label{tot-veh-mdvrp} \\
+           & L_j \leq nV_j & \leq &  U_j & \forall j \in M \label{veh-bounds-mdvrp} \\
+           & Z_{jp} &  \in & \{0,1\} & \forall j \in M, \forall p \in P_{j} \label{bin-mdvrp} \\
+           & nV_j & \in & \mathbb{Z}^{+} & \forall j \in M \label{int-mdvrp}
+\end{optprog} 
+In constraints (\ref {veh-bounds-mdvrp}), $L_j$ is the minimum number of vehicles and 
+$U_j$ is the maximum number of vehicles 
+at facility $j$. Recall that we introduce the variable $nV_j$ to branch on the number 
+of vehicles in section \ref{branchingRule} (under branching rule 2). The constraints 
+(\ref{veh-bounds-mdvrp}) force lower and upper bound for the number of vehicles at 
+each facility. The definitions of the other constraints are the same as in the SPP-LRS. 
+ 
+We will use the modified pricing problem to solve the model SPP-MDVRP. We expect to 
+be able to solve instances up to 100 customers. For larger problems, we may provide 
+lower bounds and/or best integer solutions.  
+
+\subsection{VRPMT}
+
+The vehicle routing problem with multiple trips is another special case of the LRS
+problem. Compared to the VRP, the VRPMT has received little attention in the 
+literature. There are only a few recent papers and they develop heuristic algorithms 
+for the VRPMT (see section \ref{lit-vrps}). All of the papers use the benchmark problems 
+created by \citet{Taillard} that include between 50 to 199 customers. These problems 
+are solved with a fixed number of vehicles and a predefined travel time limit for the 
+vehicles. For feasible problems, researchers compare their heuristic solutions with 
+the results of the existing heuristics based on a measure calculated using the 
+ratio of the total travel length to the best VRP solution. Some instances are 
+infeasible for a given number of vehicles and time limit. For those, they 
+allow overtime with an associated penalty to find vehicle trips and they compare the 
+length of the longest trip. 
+%With our formulation and solution algorithm, we may be
+%able to calculate the optimal number of vehicles and the optimal total travel time 
+%for some of these benchmark problems.   
+ 
+The LRS problem with one facility can be transformed into a VRPMT by fixing the 
+location of the facility and setting the fixed cost of the facility to zero. 
+Since there is only one facility and no fixed cost, we remove the location variables 
+and all occurrences of the index $j$ (that corresponds to a facility) from the 
+SPP-LRS formulation. Then, using our original pricing problem that creates feasible 
+pairings, we can use the following set partitioning formulation as the master problem.
+\begin{optprog}
+{\bf(SPP-VRPMT)} Minimize & \objective{\sum_{p\in P} C_{p} Z_{p}} \label{vrpmt-obj}\\
+subject to & \sum_{p \in P} a_{ip} Z_{p} & = & 1 & \forall i \in N \label{spp_vrpmt} \\
+           & \sum_{p \in P} Z_{p} & \leq & U \label{bound-veh-vrpmt} \\
+           & Z_{p} &  \in & \{0,1\} & \forall p \in P \label{bin-vrpmt} 
+\end{optprog} 
+where $U$ is the number of vehicles available at the depot. In the SPP-VRPMT, there 
+is no capacity constraint for the facility since we are assuming that the capacity 
+of the facility is enough to serve all customers. 
+
+\citet{Olivera} provide a different set partitioning-based formulation of the VRPMT, 
+in which the decision is how to group routes into pairings. In their formulation,
+the columns represent routes and they include a constraint to group these routes 
+in order to generate a feasible task to assign one vehicle. In our pricing problem, 
+we will create pairings, each of which represents a feasible assignment for one vehicle.
+
+We will use the model SPP-VRPMT and our current column generation algorithm 
+to solve the benchmark instances of VRPMT. For instances up to 100 customers, we 
+will try to calculate the optimal number 
+of vehicles and the optimal total travel time and evaluate the performance
+of our algorithm compared to others in the VRPMT literature.
+% We will try to provide optimal
+%solutions or best integer solutions and lower bounds and evaluate the performance
+%of our algorithm compared to others in the VRPMT literature.
+
+\section{Extensions to the LRS problem}
+\label{extentions}
+
+The LRS problem can be extended to other problems by changing some of the 
+assumptions and specifications of the problem. 
+First, we will consider a version of LRS with stochastic demands. 
+We will investigate how to integrate the stochastic demands to our set partitioning 
+model and the methods to solve the stochastic LRS problem. 
+Second, we will relax the 
+assumption of identical vehicles. We will solve the LRS problem with 
+a heterogeneous fleet. By differentiating the pairings based on the vehicle
+type, we can use our current formulation. We will solve different pricing problems
+for each vehicle type. 
+Third, we will investigate the VRP with full truckloads. Modifying our
+pricing problem and set partitioning model, we will provide an algorithm to solve 
+the VRP with full truckloads. 
+
+% extension that we
+%want to work on is the LRS problem in which we do not assume ideantical vehicles. 
+%Based on the related literature, the most common extensions for the 
+%related problems are obtained by adding stochasticity to the model parameters. We
+%will model a stochastic LRS problem as our second extension. Finally, we will investigate 
+%the extension of our problem to the vehicle routing problem with full truckloads. 
+%The following sections briefly describe the necessary changes and updates in our 
+%current model and algorithm to obtain the extended problems.  
+
+\subsection{Stochastic LRS Problem}
+
+The current LRS problem assumes that all of the parameters are deterministic. 
+We will investigate extending our current model to include stochastic parameters,
+in particular, stochastic customer demands. Models with stochastic parameters are 
+more difficult to solve than the corresponding models with deterministic 
+parameters. For example, there are fewer papers studying stochastic versions
+of the LRP than papers studying deterministic versions of the LRP (see \citet{Min}). 
+Most of the stochastic papers consider just a single uncapacitated 
+facility because of the difficulty of the problem. We may also consider relaxing 
+some of the constraints in our stochastic model. 
+  
+To incorporate stochastic demands, our idea is to extend our set partitioning 
+formulation to a stochastic programming model. \citet{Novoa} uses a 
+set partitioning model to provide heuristic solutions for the VRP with
+stochastic demands. We will investigate how to use column generation algorithm and
+whether we can use our current pricing problem or not.  
+We will develop an appropriate recourse policy to handle failures that occur in the constructed routes due to 
+insufficient vehicle capacity.  
+%\citet{Novak} use a set partitioning 
+%model to solve stochastic VRP heuristically.
+
+% We will determine whether we can use our current
+%pricing model or how we can incorporate stochastic demands to our pricing problem. 
+%We will investigate the ways of applying column generation for a stochastic master
+%problem. 
+
+  
+
+\subsection{LRS Problem with Heterogeneous Vehicles}
+The current LRS problem assumes that the vehicles are identical in capacity, 
+time limit and fixed and variable costs.  However, the set partitioning-based 
+formulation and the structure of the pricing problem can be extended to model 
+non-identical vehicles, in particular, a heterogeneous set $S={1, ..., K}$ of 
+vehicles, each with different properties. A vehicle of type $k$ has a capacity 
+value $CapV_k$, a fixed cost $VF_k$ and an operating cost $OC_k$. In addition, 
+the different types of vehicles may have different travel times on an arc as 
+well as different working hour limits. Therefore, the travel time of a vehicle
+of type $k$ from location $i$ to location $j$ is $t_{ijk}$ and the time limit 
+for a vehicle of type $k$ is $TL_k$. 
+ 
+We redefine our decision variables and parameters to incorporate the 
+non-identical vehicle types. 
+\begin{eqnarray*}
+Z^k_{jp} & = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if pairing p of vehicle type $k$ is selected for facility j, $\forall p \in P^k_{j}$, $k \in S$ and  $j \in M$ }\\
+                 0  & \mbox{otherwise}                                                  
+                \end{array}
+       \right. \\
+a_{ipj}^k & = & \left \{  \begin{array}{ll}
+                 1 & \mbox{if demand node $i$ is in pairing $p$ of vehicle type $k$ located at facility $j$, $\forall i \in N,$} \\
+		 \mbox{}  & \mbox{$ j \in M, p \in P^k_{j}$ and $k \in S$ } \\
+                 0 & \mbox{otherwise}
+                         \end{array}
+              \right. \\
+C^k_{jp} & = & \mbox{cost of pairing $p$ of vehicle type $k$ associated with facility $j$, $\forall j \in M, p \in P^k_{j}$ and  $k \in S$ }
+\end{eqnarray*}
+Then, the set partitioning model for the LRS problem with heterogeneous vehicles will be:
+\begin{optprog}
+{\bf(SPP-LRS-HE)} Minimize & \objective{\sum_{j \in M} FC_j T_{j} + \sum_{j \in M} \sum_{k \in S}\sum_{p\in P^k_{j}} C^k_{jp} Z^k_{jp}} \label{he-obj}\\
+subject to & \sum_{j \in M} \sum_{k \in S}\sum_{p \in P^k_{j}} a_{ipj}^k Z^k_{jp} & = & 1 & \forall i \in N \label{he_con1} \\
+           &  \sum_{k \in S}\sum_{p \in P^k_j}\sum_{i \in N} a_{ipj}^k d_i Z^k_{jp} & \leq & CapF_{j} T_{j} & \forall j \in M \label{he_con2} \\
+           & \sum_{j \in M} T_{j} & \geq & nREQ \\
+           & \sum_{k \in S}\sum_{p \in P^k_{j}}a_{ipj}^k Z^k_{jp} &\leq & T_{j} &\forall j \in M, \forall i \in N \\ 
+           & Z^k_{jp} &  \in & \{0,1\} & \forall j \in M, \forall p \in P_{j}, \forall k \in S \label{he-binary1} \\
+           & T_{j}  & \in & \{0,1\} & \forall  j \in M \label{he-binary2}
+\end{optprog}   
+
+The interpretations of the constraints in SPP-LRS-HE are same as the 
+corresponding constraints in the AUG-SPP-LRS, except that the type of the vehicle
+is differentiated by an index $k$. The pricing problem to create columns for the 
+SPP-LRS-HE will be the same as our current pricing problem except that we will solve 
+one pricing problem for each type of vehicle as well as for each facility. 
+
+If we assume that the travel times and the operating costs are the same for each 
+type of vehicle, e.g., $t_{ijk}=t_{ij}$ and $OC_k=OC$, and there is no upper 
+bound on the available number of vehicles of each type at each depot, then 
+we can use our original set partitioning model AUG-SPP-LRS with the decision 
+variable $Z_{jp}$ instead of using a different variable for each type of vehicle 
+($Z^k_{jp}$). For a generated pairing, we will choose the cheapest feasible vehicle 
+type across all vehicle types. Therefore, the type of the vehicle and the routes 
+in the pairing will be determined in the pricing problem. The master problem will 
+only be aware of the cost of the pairing but not be able to differentiate the 
+type of the vehicle used for the pairing.  
+
+
+
+\subsection{Vehicle Routing Problem with Full Truckloads}
+
+The VRP with full truckloads (VRPFT) is a variation of the VRP that is studied 
+in a few papers, e.g., \citet{Desrosiers2}, \citet{Arunapuram} and \citet{Gronalt}. 
+The VRPFT finds the minimum cost set of vehicle routes, each of which starts and ends at 
+the same depot and carries a given number of full truckloads between specified origin 
+and destination locations. Since each truckload between each origin and destination 
+locations requires one vehicle, the problem actually minimizes the 
+total travel cost of empty vehicles. The VRPFT is similar to the LRS problem with
+uncapacitated vehicles and without the restriction that each customer must be 
+visited once. A customer must be visited in the number of truckloads that must picked up
+from the customer. A network in which each arc between an origin and a destination   
+location is represented with one node can be constructed. In this network, the nodes 
+can be visited more than once to be able to satisfy the given number of truckloads. 
+We will investigate the differences between the solution methods in the literature 
+and a solution algorithm that we will obtain by modifying the current set 
+partitioning model and the pricing problem.       
+
+
+
+%\begin {itemize}
+%\item We will construct a problem in which a path can include at most two customers. With this
+%restriction, ESPPRC will be easier since possible number of pairings will decrease. This modification
+%may help solving large instances.
+%\item We will search the solution methods for LRS problem if we have stochastic parameters such as 
+%stochastic demand or stochastic travel times. 
+%\item We will solve the problem for two different type of products, let prodA and prodB be the names 
+%of the products. We will introduce 3 types of vehicles, typeA can carry prodA, typeB can carry prodB and
+%typeAB can carry both products. TypeAB has two sections with deterministic capacities. Each customer 
+%has only one type of demand. We will have different variables for each vehicle type. We will solve three
+%different pricing problems, one for each truck type in each facility. Pricing problem for typeA (typeB) includes
+%only prodA (prodB) customers. All customers will exist in pricing problem for typeAB trucks. If we know the 
+%exact solution of the LRS problem, this modified problem can be solved.       
+%\end {itemize}
+  
+\section{Tentative Plan}
+We plan to complete our future work based on the following schedule:
+
+\begin{itemize}
+\item We plan to complete the proposed algorithmic improvements by June 2006 to be able to solve
+the LRS problem for instances with 50 customers.
+\item We plan to spend 3 months to modify our formulation and algorithm to solve the special cases of the
+LRS problem. We will be able to solve the LRPs, MDVRPs and VRPMTs by the end of September 2006. 
+\item From October 2006 to May 2007, we will work on the stochastic LRS problem. 
+\item We plan to work on the other extensions of the LRS problem after graduation. 
+\end{itemize}    

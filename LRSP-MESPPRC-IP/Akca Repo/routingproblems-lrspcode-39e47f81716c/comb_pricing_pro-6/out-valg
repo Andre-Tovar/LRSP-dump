@@ -1,0 +1,4211 @@
+==18670== Memcheck, a memory error detector.
+==18670== Copyright (C) 2002-2005, and GNU GPL'd, by Julian Seward et al.
+==18670== Using LibVEX rev 1575, a library for dynamic binary translation.
+==18670== Copyright (C) 2004-2005, and GNU GPL'd, by OpenWorks LLP.
+==18670== Using valgrind-3.1.1-Debian, a dynamic binary instrumentation framework.
+==18670== Copyright (C) 2000-2005, and GNU GPL'd, by Julian Seward et al.
+==18670== For more details, rerun with: -v
+==18670== 
+inside minto.c
+
+MINTO, a Mixed INTeger Optimizer  --  version 3.0.1 (LINUX/CPLEX 8.1)
+Copyright (C) 1992-2004  --  M.W.P. Savelsbergh
+
+==18670== Conditional jump or move depends on uninitialised value(s)
+==18670==    at 0x401131E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4100BD5: getpwuid_r (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41004D1: getpwuid (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Conditional jump or move depends on uninitialised value(s)
+==18670==    at 0x401132D: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4100BD5: getpwuid_r (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41004D1: getpwuid (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Conditional jump or move depends on uninitialised value(s)
+==18670==    at 0x401133C: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4100BD5: getpwuid_r (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41004D1: getpwuid (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Conditional jump or move depends on uninitialised value(s)
+==18670==    at 0x401134B: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4100BD5: getpwuid_r (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41004D1: getpwuid (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Conditional jump or move depends on uninitialised value(s)
+==18670==    at 0x40114AC: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4100BD5: getpwuid_r (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41004D1: getpwuid (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Conditional jump or move depends on uninitialised value(s)
+==18670==    at 0x40114B7: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4100BD5: getpwuid_r (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41004D1: getpwuid (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Conditional jump or move depends on uninitialised value(s)
+==18670==    at 0x40114AC: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4004E29: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4006B55: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Conditional jump or move depends on uninitialised value(s)
+==18670==    at 0x40114B7: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4004E29: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4006B55: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Invalid read of size 4
+==18670==    at 0x40114B9: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4004E29: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4006B55: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==  Address 0x41B5044 is 36 bytes inside a block of size 38 alloc'd
+==18670==    at 0x401C422: malloc (vg_replace_malloc.c:149)
+==18670==    by 0x4006DF0: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4100BD5: getpwuid_r (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Invalid read of size 4
+==18670==    at 0x40114E7: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4004E29: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4006B55: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400A576: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400AB31: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417650B: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==  Address 0x41B537C is 28 bytes inside a block of size 31 alloc'd
+==18670==    at 0x401C422: malloc (vg_replace_malloc.c:149)
+==18670==    by 0x4006DF0: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400A576: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400AB31: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417650B: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Conditional jump or move depends on uninitialised value(s)
+==18670==    at 0x4009313: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41767B9: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4100BD5: getpwuid_r (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41004D1: getpwuid (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Conditional jump or move depends on uninitialised value(s)
+==18670==    at 0x4008FB0: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41767B9: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x415306E: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4154BCF: __nss_passwd_lookup (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4100BD5: getpwuid_r (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41004D1: getpwuid (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Invalid read of size 4
+==18670==    at 0x40114A3: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4004E29: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4006B55: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4023119: (within /lib/tls/i686/cmov/libnss_compat-2.3.6.so)
+==18670==    by 0x4023DAC: _nss_compat_getpwuid_r (in /lib/tls/i686/cmov/libnss_compat-2.3.6.so)
+==18670==  Address 0x41B5A08 is 32 bytes inside a block of size 35 alloc'd
+==18670==    at 0x401C422: malloc (vg_replace_malloc.c:149)
+==18670==    by 0x4006DF0: (within /lib/ld-2.3.6.so)
+==18670==    by 0x41764AF: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4023119: (within /lib/tls/i686/cmov/libnss_compat-2.3.6.so)
+==18670==    by 0x4023DAC: _nss_compat_getpwuid_r (in /lib/tls/i686/cmov/libnss_compat-2.3.6.so)
+==18670==    by 0x4100AD2: getpwuid_r (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670== 
+==18670== Invalid read of size 4
+==18670==    at 0x40114B9: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4004E29: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4006B55: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400A576: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400AB31: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417650B: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==  Address 0x41B5D4C is 36 bytes inside a block of size 37 alloc'd
+==18670==    at 0x401C422: malloc (vg_replace_malloc.c:149)
+==18670==    by 0x4006DF0: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400A576: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x400AB31: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417650B: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x4176E6A: _dl_open (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x41783DC: (within /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x400BA5E: (within /lib/ld-2.3.6.so)
+==18670==    by 0x417853D: __libc_dlopen_mode (in /lib/tls/i686/cmov/libc-2.3.6.so)
+==18670==    by 0x4152EE0: __nss_lookup_function (in /lib/tls/i686/cmov/libc-2.3.6.so)
+ILOG CPLEX 9.100, licensed to "lehigh university-bethlehem, pa ", options: e m b q 
+ a_mps.c is running
+Number of facilities: 5
+Number of customers: 25
+num_REQ=3 
+# of columns=1649, # of customers=4145 
+PairNum[0]=218 
+PairNum[1]=484 
+PairNum[2]=273 
+PairNum[3]=375 
+PairNum[4]=292 
+numselected=3 
+HeurFac[0]=0, HeurPairNum[0]=3 
+HeurFac[1]=3, HeurPairNum[1]=2 
+HeurFac[2]=4, HeurPairNum[2]=2 
+NumNZ=11803 ,NumCol=1685 ,NumRow=186 
+When exit loop of facility 0, k =218 
+When exit loop of facility 1, k =484 
+When exit loop of facility 2, k =273 
+When exit loop of facility 3, k =375 
+When exit loop of facility 4, k =292 
+end of a_mps.c file
+pairNum[0]:221
+pairNum[1]:484
+pairNum[2]:273
+pairNum[3]:377
+pairNum[4]:294
+route=
+ 2  15 
+route=
+ 6  24  21 
+unassigned customers:[ 7 ]
+number of paths is 3 
+route=
+ 9  14 
+route=
+ 19  13  22  5 
+route=
+ 16  23 
+unassigned customers:[]
+number of paths is 3 
+route=
+ 8  12  10 
+unassigned customers:[ 1 ]
+number of paths is 2 
+route=
+ 4  11  17 
+route=
+ 0  3  20 
+unassigned customers:[ 18 ]
+number of paths is 3 
+route=
+ 13  22  21  24 
+unassigned customers:[ 19 ]
+number of paths is 2 
+route=
+ 9  14 
+route=
+ 5  15 
+route=
+ 16  23 
+unassigned customers:[]
+number of paths is 3 
+route=
+ 2  7 
+route=
+ 8  12  10 
+unassigned customers:[ 1 ]
+number of paths is 3 
+route=
+ 20  3  6  17 
+route=
+ 18  0  11  4 
+unassigned customers:[]
+number of paths is 2 
+route=
+ 21  22  13  19 
+route=
+ 16  23 
+unassigned customers:[]
+number of paths is 2 
+route=
+ 2  7 
+route=
+ 5  14  15 
+route=
+ 6  24 
+unassigned customers:[]
+number of paths is 3 
+route=
+ 9  10 
+route=
+ 8  12 
+unassigned customers:[ 1 ]
+number of paths is 3 
+route=
+ 4  11  17 
+route=
+ 0  3  20 
+unassigned customers:[ 18 ]
+number of paths is 3 
+route=
+ 21  22  13  19 
+unassigned customers:[]
+number of paths is 1 
+route=
+ 7  12  15 
+route=
+ 6  24 
+unassigned customers:[ 2 ]
+number of paths is 3 
+route=
+ 9  10  5 
+route=
+ 16  23 
+unassigned customers:[ 14 ]
+number of paths is 3 
+route=
+ 4  11  17 
+route=
+ 0  3  20 
+route=
+ 1  8 
+unassigned customers:[ 18 ]
+number of paths is 4 
+route=
+ 9  14 
+route=
+ 5  15 
+route=
+ 19  13  22  21 
+route=
+ 16  23 
+unassigned customers:[]
+number of paths is 4 
+route=
+ 2  7 
+route=
+ 8  12  10 
+unassigned customers:[ 1  24 ]
+number of paths is 4 
+route=
+ 20  3  6  17 
+route=
+ 18  0  11  4 
+unassigned customers:[]
+number of paths is 2 
+route=
+ 13  22  21  24 
+route=
+ 14  15  5 
+route=
+ 16  23 
+unassigned customers:[ 19 ]
+number of paths is 4 
+route=
+ 2  7 
+route=
+ 9  10 
+route=
+ 8  12 
+unassigned customers:[ 1 ]
+number of paths is 4 
+route=
+ 20  3  6  17 
+route=
+ 18  0  11  4 
+unassigned customers:[]
+number of paths is 2 
+route=
+ 13  22  21  24 
+route=
+ 19  23 
+unassigned customers:[]
+number of paths is 2 
+route=
+ 5  14 
+route=
+ 2  15 
+route=
+ 9  12  10 
+unassigned customers:[ 16 ]
+number of paths is 4 
+route=
+ 18  0  11  4 
+route=
+ 20  3  6  7 
+route=
+ 1  8 
+unassigned customers:[ 17 ]
+number of paths is 4 
+
+
+Facility 0 is selected. Customers assigned are [ 
+ 5  13  14  15  16  19  21  22  23  24 ]
+Facility 3 is selected. Customers assigned are [ 
+ 1  2  7  8  9  10  12 ]
+Facility 4 is selected. Customers assigned are [ 
+ 0  3  4  6  11  17  18  20 ]
+route=
+ 13  22  21  24 
+route=
+ 14  15  5 
+route=
+ 16  23 
+unassigned customers:[ 19 ]
+number of paths is 4 
+route=
+ 2  7 
+route=
+ 9  10 
+route=
+ 8  12 
+unassigned customers:[ 1 ]
+number of paths is 4 
+route=
+ 20  3  6  17 
+route=
+ 18  0  11  4 
+unassigned customers:[]
+number of paths is 2 
+Total cost of location routing problem is 8090.500000 
+MINTO: Solving problem p11-f25-v1t1.txt
+MINTO: Problem statistics:
+
+    Number of constraints: 186
+    Number of variables:   1685 (0)
+    Number of nonzero's:   11803
+
+    Number of continuous variables: 0
+    Number of binary variables:     1680
+    Number of integer variables:    5
+
+MINTO: Initialization ... done
+APPL_INIT ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Row structure analysis (after preprocessing):
+    Number of constraints of type MIXEQ:        5
+    Number of constraints of type ALLBINUB:     1
+    Number of constraints of type BINSUMVARUB:  5
+    Number of constraints of type BINSUM1UB:    150
+    Number of constraints of type BINSUM1EQ:    25
+
+MINTO control parameters:
+    Objective sense     : minimization
+    Output level        : 2
+    Maximum cpu time    : 1000000
+    Maximum #nodes      : 2
+
+MINTO system function activity levels:
+    Bound improvement   : not active
+    Branching type      : 0
+    Node selection type : 0
+    Preprocessing level : 0
+    Primal heuristic    : active
+    Clique cuts         : not active
+    Implication cuts    : not active
+    Knapsack covers     : not active
+    GUB covers          : not active
+    Flow covers         : not active
+    Row management      : active
+    Restarts            : active
+    Force branching     : 1
+    Advanced basis      : not active
+    Names mode level    : 3
+
+APPL_INITLP ... entering a_initlp.c
+DONE
+MINTO: Initialization of root node ... done
+MINTO: Selected node (0,1)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-8072.817829)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=1,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 0 
+Route red. cost=-216.560078, and route=
+ 19  13  22  21 
+Route red. cost=-63.420543, and route=
+ 6  3  5 
+Route red. cost=-95.348837, and route=
+ 14  10  15 
+Route red. cost=-118.095930, and route=
+ 24  20 
+Route red. cost=-200.833333, and route=
+ 7  2 
+Route red. cost=-225.000000, and route=
+ 23  16 
+unassigned customers:[ 9: With red.cost=4.408915   18: With red.cost=100.634690  ]
+number of paths is 8 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 0 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_221: [13:6, 19:1, 21:4, 22:5, 24:3, 
+Y_0_222: [5:7, 13:3, 14:5, 15:6, 21:1, 22:2, 
+Y_0_223: [5:3, 14:5, 15:4, 19:1, 
+Y_0_224: [19:1, 21:4, 22:5, 24:3, 
+Y_0_225: [5:6, 14:4, 15:5, 21:2, 22:1, 
+Y_0_226: [19:1, 21:4, 24:3, 
+Y_0_227: [5:5, 14:3, 15:4, 21:1, 
+Y_0_228: [6:4, 13:1, 21:3, 22:2, 24:5, 
+Y_0_229: [5:3, 13:1, 14:4, 21:2, 
+Y_0_230: [13:1, 21:3, 22:2, 24:4, 
+Y_0_231: [5:5, 19:1, 21:4, 22:3, 
+Y_0_232: [5:2, 13:1, 14:4, 15:3, 
+Y_0_233: [5:4, 13:1, 22:2, 24:3, 
+Y_0_234: [6:3, 21:2, 22:1, 24:4, 
+Number of columns added for facility 0 is 14
+*vcnt: 14
+current Facility is 1, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 1 
+Route red. cost=-223.459302, and route=
+ 12  8  7 
+Route red. cost=-204.903101, and route=
+ 15  14  5 
+Route red. cost=-142.301357, and route=
+ 20  3  6 
+Route red. cost=-146.560078, and route=
+ 21  22  13  19 
+Route red. cost=-87.897287, and route=
+ 17  11  4 
+Route red. cost=-85.397287, and route=
+ 10  9 
+Route red. cost=-210.000000, and route=
+ 23  16 
+unassigned customers:[ 1: With red.cost=-64.079457   2: With red.cost=-186.230620   18: With red.cost=-9.365310   24: With red.cost=-144.563953  ]
+number of paths is 11 
+X[1]=1 
+X[2]=0 
+X[3]=1 
+X[4]=0 
+X[5]=0 
+X[6]=1 
+X[7]=0 
+X[8]=0 
+X[9]=0 
+X[10]=0 
+X[11]=0 
+A pairing is constructed from routes 
+time=198 
+Y_1_484: [2:3, 5:7, 14:6, 15:5, 24:1, 
+Number of columns added for facility 1 is 1
+*vcnt: 15
+current Facility is 2, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 2 
+Route red. cost=-162.718023, and route=
+ 14  17  7 
+Route red. cost=-166.787791, and route=
+ 5  24  6 
+Route red. cost=5.867248, and route=
+ 20  15 
+Route red. cost=-167.141473, and route=
+ 21  22  13  19 
+Route red. cost=-225.000000, and route=
+ 23  16 
+Route red. cost=-195.639535, and route=
+ 9  1 
+Route red. cost=-185.658915, and route=
+ 10  12  8 
+unassigned customers:[ 2: With red.cost=-120.416667   3: With red.cost=81.390504   18: With red.cost=92.533915  ]
+number of paths is 10 
+X[1]=0 
+X[2]=0 
+X[3]=1 
+X[4]=0 
+X[5]=0 
+X[6]=0 
+X[7]=0 
+X[8]=1 
+X[9]=0 
+X[10]=0 
+A pairing is constructed from routes 
+time=215 
+Y_2_273: [2:1, 16:4, 23:3, 
+Number of columns added for facility 2 is 1
+*vcnt: 16
+current Facility is 3, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 3 
+Route red. cost=-165.939922, and route=
+ 14  1 
+Route red. cost=-117.063953, and route=
+ 18  17 
+Route red. cost=-225.000000, and route=
+ 7  2 
+Route red. cost=-196.666667, and route=
+ 11  4  20  3  6 
+Route red. cost=-225.000000, and route=
+ 16  9  10 
+Route red. cost=-0.000000, and route=
+ 12  8 
+Route red. cost=-127.286822, and route=
+ 15  5  22  21 
+unassigned customers:[ 23: With red.cost=-9.757752   24: With red.cost=-74.563953  ]
+number of paths is 9 
+X[1]=0 
+X[2]=0 
+X[3]=0 
+X[4]=1 
+X[5]=1 
+X[6]=0 
+X[7]=0 
+X[8]=0 
+X[9]=0 
+A pairing is constructed from routes 
+time=190 
+Y_3_377: [2:5, 7:4, 17:2, 18:1, 
+Number of columns added for facility 3 is 1
+*vcnt: 17
+current Facility is 4, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 4 
+Route red. cost=-160.397287, and route=
+ 18  11  4 
+Route red. cost=-201.778101, and route=
+ 17  1 
+Route red. cost=-225.000000, and route=
+ 20  3  0 
+Route red. cost=-225.000000, and route=
+ 7  2 
+Route red. cost=-138.619186, and route=
+ 24  21  6 
+Route red. cost=-146.666667, and route=
+ 15  14  5 
+Route red. cost=-172.189922, and route=
+ 12  8 
+Route red. cost=-41.424419, and route=
+ 10  9 
+unassigned customers:[]
+number of paths is 8 
+X[1]=1 
+X[2]=0 
+X[3]=0 
+X[4]=1 
+X[5]=0 
+X[6]=0 
+X[7]=0 
+X[8]=0 
+A pairing is constructed from routes 
+time=198 
+Y_4_294: [2:6, 4:3, 7:5, 11:2, 18:1, 
+Number of columns added for facility 4 is 1
+*vcnt: 18
+Number of columns found: 18
+exiting a_vars.c
+DONE: SUCCESS (18)
+MINTO: Solving LP ... done (-7939.548822)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=2,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_235: [5:5, 6:3, 13:1, 22:2, 24:4, 
+Y_0_236: [5:4, 6:2, 13:1, 24:3, 
+Y_0_237: [5:3, 13:5, 14:1, 15:2, 22:6, 
+Number of columns added for facility 0 is 3
+*vcnt: 3
+current Facility is 1, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 1 
+Route red. cost=-225.000000, and route=
+ 12  8  7 
+Route red. cost=-125.243980, and route=
+ 15  14  5 
+Route red. cost=-133.555925, and route=
+ 20  3  6 
+Route red. cost=-59.343967, and route=
+ 21  22  13  19 
+Route red. cost=-8.556321, and route=
+ 17  11  4 
+Route red. cost=-120.940722, and route=
+ 10  9 
+Route red. cost=-170.860080, and route=
+ 23  16 
+unassigned customers:[ 1: With red.cost=-47.739617   2: With red.cost=-32.947033   18: With red.cost=31.539982   24: With red.cost=-66.808987  ]
+number of paths is 11 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 1 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_485: [5:3, 6:6, 7:5, 14:2, 15:1, 24:7, 
+Y_1_486: [2:7, 6:2, 7:8, 14:5, 15:4, 24:1, 
+Y_1_487: [2:1, 5:4, 6:7, 7:2, 15:5, 24:8, 
+Y_1_488: [2:2, 3:4, 6:5, 7:1, 24:6, 
+Y_1_489: [6:5, 7:1, 14:2, 15:3, 24:6, 
+Y_1_490: [2:5, 5:1, 6:3, 7:6, 24:2, 
+Y_1_491: [5:3, 6:5, 7:1, 15:2, 24:6, 
+Y_1_492: [5:3, 6:5, 14:2, 15:1, 24:6, 
+Y_1_493: [3:3, 6:4, 7:1, 24:5, 
+Y_1_494: [2:4, 6:2, 7:5, 24:1, 
+Y_1_495: [2:6, 5:3, 7:5, 14:2, 15:1, 
+Y_1_496: [5:3, 6:5, 7:1, 24:4, 
+Y_1_497: [2:1, 5:6, 6:4, 15:2, 24:5, 
+Y_1_498: [6:2, 7:4, 15:5, 24:1, 
+Number of columns added for facility 1 is 14
+*vcnt: 17
+current Facility is 2, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 2 
+Route red. cost=-164.947138, and route=
+ 14  17  7 
+Route red. cost=-180.370035, and route=
+ 5  24  6 
+Route red. cost=43.121885, and route=
+ 20  15 
+Route red. cost=-134.788552, and route=
+ 21  22  13  19 
+Route red. cost=-225.000000, and route=
+ 23  16 
+Route red. cost=-194.113805, and route=
+ 9  1 
+Route red. cost=-201.719529, and route=
+ 10  12  8 
+unassigned customers:[ 2: With red.cost=-0.000000   3: With red.cost=90.337374   18: With red.cost=94.504040  ]
+number of paths is 10 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 2 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_274: [5:4, 14:6, 15:5, 16:1, 23:2, 
+Y_2_275: [5:4, 14:5, 16:1, 23:2, 
+Y_2_276: [14:5, 15:4, 16:1, 23:2, 
+Y_2_277: [5:4, 15:5, 16:1, 23:2, 
+Y_2_278: [14:4, 16:1, 23:2, 
+Y_2_279: [5:1, 16:3, 23:4, 
+Y_2_280: [15:4, 16:1, 23:2, 
+Number of columns added for facility 2 is 7
+*vcnt: 24
+current Facility is 3, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 3 
+Route red. cost=-147.056902, and route=
+ 14  1 
+Route red. cost=-9.386195, and route=
+ 18  17 
+Route red. cost=-61.666667, and route=
+ 7  2 
+Route red. cost=-175.000000, and route=
+ 11  4  20  3  6 
+Route red. cost=-221.276431, and route=
+ 16  9  10 
+Route red. cost=-163.333333, and route=
+ 12  8 
+Route red. cost=-6.012121, and route=
+ 15  5  22  21 
+unassigned customers:[ 23: With red.cost=2.109764   24: With red.cost=-27.142425  ]
+number of paths is 9 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 3 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+Y_3_378: [1:1, 8:5, 10:3, 12:4, 
+Y_3_379: [1:1, 8:4, 12:3, 
+Y_3_380: [1:1, 2:4, 7:5, 8:2, 
+Y_3_381: [1:3, 2:1, 8:4, 
+Number of columns added for facility 3 is 4
+*vcnt: 28
+current Facility is 4, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 4 
+Route red. cost=-114.325253, and route=
+ 18  11  4 
+Route red. cost=-179.219529, and route=
+ 17  1 
+Route red. cost=-225.000000, and route=
+ 20  3  0 
+Route red. cost=-110.674747, and route=
+ 7  2 
+Route red. cost=-61.402356, and route=
+ 24  21  6 
+Route red. cost=-78.987879, and route=
+ 15  14  5 
+Route red. cost=-174.219529, and route=
+ 12  8 
+Route red. cost=-102.976664, and route=
+ 10  9 
+unassigned customers:[]
+number of paths is 8 
+X[1]=1 
+X[2]=1 
+X[3]=0 
+X[4]=0 
+X[5]=0 
+X[6]=0 
+X[7]=0 
+X[8]=0 
+A pairing is constructed from routes 
+time=202 
+Y_4_295: [1:6, 4:3, 11:2, 17:5, 18:1, 
+Number of columns added for facility 4 is 1
+*vcnt: 29
+Number of columns found: 29
+exiting a_vars.c
+DONE: SUCCESS (29)
+MINTO: Solving LP ... done (-7770.724359)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=3,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_238: [6:4, 19:1, 21:5, 22:6, 24:3, 
+Y_0_239: [2:4, 5:5, 6:3, 13:1, 22:2, 
+Y_0_240: [2:4, 6:2, 7:3, 22:1, 
+Y_0_241: [5:6, 13:3, 19:1, 21:5, 22:4, 
+Y_0_242: [2:3, 5:4, 6:2, 22:1, 
+Y_0_243: [5:3, 13:1, 19:4, 22:2, 
+Y_0_244: [13:3, 19:4, 21:1, 22:2, 
+Number of columns added for facility 0 is 7
+*vcnt: 7
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_499: [2:1, 5:7, 6:4, 7:2, 21:5, 22:6, 
+Y_1_500: [2:1, 6:7, 7:2, 21:5, 22:4, 24:6, 
+Y_1_501: [2:6, 5:4, 6:1, 21:2, 22:3, 
+Y_1_502: [2:1, 3:5, 6:6, 7:2, 20:4, 
+Y_1_503: [5:2, 6:5, 7:1, 21:4, 22:3, 
+Y_1_504: [2:6, 6:4, 21:2, 22:1, 24:3, 
+Y_1_505: [2:4, 6:1, 21:2, 22:3, 
+Y_1_506: [2:1, 5:6, 7:2, 21:4, 22:5, 
+Y_1_507: [5:2, 6:4, 14:1, 21:3, 
+Number of columns added for facility 1 is 9
+*vcnt: 16
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_281: [5:4, 14:6, 15:5, 19:2, 23:1, 
+Y_2_282: [13:3, 14:6, 19:4, 21:1, 22:2, 
+Y_2_283: [14:1, 19:4, 23:3, 
+Y_2_284: [13:3, 19:4, 21:1, 22:2, 
+Y_2_285: [2:2, 7:1, 14:4, 
+Y_2_286: [2:3, 5:4, 14:1, 
+Number of columns added for facility 2 is 6
+*vcnt: 22
+current Facility is 3, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+Y_3_382: [1:4, 2:2, 7:1, 12:5, 
+Y_3_383: [1:3, 2:1, 12:4, 
+Y_3_384: [1:1, 2:5, 7:4, 17:2, 
+Number of columns added for facility 3 is 3
+*vcnt: 25
+current Facility is 4, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 4 
+Route red. cost=-89.000000, and route=
+ 18  11  4 
+Route red. cost=-136.000000, and route=
+ 17  1 
+Route red. cost=-225.000000, and route=
+ 20  3  0 
+Route red. cost=-136.000000, and route=
+ 7  2 
+Route red. cost=-103.153846, and route=
+ 24  21  6 
+Route red. cost=-22.301282, and route=
+ 15  14  5 
+Route red. cost=-218.435897, and route=
+ 12  8 
+Route red. cost=-99.899664, and route=
+ 10  9 
+unassigned customers:[]
+number of paths is 8 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 4 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 4 
+Y_4_296: [1:6, 4:3, 8:5, 11:2, 17:1, 
+Y_4_297: [3:2, 6:3, 7:4, 18:6, 20:1, 
+Y_4_298: [2:5, 4:3, 7:6, 11:2, 17:1, 18:8, 
+Y_4_299: [2:2, 7:1, 11:6, 17:7, 18:4, 
+Y_4_300: [1:1, 8:2, 17:4, 
+Y_4_301: [1:1, 8:2, 18:4, 
+Y_4_302: [3:2, 6:3, 7:4, 20:1, 
+Y_4_303: [2:5, 4:3, 7:6, 11:2, 17:1, 
+Y_4_304: [2:2, 7:1, 17:4, 18:5, 
+Y_4_305: [2:4, 7:5, 11:2, 17:1, 
+Number of columns added for facility 4 is 10
+*vcnt: 35
+Number of columns found: 35
+exiting a_vars.c
+DONE: SUCCESS (35)
+MINTO: Solving LP ... done (-7653.822344)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=4,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_245: [2:2, 6:3, 13:4, 15:1, 
+Y_0_246: [2:1, 6:2, 13:4, 21:3, 
+Y_0_247: [2:2, 5:1, 6:3, 13:4, 
+Y_0_248: [6:2, 13:4, 21:3, 24:1, 
+Number of columns added for facility 0 is 4
+*vcnt: 4
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_508: [1:5, 2:1, 8:4, 10:3, 
+Y_1_509: [2:5, 3:3, 6:2, 15:6, 24:1, 
+Y_1_510: [2:1, 3:5, 6:4, 24:3, 
+Number of columns added for facility 1 is 3
+*vcnt: 7
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_287: [2:5, 9:1, 14:2, 15:4, 
+Y_2_288: [2:1, 15:2, 16:4, 23:5, 
+Y_2_289: [2:1, 5:4, 7:2, 14:6, 15:5, 
+Y_2_290: [2:1, 15:2, 19:4, 
+Number of columns added for facility 2 is 4
+*vcnt: 11
+current Facility is 3, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+Y_3_385: [1:4, 2:1, 8:5, 15:2, 
+Y_3_386: [2:4, 7:5, 9:2, 10:1, 
+Y_3_387: [2:1, 9:4, 10:3, 
+Number of columns added for facility 3 is 3
+*vcnt: 14
+current Facility is 4, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 4 
+Y_4_306: [2:2, 4:4, 6:1, 7:3, 18:6, 
+Y_4_307: [2:2, 6:1, 7:3, 18:5, 
+Y_4_308: [0:2, 4:1, 18:4, 20:3, 
+Y_4_309: [2:2, 4:4, 6:1, 7:3, 
+Number of columns added for facility 4 is 4
+*vcnt: 18
+Number of columns found: 18
+exiting a_vars.c
+DONE: SUCCESS (18)
+MINTO: Solving LP ... done (-7620.756374)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=5,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_249: [6:2, 19:5, 21:1, 24:3, 
+Number of columns added for facility 0 is 1
+*vcnt: 1
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_511: [1:1, 2:4, 7:5, 8:2, 
+Y_1_512: [2:8, 5:3, 6:5, 14:2, 15:1, 24:6, 
+Y_1_513: [1:1, 2:4, 8:2, 
+Number of columns added for facility 1 is 3
+*vcnt: 4
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_291: [2:2, 7:1, 16:4, 23:5, 
+Y_2_292: [2:3, 6:1, 7:2, 14:5, 
+Y_2_293: [2:3, 7:4, 19:1, 
+Number of columns added for facility 2 is 3
+*vcnt: 7
+current Facility is 3, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 3 
+Solving EXACT PRICICING for facility 3 
+Pricing problem results 0 columns for facility 3 
+current Facility is 4, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 4 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 4 
+Solving EXACT PRICICING for facility 4 
+Pricing problem results 0 columns for facility 4 
+Number of columns found: 7
+exiting a_vars.c
+DONE: SUCCESS (7)
+MINTO: Solving LP ... done (-7605.388889)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=6,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = 25.104790
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 0 
+Solving EXACT PRICICING for facility 0 
+Pricing problem results 0 columns for facility 0 
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_514: [3:4, 6:3, 7:6, 20:5, 24:1, 
+Y_1_515: [3:3, 5:6, 6:2, 15:5, 24:1, 
+Y_1_516: [3:2, 6:1, 20:3, 24:5, 
+Number of columns added for facility 1 is 3
+*vcnt: 3
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_294: [2:2, 14:5, 15:1, 19:4, 
+Number of columns added for facility 2 is 1
+*vcnt: 4
+SKIPFAC=1, thus, skip pricing problem for Faciality 3
+SKIPFAC=1, thus, skip pricing problem for Faciality 4
+Number of columns found: 4
+exiting a_vars.c
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-7603.060761)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=7,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = 37.967334
+v[4] = -0.000000
+SKIPFAC=1, thus, skip pricing problem for Faciality 0
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 1 
+Solving EXACT PRICICING for facility 1 
+Pricing problem results 0 columns for facility 1 
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_295: [2:5, 7:6, 14:3, 19:1, 
+Y_2_296: [13:4, 14:1, 19:3, 21:5, 
+Number of columns added for facility 2 is 2
+*vcnt: 2
+SKIPFAC=1, thus, skip pricing problem for Faciality 3
+SKIPFAC=1, thus, skip pricing problem for Faciality 4
+Number of columns found: 2
+exiting a_vars.c
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=8,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = 38.692168
+v[4] = -0.000000
+SKIPFAC=1, thus, skip pricing problem for Faciality 0
+SKIPFAC=1, thus, skip pricing problem for Faciality 1
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 2 
+Solving EXACT PRICICING for facility 2 
+Pricing problem results 0 columns for facility 2 
+SKIPFAC=1, thus, skip pricing problem for Faciality 3
+SKIPFAC=1, thus, skip pricing problem for Faciality 4
+current Facility is 0, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 0 
+Solving EXACT PRICICING for facility 0 
+Pricing problem results 0 columns for facility 0 
+current Facility is 1, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 1 
+Solving EXACT PRICICING for facility 1 
+Y_1_517: [6:1, 13:4, 21:3, 22:5, 24:2, 
+Number of columns added for facility 1 is 1
+*vcnt: 1
+current Facility is 2, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 2 
+Solving EXACT PRICICING for facility 2 
+Pricing problem results 0 columns for facility 2 
+current Facility is 3, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 3 
+Solving EXACT PRICICING for facility 3 
+Y_3_388: [1:5, 6:3, 7:1, 24:2, 
+Number of columns added for facility 3 is 1
+*vcnt: 2
+current Facility is 4, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 4 
+Solving EXACT PRICICING for facility 4 
+Pricing problem results 0 columns for facility 4 
+Number of columns found: 2
+exiting a_vars.c
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=9,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = 41.286448
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 0 
+Solving EXACT PRICICING for facility 0 
+Pricing problem results 0 columns for facility 0 
+current Facility is 1, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 1 
+Solving EXACT PRICICING for facility 1 
+Y_1_518: [6:1, 13:3, 21:4, 24:2, 
+Number of columns added for facility 1 is 1
+*vcnt: 1
+current Facility is 2, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 2 
+Solving EXACT PRICICING for facility 2 
+Pricing problem results 0 columns for facility 2 
+current Facility is 3, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 3 
+Solving EXACT PRICICING for facility 3 
+Y_3_389: [1:5, 2:1, 8:4, 10:3, 
+Number of columns added for facility 3 is 1
+*vcnt: 2
+current Facility is 4, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 4 
+Solving EXACT PRICICING for facility 4 
+Pricing problem results 0 columns for facility 4 
+Number of columns found: 2
+exiting a_vars.c
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=10,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = 47.497608
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 0 
+Solving EXACT PRICICING for facility 0 
+Pricing problem results 0 columns for facility 0 
+current Facility is 1, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 1 
+Solving EXACT PRICICING for facility 1 
+Pricing problem results 0 columns for facility 1 
+current Facility is 2, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 2 
+Solving EXACT PRICICING for facility 2 
+Pricing problem results 0 columns for facility 2 
+current Facility is 3, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 3 
+Solving EXACT PRICICING for facility 3 
+Y_3_390: [1:4, 2:2, 7:1, 8:5, 10:6, 
+Number of columns added for facility 3 is 1
+*vcnt: 1
+current Facility is 4, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 4 
+Solving EXACT PRICICING for facility 4 
+Pricing problem results 0 columns for facility 4 
+Number of columns found: 1
+exiting a_vars.c
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=11,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = 47.497608
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 0 
+Solving EXACT PRICICING for facility 0 
+Pricing problem results 0 columns for facility 0 
+current Facility is 1, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 1 
+Solving EXACT PRICICING for facility 1 
+Pricing problem results 0 columns for facility 1 
+current Facility is 2, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 2 
+Solving EXACT PRICICING for facility 2 
+Pricing problem results 0 columns for facility 2 
+current Facility is 3, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 3 
+Solving EXACT PRICICING for facility 3 
+Pricing problem results 0 columns for facility 3 
+current Facility is 4, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 4 
+Solving EXACT PRICICING for facility 4 
+Y_4_310: [0:3, 11:4, 17:5, 18:1, 
+Number of columns added for facility 4 is 1
+*vcnt: 1
+Number of columns found: 1
+exiting a_vars.c
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=12,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = 47.497608
+v[4] = -0.000000
+current Facility is 0, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 0 
+Solving EXACT PRICICING for facility 0 
+Pricing problem results 0 columns for facility 0 
+current Facility is 1, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 1 
+Solving EXACT PRICICING for facility 1 
+Pricing problem results 0 columns for facility 1 
+current Facility is 2, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 2 
+Solving EXACT PRICICING for facility 2 
+Pricing problem results 0 columns for facility 2 
+current Facility is 3, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 3 
+Solving EXACT PRICICING for facility 3 
+Pricing problem results 0 columns for facility 3 
+current Facility is 4, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 4 
+Solving EXACT PRICICING for facility 4 
+Pricing problem results 0 columns for facility 4 
+Final LP objective: -7601.510127
+No new column is generated
+exiting a_vars.c
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:0, counter:1 
+currMpsFile=p11-f25-v1t1.txt.mps 
+
+MINTO, a Mixed INTeger Optimizer  --  version 3.0.1 (LINUX/CPLEX 8.1)
+Copyright (C) 1992-2004  --  M.W.P. Savelsbergh
+
+In appl_mps, about to return YES
+MINTO: Solving problem p11-f25-v1t1.txt
+MINTO: Problem statistics:
+
+    Number of constraints: 186
+    Number of variables:   1804 (0)
+    Number of nonzero's:   13065
+
+    Number of continuous variables: 0
+    Number of binary variables:     1799
+    Number of integer variables:    5
+
+MINTO: Initialization ... done
+APPL_INIT ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Preprocessing ... DONE
+MINTO: Presolve eliminated 19 constraints and 0 variables
+       Presolve made 0 coefficient changes
+
+MINTO: Row structure analysis (after preprocessing):
+    Number of constraints of type MIXEQ:        5
+    Number of constraints of type ALLBINUB:     1
+    Number of constraints of type BINSUMVARUB:  5
+    Number of constraints of type BINSUM1UB:    131
+    Number of constraints of type BINSUM1EQ:    25
+
+MINTO control parameters:
+    Objective sense     : minimization
+    Output level        : 2
+    Maximum cpu time    : 7200
+    Maximum #nodes      : 1000000
+
+MINTO system function activity levels:
+    Bound improvement   : active
+    Branching type      : 3
+    Node selection type : 5
+    Preprocessing level : 2
+    Primal heuristic    : active
+    Clique cuts         : active
+    Implication cuts    : active
+    Knapsack covers     : active
+    GUB covers          : active
+    Flow covers         : active
+    Row management      : active
+    Restarts            : active
+    Force branching     : 1
+    Advanced basis      : not active
+    Names mode level    : 0
+
+APPL_INITLP ... entering a_initlp.c
+DONE
+MINTO: Initialization of root node ... done
+MINTO: Selected node (0,1)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=13,
+DONE: FAILURE
+MINTO: Primal heuristic ... done
+APPL_FEASIBLE ... DONE: YES
+MINTO: Updating primal (MINTO heuristic)
+       Value:     -7995.67  Elapsed time:    51.85  Node:       1
+MINTO: Root reduced cost fixing: 27
+MINTO: Number of variables fixed (27,0) forces restart
+MINTO: Restart ... MINTO: Preprocessing ... DONE
+done
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=14,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: SUCCESS (-8090.500000)
+MINTO: Root reduced cost fixing: 3
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 7 constraints
+done
+MINTO: Solving LP ... done (-7619.330205)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=15,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Root reduced cost fixing: 5
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 9 constraints
+done
+MINTO: Solving LP ... done (-7654.780387)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=16,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Root reduced cost fixing: 4
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 10 constraints
+done
+MINTO: Solving LP ... done (-7658.858568)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=17,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Root reduced cost fixing: 4
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 12 constraints
+done
+MINTO: Solving LP ... done (-7663.659857)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=18,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 9 constraints
+done
+MINTO: Solving LP ... done (-7667.457989)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=19,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Root reduced cost fixing: 3
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 8 constraints
+done
+MINTO: Solving LP ... done (-7668.215325)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=20,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Root reduced cost fixing: 1
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 4 constraints
+done
+MINTO: Solving LP ... done (-7669.946297)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=21,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 1 constraints
+done
+MINTO: Solving LP ... done (-7670.448120)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=22,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Primal heuristic ... done
+APPL_FEASIBLE ... DONE: YES
+MINTO: Updating primal (MINTO heuristic)
+       Value:     -7856.50  Elapsed time:   100.91  Node:       1
+MINTO: Root reduced cost fixing: 470
+MINTO: Number of variables fixed (518,28) forces restart
+MINTO: Restart ... MINTO: Preprocessing ... DONE
+done
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=23,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Root reduced cost fixing: 143
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 23 constraints
+done (23)
+MINTO: Solving LP ... done (-7653.363685)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=24,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Root reduced cost fixing: 85
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 19 constraints
+done (19)
+MINTO: Solving LP ... done (-7665.813231)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=25,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Root reduced cost fixing: 21
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 7 constraints
+done (7)
+MINTO: Solving LP ... done (-7670.448120)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=26,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Root reduced cost fixing: 16
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 1 constraints
+done
+MINTO: Solving LP ... done (-7670.619499)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=27,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Root reduced cost fixing: 4
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 1 constraints
+done
+MINTO: Solving LP ... done (-7670.688681)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=28,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 1 constraints
+done (1)
+MINTO: Solving LP ... done (-7670.704068)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=29,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Primal heuristic ... done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1757 (0.676143)
+MINTO: node (1,2) inserted [rank: 1.999999] (xlp[1757] <= 0.000000)
+MINTO: node (1,3) inserted [rank: 3.000000] (xlp[1757] >= 1.000000)
+MINTO: Selected node (1,3)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7717.070522)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=30,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 1 constraints
+done (1)
+MINTO: Solving LP ... done (-7722.846154)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=31,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 3 constraints
+done
+MINTO: Solving LP ... done (-7731.916667)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=32,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1676 (0.250000)
+MINTO: node (2,4) inserted [rank: 3.999999] (xlp[1676] >= 1.000000)
+MINTO: node (2,5) inserted [rank: 5.000000] (xlp[1676] <= 0.000000)
+MINTO: Selected node (2,5)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7745.875000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=33,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1 (0.250000)
+MINTO: node (3,6) inserted [rank: 5.999999] (xlp[1] >= 1.000000)
+MINTO: node (3,7) inserted [rank: 7.000000] (xlp[1] <= 0.000000)
+MINTO: Selected node (3,7)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7749.416667)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=34,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 2 constraints
+done
+MINTO: Solving LP ... done (-7750.250000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=35,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 3 constraints
+done
+MINTO: Solving LP ... done (-7754.688406)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=36,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Forcing branching (8.813406 < 38.773442)
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 907 (0.130435)
+MINTO: node (4,8) inserted [rank: 7.999999] (xlp[907] >= 1.000000)
+MINTO: node (4,9) inserted [rank: 9.000000] (xlp[907] <= 0.000000)
+MINTO: Selected node (4,9)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7761.250000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=37,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 3 constraints
+done
+MINTO: Solving LP ... done (-7761.812500)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=38,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 4 constraints
+done
+MINTO: Solving LP ... done (-7762.472222)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=39,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Forcing branching (7.783816 < 38.812361)
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1720 (0.500000)
+MINTO: node (5,10) inserted [rank: 9.999999] (xlp[1720] <= 0.000000)
+MINTO: node (5,11) inserted [rank: 11.000000] (xlp[1720] >= 1.000000)
+MINTO: Selected node (5,11)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7765.141026)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=40,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1653 (0.500000)
+MINTO: node (6,12) inserted [rank: 11.999999] (xlp[1653] <= 0.000000)
+MINTO: node (6,13) inserted [rank: 13.000000] (xlp[1653] >= 1.000000)
+MINTO: Selected node (6,13)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7843.166667)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=41,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 7 (2.333333)
+MINTO: node (7,14) inserted [rank: 13.999999] (xlp[7] >= 3.000000)
+MINTO: node (7,15) inserted [rank: 15.000000] (xlp[7] <= 2.000000)
+MINTO: Selected node (7,15)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7847.888889)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=42,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 5 (1.666667)
+MINTO: node (8,16) inserted [rank: 15.999999] (xlp[5] <= 1.000000)
+MINTO: node (8,17) inserted [rank: 17.000000] (xlp[5] >= 2.000000)
+MINTO: Selected node (8,17)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.974359)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=43,
+DONE: FAILURE
+MINTO: Fathoming node (8,17) [zub <= zbest]
+MINTO: Selected node (8,16)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7859.113663)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=44,
+DONE: FAILURE
+MINTO: Fathoming node (8,16) [zub <= zbest]
+MINTO: Selected node (7,14)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7858.864611)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=45,
+DONE: FAILURE
+MINTO: Fathoming node (7,14) [zub <= zbest]
+MINTO: Selected node (6,12)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7766.391026)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=46,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1495 (0.500000)
+MINTO: node (7,18) inserted [rank: 17.999999] (xlp[1495] <= 0.000000)
+MINTO: node (7,19) inserted [rank: 19.000000] (xlp[1495] >= 1.000000)
+MINTO: Selected node (7,19)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.803419)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=47,
+DONE: FAILURE
+MINTO: Fathoming node (7,19) [zub <= zbest]
+MINTO: Selected node (7,18)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7768.474359)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=48,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1486 (0.500000)
+MINTO: node (8,20) inserted [rank: 19.999999] (xlp[1486] <= 0.000000)
+MINTO: node (8,21) inserted [rank: 21.000000] (xlp[1486] >= 1.000000)
+MINTO: Selected node (8,21)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7859.253892)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=49,
+DONE: FAILURE
+MINTO: Fathoming node (8,21) [zub <= zbest]
+MINTO: Selected node (8,20)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7773.057692)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=50,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1639 (0.500000)
+MINTO: node (9,22) inserted [rank: 21.999999] (xlp[1639] <= 0.000000)
+MINTO: node (9,23) inserted [rank: 23.000000] (xlp[1639] >= 1.000000)
+MINTO: Selected node (9,23)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7856.541667)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=51,
+DONE: FAILURE
+MINTO: Fathoming node (9,23) [zub <= zbest]
+MINTO: Selected node (9,22)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7824.776229)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=52,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1791 (0.267131)
+MINTO: node (10,24) inserted [rank: 23.999999] (xlp[1791] >= 1.000000)
+MINTO: node (10,25) inserted [rank: 25.000000] (xlp[1791] <= 0.000000)
+MINTO: Selected node (10,25)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7838.625323)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=53,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 860 (0.689922)
+MINTO: node (11,26) inserted [rank: 25.999999] (xlp[860] <= 0.000000)
+MINTO: node (11,27) inserted [rank: 27.000000] (xlp[860] >= 1.000000)
+MINTO: Selected node (11,27)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7861.766293)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=54,
+DONE: FAILURE
+MINTO: Fathoming node (11,27) [zub <= zbest]
+MINTO: Selected node (11,26)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7856.581876)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=55,
+DONE: FAILURE
+MINTO: Fathoming node (11,26) [zub <= zbest]
+MINTO: Selected node (10,24)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7859.467918)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=56,
+DONE: FAILURE
+MINTO: Fathoming node (10,24) [zub <= zbest]
+MINTO: Selected node (5,10)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7772.371212)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=57,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 1 constraints
+done (1)
+MINTO: Solving LP ... done (-7775.458333)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=58,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1789 (0.750000)
+MINTO: node (6,28) inserted [rank: 27.999999] (xlp[1789] <= 0.000000)
+MINTO: node (6,29) inserted [rank: 29.000000] (xlp[1789] >= 1.000000)
+MINTO: Selected node (6,29)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7782.333333)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=59,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1686 (0.500000)
+MINTO: node (7,30) inserted [rank: 29.999999] (xlp[1686] <= 0.000000)
+MINTO: node (7,31) inserted [rank: 31.000000] (xlp[1686] >= 1.000000)
+MINTO: Selected node (7,31)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7860.333333)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=60,
+DONE: FAILURE
+MINTO: Fathoming node (7,31) [zub <= zbest]
+MINTO: Selected node (7,30)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7818.333333)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=61,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1696 (0.200000)
+MINTO: node (8,32) inserted [rank: 31.999999] (xlp[1696] >= 1.000000)
+MINTO: node (8,33) inserted [rank: 33.000000] (xlp[1696] <= 0.000000)
+MINTO: Selected node (8,33)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7830.893939)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=62,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1749 (0.181818)
+MINTO: node (9,34) inserted [rank: 33.999999] (xlp[1749] >= 1.000000)
+MINTO: node (9,35) inserted [rank: 35.000000] (xlp[1749] <= 0.000000)
+MINTO: Selected node (9,35)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7831.777778)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=63,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1687 (0.333333)
+MINTO: node (10,36) inserted [rank: 35.999999] (xlp[1687] >= 1.000000)
+MINTO: node (10,37) inserted [rank: 37.000000] (xlp[1687] <= 0.000000)
+MINTO: Selected node (10,37)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7848.444444)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=64,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1689 (0.333333)
+MINTO: node (11,38) inserted [rank: 37.999999] (xlp[1689] >= 1.000000)
+MINTO: node (11,39) inserted [rank: 39.000000] (xlp[1689] <= 0.000000)
+MINTO: Selected node (11,39)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.125000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=65,
+DONE: FAILURE
+MINTO: Fathoming node (11,39) [zub <= zbest]
+MINTO: Selected node (11,38)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7858.110145)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=66,
+DONE: FAILURE
+MINTO: Fathoming node (11,38) [zub <= zbest]
+MINTO: Selected node (10,36)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.338681)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=67,
+DONE: FAILURE
+MINTO: Fathoming node (10,36) [zub <= zbest]
+MINTO: Selected node (9,34)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7865.148418)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=68,
+DONE: FAILURE
+MINTO: Fathoming node (9,34) [zub <= zbest]
+MINTO: Selected node (8,32)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7859.201554)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=69,
+DONE: FAILURE
+MINTO: Fathoming node (8,32) [zub <= zbest]
+MINTO: Selected node (6,28)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7786.416667)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=70,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1776 (0.300000)
+MINTO: node (7,40) inserted [rank: 39.999999] (xlp[1776] >= 1.000000)
+MINTO: node (7,41) inserted [rank: 41.000000] (xlp[1776] <= 0.000000)
+MINTO: Selected node (7,41)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7801.833333)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=71,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1791 (0.200000)
+MINTO: node (8,42) inserted [rank: 41.999999] (xlp[1791] >= 1.000000)
+MINTO: node (8,43) inserted [rank: 43.000000] (xlp[1791] <= 0.000000)
+MINTO: Selected node (8,43)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7802.302469)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=72,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1686 (0.092593)
+MINTO: node (9,44) inserted [rank: 43.999999] (xlp[1686] >= 1.000000)
+MINTO: node (9,45) inserted [rank: 45.000000] (xlp[1686] <= 0.000000)
+MINTO: Selected node (9,45)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7806.403846)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=73,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 1 constraints
+done (1)
+MINTO: Solving LP ... done (-7806.611111)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=74,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1560 (0.133333)
+MINTO: node (10,46) inserted [rank: 45.999999] (xlp[1560] >= 1.000000)
+MINTO: node (10,47) inserted [rank: 47.000000] (xlp[1560] <= 0.000000)
+MINTO: Selected node (10,47)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7809.340502)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=75,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 983 (0.279570)
+MINTO: node (11,48) inserted [rank: 47.999999] (xlp[983] >= 1.000000)
+MINTO: node (11,49) inserted [rank: 49.000000] (xlp[983] <= 0.000000)
+MINTO: Selected node (11,49)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7814.277778)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=76,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 3 constraints
+done
+MINTO: Solving LP ... done (-7815.400000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=77,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 4 constraints
+done
+MINTO: Solving LP ... done (-7822.333333)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=78,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Forcing branching (12.992832 < 39.111667)
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1763 (0.200000)
+MINTO: node (12,50) inserted [rank: 49.999999] (xlp[1763] >= 1.000000)
+MINTO: node (12,51) inserted [rank: 51.000000] (xlp[1763] <= 0.000000)
+MINTO: Selected node (12,51)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7824.333333)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=79,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1653 (0.600000)
+MINTO: node (13,52) inserted [rank: 51.999999] (xlp[1653] <= 0.000000)
+MINTO: node (13,53) inserted [rank: 53.000000] (xlp[1653] >= 1.000000)
+MINTO: Selected node (13,53)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7858.239641)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=80,
+DONE: FAILURE
+MINTO: Fathoming node (13,53) [zub <= zbest]
+MINTO: Selected node (13,52)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7832.854167)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=81,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1639 (0.312500)
+MINTO: node (14,54) inserted [rank: 53.999999] (xlp[1639] >= 1.000000)
+MINTO: node (14,55) inserted [rank: 55.000000] (xlp[1639] <= 0.000000)
+MINTO: Selected node (14,55)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7841.234848)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=82,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1495 (0.227273)
+MINTO: node (15,56) inserted [rank: 55.999999] (xlp[1495] >= 1.000000)
+MINTO: node (15,57) inserted [rank: 57.000000] (xlp[1495] <= 0.000000)
+MINTO: Selected node (15,57)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7842.181818)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=83,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1486 (0.227273)
+MINTO: node (16,58) inserted [rank: 57.999999] (xlp[1486] >= 1.000000)
+MINTO: node (16,59) inserted [rank: 59.000000] (xlp[1486] <= 0.000000)
+MINTO: Selected node (16,59)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7846.306548)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=84,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1749 (0.017857)
+MINTO: node (17,60) inserted [rank: 59.999999] (xlp[1749] >= 1.000000)
+MINTO: node (17,61) inserted [rank: 61.000000] (xlp[1749] <= 0.000000)
+MINTO: Selected node (17,61)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7846.556497)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=85,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1687 (0.084746)
+MINTO: node (18,62) inserted [rank: 61.999999] (xlp[1687] >= 1.000000)
+MINTO: node (18,63) inserted [rank: 63.000000] (xlp[1687] <= 0.000000)
+MINTO: Selected node (18,63)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7848.656863)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=86,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1735 (0.117647)
+MINTO: node (19,64) inserted [rank: 63.999999] (xlp[1735] >= 1.000000)
+MINTO: node (19,65) inserted [rank: 65.000000] (xlp[1735] <= 0.000000)
+MINTO: Selected node (19,65)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7852.146766)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=87,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1774 (0.041045)
+MINTO: node (20,66) inserted [rank: 65.999999] (xlp[1774] >= 1.000000)
+MINTO: node (20,67) inserted [rank: 67.000000] (xlp[1774] <= 0.000000)
+MINTO: Selected node (20,67)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7852.267327)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=88,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 9 constraints
+done
+MINTO: Solving LP ... done (-7856.699965)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=89,
+DONE: FAILURE
+MINTO: Fathoming node (20,67) [zub <= zbest]
+MINTO: Selected node (20,66)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.204100)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=90,
+DONE: FAILURE
+MINTO: Fathoming node (20,66) [zub <= zbest]
+MINTO: Selected node (19,64)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7859.197368)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=91,
+DONE: FAILURE
+MINTO: Fathoming node (19,64) [zub <= zbest]
+MINTO: Selected node (18,62)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7860.430818)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=92,
+DONE: FAILURE
+MINTO: Fathoming node (18,62) [zub <= zbest]
+MINTO: Selected node (17,60)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7859.992919)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=93,
+DONE: FAILURE
+MINTO: Fathoming node (17,60) [zub <= zbest]
+MINTO: Selected node (16,58)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.728070)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=94,
+DONE: FAILURE
+MINTO: Fathoming node (16,58) [zub <= zbest]
+MINTO: Selected node (15,56)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.102147)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=95,
+DONE: FAILURE
+MINTO: Fathoming node (15,56) [zub <= zbest]
+MINTO: Selected node (14,54)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.333333)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=96,
+DONE: FAILURE
+MINTO: Fathoming node (14,54) [zub <= zbest]
+MINTO: Selected node (12,50)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7858.166667)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=97,
+DONE: FAILURE
+MINTO: Fathoming node (12,50) [zub <= zbest]
+MINTO: Selected node (11,48)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.255707)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=98,
+DONE: FAILURE
+MINTO: Fathoming node (11,48) [zub <= zbest]
+MINTO: Selected node (10,46)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7856.539440)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=99,
+DONE: FAILURE
+MINTO: Fathoming node (10,46) [zub <= zbest]
+MINTO: Selected node (9,44)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7856.566667)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=100,
+DONE: FAILURE
+MINTO: Fathoming node (9,44) [zub <= zbest]
+MINTO: Selected node (8,42)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7859.239938)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=101,
+DONE: FAILURE
+MINTO: Fathoming node (8,42) [zub <= zbest]
+MINTO: Selected node (7,40)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7851.222222)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=102,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 768 (0.666667)
+MINTO: node (8,68) inserted [rank: 67.999999] (xlp[768] <= 0.000000)
+MINTO: node (8,69) inserted [rank: 69.000000] (xlp[768] >= 1.000000)
+MINTO: Selected node (8,69)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7856.839289)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=103,
+DONE: FAILURE
+MINTO: Fathoming node (8,69) [zub <= zbest]
+MINTO: Selected node (8,68)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7859.266493)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=104,
+DONE: FAILURE
+MINTO: Fathoming node (8,68) [zub <= zbest]
+MINTO: Selected node (4,8)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.916354)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=105,
+DONE: FAILURE
+MINTO: Fathoming node (4,8) [zub <= zbest]
+MINTO: Selected node (3,6)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7773.252874)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=106,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 2 constraints
+done
+MINTO: Solving LP ... done (-7781.222222)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=107,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 480 (0.333333)
+MINTO: node (4,70) inserted [rank: 69.999999] (xlp[480] >= 1.000000)
+MINTO: node (4,71) inserted [rank: 71.000000] (xlp[480] <= 0.000000)
+MINTO: Selected node (4,71)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7815.187500)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=108,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 1 constraints
+done
+MINTO: Solving LP ... done (-7822.003006)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=109,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 4 constraints
+done
+MINTO: Solving LP ... done (-7824.395992)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=110,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 1 constraints
+done
+MINTO: Solving LP ... done (-7824.648855)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=111,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Forcing branching (9.461355 < 39.123244)
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1749 (0.433206)
+MINTO: node (5,72) inserted [rank: 71.999999] (xlp[1749] >= 1.000000)
+MINTO: node (5,73) inserted [rank: 73.000000] (xlp[1749] <= 0.000000)
+MINTO: Selected node (5,73)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7854.100465)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=112,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1793 (0.085020)
+MINTO: node (6,74) inserted [rank: 73.999999] (xlp[1793] >= 1.000000)
+MINTO: node (6,75) inserted [rank: 75.000000] (xlp[1793] <= 0.000000)
+MINTO: Selected node (6,75)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7855.368869)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=113,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 3 constraints
+done
+MINTO: Solving LP ... done (-7857.025000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=114,
+DONE: FAILURE
+MINTO: Fathoming node (6,75) [zub <= zbest]
+MINTO: Selected node (6,74)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7856.924383)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=115,
+DONE: FAILURE
+MINTO: Fathoming node (6,74) [zub <= zbest]
+MINTO: Selected node (5,72)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7857.772976)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=116,
+DONE: FAILURE
+MINTO: Fathoming node (5,72) [zub <= zbest]
+MINTO: Selected node (4,70)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7784.000000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=117,
+DONE: FAILURE
+MINTO: LP solution satisfies integrality conditions
+APPL_FEASIBLE ... DONE: YES
+MINTO: Updating primal (Integral solution)
+       Value:     -7784.00  Elapsed time:   192.81  Node:      73
+MINTO: Root reduced cost fixing: 397
+MINTO: Number of variables fixed (1184,518) forces restart
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+MINTO: Selected node (2,4)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Restart ... MINTO: Preprocessing ... DONE
+done
+MINTO: Solving LP ... done (-7682.490566)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=118,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 13 constraints
+done (13)
+MINTO: Solving LP ... done (-7784.000000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=119,
+DONE: FAILURE
+MINTO: Fathoming node (2,4) [zub <= zbest]
+MINTO: Selected node (1,2)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7698.227147)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=120,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 24 constraints
+done (24)
+MINTO: Solving LP ... done (-7723.935088)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=121,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 8 constraints
+done (8)
+MINTO: Solving LP ... done (-7725.906379)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=122,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 5 constraints
+done
+MINTO: Solving LP ... done (-7727.971213)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=123,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Forcing branching (29.744065 < 38.639856)
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1676 (0.790595)
+MINTO: node (2,76) inserted [rank: 75.999999] (xlp[1676] <= 0.000000)
+MINTO: node (2,77) inserted [rank: 77.000000] (xlp[1676] >= 1.000000)
+MINTO: Selected node (2,77)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7736.506102)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=124,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 14 constraints
+done
+MINTO: Solving LP ... done (-7756.916667)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=125,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 1 constraints
+done
+MINTO: Solving LP ... done (-7757.979008)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=126,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Forcing branching (30.007795 < 38.789895)
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1782 (0.206743)
+MINTO: node (3,78) inserted [rank: 77.999999] (xlp[1782] >= 1.000000)
+MINTO: node (3,79) inserted [rank: 79.000000] (xlp[1782] <= 0.000000)
+MINTO: Selected node (3,79)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7759.908920)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=127,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 4 constraints
+done
+MINTO: Solving LP ... done (-7760.250000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=128,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 1 constraints
+done
+MINTO: Solving LP ... done (-7761.019231)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=129,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Forcing branching (3.040223 < 38.805096)
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 910 (0.500000)
+MINTO: node (4,80) inserted [rank: 79.999999] (xlp[910] <= 0.000000)
+MINTO: node (4,81) inserted [rank: 81.000000] (xlp[910] >= 1.000000)
+MINTO: Selected node (4,81)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7771.083333)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=130,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 4 constraints
+done
+MINTO: Solving LP ... done (-7780.617788)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=131,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 1 constraints
+done (1)
+MINTO: Solving LP ... done (-7780.631222)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=132,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Forcing branching (19.611991 < 38.903156)
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1687 (0.205882)
+MINTO: node (5,82) inserted [rank: 81.999999] (xlp[1687] >= 1.000000)
+MINTO: node (5,83) inserted [rank: 83.000000] (xlp[1687] <= 0.000000)
+MINTO: Selected node (5,83)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7781.807692)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=133,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1731 (0.500000)
+MINTO: node (6,84) inserted [rank: 83.999999] (xlp[1731] <= 0.000000)
+MINTO: node (6,85) inserted [rank: 85.000000] (xlp[1731] >= 1.000000)
+MINTO: Selected node (6,85)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7794.149271)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=134,
+DONE: FAILURE
+MINTO: Fathoming node (6,85) [zub <= zbest]
+MINTO: Selected node (6,84)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7784.382912)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=135,
+DONE: FAILURE
+MINTO: Fathoming node (6,84) [zub <= zbest]
+MINTO: Selected node (5,82)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7784.595238)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=136,
+DONE: FAILURE
+MINTO: Fathoming node (5,82) [zub <= zbest]
+MINTO: Selected node (4,80)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7768.757737)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=137,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 3 constraints
+done
+MINTO: Solving LP ... done (-7768.888677)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=138,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1791 (0.445701)
+MINTO: node (5,86) inserted [rank: 85.999999] (xlp[1791] >= 1.000000)
+MINTO: node (5,87) inserted [rank: 87.000000] (xlp[1791] <= 0.000000)
+MINTO: Selected node (5,87)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7777.700728)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=139,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+done
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1731 (0.500000)
+MINTO: node (6,88) inserted [rank: 87.999999] (xlp[1731] <= 0.000000)
+MINTO: node (6,89) inserted [rank: 89.000000] (xlp[1731] >= 1.000000)
+MINTO: Selected node (6,89)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7784.200524)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=140,
+DONE: FAILURE
+MINTO: Fathoming node (6,89) [zub <= zbest]
+MINTO: Selected node (6,88)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7785.321528)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=141,
+DONE: FAILURE
+MINTO: Fathoming node (6,88) [zub <= zbest]
+MINTO: Selected node (5,86)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7784.441973)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=142,
+DONE: FAILURE
+MINTO: Fathoming node (5,86) [zub <= zbest]
+MINTO: Selected node (3,78)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7784.737115)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=143,
+DONE: FAILURE
+MINTO: Fathoming node (3,78) [zub <= zbest]
+MINTO: Selected node (2,76)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7744.268678)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=144,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 2 constraints
+done (2)
+MINTO: Solving LP ... done (-7755.139691)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=145,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 3 constraints
+done (3)
+MINTO: Solving LP ... done (-7758.119905)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=146,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Forcing branching (30.148693 < 38.790600)
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1749 (0.379799)
+MINTO: node (3,90) inserted [rank: 89.999999] (xlp[1749] >= 1.000000)
+MINTO: node (3,91) inserted [rank: 91.000000] (xlp[1749] <= 0.000000)
+MINTO: Selected node (3,91)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7776.543343)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=147,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 1 constraints
+done (1)
+MINTO: Solving LP ... done (-7776.687688)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=148,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 6 constraints
+done
+MINTO: Solving LP ... done (-7779.708674)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=149,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Forcing branching (21.588768 < 38.898543)
+APPL_DIVIDE ... DONE: FAILURE
+MINTO: Default branching scheme activated
+MINTO: Calculating Branching Information ... done
+MINTO: Branching on variable 1793 (0.027778)
+MINTO: node (4,92) inserted [rank: 91.999999] (xlp[1793] >= 1.000000)
+MINTO: node (4,93) inserted [rank: 93.000000] (xlp[1793] <= 0.000000)
+MINTO: Selected node (4,93)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7780.442089)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=150,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... 
+       Generated 3 constraints
+done
+MINTO: Solving LP ... done (-7783.984611)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=151,
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:1, counter:1 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since id
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+       Reactivated 2 constraints
+done (2)
+MINTO: Solving LP ... done (-7784.051763)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=152,
+DONE: FAILURE
+MINTO: Fathoming node (4,93) [zub <= zbest]
+MINTO: Selected node (4,92)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7798.166667)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=153,
+DONE: FAILURE
+MINTO: Fathoming node (4,92) [zub <= zbest]
+MINTO: Selected node (3,90)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7786.611111)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... id olunca ciktiiii
+stepcount=154,
+DONE: FAILURE
+MINTO: Fathoming node (3,90) [zub <= zbest]
+APPL_EXIT ... DONE
+
+MINTO: Value of solution: 7784.000000
+MINTO: Non-zero variables in the solution:
+    xopt[1] = 1.000000 (T_1)
+    xopt[2] = 1.000000 (T_2)
+    xopt[4] = 1.000000 (T_4)
+    xopt[6] = 2.000000 (V_1)
+    xopt[7] = 2.000000 (V_2)
+    xopt[9] = 2.000000 (V_4)
+    xopt[480] = 1.000000 (Y_1_226)
+    xopt[1667] = 1.000000 (Y_4_281)
+    xopt[1709] = 1.000000 (x25)
+    xopt[1720] = 1.000000 (x36)
+    xopt[1751] = 1.000000 (x67)
+    xopt[1757] = 1.000000 (x73)
+    zopt = 7784.000000
+    zroot = 7670.704068
+    zinit = 7601.510127
+
+MINTO: Branch and bound statistics
+
+    Maximum number of unevaluated nodes           =     6
+    Number of evaluated nodes                     =    93
+    Depth of the tree                             =    20
+    Number of linear programs solved              =   142
+    Maximum number of rows in active LP           =   253 (167)
+
+MINTO: Cut generation statistics
+
+    Number of generated clique inequalities       =   116
+    Number of generated implication inequalities  =     0
+    Number of generated lifted knapsack covers    =    29
+        Knapsack covers            =    10
+        Knapsack covers with GUBs  =    19
+        Surrogate knapsack covers  =     0
+    Number of generated generalized flow covers   =     0
+
+APPL: Timing statistics (in seconds)
+
+    appl_bounds:                                     0.00
+    appl_constraints:                                0.02
+    appl_delconstraints:                             0.02
+    appl_divide:                                     0.01
+    appl_exit:                                       0.34
+    appl_fathom:                                     0.01
+    appl_feasible:                                   0.01
+    appl_init:                                       0.00
+    appl_initlp:                                     0.00
+    appl_mps:                                        0.00
+    appl_node:                                       0.00
+    appl_preprocessing:                              0.00
+    appl_primal:                                     0.02
+    appl_rank:                                       0.01
+    appl_terminatelp:                                0.00
+    appl_terminatenode:                              0.00
+    appl_variables:                                  0.00
+
+MINTO: Timing statistics (in seconds)
+
+    Reading MPS file:                                2.10
+    Restart:                                        52.98
+    Preprocessing and probing:                      44.63
+    Primal heuristic:                                5.37
+    Bound improvement:                               0.86
+    Clique cut generation:                           6.27
+    Implication cut generation:                      0.16
+    Knapsack cover generation:                       0.65
+    GUB cover generation:                            5.93
+    Surrogate knapsack cover generation:             1.51
+    Flow cover generation:                           0.69
+    Cut pool search:                                 0.05
+    Cut Management:                                  0.27
+    Branching:                                      27.79
+    Time LP solving:                                61.30
+
+    Total elapsed time:                            218.99
+
+BB is done for the root node 
+Optimal value: 7784.000000
+DONE: SUCCESS (-7784.000000)
+MINTO: Updating primal (APPL heuristic)
+       Value:     -7784.00  Elapsed time:   265.48  Node:       1
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since counter and no newnode
+DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Primal heuristic ... done
+APPL_DIVIDE ... No fractional T variables found.
+Check for the fractional V_j variables
+Branching on V[4]variable
+DONE: SUCCESS (2)
+MINTO: Selected node (1,3)
+APPL_NODE ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-7601.510127)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=155,
+in a_vars.c, counter>1 and newnode, so do not do column generation
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:0, counter:3 
+DONE: FAILURE
+APPL_BOUNDS ... V[4]>= 3 is added 
+DONE: SUCCESS (1)
+APPL_DELCONSTRAINTS ... failure since numofconDELETED==0
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Solving LP ... done (-7638.418605)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=156,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = -0.000000
+v[4] = 181.976744
+current Facility is 0, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 0 
+Route red. cost=-185.891473, and route=
+ 19  13  22  21 
+Route red. cost=-44.786822, and route=
+ 6  3  5 
+Route red. cost=-4.102067, and route=
+ 14  10  15 
+Route red. cost=27.480620, and route=
+ 24  20 
+Route red. cost=-73.333333, and route=
+ 7  2 
+Route red. cost=-225.000000, and route=
+ 23  16 
+unassigned customers:[ 9: With red.cost=-30.016150   18: With red.cost=-29.864341  ]
+number of paths is 8 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 0 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+Y_0_250: [2:1, 6:2, 13:5, 21:3, 22:4, 
+Number of columns added for facility 0 is 1
+*vcnt: 1
+current Facility is 1, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 1 
+Route red. cost=-214.836886, and route=
+ 12  8  7 
+Route red. cost=-82.569444, and route=
+ 15  14  5 
+Route red. cost=-75.458656, and route=
+ 20  3  6 
+Route red. cost=-147.260982, and route=
+ 21  22  13  19 
+Route red. cost=-3.081395, and route=
+ 17  11  4 
+Route red. cost=-94.021318, and route=
+ 10  9 
+Route red. cost=-210.000000, and route=
+ 23  16 
+unassigned customers:[ 1: With red.cost=-33.711240   2: With red.cost=-17.430556   18: With red.cost=-139.864341   24: With red.cost=-81.608527  ]
+number of paths is 11 
+X[1]=1 
+X[2]=1 
+X[3]=1 
+X[4]=0 
+X[5]=0 
+X[6]=0 
+X[7]=0 
+X[8]=0 
+X[9]=0 
+X[10]=0 
+X[11]=0 
+A pairing is constructed from routes 
+time=194 
+Y_1_519: [2:5, 18:3, 24:1, 
+Number of columns added for facility 1 is 1
+*vcnt: 2
+current Facility is 2, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 2 
+Route red. cost=-21.970284, and route=
+ 14  17  7 
+Route red. cost=-156.905685, and route=
+ 5  24  6 
+Route red. cost=85.697674, and route=
+ 20  15 
+Route red. cost=-182.260982, and route=
+ 21  22  13  19 
+Route red. cost=-112.500000, and route=
+ 23  16 
+Route red. cost=-132.638889, and route=
+ 9  1 
+Route red. cost=-225.000000, and route=
+ 10  12  8 
+unassigned customers:[ 2: With red.cost=-64.108527   3: With red.cost=127.177003   18: With red.cost=-48.197674  ]
+number of paths is 10 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 2 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+Y_2_297: [2:4, 5:5, 16:2, 23:1, 
+Number of columns added for facility 2 is 1
+*vcnt: 3
+current Facility is 3, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 3 
+Route red. cost=-25.794574, and route=
+ 14  1 
+Route red. cost=-78.695090, and route=
+ 18  17 
+Route red. cost=-67.222222, and route=
+ 7  2 
+Route red. cost=-119.069767, and route=
+ 11  4  20  3  6 
+Route red. cost=-225.000000, and route=
+ 16  9  10 
+Route red. cost=-157.777778, and route=
+ 12  8 
+Route red. cost=5.991602, and route=
+ 15  5  22  21 
+unassigned customers:[ 23: With red.cost=21.188630   24: With red.cost=-11.608527  ]
+number of paths is 9 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 3 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+Y_3_391: [1:6, 4:2, 8:5, 17:1, 18:3, 
+Y_3_392: [1:4, 8:5, 17:1, 18:2, 
+Number of columns added for facility 3 is 2
+*vcnt: 5
+current Facility is 4, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 4 
+Route red. cost=10.000000, and route=
+ 18  11  4 
+Route red. cost=-7.761628, and route=
+ 17  1 
+Route red. cost=-43.023256, and route=
+ 20  3  0 
+Route red. cost=19.166667, and route=
+ 7  2 
+Route red. cost=10.949612, and route=
+ 24  21  6 
+Route red. cost=139.163437, and route=
+ 15  14  5 
+Route red. cost=-43.023256, and route=
+ 12  8 
+Route red. cost=-18.856589, and route=
+ 10  9 
+unassigned customers:[]
+number of paths is 8 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 4 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 4 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 4 
+Solving EXACT PRICICING for facility 4 
+Pricing problem results 0 columns for facility 4 
+Number of columns found: 5
+exiting a_vars.c
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-7638.080681)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=157,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = 3.968567
+v[4] = 181.833150
+current Facility is 0, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 0 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 0 
+Solving EXACT PRICICING for facility 0 
+Pricing problem results 0 columns for facility 0 
+current Facility is 1, source is 25, sink is 26
+Solving CW-HEUR-PRICICING PROBLEM for facility 1 
+Route red. cost=-215.079126, and route=
+ 12  8  7 
+Route red. cost=-81.009422, and route=
+ 15  14  5 
+Route red. cost=-74.056897, and route=
+ 20  3  6 
+Route red. cost=-145.777534, and route=
+ 21  22  13  19 
+Route red. cost=-3.419319, and route=
+ 17  11  4 
+Route red. cost=-93.855653, and route=
+ 10  9 
+Route red. cost=-210.000000, and route=
+ 23  16 
+unassigned customers:[ 1: With red.cost=-32.074643   2: With red.cost=-18.990578   18: With red.cost=-123.950329   24: With red.cost=-82.059093  ]
+number of paths is 11 
+NO COLUMN is found by solving CW-HEUR-PRICICING PROBLEM for facility 1 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_520: [2:4, 6:2, 7:7, 18:6, 24:1, 
+Y_1_521: [6:3, 18:1, 20:2, 24:5, 
+Y_1_522: [6:4, 7:1, 18:2, 24:5, 
+Y_1_523: [2:1, 6:6, 7:2, 18:4, 20:5, 
+Y_1_524: [2:1, 7:3, 18:4, 24:6, 
+Y_1_525: [6:2, 18:4, 24:1, 
+Y_1_526: [7:3, 18:4, 24:1, 
+Y_1_527: [2:5, 6:3, 18:1, 20:2, 
+Number of columns added for facility 1 is 8
+*vcnt: 8
+current Facility is 2, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 2 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 2 
+Solving EXACT PRICICING for facility 2 
+Pricing problem results 0 columns for facility 2 
+current Facility is 3, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 3 
+Solving EXACT PRICICING for facility 3 
+Pricing problem results 0 columns for facility 3 
+SKIPFAC=1, thus, skip pricing problem for Faciality 4
+Number of columns found: 8
+exiting a_vars.c
+DONE: SUCCESS (8)
+MINTO: Solving LP ... done (-7638.080681)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=158,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = 31.880374
+v[4] = 181.833150
+SKIPFAC=1, thus, skip pricing problem for Faciality 0
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+Y_1_528: [2:1, 7:2, 13:5, 21:6, 22:4, 24:7, 
+Number of columns added for facility 1 is 1
+*vcnt: 1
+SKIPFAC=1, thus, skip pricing problem for Faciality 2
+SKIPFAC=1, thus, skip pricing problem for Faciality 3
+SKIPFAC=1, thus, skip pricing problem for Faciality 4
+Number of columns found: 1
+exiting a_vars.c
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-7638.080681)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount=159,
+solutionstat=1 
+v[0] = -0.000000
+v[1] = -0.000000
+v[2] = -0.000000
+v[3] = 31.880374
+v[4] = 181.833150
+SKIPFAC=1, thus, skip pricing problem for Faciality 0
+current Facility is 1, source is 25, sink is 26
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 1 
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 1 
+Solving EXACT PRICICING for facility 1 
+Pricing problem results 0 columns for facility 1 
+SKIPFAC=1, thus, skip pricing problem for Faciality 2
+SKIPFAC=1, thus, skip pricing problem for Faciality 3
+SKIPFAC=1, thus, skip pricing problem for Faciality 4
+current Facility is 0, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 0 
+Solving EXACT PRICICING for facility 0 
+Pricing problem results 0 columns for facility 0 
+current Facility is 1, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 1 
+Solving EXACT PRICICING for facility 1 
+Pricing problem results 0 columns for facility 1 
+current Facility is 2, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 2 
+Solving EXACT PRICICING for facility 2 
+Pricing problem results 0 columns for facility 2 
+current Facility is 3, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 3 
+Solving EXACT PRICICING for facility 3 
+Pricing problem results 0 columns for facility 3 
+current Facility is 4, source is 25, sink is 26
+NO COLUMN is found by solving PRICING PROBLEM with THRESHOLD for facility 4 
+Solving EXACT PRICICING for facility 4 
+Pricing problem results 0 columns for facility 4 
+Final LP objective: -7638.080681
+No new column is generated
+exiting a_vars.c
+DONE: FAILURE
+APPL_PRIMAL ... inside a_primal,before id and counter check
+id:0, counter:3 
+Checking for a possible integer solution
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... failure since counter and no newnode
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+APPL_DIVIDE ... No fractional T variables found.
+Check for the fractional V_j variables
+Branching on V[2]variable
+DONE: SUCCESS (2)
+
+MINTO: Number of evaluated nodes reached upper limit (2)
+MINTO: Current best bound 7601.510127
+MINTO: Current integrality gap  2.34%
+APPL_EXIT ... DONE
+
+MINTO: Value of solution: 7784.000000
+MINTO: Non-zero variables in the solution:
+    xopt[1] = 1.000000 (T_1)
+    xopt[2] = 1.000000 (T_2)
+    xopt[4] = 1.000000 (T_4)
+    xopt[6] = 2.000000 (V_1)
+    xopt[7] = 2.000000 (V_2)
+    xopt[9] = 2.000000 (V_4)
+    xopt[480] = 1.000000 (Y_1_226)
+    xopt[1667] = 1.000000 (Y_4_281)
+    xopt[1709] = 1.000000 (Y_1_488)
+    xopt[1720] = 1.000000 (Y_2_274)
+    xopt[1751] = 1.000000 (Y_2_284)
+    xopt[1757] = 1.000000 (Y_4_296)
+    zopt = 7784.000000
+    zroot = 7601.510127
+    zinit = 8072.817829
+
+MINTO: Branch and bound statistics
+
+    Maximum number of unevaluated nodes           =     3
+    Number of evaluated nodes                     =     2
+    Depth of the tree                             =     2
+    Number of linear programs solved              =    17
+    Maximum number of rows in active LP           =   186 (186)
+
+MINTO: Cut generation statistics
+
+    Number of generated clique inequalities       =     0
+    Number of generated implication inequalities  =     0
+    Number of generated lifted knapsack covers    =     0
+        Knapsack covers            =     0
+        Knapsack covers with GUBs  =     0
+        Surrogate knapsack covers  =     0
+    Number of generated generalized flow covers   =     0
+
+APPL: Timing statistics (in seconds)
+
+    appl_bounds:                                     0.00
+    appl_constraints:                                0.00
+    appl_delconstraints:                             0.00
+    appl_divide:                                     0.03
+    appl_exit:                                       0.34
+    appl_fathom:                                     0.00
+    appl_feasible:                                   0.00
+    appl_init:                                       0.00
+    appl_initlp:                                     0.00
+    appl_mps:                                        0.99
+    appl_node:                                       0.02
+    appl_preprocessing:                              0.00
+    appl_primal:                                     0.53
+    appl_rank:                                       0.00
+    appl_terminatelp:                                0.00
+    appl_terminatenode:                              0.00
+    appl_variables:                                 39.83
+
+MINTO: Timing statistics (in seconds)
+
+    Reading MPS file:                                0.00
+    Restart:                                         0.00
+    Preprocessing and probing:                       0.38
+    Primal heuristic:                                1.44
+    Bound improvement:                               0.00
+    Clique cut generation:                           0.00
+    Implication cut generation:                      0.00
+    Knapsack cover generation:                       0.00
+    GUB cover generation:                            0.00
+    Surrogate knapsack cover generation:             0.00
+    Flow cover generation:                           0.00
+    Cut pool search:                                 0.00
+    Cut Management:                                  0.00
+    Branching:                                       0.00
+    Time LP solving:                                11.99
+
+    Total elapsed time:                            278.64
+
+==18670== 
+==18670== Invalid read of size 4
+==18670==    at 0x807AED3: ITKill (in /home/zea2/BranchPrice/comb_pricing_pro-3/minto)
+==18670==    by 0x806F88F: PREUnloadForm (in /home/zea2/BranchPrice/comb_pricing_pro-3/minto)
+==18670==    by 0x8059C9D: GracefullExit (in /home/zea2/BranchPrice/comb_pricing_pro-3/minto)
+==18670==    by 0x805D218: minto (in /home/zea2/BranchPrice/comb_pricing_pro-3/minto)
+==18670==    by 0x8049FE9: main (minto.c:61)
+==18670==  Address 0x46DCA28 is not stack'd, malloc'd or (recently) free'd
+==18670== 
+==18670== ERROR SUMMARY: 258 errors from 15 contexts (suppressed: 17 from 1)
+==18670== malloc/free: in use at exit: 1,161,268 bytes in 21,612 blocks.
+==18670== malloc/free: 613,382 allocs, 591,770 frees, 270,594,837 bytes allocated.
+==18670== For counts of detected errors, rerun with: -v
+==18670== searching for pointers to 21,612 not-freed blocks.
+==18670== checked 1,062,960 bytes.
+==18670== 
+==18670== LEAK SUMMARY:
+==18670==    definitely lost: 868,170 bytes in 13,789 blocks.
+==18670==      possibly lost: 26,976 bytes in 2 blocks.
+==18670==    still reachable: 266,122 bytes in 7,821 blocks.
+==18670==         suppressed: 0 bytes in 0 blocks.
+==18670== Use --leak-check=full to see details of leaked memory.

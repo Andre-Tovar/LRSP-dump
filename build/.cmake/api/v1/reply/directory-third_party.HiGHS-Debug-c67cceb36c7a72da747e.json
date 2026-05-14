@@ -1,0 +1,106 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"include"
+		],
+		"files" : 
+		[
+			"third_party/HiGHS/cmake/cpp-highs.cmake",
+			"third_party/HiGHS/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 526,
+				"parent" : 0
+			},
+			{
+				"file" : 0,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 46,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 51,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 64,
+				"parent" : 2
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/highs_export.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"bin/Debug/highs.lib"
+			],
+			"targetId" : "highs::@79c05b813a290356dfad",
+			"targetIndex" : 3,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/highs",
+			"exportName" : "highs-targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "highs::@79c05b813a290356dfad",
+					"index" : 3
+				},
+				{
+					"id" : "highs-bin::@8b9e4dbb4cb0f55f42f5",
+					"index" : 4
+				}
+			],
+			"paths" : 
+			[
+				"third_party/HiGHS/CMakeFiles/Export/f10335e9af256c4ab08a69a0d281b217/highs-targets.cmake"
+			],
+			"type" : "export"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "third_party/HiGHS",
+		"source" : "third_party/HiGHS"
+	}
+}

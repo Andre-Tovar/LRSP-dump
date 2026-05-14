@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# initial latex
+latex lrs-paper.tex
+
+# make bibliography
+bibtex  lrs-paper
+
+# twice more
+latex lrs-paper.tex
+latex lrs-paper.tex
+
+dvipdf lrs-paper.dvi

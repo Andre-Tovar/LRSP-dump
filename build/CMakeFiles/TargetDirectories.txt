@@ -1,0 +1,17 @@
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/CMakeFiles/mespprc_native.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/CMakeFiles/mespprc_csmoke.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/CMakeFiles/PACKAGE.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/CMakeFiles/INSTALL.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/CMakeFiles/PACKAGE.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/CMakeFiles/INSTALL.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/CMakeFiles/ALL_BUILD.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/src/CMakeFiles/highs.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/src/CMakeFiles/PACKAGE.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/src/CMakeFiles/INSTALL.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/app/CMakeFiles/highs-bin.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/app/CMakeFiles/PACKAGE.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/app/CMakeFiles/INSTALL.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/examples/CMakeFiles/PACKAGE.dir
+C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/examples/CMakeFiles/INSTALL.dir

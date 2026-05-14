@@ -1,0 +1,23 @@
+* text=auto !eol
+/compile -text
+/dissert6.pdf -text
+/dissert6.tex -text
+/proposal-ref.bib -text
+sections/LitSurvey.tex -text
+sections/appendix.tex -text
+sections/ch2-soln.tex -text
+sections/ch4-compexp.tex -text
+sections/comp-lrpdc-lrsp.tex -text
+sections/computationexp-cp1.tex -text
+sections/computationexp.tex -text
+sections/costalloc.tex -text
+sections/cutgenintro.tex -text
+sections/dwd.tex -text
+sections/first-intro.tex -text
+sections/implementation.tex -text
+sections/intro.tex -text
+sections/lrp.tex -text
+sections/problemdefn-dw.tex -text
+sections/problemdefn.tex -text
+sections/proposed.tex -text
+sections/solutionMet.tex -text

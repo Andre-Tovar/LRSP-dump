@@ -1,0 +1,393 @@
+\chapter{Computational Experiments} 
+
+\label{part1:computationalexp}
+In this section, we describe the results of our computational experiments with
+our edge-based and set partitioning based formulations, and the valid inequalities.
+%We ran our experiments on a 64-node Linux-based Beowulf cluster using condor. 
+
+\section{Description of the Instances}
+\label{part1:instances}
+
+To create an instance, we need to specify customer and candidate facility locations, 
+customer demands, vehicle capacity, vehicle time limit, facility capacity, 
+and facility and vehicle fixed and variable costs. 
+
+We used four MDVRP benchmark problems (called $p01$, $p03$, $p07$, $p11$) 
+developed by \citet{Cordeau2} to generate customer locations and customer demands. 
+Each of the \citet{Cordeau2} instances that we selected has a different set of customer 
+locations. We did not select instance $p02$ since the instance has the same customer 
+locations with the instance $p01$. Similarly, the instances $p04$, $p05$, $p06$
+and $p07$ and the instances $p08$, $p09$, $p10$ and $p11$ have the same customer locations.
+
+
+We generated 6 set of instances with 20, 25 and 30 customers. All of the instances have 
+5 candidate facility locations. We included facility locations given for the related 
+benchmark problem into the facility set and if the number of facilities is less than 
+5 in the corresponding benchmark problem, we generated necessary number of facilities 
+using a uniform distribution on the region where customers are located. 
+We selected the facility capacity considering total demand and requiring at least 
+two facilities to be in the solution. For each set of locations and demands, by using 2 
+different vehicle capacity values and 2 different vehicle time limits, 
+we generated 24 (4x6) instances with 20 customers, 24 instances with 25 customers
+and 24 instances  with 30 customers. 
+
+The smallest vehicle capacity for an instance was chosen a value that covers at least 
+one customer or two customers and a customer that has the largest demand. The smallest 
+vehicle time limit was calculated as a value that is greater than two times the distance 
+between every customer and the furthest facility.
+
+Table \ref{prt1:probparam} presents parameter values used and explains the generation of the instances.   
+% the vehicle capacities, time limits and facility capacities 
+%used for each group of instance.
+\begin {table}[h]
+\begin{center}
+\caption {Generation of instances from \citet{Cordeau2} problems} \label{part1:probparam}
+\begin {tabular}[t]{llll} 
+Inst. Gorup	&	Benchmark Prb.	&	LRSP Instance 	&	Customer Locations and Demands	\\\hline
+1	&	p01	&	p01-f	&	first 20, 25 and 30 customers	\\
+2,3	&	p03	&	p03-f, p03-l	&	first and last 20, 25 and 30 customers	\\
+4	&	p07	&	p07-f	&	first 20, 25 and 30 customers	\\
+5,6	&	p11	&	p11-f, p11-l	&	first and last 20, 25 and 30 customers	\\\hline
+\multicolumn{4}{c}{{\bf a. Customer information }} 
+\end{tabular}
+\begin {tabular}[t]{lccccc} 
+%\multicolumn {6}{c}{{\bf Table 1.} Problem Parameters}\\ \hline
+Inst. Generated Using & Vcap1	& Vcap2	& TimeLimit1 &	TimeLimit2 & Fcap\\\hline
+p01,p07	& 	50	&	70	&	140	&	160	&	250 \\
+p03	&	60	&	80	&	140	&	160	&	250\\
+p11	&	150	&	200	&	240	&	260	&	500\\\hline
+\multicolumn{6}{c}{{\bf b. Parameter information }} 
+\end{tabular}
+\end{center}
+\end {table} 
+
+We named our instances based on the parameters. For example, the instance 
+$p01-f25-v1t1$ was created using the {\em first} 25 customer locations of  
+the \citet{Cordeau2} instance called $p01$. The first possible vehicle capacity ($v1=50$) and time limit
+($t1=140$) are used in the instance. Similarly, $p03-l25-v2t2$ was created using the {\em last} 
+25 customer locations of the \citet{Cordeau2} instance called $p03$. The second possible vehicle 
+capacity ($v2=80$) and time limit ($t2=160$) are used in the instance.  
+
+To estimate the facility fixed cost, we used the study done by \citet{Burlett}. Assuming
+a 100,000 sq. ft. facility, we estimated that the daily fixed cost of a facility varies 
+between \$1500 and \$2300 depending on the region in which the facility is located. We 
+randomly generated 5 values between 1500 and 2300. We used the same facility fixed 
+costs in all of our instances. We estimated that the 
+daily fixed cost of a mid-size vehicle varies between \$200 and \$250 based on the
+economic life analysis done by  Kenworth Truck Company \citeyearpar{Kenworth}. We used
+the average value \$225 as the fixed cost of a vehicle in all of our instances.  
+The operating cost of a vehicle is estimated to be \$60 per hour. To estimate the
+operating cost, we considered the average vehicle speed, the average amount of 
+fuel consumption, fuel cost and the ratio of our working hour limit to the real
+life working hour limit, which is generally 8 hours. Table \ref{costparam} lists 
+the cost parameters used.  
+
+\begin {table}[h]
+\begin{center}
+\caption {Cost Parameters} \label{costparam}
+\begin {tabular}[t]{ccccccc} \hline
+%\multicolumn {6}{c}{{\bf Table 1.} Problem Parameters}\\ \hline
+$C^F_1$ & $C^F_2$ & $C^F_3$ & $C^F_4$ & $C^F_5$ & VF & OC \\\hline
+\$1615 /day  &	\$1845 /day  &	\$1781 /day  &	\$1975 /day  &	\$1753 /day  &   \$225 /day  & \$ 60 /hour  	 \\\hline
+\end{tabular}
+\end{center}
+\end {table} 
+
+The travel time, $t_{ik}$, between each pair of nodes is calculated using 
+Euclidean distance calculations and then rounded to the largest integer that is less
+than or equal to the calculated value.  
+We run the Floyd-Warshall Algorithm \citep{Ahuja} on the travel time
+matrix to ensure that all travel times satisfy the triangle inequality.
+In our test problems, we assume that the service time at each
+node is zero. 
+
+\section{Comparing the LP Relaxations of SPP-LRSP and EB-LRSP}
+In section \ref{part1:dantzifW}, it is shown that the Dantzig Wolfe 
+decomposition of edge-based model EB-LRSP is equal to the set 
+partitioning based model, SPP-LRSP plus the bound 
+constraint (\ref{conv2}) for the total number of vehicles 
+located at each facility. In this section, we measure the strength 
+of the LP relaxations of the model SPP-LRSP plus the upper bound constraint 
+(\ref{conv2}) and the model EB-LRSP.   
+We used instances with 25 customers and 30 customers in this experiment.
+The LP relaxation of EB-LRSP was solved using CPLEX 9.1 and AMPL 
+interface. The LP relaxation of SP-LRSP was solved using 
+a column generation algorithm, which was coded in MINTO
+(a mixed integer programming solver). We used CPLEX 9.1
+as an LP solver in MINTO. All instances in both test groups 
+were run at most 8 CPU hours.   
+
+Based on Table (\ref{comparesp-eb-gr1}) and Table (\ref{comparesp-eb-gr2}), 
+for all solved instances, the LP relaxations obtained from model SPP-LRSP are \%4.89 to 
+\%12.82 higher than the LP relaxations obtained from model EB-LRSP.   
+In addition, the computation times for the SPP-LRSP are much better than the times 
+for EB-LRSP in all solved instances. Furthermore, only 2 instances cannot be
+solved within time limit using model SPP-LRSP, while the number of unsolved instances
+is 8 if model EB-LRSP is used. 
+
+\begin{table}[!hbp]
+\centering
+\caption{Comparison of LP Relaxation Bounds of EB-LRS and SPP-LRS: 25 Customer Instances}\label{comparesp-eb-gr1}
+\begin {tabular}[t]{|c|c|c|c|c|c|}\hline
+\mbox{}	&  \multicolumn{2}{|c|}{{\bf SPP-LRS}} & \multicolumn{2}{|c|}{{\bf EB-LRS}}	&	{\bf (a-b)/b*100}	\\\cline{2-5}
+{\bf Data File}	& {\bf LP Relax. (a)}	& {\bf CPU (s)} & {\bf LP Relax. (b)}	&  {\bf CPU (s)} & {\bf \% Gap}	\\\hline 
+p01-f25-v1t1	&	3936.58	&	114.66	&	3705.06	&	5058.9	&	6.25	\\
+p01-f25-v1t2	&	3855.91	&	346.18	&	3641.57	&	4719.67	&	5.89	\\
+p01-f25-v2t1	&	3793.43	&	672.07	&	3610.19	&	4896.98	&	5.08	\\
+p01-f25-v2t2	&	3724.91	&	4240.58	&	3551.19	&	5046.43	&	4.89	\\
+p03-f25-v1t1	&	4620.03	&	26.18	&	4267.66	&	8969.62	&	8.26	\\
+p03-f25-v1t2	&	4538.07	&	256.77	&	4195.35	&	8729.64	&	8.17	\\
+p03-f25-v2t1	&	4443.34	&	121.03	&	4179.83	&	10256.6	&	6.3	\\
+p03-f25-v2t2	&	4351.62	&	791.77	&	4113.72	&	10934.8	&	5.78	\\
+p03-l25-v1t1	&	3928.73	&	34.83	&	3599.43	&	10906.3	&	9.15	\\
+p03-l25-v1t2	&	3829.09	&	112.31	&	3527.39	&	10216.5	&	8.55	\\
+p03-l25-v2t1	&	3812	&	78.6	&	3514.9	&	8722.87	&	8.45	\\
+p03-l25-v2t2	&	3713.14	&	355.46	&	3445.92	&	8835.58	&	7.75	\\
+p07-f25-v1t1	&	3413.54	&	63.77	&	3151.23	&	15809.4	&	8.32	\\
+p07-f25-v1t2	&	3341.53	&	394.39	&	3085.95	&	12698.5	&	8.28	\\
+p07-f25-v2t1	&	3301.11	&	198.84	&	3069.45	&	13462.4	&	7.55	\\
+p07-f25-v2t2	&	3198.43	&	677.1	&	3007.23	&	11832.1	&	6.36	\\
+p11-f25-v1t1	&	6615.99	&	0.42	&	5934.5	&	13097.1	&	11.48	\\
+p11-f25-v1t2	&	6536.44	&	0.72	&	5865.22	&	14250.6	&	11.44	\\
+p11-f25-v2t1	&	6378.77	&	0.73	&	5712.4	&	14334.6	&	11.67	\\
+p11-f25-v2t2	&	6261.63	&	1.19	&	5650.04	&	14252.1	&	10.82	\\
+p11-l25-v1t1	&	7298.5	&	0.26	&	6469.19	&	9429.75	&	12.82	\\
+p11-l25-v1t2	&	7187.6	&	0.33	&	6402.79	&	9334.2	&	12.26	\\
+p11-l25-v2t1	&	6939.53	&	0.36	&	6188.64	&	11521.1	&	12.13	\\
+p11-l25-v2t2	&	6904.43	&	0.44	&	6131.83	&	11561.7	&	12.6	\\\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!hbp]
+\centering
+\caption{Comparison of LP Relaxation Bounds of EB-LRS and SPP-LRS: 30 Customer Instances}\label{comparesp-eb-gr2}
+\begin {tabular}[t]{|c|c|c|c|c|c|}\hline
+\mbox{}	&  \multicolumn{2}{|c|}{{\bf SPP-LRS}} & \multicolumn{2}{|c|}{{\bf EB-LRS}}	&	{\bf (a-b)/b*100}	\\\cline{2-5}
+{\bf Data File}	& {\bf LP Relax. (a)}	& {\bf CPU (s)} & {\bf LP Relax. (b)}	&  {\bf CPU (s)} & {\bf \% Gap}	\\\hline 
+p01-f30-v1t1	&	4640.47	&	643.4	&	\mbox{}	&	\mbox{}	&	\mbox{}	\\
+p01-f30-v1t2	&	4561.62	&	8721.2	&	4219.16	&	17751.3	&	8.12	\\
+p01-f30-v2t1	&	4462.66	&	4464.09	&	4169.85	&	21347.8	&	7.02	\\
+p01-f30-v2t2	&	\mbox{*}	&	29209.74	&	4106.6	&	18790	&	\mbox{-}	\\
+p03-f30-v1t1	&	5413.72	&	370.4	&	\mbox{*}	&	28829.6	&	\mbox{-}	\\
+p03-f30-v1t2	&	5330.33	&	6625.36	&	\mbox{*}	&	28827.6	&	\mbox{-}	\\
+p03-f30-v2t1	&	5209.41	&	2953.18	&	\mbox{*}	&	28835	&	\mbox{-}	\\
+p03-f30-v2t2	&	\mbox{*}	&	29356.69	&	\mbox{*}	&	28834.2	&	\mbox{-}	\\
+p03-l30-v1t1	&	4707.72	&	131.18	&	4317.71	&	20964.7	&	9.03	\\
+p03-l30-v1t2	&	4615.22	&	2806.27	&	4240.26	&	19245.8	&	8.84	\\
+p03-l30-v2t1	&	4566.1	&	521.17	&	4221.57	&	19880.2	&	8.16	\\
+p03-l30-v2t2	&	4459.03	&	8129.62	&	4148.77	&	19549.6	&	7.48	\\
+p07-f30-v1t1	&	4153.16	&	705.12	&	3858.62	&	20347.3	&	7.63	\\
+p07-f30-v1t2	&	4077.68	&	2625.43	&	3782.79	&	20362.7	&	7.8	\\
+p07-f30-v2t1	&	3986.37	&	1870.87	&	3746.43	&	22084.3	&	6.4	\\
+p07-f30-v2t2	&	3899.99	&	15385.17	&	3674.65	&	22243.4	&	6.13	\\
+p11-f30-v1t1	&	7232.02	&	0.59	&	6483.4	&	17474.6	&	11.55	\\
+p11-f30-v1t2	&	7124.96	&	0.9	&	6410.9	&	18558.7	&	11.14	\\
+p11-f30-v2t1	&	6965.07	&	1.22	&	6238.88	&	22240	&	11.64	\\
+p11-f30-v2t2	&	6875.87	&	1.81	&	6172.69	&	23976.6	&	11.39	\\
+p11-l30-v1t1	&	8265.62	&	0.63	&	\mbox{*}	&	28843	&	\mbox{-}	\\
+p11-l30-v1t2	&	8161.91	&	1	&	\mbox{*}	&	28823.6	&	\mbox{-}	\\
+p11-l30-v2t1	&	8006.08	&	1.09	&	\mbox{*}	&	28817.9	&	\mbox{-}	\\
+p11-l30-v2t2	&	7798.55	&	2.53	&	\mbox{*}	&	28816	&	\mbox{-}	\\\hline
+\multicolumn{6}{l}{* Time limit is exceeded before a lp solution is found.}
+\end{tabular}
+\end{table}
+
+
+\section{Comparison of Alternative Set Partitioning Formulations}
+
+To compare the strength of the various set partitioning formulations obtained by
+using the valid inequalities described in section \ref{StrongForm}, we 
+enumerated all possible pairings and solved the formulations using a standard 
+branch-and-bound algorithm. Since the number of feasible pairings is large, 
+we are not able to enumerate all columns of the instances with 25 customers and 
+30 customers. Instead, for the experiments in this part, we used the instances 
+with 20 customers and 5 facilities. Furthermore, larger vehicle capacity and
+time limit results more columns, therefore we only used the instances 
+with small vehicle capacity and time limit (group v1t1). 
+ 
+To generate all columns, we used an algorithm
+written in C. We constructed mps files for formulations including generated 
+columns using MINTO and solved the mps files using CPLEX 9.1.  
+Since the constraints (\ref{spp_con1}) and 
+(\ref{spp_con2}) are enough to determine the LRS problem, we construct our 
+{\em base formulation ($SPP_B$)} from these constraints. 
+
+{\bf Experiment 1} To compare the strength of constraints (\ref{relation-Z-T}) and 
+(\ref{relation}) introduced in section \ref{StrongForm} and to verify the 
+value of their contribution to the lower bound of the LRS problem,
+we construct two formulations: $SPP_1$ and $SPP_2$. $SPP_1$ is constructed
+by adding the constraints (\ref{relation-Z-T}) to the $SPP_B$ and $SPP_2$ 
+is constructed by adding the constraints (\ref{relation}) to the $SPP_B$.
+Table \ref{part1:formulations-gr1} shows the constraints (\ref{relation-Z-T}) and
+(\ref{relation}), and lists the constraints in each formulation. 
+
+\begin{table}[h]
+\centering
+\caption{LRS models for Experiment 1}\label{part1:formulations-gr1}
+\begin {tabular}[t]{|l|l|l|}  
+\multicolumn{3}{l}{\mbox{}}\\
+\multicolumn{3}{l}{Const.(\ref{relation-Z-T}): $Z_{p} \leq T_{j} \ \ \forall j \in J, \forall p \in P_{j}$}\\
+\multicolumn{3}{l}{\mbox{}}\\
+\multicolumn{3}{l}{Const.(\ref{relation}): $\sum_{p \in P_{j}}a_{ip}Z_{p} \leq T_{j} \ \ \forall j \in J, \forall i \in N$}\\  
+\multicolumn{3}{l}{\mbox{}}\\
+\hline
+$SPP_B$ & $SPP_1$ & $SPP_2$ \\\hline
+1. SP Const.(\ref{spp_con1}) & 1. SP Const.(\ref{spp_con1}) & 1. SP Const.(\ref{spp_con1}) \\
+2. Fac.Cap.Const.(\ref{spp_con2}) & 2. Fac.Cap.Const.(\ref{spp_con2}) & 2. Fac.Cap.Const.(\ref{spp_con2}) \\
+\mbox{}  & 3. Relation Const.(\ref{relation-Z-T}) &  3. Relation Const.(\ref{relation})\\\hline
+\end{tabular}
+\end{table}
+
+Table \ref{part1:lpbounds-gr1} compares the LP relaxation bounds of $SPP_B$, $SPP_1$ and $SPP_2$. In table 
+\ref{part1:lpbounds-gr1}, \%Improv columns for models $SPP_1$ and $SPP_2$ represent the percentage increase
+in the LP relaxation bound with respect to the LP relaxation bound of the base model $SPP_B$. The results 
+suggest that 
+the constraints (\ref{relation}) are better than the constraints (\ref{relation-Z-T}), since
+the LP solution of the model $SPP_2$ is higher than the LP solution of the model $SPP_1$ in all
+instances. The model $SPP_2$ improves the LP solution of the base model by 1.85\% to 8.34\% 
+while the model $SPP_1$ only improves the LP solution of the base model by 0.01\% to 1.61\%.   
+
+\begin{table}[h]
+\centering
+\caption{Results of Experiment 1}\label{part1:lpbounds-gr1}
+\begin {tabular}[t]{|c|c|c|c|c|c|c|c|}  
+\hline
+{\bf Data File} & {\bf \# of Col.} & {\bf IP} & {\bf $SPP_B$}& \multicolumn{2}{|c|}{{\bf $SPP_1$}} & \multicolumn{2}{|c|}{{\bf $SPP_2$}}\\ \cline {4-8}
+\mbox{} &  \mbox{} &  \mbox{} &  {\bf LP} & {\bf LP} & {\bf \%Improv.} & {\bf LP} & {\bf \%Improv.} \\\hline
+p01-f20-v1t1	&	67553	&	4409	&	3335.23	&	3337.72	&	0.07	&	3545.31	&	6.3	\\
+p03-f20-v1t1	&	52614	&	4459	&	3769.21	&	3769.55	&	0.01	&	3838.82	&	1.85	\\
+p03-l20-v1t1	&	32796	&	4610	&	3173.4	&	3192.92	&	0.62	&	3416.8	&	7.67	\\
+p07-f20-v1t1	&	68262	&	4420	&	2734.17	&	2745.73	&	0.42	&	2886.51	&	5.57	\\
+p11-f20-v1t1	&	1945	&	6129	&	5594.08	&	5625.36	&	0.56	&	6060.6	&	8.34	\\
+p11-f20-v1t1	&	861	&	7845	&	5988.01	&	6084.28	&	1.61	&	6420.39	&	7.22	\\\hline
+\end{tabular}
+\end{table} 
+
+\begin{comment} %%%%%%%%% PREVIOUS COMPUTATIONAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[h]
+\centering
+\caption{Results of Experiment 1}\label{lpbounds-gr1}
+\begin {tabular}[t]{|c|c|c|c|c|c|c|c|}  
+\hline
+{\bf Data File} & {\bf \# of Col.} & {\bf IP} & {\bf $SPP_B$}& \multicolumn{2}{|c|}{{\bf $SPP_1$}} & \multicolumn{2}{|c|}{{\bf $SPP_2$}}\\ \cline {4-8}
+\mbox{} &  \mbox{} &  \mbox{} &  {\bf LP} & {\bf LP} & {\bf \%Improv.} & {\bf LP} & {\bf \%Improv.} \\\hline
+p01-f20	&	67558	&	4348	&	3273.822	&	3276.9	&	0.09	&	3471.73	&	6.045	\\\hline
+p03-f20	&	52619	&	4394.33	&	3705.03	&	3705.07	&	0	&	3767.8	& 1.69		\\\hline
+p03-l20	&	14779	&	4708.83	&	3552.272	&	3552.61	&	0.01	&	3755.31	&	5.716	\\\hline
+p07-f20	&	68267	&	4357.17	&	2677.031	&	2687.63	&	0.4	&	2813.44	&	5.095	\\\hline
+p11-f20	&	1950	&	5921.5	&	5291.045	&	5308.24	&	0.32	&	5849.5	&	10.555	\\\hline
+p11-l20	&	898	&	8017.5	&	5865.493	&	5987.21	&	2.08	&	6855.28	&	16.875	\\\hline
+\end{tabular}
+\end{table} 
+\end{comment}
+
+
+{\bf Experiment 2} After we observing that constraints (\ref{relation}) seem to be better than constraints 
+(\ref{relation-Z-T}), we design experiment 2 to test the strength of constraint (\ref{lb-open-fac}) 
+with respect to the base model and to test the combined affect of constraints (\ref{lb-open-fac}) and (\ref{relation}).
+We construct two formulations: $SPP_3$ and $SPP_4$. $SPP_3$ is constructed
+by adding the constraint (\ref{lb-open-fac}) to the base model $SPP_B$. 
+$SPP_4$ is constructed by adding the constraints (\ref{relation}) to the $SPP_3$.
+Table \ref{part1:formulations-gr2} shows the constraint (\ref{lb-open-fac}) and lists the constraints in each formulation.   
+
+\begin{table}[h]
+\centering
+\caption{LRS models for Experiment 2}\label{part1:formulations-gr2}
+\begin {tabular}[t]{|l|l|l|}  
+\multicolumn{3}{l}{\mbox{}}\\
+\multicolumn{3}{l}{Const.(\ref{lb-open-fac}): $\sum_{j \in J} T_{j} \geq nREQ$ }\\
+\multicolumn{3}{l}{\mbox{}}\\
+\hline
+$SPP_B$ & $SPP_3$ & $SPP_4$ \\\hline
+1. SP Cont.(\ref{spp_con1}) & 1. SP Cont.(\ref{spp_con1}) & 1. SP Cont.(\ref{spp_con1}) \\
+2. Fac.Cap.Const.(\ref{spp_con2}) & 2. Fac.Cap.Const.(\ref{spp_con2}) & 2. Fac.Cap.Const.(\ref{spp_con2}) \\
+\mbox{} & 3. Const.(\ref{lb-open-fac})  & 3. Const.(\ref{lb-open-fac}) \\
+\mbox{} & \mbox{}  & 4. Relation Cont.(\ref{relation})\\\hline
+\end{tabular}
+\end{table}
+
+Table \ref{part1:lpbounds-gr2} presents the percentage improvement in the LP relaxations with
+constraint (\ref{lb-open-fac}) and the percentage improvement in the LP relaxations with
+constraints (\ref{lb-open-fac}) and (\ref{relation}). In table \ref{pat1:lpbounds-gr2}, the \%Improv. 
+columns for models $SPP_2$, $SPP_3$ and $SPP_4$ represent the percentage increase
+in the LP solutions with respect to the LP solution of the base model $SPP_B$. 
+The results show that the LP bound improves by 5.39\% to 57.33\% with constraint 
+(\ref{lb-open-fac}). When we compare models $SPP_2$ and $SPP_3$, we observe that
+in most instances, constraint (\ref{lb-open-fac}) improves the LP relaxation bound 
+more than the constraints (\ref{relation}) do. The two set of constraints, 
+constraints (\ref{relation}) and
+constraint (\ref{lb-open-fac}) together achieve larger improvement than 
+constraint (\ref{lb-open-fac}) does alone in all instances. The LP relaxation
+solution of the model $SPP_4$ is 8.34\% to 60.05\% better than the LP
+solution of the base model. 
+
+\begin{sidewaystable}
+%\begin{table}[h]
+\centering
+\caption{Results of Experiment 2}\label{part1:lpbounds-gr2}
+\begin {tabular}[t]{|c|c|c|c|c|c|c|c|c|c|}  
+\hline
+{\bf Data File} & {\bf \# of Col.} & {\bf IP} & {\bf $SPP_B$}& \multicolumn{2}{|c|}{{\bf $SPP_2$}} & \multicolumn{2}{|c|}{{\bf $SPP_3$}} & \multicolumn{2}{|c|}{{\bf $SPP_4$}}\\ \cline {4-10}
+\mbox{} &  \mbox{} &  \mbox{} &  {\bf LP} & {\bf LP} & {\bf \%Improv.} & {\bf LP} & {\bf \%Improv.} & {\bf LP} & {\bf \%Improv.} \\\hline
+p01-f20-v1t1	&	67553	&	4409	&	3335.23		& 3545.31	& 6.3 & 4310.45 & 29.24	& 4341.31	& 30.17	\\
+p03-f20-v1t1	&	52614	&	4459	&	3769.21		&	3838.82	&	1.85	&	4436.01	&	17.69	&	4448.7	&	18.03	\\
+p03-l20-v1t1	&	32796	&	4610	&	3173.4		&	3416.8	&	7.67	&	4398.3	&	38.6	&	4537.44	&	42.98	\\
+p07-f20-v1t1	&	68262	&	4420	&	2734.17		&	2886.51	&	5.57	&	4301.54	&	57.33	&	4376.1	&	60.05	\\
+p11-f20-v1t1	&	1945	&	6129	&	5594.08		&	6060.6	&	8.34	&	5895.79	&	5.39	&	6060.6	&	8.34	\\
+p11-f20-v1t1	&	861	&	7845	&	5988.01		&	6420.39	&	7.22	&	7545.86	&	26.02	&	7698.17	&	28.56	\\\hline
+\end{tabular}
+%\end{table} 
+\end{sidewaystable}
+
+
+\begin{comment} %%%%%%%%% PREVIOUS COMPUTATIONAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sidewaystable}
+%\begin{table}[h]
+\centering
+\caption{Results of Experiment 2}\label{lpbounds-gr2}
+\begin {tabular}[t]{|c|c|c|c|c|c|c|c|c|c|}  
+\hline
+{\bf Data File} & {\bf \# of Col.} & {\bf IP} & {\bf $SPP_B$}& \multicolumn{2}{|c|}{{\bf $SPP_2$}} & \multicolumn{2}{|c|}{{\bf $SPP_3$}} & \multicolumn{2}{|c|}{{\bf $SPP_4$}}\\ \cline {4-10}
+\mbox{} &  \mbox{} &  \mbox{} &  {\bf LP} & {\bf LP} & {\bf \%Improv.} & {\bf LP} & {\bf \%Improv.} & {\bf LP} & {\bf \%Improv.} \\\hline
+p01-f20	&	67558	&	4348	&	3273.822        & 3471.73	& 6.045  & 4251.74	&	29.87	&	4279.88	&	30.73	\\\hline
+p03-f20	&	52619	&	4394.33	&	3705.03	        & 3767.8	& 1.69   &  4371.08	&	17.98	&	4383.24	&	18.31	\\\hline
+p03-l20	&	14779	&	4708.83	&	3552.272	& 3755.31	& 5.716  & 4514.81	&	27.1	&	4656.04	&	31.07	\\\hline
+p07-f20	&	68267	&	4357.17	&	2677.031	& 2813.44	& 5.095  & 4243.97	&	58.53	&	4312.98	&	61.11	\\\hline
+p11-f20	&	1950	&	5921.5	&	5291.045	& 5849.5	& 10.555 & 5623.73	&	6.29	&	5849.5	&	10.55	\\\hline
+p11-l20	&	898	&	8017.5	&	5865.493	& 6855.28	& 16.875 & 7198.17	&	22.72	&	7810.83	&	33.17	\\\hline
+\end{tabular}
+%\end{table} 
+\end{sidewaystable}
+\end{comment}
+
+Based on the experiments 1 and 2, we conclude that our valid inequalities improve the LP relaxation bound of the model, 
+constraints (\ref{relation}) are better than  constraints (\ref{relation-Z-T}) and the $SPP_4$ formulation, which includes 
+constraints (\ref{lb-open-fac}) and (\ref{relation}), is the best among other models since it has the highest 
+lower bound in all instances. 
+
+
+\qquad
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{comment}
+In chapter \ref{computationalexp}, we empirically demonstrate the improvement in the LP relaxation 
+bounds achieved by constraints (\ref{lb-open-fac}), (\ref{relation-Z-T}) and (\ref{relation}). 
+Throughout the remainder of the proposal, we use the augmented SPP-LRS formulation (AUG-SPP-LRS),
+which includes the objective function (\ref{spp-obj}) and the constraints (\ref{spp_con1}), 
+(\ref{spp_con2}), (\ref{binary1}), (\ref{binary2}), (\ref{lb-open-fac}), and (\ref{relation}). 
+\end{comment}
+

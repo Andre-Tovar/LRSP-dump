@@ -1,0 +1,224 @@
+/*
+ * mespprc.c
+ * created 25 October 2011 by Rosemary
+ * main() for MESPPRC subproblem solver
+ */
+ 
+#include "header.h"
+
+int main()
+{
+   int NFac; // number of facilities
+   int NCust; // number of customers
+   int Nodes; // number of nodes = NFac + NCust
+
+   char buf[BUFSIZE];
+   FILE *fp;
+
+   int t1;
+   int i, j, k;
+   double f;
+
+   double *FCost;  // array of facility fixed cost
+   double VFcost;  // fixed cost for vehicle
+   double VOcost;  // operating cost for vehicle 
+
+   int VCap; // capacity of vehicle
+   int FCap; // capacity of facility
+   int TIMELIMIT; // time limit for the vehicle
+ 
+   double **dist;
+   double *Xcoor;
+   double *Ycoor;
+   int *Cno;
+   double *STime;
+   int *Demand;
+
+   double frac;
+
+   int TDemand;
+   int num_REQ; 
+   double num_REQ1;
+
+   int infeasible;
+   int ret;
+
+   int source;
+   int sink;
+   double v;
+   int maxnumlabels;
+   int set_threshold;
+   int RyanFoster;
+   double **d;
+   double **rc;
+   LABEL_NODE *SinkLabels;
+
+   t1 = clock();
+  
+   /* READ PROBLEM INSTANCE */
+ 
+   // change this from inq_file() to command line argument
+   sprintf(buf, "%s", "test_data");
+   if ( (fp = fopen(buf, "r")) == NULL) {
+     fprintf(stdout, "Unable to open %s\n", buf);
+     exit(9);
+   } // if
+       
+   fscanf(fp, "%d %d", &NFac, &NCust);
+   fprintf(stdout, "Number of facilities: %d\n", NFac);
+   fprintf(stdout, "Number of customers: %d\n", NCust);
+   Nodes = NFac+ NCust;
+ 
+   FCost = (double *) calloc(NFac, sizeof(double));
+
+   for (i=0;i < NFac;i++) {
+     fscanf(fp, "%lf ", &f);
+     FCost[i]=f ;
+     fprintf(stderr, "Fixed cost for facility %d %lf   \n", i, FCost[i]);
+   } // for i
+  
+   fscanf(fp, "%lf %lf", &VFcost, &VOcost); 
+
+   fprintf(stderr, "Fixed cost and variable cost for vehicle: %lf  %lf \n", VFcost,VOcost);
+  
+   fscanf(fp, "%d %d %d", &VCap, &FCap,&TIMELIMIT); 
+   fprintf(stderr, "Vehicle capacity %d and facility capacity %d \n", VCap,FCap);
+ 
+   // allocate memory for arrays to hold location coordinates 
+   // should check that memory was allocated correctly
+   Xcoor = (double*) calloc(Nodes, sizeof(double));
+   Ycoor = (double *) calloc(Nodes, sizeof(double));
+   Cno = (int *) calloc(Nodes, sizeof(int));
+   STime = (double *) calloc(Nodes, sizeof(double));
+   Demand = (int *) calloc(Nodes, sizeof(int));
+
+   //In data file: 1..NCust are the customer numbers and NCust+1..Nodes are the facilities
+  
+   
+   for (j=0;j < Nodes;j++) {
+     fscanf(fp, "%d %lf %lf %lf %d \n", &Cno[j],&Xcoor[j],&Ycoor[j],&STime[j],&Demand[j]);
+   } // for j
+ 
+   TDemand=0;
+   for (j=0;j < NCust;j++) 
+     TDemand=TDemand+Demand[j];
+   fprintf (stderr, "Total demand: %d \n", TDemand);
+ 
+   num_REQ1 = 0.0;
+   num_REQ1=(double) TDemand/FCap;
+   num_REQ= TDemand/FCap; // cast to integer?
+   if (num_REQ<num_REQ1)
+     num_REQ=num_REQ+1;
+
+   fprintf(stderr, "The minimum number of facilities required is %d \n",num_REQ);
+
+   // allocate memory for distance matrix  
+   dist = (double **) calloc(Nodes, sizeof(double *));
+   for (i=0; i < Nodes; i++)
+     dist[i] = (double *) calloc(Nodes, sizeof(double));
+ 
+   // compute distance matrix
+   for (i=0;i<Nodes;i++) {
+     for (j=0;j<Nodes;j++){
+       dist[i][j]=sqrt((Xcoor[i]-Xcoor[j])*(Xcoor[i]-Xcoor[j])+(Ycoor[i]-Ycoor[j])*(Ycoor[i]-Ycoor[j]));
+     } // for j
+   } // for i
+  
+   for (i=0;i<Nodes;i++) {
+     for (j=i;j<Nodes;j++){
+       if (i!=j){
+         dist[i][j]=dist[i][j]+(STime[i]+STime[j])/2;
+         dist[j][i]=dist[i][j];
+       }
+       else
+         dist[i][j]=0;
+     } // for j 
+   } // for i
+
+  
+   for (i=0;i<Nodes;i++) {
+     for (j=i;j<Nodes;j++){
+       frac=dist[i][j]-floor(dist[i][j]);
+       if (frac>=0.5)
+	  dist[i][j]=ceil(dist[i][j]);
+       else
+	  dist[i][j]=floor(dist[i][j]);
+       dist[j][i]=dist[i][j];   
+     } // for j
+   } // for i
+   
+   //Check for triangular inequality
+  
+   for (k=0; k < Nodes; k++) {
+     for (i=0; i < Nodes; i++) {
+       for (j=0; j < Nodes; j++) {
+	  if (dist[i][j] > dist[i][k] + dist[k][j])
+	    dist[i][j] = dist[i][k] + dist[k][j];
+       } // for j
+     }  // for i 
+   }  // for k 
+ 
+  
+
+   //check whether the data is infeasible or not/
+   //check the reachability within time limit. do not check capacity< truck capacity
+   for (i=0;i<NCust;i++){
+     for (j=0;j<NFac;j++){
+       infeasible=1;
+       if (2*dist[NCust+j][i]<=TIMELIMIT){
+	  infeasible=0;
+	  break;
+       } // if 
+     } // for j
+     if (infeasible){
+       printf("data is infeasible, we can not reach customer %d, within time limit\n",i);
+       exit(9);
+       break;
+     } // if infeasible
+   } // for i
+  
+  /*
+ 
+   fprintf(stderr,"Distance matrix:\n");
+   for (i=0;i<Nodes;i++) {
+     for (j=0;j<Nodes;j++){
+       fprintf(stderr, "%5.1lf  ", dist[i][j]);
+     }
+     fprintf(stderr,"\n");
+   }
+  */
+
+   // make call to solve MESPPRC
+   // need to fill d[][] with time/distances 
+   // rc[][] with link costs/reduced costs
+   d = (double **) calloc(NCust+2, sizeof(double *));
+   rc = (double **) calloc(NCust+2, sizeof(double *));
+   for (i = 0; i < NCust+2; i++) {
+      d[i] = (double *) calloc(NCust+2, sizeof(double));
+      rc[i] = (double *) calloc(NCust+2, sizeof(double));
+   } // for i
+
+   // specify index for source and sink
+   source = NCust;
+   sink = NCust + 1;
+   // allocate pointer for SinkLabels
+   // specify dual value for v
+   v = 0.0;
+   // set value for maxnumlabels, set_threshold, RyanFoster, pricing_for_one_fac, Choose_Cust_set, *CustomerSet
+   maxnumlabels = MAXNUMLABELS;
+   set_threshold = 0;
+   RyanFoster = 0;
+   ret = ESPRC (NCust, TIMELIMIT, VCap, VFcost, d, rc, Demand, source, sink, &SinkLabels, v, maxnumlabels, set_threshold, RyanFoster);
+   
+  // free memory and clean up
+  free(FCost);
+  free(Xcoor);
+  free(Ycoor);
+  free(Cno);
+  free(STime);
+  free(Demand);
+  for (i=0; i < Nodes; i++)
+     free(dist[i]);
+  free(dist);
+    
+} // main()

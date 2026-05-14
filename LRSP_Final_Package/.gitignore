@@ -1,0 +1,29 @@
+# Build artifacts
+build/
+*.obj
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.exp
+*.so
+*.dylib
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+.env
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Misc
+*.log
+*.tmp

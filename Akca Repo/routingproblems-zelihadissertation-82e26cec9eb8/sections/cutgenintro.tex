@@ -1,0 +1,1792 @@
+%\chapter{Cutting Planes for LRSP}
+
+\section{Introduction}
+In this chapter, we investigate cutting planes valid for LRSP and
+that can be incorporated into our branch and price algorithm. Extending
+a branch and price algorithm to a branch, price and cut algorithm
+using cutting planes is a promising approach in the effort of
+improving the overall performance of the solution algorithm. Addition of
+cutting planes can improve the LP relaxation bounds in the expense
+of time to search for cuts, to solve larger LP models, and possible
+performance reduction in the column generation procedure caused by
+the incorporation of the cuts. Therefore, efficiency of an extended
+algorithm depends on other factors related with branch and price
+algorithm besides the strength of the new cutting planes.
+%careful (deeper) consideration of
+
+The point of this chapter is to derive some valid inequalities,
+include them to our branch and price algorithm and investigate the
+performance of the overall algorithm. In order to find cuts that are
+valid for LRSP, we can explore the set of valid inequalities derived
+for known polytopes that are relaxations and special cases of LRSP,
+such as knapsack problem, set partitioning problem, LRP and VRP.
+
+
+The main contributions of this chapter are to investigate some of
+the most common cuts that are valid for the related polytopes of
+LRSP; discuss their validity for LRSP, their integration
+into the model SPP-LRSP and necessary updates in our branch and
+price algorithm; and asses the value of these cuts for the solution
+algorithm. In addition, we explore possible ways of adapting the approach of
+generating disjunctive cutting planes which are one set of generic
+cutting planes that are commonly used in branch and cut algorithms.
+There does not exist a current publication that is regarding disjunctive
+cuts for branch and price algorithms. This chapter also provides some
+theoretical results about the strength of the SPP-LRSP by showing that
+some of the cuts that can be derived using edge based formulation are
+already implied by the SPP-LRSP.
+
+%Need an intro to this chapter , i.e., why are you generating cuts?
+%Conjecture:  (1) Generating cuts to add to the branch-and-price
+%algorithm will improve the performance of the algorithm (2) Can
+%extend LRP and VRP cuts to LRSP
+%Point of chapter 3 is to show that (1) you can extend cuts to LRSP
+%and (2) they do or do not improve performance
+%What is your contribution ?
+
+%In this chapter we investigate valid inequalities for the LRSP
+%polytope.
+Next, we review some terminology used in the rest of the chapter and
+describe necessary updates to our branch and price algorithm to
+extend it to a branch, price and cut algorithm. Then, the analysis in
+this chapter can be divided into three parts. First, we
+study some relaxations and projections of formulation SPP-LRSP
+in order to obtain valid inequalities. Second, we investigate
+possible ways to include disjunctive cuts (one of the generic
+MIP cuts) in a branch and price algorithm. Third, we consider
+inequalities valid for the relaxations of the edge based formulation
+of LRSP and discuss their effect to SPP-LRSP formulation.
+%that can be incorporated into branch and price algorithm.
+
+\section{Overview of Cut Generation in Branch And Price Algorithm}
+In this section, we outline the main steps of a branch, price and
+cut algorithm in general. We use the same terminology as in Section
+\ref{sec:desribeBP} and the description of the branch and price
+algorithm, BRANCH-PRICE, also given in Section \ref{sec:desribeBP}.
+
+First, we summarize some basic terminology from integer programming.
+An inequality is called valid inequality if it is satisfied by all points
+in the convex hull of a problem. A cut is a valid inequality that is
+generally added to the model later in the solution process and possibly
+violated by the current LP relaxation solution. One needs to solve the
+separation problem to find a cut that is violated by a given fractional
+solution. The aim of adding valid inequalities and cuts to the model is
+to get a better approximation of the convex hull of the problem.
+A valid inequality is called a face if it is satisfied with equality by
+some solutions of the problem. A face is called facet if it is nonempty and
+its dimension is one less than the dimension of the problem. The most beneficial
+valid inequalities are the facets of the convex hull. Therefore,
+people take great interest in finding facet defining inequalities.
+%has great interest polyhedral study
+
+In this chapter, we search for valid inequalities and cuts for LRSP
+and we want to integrate these to our solution algorithm. For ease of
+the notation, we refer the procedure that generates cuts for a given
+RMP as CUTGEN(RMP) and we refer it as CUTGEN() if the procedure does
+not depend on the current LP solution. Both CUTGEN(RMP) and CUTGEN()
+return a set $C$ including cuts that are generated at the end of
+the procedures. In order to explain the modifications to the
+BRANCH-PRICE to include cuts, we classify the generated cutting planes
+based on their structure.
+\begin{itemize}
+\item {\em Global Cut:} If the derived inequality is valid for the
+original problem's convex hull, then it is {\em global} to the tree,
+i.e.,it is valid for all nodes of the tree.
+\item {\em Local Cut:} Instead, if it is valid for the
+convex hull of the problem at the specific node, then the cut is
+{\em local} to that node, and only valid for that node and its
+children.
+\item {\em Z-free Type Cut:} If an inequality has zero coefficients
+for all variables that are generated via column generation algorithm,
+then we refer this cut as {\em z-free type} cut.
+\item {\em With-z type Cut:} If some variables from the column generation
+have nonzero coefficients in the cut, then we refer it as {\em with-z type}
+cut.
+\end{itemize}
+The incorporation of a cut to the algorithm depends on the structure of
+the cut. If a cut is global, then we can add the cut to the RMP in all
+active nodes of the branch and price tree. Otherwise, the cut is added to
+the RMP at the current node (and at its children). If we need the LP
+relaxation solution to generate a violated cut, then the cut is generated
+after the column generation algorithm (COLGEN) is terminated and the optimal
+RMP solution is found at the current node. Otherwise, the cut may be added at
+any time to the current RMP (before or after the COLGEN
+or any iteration of the COLGEN). In our algorithm, if the cut
+generation function does not need the LP solution, then we add the
+valid inequality before we start COLGEN.
+
+Addition of a z-free type cut does not affect the solution algorithm for
+the pricing problem since it does not affect the column generation algorithm.
+%A z-free type cut can be added to the algorithm at any time during the
+%solution of the RMP at the node (before or after the column generation
+%or any iteration of the column generation) unless we need the LP
+%relaxation solution to generate a violated z-free type cut. If we need
+%the LP relaxation solution, we add the cut after the column generation
+%algorithm is terminated and the optimal RMP solution is found at the
+%current node.
+On the other hand, a with-z type cut affects the column
+generation algorithm, since it has nonzero coefficients for some
+variables that are previously generated or may be generated in the future
+via column generation algorithm. Therefore, we need to pass the information
+about the cut to the pricing problem. This may require changes in the solution
+algorithm for the pricing problem.
+
+We extend the BRANCH-PRICE algorithm to a branch, price and cut algorithm
+by updating the solution process at each node of the tree as in the
+following:
+
+\fbox{\begin{minipage}{5in}
+{\bf A node in BRANCH-PRICE-CUT}
+\begin{itemize}
+\item[0.] Let RMP be the RMP at the beginning of the node.
+For the root node, it is the initial RMP and for a non root node,
+it is the parent's final RMP updated with the related branching rule.
+\item [1.] Call CUTGEN(). Let $C$ $\leftarrow$ CUTGEN() where $C$ is the
+set of cuts.
+\item [2.] If $C \neq \emptyset$, then update RMP with cuts, i.e.,
+RMP $\leftarrow$ (RMP + $C$).
+\item[3.] RMP $\leftarrow$ COLGEN(RMP).
+\item[4.] If the RMP solution is infeasible or integer, STOP. Otherwise,
+run CUTGEN(RMP). Let $C$ $\leftarrow$ CUTGEN(RMP).
+\item[5.] If $C=\emptyset$, STOP processing the node. Otherwise,
+update RMP with cuts, RMP $\leftarrow$ (RMP + $C$).
+\item[6.]If $C$ has any with-z type cuts, then update COLGEN
+based on the information from with-z type cuts.
+\item[7.] RMP $\leftarrow$ COLGEN(RMP).
+\end{itemize}
+\end{minipage}}
+
+%This section should be a description of the branch cut and price solution
+%methodology along the lines of section 2.2.  Don't get into
+%implementation details; instead keep the discussion at the algorithm
+%design level.
+
+\section{Cutting Planes Based on SPP-LRSP}
+In this section, we discuss some valid inequalities derived based on
+the SPP-LRSP formulation presented in Section \ref{part1:sp_form}.
+In Chapter 1, we augmented this formulation with two sets of valid
+inequalities, (\ref{lb-open-fac}) and (\ref{relation}), which are
+shown to be effective computationally in Section \ref{alternativeForm}.
+Here, we study the LRSP polytope, defined as follows, to derive more
+valid inequalities. We used the same notation as in Chapter 1.
+\begin{optprog}
+  & \polyS = \mbox{conv}\{t \in \{0,1\}^{|J|}, z \in \{0,1\}^{\sum_{j \in J}|P_j|}  |
+                 t, z \mbox{ satisfies (\ref{spp_con1}), (\ref{spp_con2})}\}.
+\end{optprog}
+This study is two fold: first, we investigate the cutting planes for
+the relaxations of polytope $\polyS$ and second, we investigate the cutting
+planes for the projections of $\polyS$.
+%and the cutting planes for the projections together with some disjunctive cuts.
+%Second, we use fractional solutions for the LP relaxation of SPP-LRS to drive disjunctive cuts.
+
+\subsection{Relaxations of the SPP-LRSP}
+ \label{cuts-relax-spp}
+ In this section, we investigate two relaxations:
+ knapsack and set partitioning problem. We list most common
+ set of cuts for these problems (from the literature) based on
+ our notation for SPP-LRSP. Even though, we did not implement any of
+ these cuts for our branch and price algorithm, we felt the necessity of
+ reviewing the literature and discussing possible implementation
+ difficulties in the context of this chapter.
+
+\paragraph{Knapsack Polytope}
+In $\polyS$, if we relax constraints (\ref{spp_con2}) by dropping
+the variable $t$, then each constraint defines a single 0/1 knapsack
+polytope. Since we assume that the column set for each facility, in
+other words items available for each knapsack in the context of
+knapsack problems, are disjoint from each other, we consider $|J|$
+single knapsack polytopes instead of one multiple knapsack polytope
+in which the set of items available for the knapsacks are not
+disjoint.
+%then this set of constraints
+%become knapsack constraints corresponds to each facility.
+We let $\polyKn$ be the knapsack polytope that corresponds to
+facility $j \in J$, such that
+\begin{optprog}
+  & \polyKn = \mbox{conv}\{z \in \{0,1\}^{|P_j|}  | \sum_{p \in P_j} D(p) z_{p} \leq  L^F_{j}\} \ \ & \forall j \in J,
+\end{optprog}
+%$\mathcal{P}^j_{KNAP1}=\{z_p \in \{0,1\}^{|P_j|} | \sum_{p \in P_j} D^C(p) z_{p} \leq  L^F_{j}\}$
+%$\forall j \in J$
+where $D(p)$ is equal to the total demand of customers in pairing
+$p$ (i.e.,$D(p)= \sum_{i \in I} a_{ip} D_i$).
+ $\polyKn$ for all  $j \in J$ is a relaxation of $\polyS$.
+%\begin{prop}
+%$\mathcal{P}^j_{KNAP1}$ $\forall j \in J$ is a relaxation of
+%$\mathcal{P}_{SPP-LRS}$.
+%\end{prop}
+Thus, we can investigate the valid inequalities of $\polyKn$ which
+are also valid for SPP-LRSP.
+%improve the LP relaxation of SPP-LRSP.
+\citet{Balas75}, \citet{Padberg80}, \citet{Crowder} and
+\citet{Weismantel}  are some of the papers studying the polyhedral
+structure of knapsack problems. Here, we evaluate applicability of
+the following cuts that are investigated in those studies to our algorithm.
+
+One set of well-known nontrivial inequalities that are valid for
+$\polyKn$ is the {\em cover inequalities}. Based on our notation and
+ definition of $\polyKn$, a set $S_j \subseteq P_j$ is called a cover if
+$\sum_{p \in S_j}D(p) > L^F_j$. And if the set $S_j$ is minimal,
+then the following inequality is valid for $\polyKn$.
+\begin{equation}
+\sum_{p \in S_j}z_{p} \leq |S_j|-1 \label{coverinq}
+\end{equation}
+
+%The extension of the inequalities (\ref{coverinq}) and the lifting procedures
+%to get stronger inequalities are described in \citet{Nemhauser} and \citet{Gu}.
+%Lifting is a procedure to extend the inequality (\ref{coverinq}) to also include
+%variables $z_p$ for all $p \in P_j \backslash S_j$.
+
+Another set of nontrivial inequalities defined for knapsack
+polytopes is {\em (1-k)-configuration inequalities}. Let $S_j$ be a
+subset of pairings for which the total demand is no more than the
+capacity (i.e.,$S_j \subseteq P_j$ and $\sum_{p \in S_j}D(p)\leq
+L^F_j$) and with the property that every one of its subsets is a
+minimal cover if you add one pairing from the pairings not in $S_j$.
+%$S_j \subseteq P_j$ with $\sum_{p \in S_j}D(p) \leq L^F_j$, and $Q_j
+%\cup \{q\}$ is a minimal cover for every $Q_j \subseteq S_j$ where
+%$2 \leq |Q_j|=k \leq |S_j|$ and $q \in P_j \backslash S_j$.
+Then, the following inequality called (1-k)-configuration inequality
+is valid for $\polyKn$.
+\begin{equation}
+(r - k + 1)z_q + \sum_{p \in S^r_j}z_{p} \leq r, \label{1kconfig}
+\end{equation}
+where  $r$ is some integer satisfying $k \leq r \leq |S_j|$, and
+$S^r_j$ is a subset of $S_j$ such that $|S^r_j| = r$. When $k =
+|S_j|$, the inequality (\ref{1kconfig}) is a cover inequality;
+therefore cover inequalities are also (1-k)-configuration
+inequalities.
+%This is a lot of notation to understand!  How about
+%adding some interpretation -- In other words, S_j is a subset of
+%paths for which the total demand is no more than the capacity and
+%with the property that every one of its subsets is a minimal cover
+%if you add one element/path from the paths not in S_j.
+
+In a branch and price algorithm, we may separate
+%inequalities in terms of
+(\ref{coverinq}) and  (\ref{1kconfig}) based on the columns
+currently in the model, and we may add these into the current RMP.
+However, since these inequalities are with-z type inequalities (with
+nonzero coefficients for columns that are generated via column
+generation algorithm), unless we incorporate the information from
+these generated inequalities into the pricing problem, the
+inequalities are not helpful; the pricing problem will generate the
+same or similar columns that are visiting the same set of customers.
+%However, unless we
+%incorporate the information in added inequalities in forms of
+%(\ref{coverinq}) and (\ref{1kconfig}) to the pricing problem, the
+%pricing problem would generate same or similar columns visiting the
+%same set of customers included in previously added inequalities.
+
+Our current solution algorithms for the pricing problem can handle
+the new information about a single customer or pair of customers
+with strict conditions of either following each other or not
+connected to each other in a pairing. In addition, a new
+information considering a set of customers can be included in the
+pricing algorithm if the information for each customer in the set is
+independent of another. These inequalities are constructed
+considering pairings and all customers included. The order of each
+customer in a pairing depends on the other customers that are
+included. Therefore, current pricing algorithms are not equipped to
+handle the new information from these generated cuts. At this time,
+it is not clear how to update pricing algorithms efficiently
+(without making it more difficult to solve) in order to handle
+the inequalities in the form of (\ref{coverinq}) and (\ref{1kconfig}).
+Therefore we could use neither (\ref{coverinq}) nor (\ref{1kconfig})
+in our branch and price algorithm.
+
+Next we discuss the set partitioning polytope and at the end of this
+discussion, there is an example from literature, in which the pricing
+algorithm is updated based on the new set of cuts under certain conditions.
+If there exists an efficient way of handling inequalities in the form
+of (\ref{coverinq}) and (\ref{1kconfig}), they would improve the
+performance of the algorithm as they are successful in the solution
+of $\polyKn$.
+
+%include specific columns and they do not have a structure passing a
+%general information about the customers or facilities or the set of
+%all columns, thus it is not clear how to define inequalities,
+%(\ref{coverinq}) and (\ref{1kconfig}) in pricing problem, and an
+%implementation procedure to add these in a branch and price is not
+%available at the time. Therefore we could not use them in our branch
+%and price algorithm.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%I think that you can convey this same information in a more positive
+%way. What I mean is that, if it is not trivial why one cannot add
+%these inequalities, then there is something to be said. See if you
+%can better highlight/describe where the difficulty is. It is worth
+%mentioning what you anticipate the inequalities would do for you if
+%you COULD implement them.  As it stands now, it is not entirely
+%clear to the reader WHY you are including the description of these
+%inequalities.
+
+
+
+\paragraph{Set Partitioning Polytope} Constraints (\ref{spp_con1})
+and the integrality constraints in $\polyS$  define set partitioning
+polytope. Thus, set partitioning polytope is a relaxation of
+$\polyS$, so are set packing and set covering polytopes union of
+which results the set partitioning polytope. Cuts for set partitioning
+problem are derived by investigating the polyhedral structures of
+set packing and set covering polytopes. See \citet{Balas76} for a
+review of polyhedral structures of all these polytopes. A common
+class of valid inequalities used in the literature is {\em clique
+inequalities}. A clique is a complete subgraph. For a set packing or
+set partitioning instance one can draw an intersection graph in
+which there is one node for each variable and there are edges
+between variables if they have positive coefficients in the same
+constraint. Based on such graph, the following inequality is called
+clique inequality
+\begin{equation}
+\sum_{p \in S}z_{p} \leq 1 \label{clique-inq}
+\end{equation}
+where $S$ is the set of nodes in a clique in the intersection graph. Since
+all pairings in set $S$ have a coefficient 1 in the same row, we can
+only select one of these pairings in an integer solution.
+%Lifting procedure is used to strengthen the clique inequalities.
+
+Another common class of inequalities used for set partitioning problems is
+{\em odd hole inequalities} that are constructed from cordless cycles with odd
+number of vertices in the intersection graphs. Let $C$ be the set of
+columns representing vertices in an odd cycle, then the following is valid
+for the set partitioning polytope:
+\begin{equation}
+\sum_{p \in C}z_{p} \leq \Big\lfloor \frac{|C|}{2} \Big\rfloor \label{oddcyc-inq}
+\end{equation}
+
+There are other types of inequalities such as anti-hole, webs and
+wheels (see \citet{Eso} for details) that are derived from the
+intersection graphs in a similar way and have  structure similar
+to (\ref{clique-inq}) and (\ref{oddcyc-inq}).
+Here, our aim is to provide a short review of cuts valid for set
+partitioning problem. Because of the same reason explained for
+knapsack cuts earlier in this section, we did not implement any of
+these cuts. We do not have a way of updating pricing algorithm
+efficiently to incorporate the information from these cuts.
+%Here, we do not mention all classes of inequalities and get into
+%details of set partitioning, packing and covering polytopes, since
+%as in inequalities (\ref{coverinq}) and  (\ref{1kconfig}), we could
+%not find a way to incorporate clique (or similar types of)
+%inequalities into the pricing problem.
+
+There is a branch, price and cut algorithm example in the literature
+(\citet{Jepsen}) in which the authors provide a procedure to update
+the pricing problem in order to use the information from a new class
+of cuts generated based on the set partitioning polytope. Now, we
+review this paper in order to further clarify why updating the
+pricing problem for inequalities in the form of (\ref{coverinq}) to
+(\ref{oddcyc-inq}) is not trivial and why the structure of the cut is
+very important for a branch and price algorithm.
+% The problem with inequalities in the form of (\ref{coverinq}) to
+%(\ref{oddcyc-inq}) is that they are related with specific columns
+%and constructed based on the information about these set of columns.
+%To overcome this problem, \citet{Jepsen} proposed {\em subset-row
+%inequalities} that are based on the idea of clique and odd hole
+%inequalities except that subset-row inequalities are constructed by
+%keeping the information from the rows of the set partitioning
+%polytope. Based on our notation, the inequalities are
+\citet{Jepsen} introduced {\em subset-row inequalities} that are
+based on the idea of clique and odd hole inequalities. However, they
+constructed these inequalities based on the information from the
+rows of the set partitioning polytope instead of considering certain
+set of variables as in clique and odd hole inequalities. Based on
+our notation, \citet{Jepsen}'s subset-row inequalities are as follows
+\begin{equation}
+\sum_{j \in J}\sum_{p \in P_j}\Big\lfloor \frac{1}{k} \sum_{i \in I_k}a_{ip} \Big\rfloor z_{p} \leq \Big\lfloor \frac{|I_k|}{k} \Big\rfloor, \label{ssr-inq}
+\end{equation}
+where $I_k$ is a subset of customers (rows in set partitioning
+constraints) and $0 < k \leq |I_k|$. A column visiting at least $k$
+of the customers in set $I_k$ has a nonzero coefficient in
+inequality (\ref{ssr-inq}), otherwise the coefficient is zero. They
+used this condition for a column to update the reduced cost
+calculation in pricing problem which is also an ESPPRC.
+
+The reduced cost of a column should be updated with $-\gamma \Big\lfloor \frac{\sum_{i \in
+I_k}a_{ip}}{k}\Big\rfloor $ amount where $\gamma$ is the dual variable
+that corresponds to constraint (\ref{ssr-inq}).
+%They note that this amount is always positive, thus updating
+%the cost of a path at the end of the algorithm would be proper. However,
+%they use this positive addition as an advantage in
+To do that, they kept value $m_l = (|I_k \cap V_l| \mbox{ mod } k)$
+for each label $l$ in the ESPPRC algorithm where $V_l$ is the set
+of customers in label $l$. They modified domination rules based on
+$m_l$ value for the labels. They proved that these inequalities were
+effective and they improved the performance of their branch-and-price
+algorithm. However, the size of set $I_k$ is important and larger values
+make the pricing algorithm more complicated. Since these cuts have already
+been applied in a branch and price algorithm, we do not include these to
+our study. We continue our investigation by looking at the projections
+of the SPP-LRSP polytope.
+%Their branch-cut-and-price algorithm
+%using these inequalities is proved to be eff.
+
+%\zaupdate{May include the part UPPER BOUNDING PROCEDURE using CLique Sepera
+%tion function}
+
+\subsection{Projection of the SPP-LRSP}
+\label{pro-spp}
+To eliminate the problem with the cuts (i.e.,dependency to specific columns
+and thus passing dependent information for customers) that are valid
+for the relaxation polytopes, we use projection. Here, projection is a
+mapping of a polytope
+to another based on a defined relation between variables.
+%To be able to eliminate the dependency of a cut to specific columns, we define
+%a projection of $\polyS$.
+We let $v_{ji}=\sum_{p \in P_j}a_{ip}z_{p}$
+for all $j \in J$ and $i \in I$ and project out the variables $z$. The projection
+polytope $\polyPr$ defined based on this relation is
+\begin{optprog}
+  & \polyPr = \mbox{conv} & \{ t \in \{0,1\}^{|J|}, v \in \{0,1\}^{|J|\times|I|} | & \sum_{j \in J}v_{ji} & = & 1 & \forall i \in I,  \label{pro-sp1}\\
+ &  &  & \sum_{i \in I} D_i v_{ji} -  L^F_{j} t_j & \leq & 0 & \forall j \in J,  \label{pro-sp2}\\
+& & & & & & \qquad \ \   \}.  \nonumber
+\end{optprog}
+We can interpret $v_{ji}$ as the fraction of the demand of customer $i \in I$
+assigned to facility $j \in J$.
+%We can rewrite the constraints defining SPP-LRS using the variable transformation:
+% \begin{optprog}
+%           & v_{ji} & = &\sum_{p \in P_j}a_{ipj}Z_{jp}  & \forall i \in N,\forall j \in M  \label{transf}\\
+%           & \sum_{j \in M} v_{ji} & = & 1 & \forall i \in N \label{trspp_con1} \\
+%           & \sum_{i \in N} d_i v_{ji} & \leq & CapF_{j} T_{j} & \forall j \in M \label{trspp_con2} \\
+%           & \sum_{j \in M} T_{j} & \geq & nREQ \label{tr-lb-open-fac}\\
+%           & v_{ji} & \leq &  T_{j}  & \forall j \in M,i \in N \label{trrelation} \\
+%           & v_{ji} &  \in & \{0,1\} & \forall j \in M, \forall i \in N \label{capbinary1} \\
+%           & T_{j}  & \in & \{0,1\} & \forall  j \in M \label{capbinary2}
+%\end{optprog}
+Again, we investigate some relaxations of the polytope $\polyPr$ to derive
+some cuts. Then, the obtained cuts can be projected back to the original variable
+space $(t,z)$ and used for $\polyS$. We implemented two classes of the cuts
+that will be presented next in this section: the lifted cover inequalities
+and the generalized assignment polytope cuts. We extended our branch  and price
+algorithm with these and presented some computational results in Section
+\ref{comp:CoverGAP}.
+
+\paragraph{Multiple Knapsack Polytope}
+If we replace variable $t_j$ with 1 in inequalities
+(\ref{pro-sp2}) and relax the equality restriction in
+(\ref{pro-sp1}), these inequalities with the binary restriction for
+variable $v$ define a multiple knapsack polytope:
+\begin{optprog}
+  & \polyMKn = \mbox{conv} & \{ v \in \{0,1\}^{|J|\times|I|} | & \sum_{j \in J}v_{ji} & \leq & 1 & \forall i \in I,  \label{pro-knp1}\\
+ &  &  & \sum_{i \in I} D_i v_{ji} & \leq & L^F_{j} & \forall j \in J,  \label{pro-knp2}\\
+& & & & & & \qquad \ \   \}.  \nonumber
+\end{optprog}
+Valid inequalities for the single knapsack polytope are also valid
+for $\polyMKn$. The cover inequalities and (1-k) configuration
+inequalities described in Section \ref{cuts-relax-spp} can be
+applied here.
+
+Let $S \subseteq I$ be a minimal cover for facility $j$ such that
+$\sum_{i \in S}D_i> L^F_j$. Then, the following inequality is valid
+for $\polyMKn$ and $\polyPr$.
+\begin{equation}
+\sum_{i \in S}v_{ji} \leq |S|-1. \label{inq-cover2}
+\end{equation}
+The inequalities (\ref{inq-cover2}) can be extended further to get
+stronger inequalities using {\em lifting} which is a procedure to extend an
+inequality to another possibly including nonzero coefficients for
+some of the variables that have zero coefficient in the original
+inequality. %$z_p$, for all $p \in P_j \backslash S_j$.
+The extension of the cover inequalities and the lifting procedures
+to get stronger inequalities are described in \citet{Nemhauser} and \citet{Gu}.
+%Lifting is a procedure to extend the inequality (\ref{coverinq}) to also include
+%variables $z_p$ for all $p \in P_j \backslash S_j$.
+%As mentioned in the previous section, lifting procedure can be applied
+%to inequality (\ref{inq-cover2}) to extend it to other variables in
+%the formulation, thus to obtain possibly a stronger valid inequality.
+To be more specific, after the lifting procedure, the inequality will be
+as follows:
+\begin{equation}
+\sum_{i \in S}v_{ji} + \sum_{i \in I\backslash S}\alpha_{ji}v_{ji}
+\leq \beta, \label{inq-cover2b}
+\end{equation}
+for some $\alpha$ and $\beta$ values that are calculated in a
+lifting procedure. This inequality can be transformed to the following
+for $\polyS$:
+\begin{equation}
+\sum_{i \in S}\sum_{p \in P_j}a_{ip}z_{p} + \sum_{i \in I\backslash
+S}\sum_{p \in P_j}\alpha_{ji}a_{ip}z_{p} \leq \beta.
+\label{inq-cover2c}
+\end{equation}
+An inequality in the form of (\ref{inq-cover2c}) can easily be added
+to the RMP without destroying the pricing problem structure, i.e.,
+our current pricing problem solution algorithms can be used. The
+inequality (\ref{inq-cover2c}) has the information of whether a
+customer visited by a pairing or not for all possible pairings (even
+the ones that are not currently in RMP). The inequality may have
+information about more than one customer, however this information
+for a customer is independent of other customers.
+% since the inequality depends on a set of customers not
+%specific pairings, and all pairings (even the ones that are not
+%currently in RMP) can have nonzero
+%coefficient.  %if they include the customers in the set.
+Let $\omega_S^j$ be the dual variable that corresponds to the
+inequality (\ref{inq-cover2c}) for customer set $S$ and facility
+$j$. To incorporate the information from this inequality into our
+algorithm, in the pricing problem for facility $j$, we update the
+cost of incoming arcs for customers in set $S$  with $\omega_S^j$,
+and all other customers in $I\backslash S$ with $\omega_S^j
+\alpha_{ji}$. These updates for single customers result an updated
+total reduced cost for a column with a nonzero coefficient
+in inequality (\ref{inq-cover2c}).
+
+We implemented inequalities (\ref{inq-cover2c}) that are derived
+from lifted cover inequalities in our branch and price algorithm.
+MINTO has a built-in function to detect violated lifted cover
+inequalities for general MIP instances.
+%that is also called separation procedure.
+This function implements a heuristic algorithm details of which is
+described in \citet{Gu}. We export this function into our algorithm
+%employ this function
+to detect violated lifted cover inequalities for a given solution
+information based on $(t,v)^j$ variable vector that corresponds to
+some facility $j \in J$.
+
+In our CUTGEN(RMP) procedure, for a given fractional solution
+$(\bar{t},\bar{z}) \in {\mathbb{R}^{+}}^{|J|+\sum_{j \in J}|\bar{P}_{j}|}$
+where $\bar{P}_{j}$ is the current set of pairings for facility
+$j \in J$, we do the following.
+\begin{itemize}
+\item For each facility $j \in J$, if $\bar{t}_j = 1$, then we find
+$\bar{v}^j \in \mathbb{R}^{|I|}$ using relation $\bar{v}_{ji} = \sum_{p \in
+\bar{P}_j}a_{ip}\bar{z}_{p}$ for all $i \in I$.
+\item For a given $\bar{v}^j$, we search for a cover inequality in the
+form of (\ref{inq-cover2b}) using MINTO's function.
+\item If the function returns a cut, then we rewrite
+it in the form of (\ref{inq-cover2c}) and add to our RMP.
+\end{itemize}
+As mentioned earlier, computational results for the implementation
+of this set of cuts are presented in Section \ref{comp:CoverGAP}.
+%In addition, one can partition cover $S$ into two disjoint sets,
+%$S_1$ and $S_2$, where $S_1 \cup S_2 = S$$S_1$
+
+As mentioned in the knapsack polytope part in previous section,
+(1-k) configuration inequalities are valid for single knapsack
+polytope. Thus it is possible to derive (1-k) configuration
+inequalities for the $\polyPr$ in terms of variable $v$. Similar to
+cover inequalities, (1-k) configuration inequalities in terms of
+variable $v$ can be added to the RMP without causing significant
+changes in the pricing problem solution algorithms. Based on the
+computational experiments for lifted cover inequalities which are a
+special case of (1-k) configuration inequalities, we decided not to
+implement (1-k) configuration inequalities in our study.
+
+\paragraph{Generalized Assignment Polytope}
+Similar to  the definition of $\polyMKn$,
+% In constraint (\ref{pro-sp2}), by replacing multiplier $t_j$ with
+%its upper bound 1, we obtain
+a generalized assignment polytope, $\polyGAP$ can be defined
+as follows:
+ \begin{optprog}
+  & \polyGAP = \mbox{conv}  \{ v \in \{0,1\}^{|J|\times|I|} | v \mbox{ satisfy (\ref{pro-sp1}) and } \sum_{i \in I} D_i v_{ji}  \leq  L^F_j \ \  \forall j \in J\}.  \nonumber
+\end{optprog}
+
+%\begin{eqnarray}
+% X^{GAP}=& & \{v \in \mathbb{Z}^{|M|X|N|}_+ | v  \mbox{ satisfy const. (\ref{trspp_con1})},\\
+%& & \sum_{i \in N} d_i v_{ji} \leq  CapF_{j} \ \ \forall j \in M, \nonumber \\
+%& &  v_{ji}\leq 1 \ \ \forall j \in M \}\nonumber
+%\end{eqnarray}
+The generalized assignment problem (GAP) is a generalization of the
+multiple knapsack problem. The generalization is that the GAP may be
+formulated with different weights for each item (coefficients in
+\ref{pro-knp2}, i.e.,$D_i$) for each knapsack.
+Thus, valid inequalities for the knapsack polytopes are also valid for
+$\polyGAP$.
+%Since $X^{GAP}$ is a relaxation of the convex hull of the SPP-LRS problem, the valid inequalities for
+%$X^{GAP}$ are also valid for the SPP-LRS polytope.
+Besides the inequalities for the knapsack polytope, there are only a
+few papers investigating the facets and valid inequalities of GAP.
+Some of these are \citet{Gottlieb90}, \citet{Farias}.
+Both papers relax constraint (\ref{pro-sp1}) and look at the relaxed polytope
+including $\leq $ part of inequalities (\ref{pro-sp1}). In this
+relaxed GAP, \citet{Farias} added the condition that at most one of
+$v_{ji}$ for all $j \in J$ can be positive for all $i \in I$. The
+following theorem from \citet{Farias} presents a valid inequality
+for GAP. We rewrite the theorem based on our notation and variable
+definition.
+\begin{thm}
+\label{GAP-cut}
+[\citet{Farias}] Let $S\subseteq I$ and $k\in J$. Suppose
+that $\sum_{i \in S}d_i > L^F_k$ and $\sum_{i \in S-\{r\}}d_i < L^F_k$ for
+some $r \in S$. Then,
+\begin{optprog}
+& \sum_{i \in S}D_i v_{ki} +  \sum_{i \in S} \left(\mbox{max}\{0,L^F_k- \sum_{a \in S-\{i\}}D_a \}\right)\sum_{j \in J-\{k\}}v_{ji}  & \leq &  L^F_k \label{gap-valid}
+\end{optprog}
+ defines a facet of relaxed GAP polytope.
+\end{thm}
+The interpretation of (\ref{gap-valid}) is simple: if the total
+demand of the customers in set $S$ exceeds the capacity of facility
+$k$, then there must be some customer $r \in S$ that must be served
+by another facility and not by $k$. If the second part of the left
+hand side of (\ref{gap-valid}) is zero, it is equal to the
+facility capacity constraint for $k$ that is one of the trival
+inequalities. However, in a non integer solution, if the slack
+variable for the facility capacity constraint for $k$ is zero (i.e.,
+the capacity is fully used) and facility $k$ has positive flow to
+all customers in set $S$, then the inequality (\ref{gap-valid}) may
+likely be violated because of positive flow from other facilities to
+some customer $r \in S$ with $L^F_k- \sum_{a \in S-\{r\}}d_a > 0$.
+We can rewrite inequality (\ref{gap-valid}) in terms of pairing
+variables using the relation between $v$ and $z$:
+\begin{optprog}
+& \sum_{i \in S}d_i \sum_{p \in P_k}a_{ip}z_{p} +  \sum_{i \in S} \left(\mbox{max}\{0,L^F_k- \sum_{a \in S-\{i\}}D_a \}\right)\sum_{j \in J-\{k\}}\sum_{p \in P_j}a_{ip}z_{p}  & \leq &  L^F_k \label{gap-valid2}
+\end{optprog}
+%\begin{eqnarray}
+%& &  \sum_{i \in S}\sum_{p \in P_t}d_i a_{itp}Z_{tp} +  \nonumber\\
+%& &  \sum_{i \in S} \left(max\{0,CapF_t-
+%\sum_{x \in S-\{i\}}d_x \}\right)\sum_{j \in M-\{t\}}\sum_{p \in P_j}d_i a_{ijp}Z_{jp}  \nonumber \\
+%& & \hspace{3.5in} \leq  CapF_t \label{gap-valid}
+%\end{eqnarray}
+
+%\ref{GAP-cut} is a valid inequality for our problem.
+
+Since the inequality (\ref{gap-valid2}) carries independent
+information of presence of a customer in a pairing for each customer
+in set $S$, it can be added to the RMP without destroying the
+structure of the pricing problem. We implemented this class of
+inequalities which we refer as GAP inequalities.
+We extended our branch and price algorithm with (\ref{gap-valid2})
+and evaluate the overall performance. Let $\gamma_S^k$ be the dual variable
+corresponding to the inequality (\ref{gap-valid2}) for customer set
+$S$ and facility $k$. To incorporate this inequality into our
+algorithm, in the pricing problem for facility $k$, we update the
+incoming arcs for customers in set $S$  with $D_i \gamma_S^k$, and
+in the pricing problem for facility $j \neq k$, we update the
+incoming arcs for customers in set $S$ with
+$(\mbox{max}\{0,L^F_t-\sum_{a \in S-\{i\}}D_x\})\gamma_S^k$.
+
+\citet{Farias} present the following separation heuristic that is
+described based on our notation for inequality (\ref{gap-valid}):
+%The steps of the heuristic are as follows:
+\begin{center}
+\fbox{\begin{minipage}{5.6in}
+{\bf Heur-Sep-GAP [\citet{Farias}]}
+\begin{enumerate}
+\item[0.] Let $\bar{v}$ be a fractional solution to the LP relaxation of $\polyGAP$.
+\item[1.] For each facility $k \in J$:
+      \begin{itemize}
+      \item[i.] If $\sum_{i \in I}D_i\bar{v}_{ki} = L^F_k$, then proceed.
+      Otherwise go to step 1 and pick the next facility.
+      \item[ii.] Let $S = \{i \in I | \bar{v}_{ki} >0 \}$ and  $D(S)= \sum_{i \in S}D_i$.\\
+      If $D(S) > L^F_k$, then for each $c \in S$, check the following conditions:
+      \begin{itemize}
+      \item Is $c$ also served by another facility?
+      \begin{optprog}
+      & 1 > v_{kc} > 0, \mbox{ and }\sum_{j \in J\backslash \{k\}} v_{jc} & > & 0 \label{her-sep-con1}
+      \end{optprog}
+      \item When we remove $c$ from assignment set of facility $k$,
+      does full assignment of the rest of the customers to $k$ becomes feasible?
+      \begin{optprog}
+      & D(S \backslash \{c\}) & < & L^F_k \label{her-sep-con2}
+      \end{optprog}
+      \end{itemize}
+%      \begin{optprog}
+%      & 1 > v_{ka} > 0, \mbox{ thus } \sum_{j \in J\backslash \{k\}} v_{ja} & > & 0 \label{her-sep-con1} \\
+%       & D(S \backslash \{a\}) & < & L^F_k \label{her-sep-con2}
+%      \end{optprog}
+          %\begin{itemize}
+         %\item $ 1 > v_{ka} > 0$, thus $\sum_{j \in J\backslash \{k\}} v_{ja} > 0$.
+         %\item $D(S \backslash \{a\}) < L^F_k$.
+         %\end{itemize}
+     \item[iii.]
+     %If there is at least one $c \in S$ satisfying (a) and (b),
+    %   then (\ref{gap-valid}) is violated for facility $k$ and customer set $S$.
+     If there is at least one $c \in S$ satisfying both (\ref{her-sep-con1}) and
+     (\ref{her-sep-con2}), then (\ref{gap-valid}) is violated for facility $k$ and
+       customer set $S$. Return a GAP cut for facility $k$.
+     \end{itemize}
+\end{enumerate}
+\end{minipage}}
+\end{center}
+
+In our CUTGEN procedure, similar to the lifted cover inequalities,
+for a given fractional solution
+$(\bar{t},\bar{z}) \in {\mathbb{R}^{+}}^{|J|+\sum_{j \in J}|\bar{P}_{j}|}$
+where $\bar{P}_{j}$ is the current set of pairings for facility $j \in J$, we
+find $(\bar{t},\bar{v}) \in \mathbb{R}^{|J|+|J|\times|I|}$ using relation
+$\bar{v}_{ji} = \sum_{p \in \bar{P}_j}a_{ip}\bar{z}_{p}$ for all $i \in I$ and
+$j \in J$. Then, we call
+%In our implementation, we also use
+Heur-Sep-GAP to separate cuts in the form of inequality (\ref{gap-valid}).
+
+We updated Heur-Sep-GAP slightly in our implementation.
+In step 1(i), we also require that the facility variable is 1, i.e.,
+$t_k = 1$. Then, we rewrite a generated inequality in the form of
+(\ref{gap-valid2}). In the LRSP instances, most of the time Heur-Sep-GAP
+fails to find violated cuts. The reason for this failure is condition
+(\ref{her-sep-con2}). Generally, condition (\ref{her-sep-con2}) is not
+satisfied even though the facility capacity constraint is binding and
+(\ref{her-sep-con1}) is true. In LRSP, we are dealing with the assignment
+of pairings (i.e., sets of customers to the facilities), therefore,
+fractional pairing variables lead to multiple customers (rather than a single
+customer) that are served by
+more than one facility. In a fractional solution, for some facility,
+even though the capacity is fully utilized, since more than one customer
+is served by a fractional amount from that facility, it is not enough to
+remove the assignment of a single customer to this facility to satisfy that
+the total demand of the remaining customers is less than the facility capacity,
+(i.e.,condition (\ref{her-sep-con2})). To increase the number of times a cut is
+generated, we updated determination of the set $S$ in the step 1 (ii) of the
+Heur-Sep-GAP. We may shrink this set $S$ whenever it is necessary.
+
+In our algorithm, first we process step 1 (ii) and (iii) as in the original
+Heur-Sep-GAP procedure by setting $S = \{i \in I | v_{ki} >0 \}$.
+If we cannot find a violation, we reduce the size of set $S$
+by removing one customer at a time until a violation is found
+or $D(S) \leq L^F_k$.
+%We reprocess step 1 (ii) in our implementation.
+%First, we set $S = \{i \in I | v_{ki} >0 \}$, then execute
+%the step. If we can not find a violation,
+%We update $S$ by removing one customer at a time until we get a violation
+%with the updated set or $D(S) \leq L^F_k$.
+We remove customers in the order of non increasing demand.
+The steps of the updated algorithm can be listed as follows:
+\begin{center}
+\fbox{\begin{minipage}{5.6in}
+{\bf Heur-Sep-GAP-2}
+\begin{enumerate}
+\item[0.] Let $(\bar{t},\bar{v})$ be a fractional solution.
+\item[1.] For each facility $k \in J$:
+    \begin{itemize}
+      \item[i.] If $\bar{t}_k = 1$ and $\sum_{i \in I}D_i\bar{v}_{ki} = L^F_k$, then
+      proceed. Otherwise return to step 1.
+      \item[ii.] Let $S = \{i \in I | \bar{v}_{ki} >0 \}$. If $D(S) > L^F_k$,
+      then for each $c \in S$, check the conditions (\ref{her-sep-con1}) and
+     (\ref{her-sep-con2}).
+     \item[iii.] If there is at least one $c \in S$ satisfying (\ref{her-sep-con1}) and
+     (\ref{her-sep-con2}), then return  a cut for facility $k$ and
+       set $S$ and return to step 1.
+     \item[iv.] Sort the customers in $S$, $i_1<i_2<..<i_{|S|}$ such that
+     $D_{i_p} \geq D_{i_q}$ for all $p, q = 1,..,|S|$ and $i_p<i_q$.
+     \item[v.] For $e = 1$ to $|S|$:
+       \begin{itemize}
+        \item[a.] Let $S = S - \{i_e\}$. If $D(S) \leq L^F_k$, then return to step 1.
+        \item [b.] If there is at least one $c \in S$ satisfying
+        (\ref{her-sep-con1}) and (\ref{her-sep-con2}), then return
+        a cut for facility $k$ and set $S$ and
+        return to step 1.
+        \end{itemize}
+     \end{itemize}
+\end{enumerate}
+\end{minipage}}
+\end{center}
+As mentioned earlier, computational results for the implementation
+of this set of cuts are presented in Section \ref{comp:CoverGAP}.
+%Should I briefly mention implementation results?}
+
+\paragraph{Capacitated Facility Location Polytope}
+In $\polyPr$, if we relax the integrality of variable $v$ and
+set bounds, we get a capacitated facility location polytope, $\polyFL$. To be
+more specific:
+\begin{optprog}
+  & \polyFL = \mbox{conv} & \{ t \in \{0,1\}^{|J|}, v \in \mathbb{R}^{|J| \times |I|} | t, v \mbox{ satisfy } (\ref{pro-sp1}), (\ref{pro-sp2}), \mbox{ and }v_{ji} \in [0,1] \forall j \in J, i \in I\}.  \nonumber
+\end{optprog}
+Therefore, $\polyFL$ is a relaxation of $\polyPr$, and if the valid inequalities
+for $\polyFL$ are projected to $(t,z)$ space, they are valid for $\polyS$.
+Indeed, $\polyPr$, the capacitated facility location polytope with binary
+restriction on variable $v$, is called the single source capacitated facility location
+polytope. In the problem, each customer has to be served by a single facility.
+We do not aware of any studies that investigate specifically the polyhedral structure
+of single source capacitated facility location problem, thus we review the studies
+for $\polyFL$ which are a few.  \citet{Aardal}, \citet{Leung} and
+\citet{Padberg} investigated valid inequalities and gave conditions for these
+inequalities to be facets for $\polyFL$. We did not implement any of these
+inequalities, here we give a brief list of common ones.
+
+One set of valid inequalities is the {\em knapsack cover inequality} in terms
+of $t$ (facility) variables. \citet{Aardal} define "cover" that is a subset of
+facilities. Using our notation, $M$ is a cover if
+$\sum_{j \in M}L^F_j>\sum_{j \in J}L^F_j-\sum_{i \in I}D_i$. Based
+on this definition, they state the following theorem:
+\begin{thm}
+\label{thm-kpcover}
+[\citet{Aardal}] If $M$ is a minimal cover with respect to $J$ and $I$,
+$L^F_{\mbox{min}} = \mbox{min}_{j \in M}\{L^F_j\}$,
+and $\sum_{j \in J \backslash M}L^F_j + L^F_{\mbox{min}} > \sum_{i \in I}D_i$, then the
+knapsack cover inequality:
+\begin{equation}
+\label{Tcover}
+\sum_{j \in M}t_j \geq 1
+\end{equation}
+defines a facet of $\polyFL \cap \{t \in \{0,1\}^{|J|}:t_j=1 \qquad \forall j\in J \backslash M\}$.
+\end{thm}
+
+This theorem implies that at least one facility from set $M$ must be open
+because the total capacities of facilities in the set $J \backslash M$ is not
+enough to cover the total demand of customers. Since \ref{Tcover}
+is valid for $\polyFL$, then it is also valid for $\polyPr$ and $\polyS$.
+Since the inequality defined in Theorem (\ref{thm-kpcover}) only includes $t$ variables,
+in other words it is a z-free inequality, we can use this inequality
+without affecting the structure of the pricing problem.
+
+We did not implement this inequality in our study because of the effect of
+inequality (\ref{lb-open-fac}) in the RMP. In our LRSP instances used for
+computational results, the facility capacity values are equal. Based on this, when all
+possible (\ref{Tcover}) inequalities are generated, summed  and combined
+into one inequality, we get $\sum_{j \in J}t_j \geq m$ where $m \in \mathbb{R}^+$.
+With some algebra, we can easily show that the minimum number of required
+facilities, $R$ (in (\ref{lb-open-fac})) is greater than $m$, if $1 < R < |J|$
+(which is the case in our instances). Thus, the inequality (\ref{lb-open-fac})
+forcing that the total number of facilities must be greater than or equal to
+$R$ is stronger than the inequality obtained by summing all possible inequalities
+(\ref{Tcover}). In addition, we do not add the inequalities (\ref{Tcover})
+to the SPP-LRSP, since generally inequality (\ref{lb-open-fac}) results
+integer values for location variables.
+
+Another class of valid inequality derived for $\polyFL$ is {\em flow cover inequality}.
+\citet{Aardal} and \citet{Padberg} define $M$ as flow cover if $M$ is a subset of
+facilities and can strictly cover the total demand of customers, i.e.,
+$\sum_{j \in M}L^F_j = \sum_{i \in I}D_i + \lambda$, for some $\lambda > 0$.
+\citet{Aardal} and \citet{Padberg} present the following theorem
+(based on the notation in this section) that describes the flow cover
+inequalities:
+\begin{thm}
+\label{thm-fwcover}
+[\citet{Aardal}]
+Let $M \subset J $ be a flow cover with respect to $J$ and $I$.
+%i.e.,$\sum_{j \in M}L^F_j = \sum_{i \in I}D_i + \lambda$, for some $\lambda > 0$
+If $\mbox{max}_{j \in M}\{L^F_j\} > \lambda$ and
+$\sum_{j \in J}L^F_j > \sum_{i \in I}D_i + L^F_r$ $\forall r \in M$, then
+the flow cover inequality
+\begin{equation}
+\label{FcoverAardal}
+\sum_{j \in M}\sum_{i \in I}D_i v_{ji}+\sum_{j \in M}(L^F_j-\lambda)^+(1-t_j) \leq \sum_{i \in I}D_i
+\end{equation}
+defines a facet of $\polyFL$.
+\end{thm}
+The inequality (\ref{FcoverAardal}) defines a minimum set of facilities (i.e., $M$)
+to cover the total demand. If all customers are assigned to the facilities in $M$, the
+excess capacity $\lambda$ leads at least one facility in set $M$ to be fractional in an LP
+solution. The aim of the inequality (\ref{FcoverAardal}) is to eliminate the effect of
+excess capacity. The second part in the left hand side of the inequality
+forces all facilities in set $M$ take value close to 1 to satisfy the inequality.
+In inequality (\ref{FcoverAardal}), if we replace $v_{ji}$ variable with
+$\sum_{p \in P_j}a_{ip}z_{p}$, we have the following inequality in $(t,z)$
+space.
+\begin{equation}
+\label{FcoverZvar}
+\sum_{j \in M}\sum_{p \in P_j}\sum_{i \in I}D_i a_{ip}z_p + \sum_{j \in M}(L^F_j-\lambda)^+(1-t_j) \leq \sum_{i \in I}D_i
+\end{equation}
+Similar to the other inequalities defined in this section, we can incorporate the inequality
+(\ref{FcoverZvar}) into a branch and price algorithm. However, we did not implement this
+inequality in our study, because in most of our LP relaxation solutions, the facilities
+serving the customers are fully open.
+%Let $\theta_M$ be the dual variable assigned to the inequality when it is added to the master
+%problem. The reduced cost of pairings for facilities in the flow cover will be updated with
+%$\theta_M$, and thus in the pricing problem, the costs of the incoming arcs to customer nodes
+%are updated with $D_i\theta_M$. We did not implement this inequality in our algorithm.
+
+%\begin{eqnarray}
+%  \label{new-red-cost-fc}
+%  \hat{C}_{p}=C_{p}-\sum_{i\in I}a_{ip}\pi_{i} + \sum_{i \in I}a_{ip}D_{i}(\mu_{j}+\theta_J)+\sum_{i \in I}a_{ip}\sigma_{ji}
+%\end{eqnarray}
+%In the pricing problem of facility $j \in J$, we have to adjust the cost of the incoming
+%arcs to customer nodes with  $(\theta_J)$.
+%The cost of an arc $(i,k)$ should be equal to $c_{ik}-\pi_{k}+d_k \cdot (\mu_j+\theta_J)+\sigma_{jk}$.
+%The pricing problems for facilities that are not in set $J$ do not change.
+\begin{comment}
+The flow cover inequality (\ref{FcoverZvar}) uses a flow cover with respect to
+the set of all customers, $I$. \citet{Aardal}
+introduce {\em effective capacity inequality} that uses a flow cover with respect to a
+subset of customers. They prove that the effective capacity inequality is valid,
+and defines a facet for $\polyFL$ under some  conditions. Let $M \subset J$ be a flow cover
+with respect to $K \subseteq I$, then $\sum_{j \in M}L^{F'}_{j}=\sum_{i \in K}D_i + \lambda$
+for some $\lambda>0$  and $L^{F'}_j=\mbox{min}\{L^F_j,\sum_{i \in K_j}D_i\}$ for some sets
+$K_j\subseteq K$ for all $j \in M$.
+\begin{prop}
+\label{prop-effwcover}
+[\citet{Aardal}] Let $M \subset J$ be a flow cover with respect to $M$ and $K$.
+If $\mbox{max}_{j \in M}\{L^{F'}_j \} > \lambda$ then the following effective flow cover inequality
+\begin{equation}
+\label{EFFcover}
+\sum_{j \in M}\sum_{i \in K_j}D_i v_{ji}+\sum_{j \in M}(L^{F'}_j-\lambda)^+(1-t_j) \leq \sum_{i \in K}D_i
+\end{equation}
+is valid for $\polyFL$.
+\end{prop}
+The inequality (\ref{EFFcover}) can also be incorporated into the branch and price
+algorithm in a similar way with inequality (\ref{FcoverZvar}). When the inequality is added
+to the master problem, in the pricing problem of facility in the flow cover, only the costs of the
+incoming arcs to customers in set $K_j$ are updated with the dual variable. Again, we did not
+implement effective capacity inequalities in this study.
+\end{comment}
+%\zaupdate{flow cover inequalities implemented in (\citet{VanRoy}) ??}
+
+
+
+\section{Disjunctive Cuts for LRSP}
+\label{disjcuts-sec}
+In this section, we discuss the generation of a set of cuts derived based on split
+disjunctions in the context of branch and price algorithm.
+We begin with a review of the methodology of disjunctive cuts. The generation of 
+disjunctive cuts and the idea of disjunctive programming
+were introduced by \citet{Balas79}. Disjunctive programming is finding the optimal
+value of an objective function over a finite union of polyhedra constructed based
+on conjunctive statements (connected with logical operator "AND") and disjunctive
+statements (connected with logical operator "OR"). Here, we focus on cuts based on
+disjunctive statements. To explain the methodology for an integer
+model, suppose we have an integer program, P:
+\begin{optprog}
+   Minimize & \objective{c^Tx} \nonumber\\
+(P) \ \  subject to & Ax & \geq & d, \label{dp-1}\\
+                     & x & \geq & 0,\mbox{ and integer}  \label{dp-2}
+\end{optprog}
+where $A \in \mathbb{Q}^{m\times n}$ is constraint matrix, $c \in \mathbb{Q}^{n}$,
+$d \in \mathbb{Q}^{m}$ are rational vectors and $x \in \mathbb{Z}^n$ is a vector
+of decision variables. In addition, suppose we know that any feasible integer solution
+$x$ for P, also satisfies at least one of the following $s$ inequalities based
+on some disjunctive statements:
+\begin{optprog}
+%\sublabon{optprog}
+& B^1x & \geq & b^1, &  \label{dissys1}\\
+& B^2x & \geq & b^2, &  \label{dissys2}\\
+& ... \nonumber\\
+& B^sx & \geq & b^s, &  \label{dissys3}
+%\sublaboff{optprog}
+\end{optprog}
+where $B^k \in \mathbb{Q}^{m^k\times n}$ is constraint
+matrix and $b^k \in \mathbb{Q}^{m^k}$ is right hand side vector
+for some integer $m^k > 0$, $\forall k = 1,..,s$.
+Using these $s$ disjunctive set of inequalities, a relaxation of P, P$_{\mbox{DR}}$
+can be defined:
+\begin{optprog*}
+   Minimize & \objective{c^Tx} \nonumber\\
+(P$_{\mbox{DR}}$) \ \  subject to & Ax & \geq & d, \\
+ & {\lor}_{k = 1}^{s}B^kx & \geq & b^k, \\
+ & x & \geq & 0,
+% & x & \in & {\mathbb{R}^+}^n,
+\end{optprog*}
+where $\vee$ denotes ``or'' and is used to represent the disjunctive system.
+Using each disjunction, we can define $s$ polyhedron.
+\begin{optprog*}
+& \mbox{P}^k = \{x \in  {\mathbb{R}^{+}}^n | Ax \geq d, B^kx  \geq  b^k\} & \forall k = 1,..,s
+\end{optprog*}
+Based on the definitions of P$^k$ and P$_{\mbox{DR}}$, P$_{\mbox{DR}}$ can be represented
+by the union of these $s$ polyhedron, i.e.,
+P$_{\mbox{DR}} = \cup_{k = 1}^s\mbox{P}^k$. Since P$_{\mbox{DR}}$ is a relaxation
+of P, any valid inequality for P$_{\mbox{DR}}$ is also valid for P and
+P$\subseteq$P$_{\mbox{DR}} \subseteq$P$_{\mbox{LP}}$, where P$_{\mbox{LP}}$ is the LP relaxation
+of P. The aim of the disjunctive cut generation methodology is to drive an inequality,
+$\alpha x \geq \beta$ that is valid for P$_{\mbox{DR}}$ and is violated by some points of
+P$_{\mbox{LP}}$.
+
+\citet{Balas79} show that based on the assumption that $\mbox{P}^k$ is non empty for all
+$k = 1,..,s$, $\alpha x \geq \beta$ is valid for P$_{\mbox{DR}}$ if and only if there exist
+multipliers $u^k \in \mathbb{Q}^{m}$ and $v^k \in \mathbb{Q}^{m^k}$ such that
+\begin{optprog}
+& u^kA & + & v^kB^k & \leq & \alpha, & \forall k = 1,..,s \label{dcutgen1}\\
+& u^kb & + & v^kb^k &  =   & \beta,  & \forall k = 1,..,s \label{dcutgen2} \\
+& & &  u^k, v^k &\geq & 0.  & \forall k = 1,..,s \label{dcutgen3}
+%& \alpha & \geq & u^kA & + & v^kB^k, & \forall k = 1,..,s \\
+%& \beta & = & u^kb & + & v^kb^k, & \forall k = 1,..,s  \\
+%&  u^k, v^k &\geq & 0.  & & & \forall k = 1,..,s
+\end{optprog}
+Let $\bar{x}$ be a solution to the LP relaxation of P. To find a cut
+$\alpha x \geq \beta$ that is maximally violated by $\bar{x}$ and valid for
+P$_{\mbox{DR}}$ (separation problem), we need to solve the following optimization
+model, which is called {\em cut generating LP} (CGLP).
+\begin{optprog}
+(CGLP) Minimize & \objective{\alpha \bar{x} -  \beta} \label{cglp1}\\
+& u^kA & + & v^kB^k & \leq & \alpha, & \forall k = 1,..,s \label{cglp2}\\
+& u^kb & + & v^kb^k &  =   & \beta,  & \forall k = 1,..,s  \\
+& \sum_{i=1}^n u^k_i & + & \sum_{i=1}^n v^k_i & = & 1, \label{norm1}\\
+& & &  u^k, v^k &\geq & 0.  & \forall k = 1,..,s  \label{cglpm}
+%& \alpha & \geq & u^kA & + & v^kB^k, & \forall k = 1,..,s \\
+%& \beta & = & u^kb & + & v^kb^k, & \forall k = 1,..,s  \\
+%&  u^k, v^k &\geq & 0.  & & & \forall k = 1,..,s
+\end{optprog}
+Constraint (\ref{norm1}) is added to normalize the cut to be
+generated. The purpose of the normalization constraint is to
+truncate the cone defined by constraints (\ref{dcutgen1}) -
+(\ref{dcutgen3}) to a polyhedron. The normalization removes the
+unboundedness of the model and transforms extreme rays to
+extreme points. Here, we use one of the common normalization
+constraints, different versions of normalization
+constraints are described in the literature. Some examples are
+$\alpha -$normalization (i.e.,$\sum_{i=1,..,n}|\alpha_i| = 1$) and
+$\beta -$normalization (i.e.,$|\beta| = 1$) (\citet{Balas96}).
+
+As noted in \citet{Caprara03} (based on the results in \citet{Balas93} and
+\citet{Balas96})), for a fixed disjunctive system, i.e.,
+(\ref{dissys1}) - (\ref{dissys3}), separation of disjunctive cuts
+can be done in polynomial time.
+
+In general, to derive disjunctive cuts, it is common to use disjunctive
+systems including two linear inequalities (i.e.,$s = 2$).
+%One of the most common and successful general purpose cutting planes for
+%0-1 mixed integer programming models is
+One of the most common and successful set of disjunctive cuts is referred to as
+{\em lift-and-project cuts} (see \citet{Balas93} and \citet{Balas96}) that are
+derived from bounds of single binary variables. The disjunctions used to generate
+lift-and-projects cuts are in the form of $(x_i \leq 0) \vee (x_i \geq 1)$ for some
+binary variable $x_i$. Lift-and-project cuts are one of the widely used
+general purpose cutting planes for 0-1  mixed integer programming models.
+For models with a polynomial number of constraints, separation of these cuts
+can be done in polynomial time by solving the cut generating LP. In addition to this
+advantage, the problem of having to solve large cut generating LPs for many iterations
+in a branch-and-cut based algorithm was eliminated with results presented in
+\citet{Balas03}. They showed that instead of explicitly formulating and solving CGLP,
+the simplex tableau of the current LP solution can be used to derive this type of cuts.
+
+
+If the disjunctions used to derive cuts include more than one variable and
+are in the form of $(\pi x \leq \pi_0) \vee (\pi x \geq \pi_0 + 1)$ for some
+integer vector $(\pi,\pi_0)\in \mathbb{Z}^{n+1}$, they are called {\em split disjunctions}.
+And the cuts generated are referred to as {\em split cuts} (\citet{Cook90} and \citet{Balas08}).
+\citet{Caprara03} proved that the separation problem for split cuts is strongly NP-Complete.
+Many of the general purpose cutting planes for mixed integer programming models
+can be included in the class of split cuts. Lift-and-project cuts are simpler forms of
+split cuts. In addition,  mixed integer cuts of Gomory (\citet{Gomory63}) and mixed integer
+rounding inequalities (\citet{Nemhauser90}) are shown to be in the class of split cuts
+(\citet{Cornuejols01} and \citet{Cornuejols06}).
+
+In addition to these studies that derive cutting planes based on some disjunctions,
+\citet{Letchford01} proved that  many facet defining inequalities for some well-known
+combinatorial optimization problems investigated before are actually disjunctive cuts
+derived from certain simple disjunctions.
+%, many facet defining inequalities for some of the combinatorial
+%optimization problems investigated before are proved to be disjunctive cuts drived from certain
+%simple disjunctions (\citet{Letchford01}).
+They used these results to prove that the separation
+problems for these facet inducing inequalities are solvable in polynomial time. They provided
+results for some facets of the clique partitioning problem, the maximum cut problem,
+the acyclic sub digraph problem, the linear ordering problem, the asymmetric traveling
+salesman problem and the set covering problem.
+%2-chorded odd cycle inequalities (\citet{Grotschel90}) and odd wheel inequalities
+%(\citet{Chopra93}) for clique partitioning polytope,
+
+As mentioned before, many general purpose cutting planes (such as Gomory cuts, mixed
+integer rounding cuts) for mixed integer programming models can be  derived based on
+disjunctions and can be included in the class of disjunctive cuts. Although
+these general purpose cutting planes are very popular in a branch and cut based
+algorithm, we haven't seen a study in the literature that is utilizing disjunctive cuts
+in a branch and price algorithm before, except in a recent
+presentation describing the application of disjunctive cutting planes in a branch and price
+algorithm developed for capacitated VRP (\citet{Ropke08}). Next, we describe some
+implementations of disjunctive cutting planes designed for our branch and price algorithm
+for LRSP. Since we are applying a column generation algorithm, we avoided
+using formulation SPP-LRSP to generate disjunctive cuts. Instead we used some projections
+and relaxations of SPP-LRPS and G-LRSP. In addition,  the structure of the generated
+cutting plane is crucial to be able to include it to the column generation algorithm.
+We designed four implementations generating disjunctive cuts based on some formulations
+of LRSP. The main steps of the implementations  are similar and can be outlined as follows:
+%\begin{minipage}[h]{0.9\linewidth}
+
+\begin{center}
+\fbox{\begin{minipage}{5.6in}
+\begin{enumerate}
+\item[]  DISJCUTGEN:
+\item[0.]  Let $\bar{y}$ be a given fractional solution to the RMP (at any node).
+\item[1.]  Choose a model (representing a relaxation of the LRSP or its projection based
+on some formulation (SPP-LRSP or G-LRSP)) to derive cuts. Let P be the selected model (as defined  in this section).
+\item[2.] If P is from a projection, let $\bar{x}$ be the solution to P corresponding to
+$\bar{y}$.
+\item[3.] Select two disjunctive inequalities violated by $\bar{x}$ but
+satisfied by all integer feasible solutions (we list possible disjunctions to be
+considered for each implementation).
+
+Let $B^1x \geq b^1 \lor B^2x \geq b^2$
+be the selected disjunction.
+\item[4.] Construct CGLP as defined by constraints (\ref{cglp2}) - (\ref{cglpm})
+and objective (\ref{cglp1}).
+\item[5.] Solve CGLP. If the objective function value is negative, then
+$\alpha x \geq \beta$ is a valid cut violated by $\bar{x}$. Else STOP with no cut
+generated.
+\item[6.] If P is from a projection, project the generated cut into the original space,
+let $\alpha' y \geq \beta'$ be the obtained cut.
+\end{enumerate}
+\end{minipage}}
+\end{center}
+%We tried implementation
+
+In each of four implementations, step 1 is different. The procedures start with different
+models and generate cuts based on the selected model. The details of each implementation
+are explained next.
+
+
+\subsection{Implementation 1}
+\label{sec:djc-imp1}
+In this implementation, we use the projection of $\polyS$, $\polyPr$ described in
+Section \ref{pro-spp}.
+Let $(\bar{t}, \bar{z}) \in {\mathbb{R}^{+}}^{|J|+\sum_{j \in J}|\bar{P}_{j}|}$ be a
+fractional solution to the RMP (at any node of the tree, after column generation
+algorithm is complete) where $\bar{P}_{j}$ is the current set of pairings for facility 
+$j \in J$. Then we can find $(\bar{t}, \bar{v}) \in {\mathbb{R}^{+}}^{|J|+|J|\times|I|}$
+with relation $\bar{v}_{ji}  =  \sum_{p \in \bar{P}_j}a_{ip}\bar{z}_{p}$
+for all $i \in I$, $j \in J$.
+
+We check the following disjunctions to find two disjunctive inequalities violated by the
+fractional solution $(\bar{t}, \bar{v})$.
+\begin{enumerate}
+\item Flow from a facility to a customer is either 1 or 0:
+%$v_{ji} \leq 0 \vee v_{ji} \geq 1$ for all $j \in J$, $i \in I$.
+\begin{optprog}
+& v_{ji} \leq 0  & \vee & v_{ji} \geq 1 & \forall j \in J, i \in I. \label{imp1-disj1}
+\end{optprog}
+\item Total number of customers assigned to a facility is an integer:
+%$\sum_{i \in I}v_{ji} \leq g^j \vee \sum_{i \in I}v_{ji} \geq g_j + 1$
+%for some integer $g^j$ and for all  $j \in J$.
+\begin{optprog}
+& \sum_{i \in I}v_{ji} \leq g_j & \vee & \sum_{i \in I}v_{ji} \geq g_j + 1 & \forall j \in J, \label{imp1-disj2}
+\end{optprog}
+for some integer $g_j$ and for all  $j \in J$.
+\end{enumerate}
+
+%\zaupdate{How we choose the disjunctions, close to 0.5,}
+%\zaupdate{ parameters MAXNUM\_ROUNDS\_D1, MAXNUM\_ROUNDS\_D2}
+
+After deciding on the form (\ref{imp1-disj1}) or (\ref{imp1-disj2}) of the
+violated disjunctive inequalities, we write the CGLP
+((\ref{cglp1}) - (\ref{cglpm})) with $s = 2$ based on model $\polyPr$. As we noted in
+the description of the branch and price
+algorithm, we use AUG-SPP-LRSP in the algorithm, thus $\polyPr$ is augmented with
+projections of inequalities (\ref{lb-open-fac}) and (\ref{relation}). The LP relaxation of
+the projected model used for the CGLP is as follows:
+\begin{optprog}
+{\bf [$M_1$]} & \sum_{j \in J}v_{ji} & = & 1 & \forall i \in I,  \label{m-pro-sp1}\\
+& \sum_{i \in I} D_i v_{ji} -  L^F_{j} t_j & \leq & 0 & \forall j \in J,  \label{m-pro-sp2}\\
+& \sum_{j \in J}t_j & \geq & R, \label{m-pro-sp3}\\
+& v_{ji} - t_j & \leq & 0  & \forall j \in J, \forall i \in I, \label{m-pro-sp4}\\
+& 0 \leq t_j & \leq & 1 & \forall j \in J,\\
+& 0 \leq v_{ji} & \leq & 1 & \forall j \in J, \forall i \in I.
+\end{optprog}
+We investigate a disjunctive cut that is maximally violated by $(\bar{t}, \bar{v})$ 
+in the following form:
+\begin{equation}
+\label{imp1-dc}
+\sum_{j \in J}\alpha^t_{j}t_j + \sum_{j \in J}\sum_{i \in I}\alpha^v_{ji}v_{ji} \geq \beta.
+\end{equation}
+The objective function of the CGLP is to minimize
+$\sum_{j \in J}\alpha^t_{j}t_j + \sum_{j \in J}\sum_{i \in I}\alpha^v_{ji}v_{ji} - \beta$.
+The solution to the CGLP provides coefficients
+$(\alpha, \beta) \in {\mathbb{R}}^{|J|+|J|\times |I|+1}$, and we can rewrite a
+cut in the form of (\ref{imp1-dc}) in the $(t,z)$ variable space:
+\begin{equation}
+\sum_{j \in J}\alpha^t_{j}t_j + \sum_{j \in J}\sum_{p \in P_j}\sum_{i \in I}\alpha^v_{ji}a_{ip}z_{p} \geq \beta.  \label{disj_cut_z}
+\end{equation}
+A cut in the form of (\ref{disj_cut_z}) can easily be added to the column generation
+algorithm by adding cost $\alpha^v_{ji}\omega$ to the cost of the links to
+customer $i$ for all $i \in I$ in the pricing problem for facility $j \in J$ where
+$\omega$ is the dual variable that corresponds to (\ref{disj_cut_z}).
+
+%Computational results for this implementation are presented in Section
+%\ref{sec:disjcutres} and a discussion of the results.
+%\zaupdate{mention results of implementation 1?} % Not working? why??}
+%\zaupdate{outline of the algorithm}
+
+\subsection{Implementation 2}
+In the second implementation of DISJCUTGEN, in step 1, we choose a graph based 
+formulation which is a projection of a relaxation of G-LRSP.
+%Since the results in
+%implementation 1 are not very promising, we have decided to consider G-LRSP instead of
+%SPP-LRSP.
+In SPP-LRSP, each $z$ variable corresponds to a possible vehicle schedule, and since
+all vehicles are identical, the vehicles are not differentiated with an index.
+In the light of this information, to be able to relate a generated cut to model SPP-LRSP,
+we project the variables in G-LRSP to a space with variables without the vehicle
+index. Let $\sum_{h \in H_j}x_{kih} = u_{kij}$ for all $(k,i) \in A$, $j \in J$, and
+$w_j = \sum_{h \in H_j}v_h$ for all $j \in J$.
+Variable $u_{kij}$ will take value 1 if any vehicle located at facility $j$
+travels link  $(k,i)$. $w_j$ is the number of vehicles used at facility $j$.
+We start the implementation DISJCUTGEN by choosing the following graph based formulation
+in step 1.
+\begin{optprog}
+{\bf [$M_2$]} & \sum_{j\in J}\sum_{k \in V} u_{kij} & = & 1 &  \forall  i \in I, \label{m2-c1}\\
+   & -\sum_{i \in I} D_i \sum_{k\in V} u_{kij} + C^F_j t_j & \geq & 0 & \forall j \in J, \label{m2-c2}\\
+   & \sum_{k\in V}u_{ikj}-\sum_{k \in V}u_{kij} & = & 0 & \forall i \in I, j \in J, \label{m2-c3}\\
+   & TL w_j - \sum_{k\in V}\sum_{i \in V}t_{ki}u_{kij} & \geq & 0 & \forall j \in J, \label{m2-c4}\\
+   & 0 \leq t_j  & \leq & 1 & \forall j \in J, \label{m2-c5} \\
+   & 0 \leq u_{ikj} & \leq & 1 & \forall i,k \in V, j \in J, \label{m2-c6}\\
+   & w_j & \geq & 0 & \forall j \in J. \label{m2-c7}
+\end{optprog}
+Constraints in formulation $M_2$ are similar to formulation G-LRSP. Constraints (\ref{m2-c1})
+require that each customer must be served. Constraints (\ref{m2-c2}) are facility capacity
+constraints. Constraints (\ref{m2-c3}) equate the number of vehicles in and out of a customer. 
+G-LRSP has a set of constraints that are similar to (\ref{m2-c3}) but for each vehicle,  
+$M_2$ has the aggregated version (aggregated for all vehicles located at the same facility). 
+Again, constraints  (\ref{m2-c4}) are the aggregated version of the time limit constraints in G-LRSP. 
+While constructing formulation $M_2$, in addition to projecting $(x,v)$ in G-LRSP
+to $(u,w)$ (i.e.,aggregating vehicles located at the same facility),
+we relaxed some constraints of G-LRSP such as the constraints that are including flow variables.
+
+Flow variables ($y$ in G-LRSP) keep the amount of vehicle load
+on the links. The reason for relaxing the constraints including flow variables is that we want to 
+avoid generating cuts which are including flow variables (or any projection of flow variables) with 
+nonzero coefficients. Based on the DWD procedure, we know how to rewrite the flow variables in terms 
+of master problem variables ($z$) using relation (\ref{TotalYintermsTeta1}). 
+%When we rewrite the generated cut in terms of the RMP variables $(t,z)$,
+However, we do not know how to incorporate an information passed from the flow variables into the pricing 
+solution algorithm. Therefore, we want to avoid generating a cut that includes flow variables.   
+By using model $M_2$, we aim to generate disjunctive cuts that do not include flow variables.
+%The reason for this relaxation is
+%that we do not know how to incorporate a cut including flow variables ($f$ in G-LRSP).
+%to eliminate the difficulty in solving CGLP.
+Model $M_2$ enables a search for disjunctive cuts in the following form:
+\begin{optprog}
+& \sum_{j \in J}\alpha^t_{j}t_j + \sum_{j \in J}\alpha^w_{j}w_j + \sum_{j \in J}\sum_{k\in V}\sum_{i \in V}\alpha^u_{kij}u_{kij} & \geq & \beta. \label{cut3}
+\end{optprog}
+As in implementation 1, let $(\bar{t}, \bar{z}) \in {\mathbb{R}^{+}}^{|J|+\sum_{j \in J}|\bar{P}_{j}|}$
+be a fractional solution to optimal LP relaxation of RMP.
+We can find $(\bar{t}, \bar{w}, \bar{u}) \in {\mathbb{R}^{+}}^{|J|+|J|+|J|\times|A|}$
+using relations $\bar{w}_j = \sum_{p \in \bar{P}_j}\bar{z}_p$,
+$\bar{u}_{kij}  =  \sum_{p \in \bar{P}_j}l_{kip}\bar{z}_{p}$
+for all $(k,i) \in A$, $j \in J$ where $l_{kip}$ is 1 if
+pairing $p$ includes link $(k,i)$ and 0 otherwise.
+
+If $(\bar{t}, \bar{w}, \bar{u})$ is fractional, then we consider the following disjunctions
+in order to determine two disjunctive inequalities  violated by this solution.
+\begin{enumerate}
+\item A facility is either open or closed.
+\begin{optprog}
+& t_{j} \leq 0  & \vee & t_{j} \geq 1 & \forall j \in J. \label{imp2-disj1}
+\end{optprog}
+\item Total number of vehicles used at a facility is an integer.
+\begin{optprog}
+& w_{j} \leq  g_j & \vee & w_{j} \geq g_j +1 & \forall j \in J, \label{imp2-disj2}
+\end{optprog}
+for some integer $g_j$ and for all  $j \in J$.
+\item Number of links into a set of customers is integer. Let $S$ be a customer
+set such that $2 \leq |S| \leq 3$:
+\begin{optprog}
+& \sum_{j \in J}(\sum_{k \in V \backslash S}\sum_{i \in S} u_{kij}  & + &  \sum_{k \in V \backslash S}\sum_{i \in S}u_{ikj})& \leq & g \nonumber\\
+& & \vee & \label{imp2-disj3} \\
+& \sum_{j \in J}(\sum_{k \in V \backslash S}\sum_{i \in S} u_{kij}  & + & \sum_{k \in V \backslash S}\sum_{i \in S}u_{ikj}) & \geq & g + 1, \nonumber
+\end{optprog}
+%for some set of customers, $S$ such that $2 \leq |S| \leq 3$,
+%$\sum_{j \in J}\sum_{k \in V \backslash S}\sum_{i \in S} \bar{u}_{kij} = b$
+%\begin{optprog}
+%& \sum_{j \in J}\sum_{k \in V \backslash S}\sum_{i \in S} \bar{u}_{kij} & = & b,
+%\end{optprog}
+%where $b$ is fractional and $g = 2\lfloor b \rfloor$.
+for some integer $g$.
+\end{enumerate}
+%\zaupdate{mention how to choose disjunctions?}
+
+By solving the CGLP constructed using model $M_2$ and one set of violated disjunctive
+inequalities, we investigate for a cut that is maximally violated (by
+fraction solution $(\bar{t}, \bar{w}, \bar{u})$) and is
+in the form of (\ref{cut3}). A solution to the CGLP provides coefficients
+$(\alpha, \beta) \in {\mathbb{R}}^{|J|+|J|\times |A|+1}$, and we can rewrite the cut
+in terms of variables $t$, $w$ and $z$:
+\begin{optprog}
+& \sum_{j \in J}\alpha^t_{j}t_j + + \sum_{j \in J}\alpha^w_{j}w_j + \sum_{j \in J}\sum_{p \in P_j}\sum_{(i,k) \in A}\alpha^u_{ikj}l_{ikp}z_{p} \geq \beta.  \label{disj_cut_imp2}
+\end{optprog}
+Note that $w_j$ is the number of vehicles located at facility $j \in J$ and defined
+with relation $\bar{w}_j = \sum_{p \in P_j}z_p$ in AUG-SPP-LRSP.
+A cut in the form of (\ref{disj_cut_imp2}) can be added to the column generation.
+Let $\omega$ be the dual variable corresponds to (\ref{disj_cut_imp2}).
+In the pricing algorithm for facility $j$  for all $j \in J$, we update the cost of
+link $(i,k)$ with $\alpha^u_{ikj}\omega$ for all $(i,k) \in A$ and we update the total cost 
+of all labels at the end with fixed cost $\alpha^w_{j}\omega$.
+%\zaupdate{Results of implementation 2? Effective? improment over implementation 1?}
+
+\subsection{Implementation 3}
+\label{sec:imp3-disjcut}
+%\zaupdate{Since the performance of implementation 2 in which a relaxation of G-LRSP is used is not very good,}
+In the third implementation, instead of a relaxation or a projection, model G-LRSP is
+selected in step 1 of the disjunctive cut generation algorithm.
+The CGLP will be formulated based on the LP relaxation of the G-LRSP. Recall that the model
+is as follows:
+\begin{optprog*}
+{\bf [$M_3$]}  & \sum_{h\in H}\sum_{k \in N} x_{ikh} & = & 1 &  \forall  i \in I, \\
+   & \sum_{k\in N} x_{ikh}-\sum_{k \in N} x_{kih} & = & 0 & \forall i \in N, h \in H, \\
+   & \sum_{h \in H_j}\sum_{k \in I} y_{jkh} - L^F_j t_{j} & \leq & 0 &
+       \forall j \in J, \\
+   & y_{ikh} - L^V x_{ikh} & \leq & 0 & \forall (i,k) \in A, h \in H, \\
+   & \sum_{k \in N} y_{ikh} - \sum_{k \in N} y_{kih} + D_i\sum_{k \in N}x_{ikh} & = & 0 & \forall i \in I, h \in H, \\
+   & \sum_{(i,k) \in A} T_{ik} x_{ikh} - L^T v_h & \leq & 0 & \forall h \in H, \\
+   & 0 \leq t_j  & \leq & 1 & \forall j \in J, \\
+   & 0 \leq x_{ikh} & \leq & 1 & \forall i,k \in V, h \in H, \\
+   & 0 \leq v_h   & \leq & 1 & \forall h \in H, \\
+   & y_{ikh} & \geq & 0 &  \forall i,k \in V, h \in H.
+\end{optprog*}
+Based on model $M_3$ and one of the disjunctions (\ref{imp2-disj1}) - (\ref{imp2-disj3}), we
+formulate the CGLP. Disjunction (\ref{imp2-disj3}) can be rewritten in terms of $x$ variables
+in $M_3$:
+\begin{optprog}
+& \sum_{j \in J}(\sum_{k \in V \backslash S}\sum_{i \in S}\sum_{h \in H_j} x_{kih}  & + &  \sum_{k \in V \backslash S}\sum_{i \in S}\sum_{h \in H_j} x_{kih})& \leq & g \nonumber\\
+& & \vee & \label{imp3-disj3} \\
+& \sum_{j \in J}(\sum_{k \in V \backslash S}\sum_{i \in S}\sum_{h \in H_j} x_{kih}  & + & \sum_{k \in V \backslash S}\sum_{i \in S}\sum_{h \in H_j} x_{kih}) & \geq & g + 1, \nonumber
+\end{optprog}
+for some set of customers, $S$.
+%such that $2 \leq |S| \leq 3$,
+%$\sum_{j \in J}\sum_{k \in V \backslash S}\sum_{i \in S} \sum_{h \in H_j} \bar{x}_{kih} = b$
+%where $b$ is fractional and $g = 2\lfloor b \rfloor$.
+The CGLP based on model $M_3$ enables a search for violated disjunctive cuts in the following form:
+\begin{optprog}
+    & \sum_{j \in J} \alpha^t_{j} t_j + \sum_{h \in H}\alpha^v_{h} v_h + \sum_{(k,i)\in A}\sum_{h \in H}\alpha^y_{kih}y_{kih} + \sum_{(k,i)\in A}\sum_{h \in H}\alpha^x_{kih}x_{kih} & \geq & \beta. \label{imp3-c1}
+\end{optprog}
+Since we do not favor cuts with nonzero coefficients for flow variable vector $y$, we add
+the following constraint to the CGLP to force the coefficients to be zero:
+\begin{optprog}
+&\alpha^y_{kih} & = & 0 & \forall  (i,k) \in A, h \in H. \label{0coef-flow}
+\end{optprog}
+%In CGLP, we force constraint (\ref{0coef-flow}) to set the coefficients for flow variables
+%to zero because of the reason explained in implementation 2.
+We let $(\bar{t}, \bar{z}) \in {\mathbb{R}^{+}}^{|J|+\sum_{j \in J}|\bar{P}_{j}|}$
+be a fractional solution to the LP relaxation of RMP where $\bar{P}_{j}$ be the 
+set of pairings with nonzero values in the solution, i.e.,$\bar{z}_p > 0$ for all
+$p \in \bar{P}_{j}$ for all $j \in J$. We can generate vector
+$(\bar{t}, \bar{v}, \bar{x}, \bar{y}) \in {\mathbb{R}^{+}}^{|J|+|J|\times|H|+|H|\times|A| + |H|\times|A|}$
+representing the projection of the RMP solution for model $M_3$. Since we have identical vehicles,
+we can assign nonzero pairings from 1 to $|\bar{P}_j|$ for all $j \in J$ to vehicles (in $M_3$) arbitrarily, 
+starting from the first vehicle. Let $(h \leftrightarrow p)$ represent such correspondence where
+$p$ is the $h^{st}$ smallest index in $\bar{P}_j$ for all $h = 1, ..,|\bar{P}_j|$
+and $j \in J$. Note that a vector  $(\bar{t}, \bar{z})$ may lead to multiple
+corresponding $(\bar{t}, \bar{v}, \bar{x}, \bar{y})$ vectors under the identical
+vehicles assumption. By defining correspondence $(h \leftrightarrow p)$ between
+$h$ and $p$, we restrict the correspondence between vectors  $(\bar{t}, \bar{z})$
+and $(\bar{t}, \bar{v}, \bar{x}, \bar{y})$ to one-to-one.
+To construct $(\bar{t}, \bar{v}, \bar{x}, \bar{y})$, we use the following relations
+based on defined correspondence between index $h$ and $p$:
+\begin{eqnarray*}
+ \bar{v}_h & = & \left \{ \begin{array}{ll}
+                 \bar{z}_p & \mbox{If $(h \leftrightarrow p)$, $\forall p \in \bar{P}_j, h \in H_j, j \in J$,} \\
+                 0         & \mbox{If $h = |\bar{P}_j|+1, .. , |H_j|$, $\forall j \in J$,}
+                 \end{array}  \right.      \\
+ \bar{x}_{ikh} & = & \left \{ \begin{array}{ll}
+                 l_{ikp}\bar{z}_p & \mbox{If $(h \leftrightarrow p)$, $\forall p \in \bar{P}_j, h \in H_j, j \in J$,} \\
+                 0         & \mbox{If $h = |\bar{P}_j|+1, .. , |H_j|$, $\forall j \in J$,}
+                 \end{array}  \right. \\
+ \bar{y}_{ikh} & = & \left \{ \begin{array}{ll}
+                 f_{ikp}\bar{z}_p & \mbox{If $(h \leftrightarrow p)$, $\forall p \in \bar{P}_j, h \in H_j, j \in J$,} \\
+                 0         & \mbox{If $h = |\bar{P}_j|+1, .. , |H_j|$, $\forall j \in J$,}
+                 \end{array}  \right.
+\end{eqnarray*} %{optprog}
+where $l_{ikp}$ is 1 if pairing $p$ includes link $(i,k)$ and $f_{ikp}$
+is equal to the vehicle load on link  $(i,k)$ of pairing $p$, for all
+$(i,k) \in A$, $p \in P_j$ and  $j \in J$.
+After a cut that is in the form of (\ref{imp3-c1}) and satisfying (\ref{0coef-flow}) is 
+generated for a given fractional solution, $(\bar{t}, \bar{v}, \bar{x}, \bar{y})$,  
+we can write more cuts by circulating coefficients $\alpha^x_{ikh}$ and
+$\alpha^v_h$ over all $h \in H_j$ for all $j \in J$ using the assumption of identical
+vehicles. In other words, we assume that we obtain multiple $(\bar{t}, \bar{v}, \bar{x}, \bar{y})$
+vectors from one  $(\bar{t}, \bar{z})$ vector (one-to-many correspondence between solution vectors).
+%Note that there are many other possible
+%mappings between vehicle indices and pairings other than assigning pairings to vehicles starting
+%with the smallest index. %We could find some of these mappings by circulatinf
+Then, we can combine the coefficients,
+$\alpha^x$ and $\alpha^v$ indexed by $h$ (for same facility), and rewrite the cut (\ref{imp3-c1}):
+\begin{optprog}
+ & \objective{\sum_{j \in J} \alpha^t_{j} t_j + \sum_{j \in J}\alpha^{v_c}_{j}\sum_{h \in H_j}v_h + \sum_{j \in J}\sum_{(k,i)\in A}\sum_{h \in H_j}\alpha^{x_c}_{kij}x_{kih} \geq \beta^c} \label{imp3-c2} \\
+%such that  &  \nonumber \\  %\mbox{such that} \nonumber \\
+such that  & \alpha^{v_c}_{j} & = & \sum_{h \in H_j}\alpha^v_{h}, \label{imp3-con1}\\
+ & \alpha^{x_c}_{ikj} & = & \sum_{h \in H_j}\alpha^x_{ikh}, \label{imp3-con2} \\
+ & \beta^c & = & |I|\beta, \nonumber
+\end{optprog}
+where $|H_j| = |I|$ for all $j \in J$. Then, we can project the cut to the RMP space:
+\begin{optprog}
+& \sum_{j \in J}\alpha^t_{j}t_j + \sum_{j \in J}\alpha^{v_c}_{j}w_j +
+\sum_{j \in J}\sum_{(i,k) \in A}\alpha^{x_c}_{ikj}\sum_{p \in P_j}l_{ikp}z_{p} \geq \beta^c  \label{disj_cut_imp3}
+\end{optprog}
+As a summary, We solve the CGLP to find a cut in the form of (\ref{imp3-c1}) that violates the current
+fractional solution. Then we update the coefficients of (\ref{imp3-c1}) to get
+cut in the form of (\ref{imp3-c2}). Since the CGLP is solved for  (\ref{imp3-c1})
+and not for (\ref{imp3-c2}), the fractional solution $(\bar{t}, \bar{z})$ may not violate 
+(\ref{disj_cut_imp3}).
+%However, a fractional solution violating cut (\ref{imp3-c1}) may not violate (\ref{imp3-c2}) since we
+%are updating coefficients after we solve the CGLP.
+Therefore, we designed implementation 4 to be able to overcome this problem.
+
+\begin{comment}
+\subsubsection{Method 1.}
+\begin{enumerate}
+\item A disjunctive cut in the following form is genetated:
+  \begin{optprog}
+    & \sum_{j \in J} \alpha_{t_j} t_j + \sum_{h \in H}\alpha_{y_h} y_h + \sum_{k\in V}\sum_{i \in V}\sum_{h \in H}\alpha_{kih}x_{kih} & \geq & \beta \label{cut1}
+  \end{optprog}
+Note that the coefficients for flow variables, $f$ are set to zero in (\ref{cut1}).
+\item  The cut generating LP is constructed using the formulation EB-LRSP. In the cut generating LP, the $\alpha$
+coefficients for variable  $f$ are fixed  to be zero.
+\item After a cut in form (\ref{cut1}) is generated, using the assumption of identical vehicles and
+symmetric solutions, coefficients indexed with $h$ are combined to get the following cut:
+  \begin{optprog}
+    & \sum_{j \in J} \alpha_{t_j} t_j + \sum_{j \in J}\alpha^c_{y_j}\sum_{h \in H_j} y_h + \sum_{k\in V}\sum_{i \in V}\sum_{j \in J}\alpha^{c_x}_{kij}\sum_{h \in H_j}x_{kih} & \geq & \beta^c \label{cut2}
+  \end{optprog}
+\end{enumerate}
+\end{comment}
+
+\subsection{Implementation 4}
+This implementation is designed to improve implementation 3. Similarly, step 1 of DISJCUTGEN
+chooses model $M_3$ and the CGLP is defined based on this model.
+%CGLP based on model $M_3$.
+However, we directly search for the most violated cut in the form of (\ref{imp3-c2})
+instead of the form (\ref{imp3-c1}). To construct a cut of the form (\ref{imp3-c2}),
+we force constraints (\ref{0coef-flow}) in the CGLP, i.e., $\alpha$ coefficients for 
+flow variables (for $y$) are set to zero. In addition, to be able to
+obtain the combined (aggregated for all vehicles located at the same facility) coefficients
+for $x$ and $v$, we set $\alpha$ coefficients for variables $x_{ikh}$ and $v_h$ to be equal for all $h \in H_j$
+for $j \in J$. 
+\begin{optprog}
+ & \alpha^{v_c}_{j} & = & \alpha^v_{h}, & \forall h \in H_j, \forall j \in J,\label{imp4-con1}\\
+ & \alpha^{x_c}_{ikj} & = & \alpha^x_{ikh} & \forall h \in H_j, \forall j \in J. \label{imp4-con2} 
+\end{optprog}
+As in  implementation 3, we use one of the disjunctions (\ref{imp2-disj1}),
+(\ref{imp2-disj2}) and (\ref{imp3-disj3}) to obtain a pair of disjunctive 
+inequalities.
+
+%\zaupdate{Results of implementation 4?}
+
+
+\section{Cutting Planes Based on Arc Based Formulations}
+Another approach to derive problem specific cutting planes for LRSP
+is to study the LRSP polytope or its relaxations based on arc based
+formulations (like G-LRSP or similar relaxed models) that are defined
+based on variables that correspond to links between the nodes in the problem.
+When a cut is derived in terms of link variables, then this cut can be
+projected to SPP-LRSP by defining certain relationships between variables.
+
+The literature does not include any studies devoted to polyhedral
+structure of LRSP. However, there are studies that investigate
+cuts and valid inequalities for VRP and LRP which are special cases
+of LRSP. In this section, we investigate some sets of cutting
+planes that are derived for VRP or LRP and originally defined in terms of
+variables corresponding to edges in the problem. These cutting planes are
+also valid for LRSP. Here, we discuss how we can incorporate these inequalities
+to SPP-LRSP and whether these inequalities have a positive impact to the model.
+In fact, we learned from the literature or showed that most of these inequalities 
+are already implied by SPP-LRSP.
+
+It is common to use two index vehicle flow formulations in the studies
+for VRP and LRP that investigate cutting planes. These formulations use binary
+variables, defined for each link, representing whether the link is used in the
+solution or not. Cutting planes based on link variables can easily be
+modified for SPP-LRSP and may be used to extend the branch and price
+algorithm. Let $x_{ik}$ be a link variable used in VRP or LRP
+formulations where $x_{ik}$ equals to 1 if link $(i,k)$ is used in
+the solution. When we have a cut in terms of $x$, we can use the  relation,
+\begin{optprog}
+& x_{ik} & = & \sum_{j \in J}\sum_{p \in P_j}l_{ikp}z_p & \forall (i,k) \in A, \label{xz-convert}
+\end{optprog}
+%$x_{ik}  = \sum_{j \in J}\sum_{p \in P_j}l_{ikp}z_p$
+to project the cut into the RMP space where $l_{ikp} = 1$ if link $(i,k)$ is in
+pairing $p$. In some graph based formulations, like G-LRSP, variables $x_{ik}$ are
+replaced with three index variables that also include a vehicle index, such as
+$x_{ikh}$, where $x_{ikh}$ is 1 if vehicle $h \in H$ travels link $(i,k)$ in a solution
+to a three index formulation. We know the relation between a two index and a three
+index variable, which is $x_{ik} = \sum_{h \in H}x_{ikh}$.
+%In addition, some formulations the cutting planes based
+%- Cutting planes based on link variables can easily be adapted to the pricing problem.
+%- Sum over all vehicles to obtain two index variables
+%- some inequalities are implied by SP-LRSP based on ESPPRC pricing problem.
+%\begin{optprog}
+%& x_{ik} & = & \sum_{j \in J}\sum_{p \in P_j}b_{ikp}z_p & \forall i \in N, k \in N \label{xz-convert}
+%\end{optprog}
+
+Some cutting planes used in branch and cut algorithms for a VRP or LRP
+are implied by the set partitioning formulations of these problems.
+In the literature, there are limited number of studies investigating
+the theoretical relationship between a set partitioning formulation and a
+graph based formulations of the VRP, but there are none for the LRP.
+\citet{LetchfordG06} theoretically prove that a solution to the LP relaxation
+of a set partitioning formulation for the VRP (with elementary resource constrained
+paths) implies some of the valid inequalities (such as {\em knapsack large multistar,
+sub tour elimination, generalized large multistar, hypotour-like inequalities})
+that are derived for a graph based formulation in the two index space.
+This result is also applicable to the LRSP as the LP relaxation of SPP-LRSP
+satisfies these type of cuts. \citet{Ropke07} do a similar study for the VRPTW with
+pickup and delivery; they investigate the relationship between a branch and cut algorithm
+and a branch, cut and price algorithm for the problem. They show that some of the
+valid inequalities for the problem (e.g. {\em fork inequalities, reachability inequalities,
+precedence inequalities}) are implied by the set partitioning formulation of the problem
+with a pricing problem that generates elementary resource constrained paths.
+
+We started our study by investigating two of the most common classes of inequalities
+for the VRP:
+%we considervehicle capacity cuts,
+fractional capacity inequalities and rounded capacity inequalities.
+%which we are also valid for LRSP.
+
+\paragraph{Fractional Capacity Inequalities}
+\citet{LetchfordG06} note that fractional capacity inequalities are
+dominated by generalized large multistar (GLM) inequalities and GML inequalities are
+included in knapsack large multistar inequalities, which are proved to be implied by
+the set partitioning formulation of the VRP. Therefore, \citet{LetchfordG06}'s
+results prove that fractional capacity inequalities are redundant for the set
+partitioning formulation. Here, we re-derive this result.
+Let $S$ be a set of customers, then the fractional capacity
+inequality for $S$ based on two index variables is as follows:
+\begin{optprog}
+& \sum_{i \in S}\sum_{k \in V\backslash S}x_{ik} & \geq & \frac{\sum_{i \in S}D_i}{L^V}. \label{frac-cap-inq}
+\end{optprog}
+In other words, total capacity of the vehicles leaving $S$ must be greater than the
+total demand of customers in $S$. Using relation (\ref{xz-convert}), we can
+rewrite inequality (\ref{frac-cap-inq}) in terms of $z$ variables.
+\begin{optprog}
+& \sum_{j \in J}\sum_{p \in P_j}\sum_{i \in S}\sum_{k \in V\backslash S}l_{ikp}z_p
+= \sum_{j \in J}\sum_{p \in P_j}\alpha_{p}z_p & \geq & \frac{\sum_{i \in S}D_i}{L^V}, \label{frac-cap-inq2}
+\end{optprog}
+where $\alpha_{p}$ is the coefficient that corresponds to $z_p$ for all
+$p \in \cup_{j \in J}P_{j}$. $\alpha_p$ is the number of links that are
+from set $S$ to set $V\backslash S$ and included in pairing $p$.
+%Let $p$ be a pairing such that $p \in \cup_{j \in J}P_{j}$ where $P_j$
+%is the set of elementary feasible pairings for facility $j$, for all $j \in J$.
+Let $I_p$ be the set of customers visited by pairing $p$, i.e.,
+$I_p=\{i \in I | a_{ip} = 1 \}$. For ease of notation, we define $n_K$ as the
+minimum number of vehicle routes that are needed to cover customer demand in set
+$K$, in other words, $n_K = \lceil\frac{\sum_{i \in K}D_i}{L^V}\rceil$. Since a
+pairing represents a feasible vehicle schedule, by construction, the total number of 
+links (in some $p$) leaving customers in set $K$ that are visited by $p$ 
+($K \subseteq I_p$) is at least $n_K$. The following lemma is stated based on this fact.
+%Then, the following is true from the feasibility of pairings by construction.
+\begin{lemma}
+\label{contr-p-fc}
+Let $K$ be the intersection of set of customers visited by $p$ with $S$ in
+inequality (\ref{frac-cap-inq}), i.e.,$K = I_p \cap S$. If $K \neq \emptyset$,
+then the contribution (coefficient) of variable $z_p$ to the left hand side of
+the inequality (\ref{frac-cap-inq2}) is at least $n_K$. In other words, 
+$\alpha_p \geq n_K$.
+%($\alpha_p \geq n_K$).
+\end{lemma}
+Let $(t^*,z^*) \in {\mathbb{R}^{+}}^{|J|+|\cup_{j \in J}P^*_{j}|}$
+be a solution to the LP relaxation of SPP-LRSP where $P^*_{j}$ is the current set
+of pairings for facility $j \in J$.
+\begin{prop}
+If a vector $(t^*,z^*)$ satisfies (\ref{spp_con1}) and (\ref{spp_con2})
+then it also satisfies (\ref{frac-cap-inq2}).
+%vector $x^*$ transformed using (\ref{xz-convert})
+%satisfies the fractional capacity inequalities (\ref{frac-cap-inq}).
+\end{prop}
+\begin{proof}
+%Let $I_p=\{i \in I | a_{ip} = 1 \}$ be the set of customers visited
+%by $p$ and $K_p = I_p \cap S$ for all $p \in \cup_{j \in J}P^*_{j}$.
+We multiply constraint (\ref{spp_con1}) for each customer $i$ with its
+demand $D_i$ for all $i \in S$. Then, we take the summation of the obtained
+constraints for all customers in set $S$:
+\begin{optprog}
+& \sum_{j \in J}\sum_{p \in P^*_j}\sum_{i \in S}D_ia_{ip}z^*_{p} & = & \sum_{i \in S}D_i, \\
+& \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{Kj}}D(K) z^*_{p} & = & D(S),  \label{sumsetdemS}
+\end{optprog}
+where $D(K) = \sum_{i \in K}D_i$ and $P^*_{Kj}$ is the set of pairings visiting
+all customers in set $K$ and possibly some other customers in $I\backslash S$
+for all nonempty subsets of $S$, i.e. $I_p \cap S = K$ for all $p \in P^*_{Kj}$.
+$P^*_{Kj}$ is defined for all $K \subseteq S$ and for all $j \in J$.
+Note that $P^*_{K_1j} \cap P^*_{K_2j} = \emptyset$ for all $K_1, K_2 \subseteq S$,
+$K_1 \neq K_2$ and $K_1$, $K_2$ are nonempty. Since the pairings are feasible with respect to vehicle capacity
+from construction, $n_{K}L^V \geq D(K)$ for all $K \subseteq S$. Therefore,
+\begin{optprog}
+%& \sum_{j \in J}\sum_{p \in P_j}\sum_{i \in S}D_ia_{ip}z^*_{p} & = & \sum_{i \in S}D_i, \\
+%& \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{Kj}}D(K) z^*_{p} & = & D(S),  \label{sumsetdemS} \\
+& \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{Kj}}n_{K}L^V z^*_{p} \geq  \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{Kj}}D(K) z^*_{p} & = & D(S),  \label{sumsetdemS2} \\
+& \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{Kj}}n_{K} z^*_{p} & \geq & \frac{D(S)}{L^V}
+\end{optprog}
+From lemma \ref{contr-p-fc}:
+\begin{optprog}
+%& \sum_{i \in S}\sum_{k \in V\backslash S} x^*_{ik} & \geq & \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{K}}n_K z^*_{p} \geq \frac{D(S)}{L^V}
+& \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{Kj}}\alpha_p z^*_p & \geq & \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{K}}n_K z^*_{p} & \geq & \frac{D(S)}{L^V}.
+\end{optprog}
+Therefore, inequality (\ref{frac-cap-inq2}) is satisfied for any solution of the LP relaxation
+of the SPP-LRSP.
+\qed
+\end{proof}
+
+\paragraph{Rounded Capacity Inequalities}
+Another common class of inequalities is rounded capacity inequalities. These
+inequalities dominate the fractional capacity inequalities and they are
+in the following form:
+\begin{optprog}
+& \sum_{i \in S}\sum_{k \in V\backslash S}x_{ik} & \geq & n_S,\label{rnd-cap-inq}
+\end{optprog}
+where $n_S = \lceil\frac{\sum_{i \in S}D_i}{L^V}\rceil$ for some customer set $S$.
+Neither \citet{LetchfordG06} nor \citet{Ropke07} has a result that says
+that the rounded capacity inequalities are implied by set partitioning formulation.
+Here, we investigate whether these inequalities can make an impact to the SPP-LRSP.
+Based on relation (\ref{xz-convert}), if we rewrite (\ref{rnd-cap-inq}) in terms of
+$z$ variables, we obtain an inequality in the form of (\ref{frac-cap-inq2}) with
+a right hand side that is equal to $n_S$.
+
+Let $(t^*,z^*) \in {\mathbb{R}^{+}}^{|J|+|\cup_{j \in J}P^*_{j}|}$
+be a solution to the LP relaxation of SPP-LRSP where $P^*_{j}$ is the current set
+of pairings for facility $j \in J$.
+\begin{lemma}
+If $n_S = 1$ or $n_S = |S|$, then $(t^*,z^*)$ satisfies inequality
+(\ref{rnd-cap-inq}).
+\end{lemma}
+\begin{proof}
+If $n_S = 1$,  inequality (\ref{rnd-cap-inq}) is equal to a
+subtour elimination inequality, which is implied by the set partitioning formulation
+(proved in \citet{LetchfordG06}).
+% or from the constraint (\ref{spp_con1}) for any customer in set $S$.
+
+If $n_S = |S|$, then no two customers in $S$ can be visited in the same route.
+Thus, if Lemma \ref{contr-p-fc} is applied, the coefficient of
+pairing $p$ that visits customers in set $K \subseteq S$ in (\ref{rnd-cap-inq})
+is at least $n_K = |K|$. If we take the summation of constraints (\ref{spp_con1})
+for all customers in set $S$, the validity of inequality (\ref{rnd-cap-inq}) follows:
+\begin{optprog}
+& \sum_{j \in J}\sum_{p \in P^*_j}\sum_{i \in S}a_{ip}z^*_{p} & = & |S|, \\
+& \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{Kj}}\alpha_p z^*_p  \geq \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{Kj}}|K|z^*_{p} & = & |S|.
+%& \sum_{i \in S}\sum_{k \in V\backslash S} x^*_{ik} \geq \sum_{j \in J}\sum_{K \subseteq S}\sum_{p \in P^*_{Kj}}|K|z^*_{p} & = & |S|.
+\end{optprog}
+\qed
+\end{proof}
+If the minimum number of vehicle routes that are needed to serve customers in $S$
+is greater than 1 and less than $|S|$, then
+%$1 < n_S < |S|$, then
+the rounded capacity inequalities may be violated by some fractional LP solutions of
+SPP-LRSP. An example of such a solution for
+a small instance follows:
+\begin{example}
+{\bf An instance with 4 customers and 2 facilities:}
+\begin{itemize}
+\item Let $I = \{1,2,3,4\}$, $J = \{\mbox{facility}_1,\mbox{facility}_2\}$.
+\item Demand is 20 for all customers. Vehicle capacity is 50, and facility capacity is 70.
+\item Let $(t^*,z^*)$ be the LP relaxation solution value at root node for SPP-LRSP.
+\item Nonzero variable values and the pairings represented by pairing variables are:
+%\begin{eqnarray*}
+\begin{optprog*}
+& t^*_{\mbox{facility}_1} = t^*_{\mbox{facility}_2}  & =  & 1 \\
+& z^*_1 & = & 1   & : & \mbox{facility$_1$} - 4 - \mbox{facility$_1$} \\
+& z^*_2 & = & 0.5 & : &  \mbox{facility$_2$} - 3 - 1 - \mbox{facility$_2$} \\
+& z^*_3 & = & 0.5 & : &  \mbox{facility$_2$} - 1 - 2 - \mbox{facility$_2$} \\
+& z^*_4 & = & 0.5 & : &  \mbox{facility$_2$} - 3 - 2 - \mbox{facility$_2$}
+\end{optprog*}
+\item Rounded capacity inequality for $S = \{1,2,3\}$ is violated,
+\begin{optprog*}
+& \sum_{i \in S}\sum_{k \in V\backslash S}x^*_{ik} = \sum_{j \in J}\sum_{p \in P_j}\sum_{i \in S}\sum_{k \in V\backslash S}l_{ikp}z^*_p & = & 1.5 < 2
+\end{optprog*}
+\end{itemize}
+\end{example}
+At this point of the research, we have decided to leave the implementation
+of these inequalities in our branch and price algorithm as a future work.
+%\zaupdate{Can I code separation for rounded capacity inequalities?}
+
+Next, we investigate some cutting planes used for LRP, and discuss their
+validity for LRSP and their effect in formulation SPP-LRSP.
+
+\paragraph{Chain Barring Inequalities}
+\citet{Laporte86} introduced chain barring constraints to eliminate paths
+from one depot to another in a solution of the LRP. Let $r=(j_1, i_1, i_2, i_3, .., i_k, j_2)$
+be a path from node $j_1$ to $j_2$ where $j_1$ and $j_2$
+are two depots and $i_1$, $i_2$, .., $i_k$ are customer nodes. To eliminate
+path $r$, the following chain barring inequalities are defined:
+\begin{optprog}
+& x_{j_1i_1} + 3x_{i_1i_2} + x_{i_2j_2} & \leq &  4  & \mbox{if $k = 2$} \label{chb-1}\\
+& x_{j_1i_1} + 2\sum_{t=1}^{k-1}x_{i_ti_{t+1}} + x_{i_kj_2} & \leq & 2k -1  & \mbox{if $k \geq 3$} \label{chb-2}
+\end{optprog}
+We will prove that the LP relaxation of SPP-LRSP satisfies the following chain barring
+inequalities that are obtained by rewriting (\ref{chb-1}) and (\ref{chb-2}) in
+terms of $z$ variables.
+%Using relation (\ref{xz-convert}), inequalities
+%(\ref{chb-1}) and (\ref{chb-2}) can be rewritten in SPP-LRSP variable
+%space.
+\begin{optprog}
+& \sum_{p \in P_{j_1}}l_{j_1i_1p}z_p + \sum_{j \in J}\sum_{p \in P_j}l_{i_1i_2p}z_p + \sum_{p \in P_{j_2}}l_{i_2j_2p}z_p & \leq &  4  & \mbox{if $k = 2$} \label{chb-1b}\\
+& \sum_{p \in P_{j_1}}l_{j_1i_1p}z_p + 2\sum_{j \in J}\sum_{p \in P_j}\sum_{t=1}^{k-1}l_{i_ti_{t+1}p}z_p + \sum_{p \in P_{j_2}}l_{i_kj_2p}z_p & \leq & 2k -1  & \mbox{if $k \geq 3$} \label{chb-2b}
+%x_{j_1i_1} + 2\sum_{t=1}^{k-1}x_{i_ti_{t+1}} + x_{i_kj_2}
+\end{optprog}
+For the ease of notation, let $\alpha_p$ be the coefficient corresponds to
+variable $z_p$ for all $p \in \cup_{j \in J}P_{j}$. Let $(t^*,z^*)$ be a solution
+to the LP relaxation of SPP-LRSP and in this solution
+$r=(j_1, i_1, i_2, i_3, .., i_k, j_2)$ be a path from
+depot $j_1$ to $j_2$ including $k$ customers.
+%We can define vector $x^*$
+%using $z^*$ and relation (\ref{xz-convert}).
+\begin{lemma}
+\label{contr-p}
+%Let $p \in \cup_{j \in J}P_{j}$ where $P_j$ is the set of elementary feasible
+%pairings for facility $j$, for all $j \in J$.
+If pairing $p \in \cup_{j \in J}P_{j}$ visits exactly $n$ customers
+in path $r$, then it can visit at most $n$ arcs in path $r$.
+%either the arc $(j_1,i_1)$ or $(i_k,j_2)$.
+Depending on the number of customers in the path, the contribution (coefficient)
+of $z^*_p$ in the left hand side of inequalities (\ref{chb-1b}) and (\ref{chb-2b})
+is as follows:
+\begin{itemize}
+\item [i.] If $k = 2$, the contribution of $p$ in (\ref{chb-1b}) is $3(n-1)+1$.
+\item [ii.] If $k \geq 3$, the contribution of $p$ in (\ref{chb-2b}) is $2(n-1)+1 = 2n-1$.
+\end{itemize}
+%it can visit at most 1 arc in path $r$, either the arc $(j_1,i_1)$
+%or $(i_k,j_2)$.
+\end{lemma}
+\begin{proof}
+If $p$ visits 1 customer in the path, then it can use at most one
+arc in $r$. If $p$ only visits one of the customers in $\{i_2, ..,i_{k-1}\}$,
+it cannot include any arc included in $r$. If $p$ visits
+either $i_1$ or $i_k$, then it can include either the arc $(j_1,i_1)$ or
+$(i_k,j_2)$. The path cannot include both arcs since from the construction
+of $p$, $p$ can only visit one of the facilities. Therefore, the contribution of
+variable $z^*_p$ to both (\ref{chb-1b}) and (\ref{chb-2b}) can be at most
+1 because of either $(j_1,i_1)$ or $(i_k,j_2)$.
+%$x_{j_1i_1}$ or $x_{i_kj_2}$.
+
+If $p$ visits $n$ ($n>1$) customers included in $r$, then it can use the
+largest number of arcs in $r$ only if it visits these customers consecutively
+by using $n - 1$ arcs. And if $p$ visits the first ($i_1$) or last customer ($i_k$)
+in the path, then it can also include either the arc $(j_1,i_1)$ or $(i_k,j_2)$.
+%$x_{j_1i_1}$ or $x_{i_kj_2}$.
+Therefore, $p$ can use at most $n$ arcs in $r$. The contribution of
+$p$ to  (\ref{chb-1b}) and (\ref{chb-2b}) follows from the coefficients
+in the inequalities and the fact that at most $n-1$ of $n$ arcs are between two customers.\qed
+\end{proof}
+\begin{prop}
+If a vector $(t^*,z^*)$ satisfies (\ref{spp_con1}) and (\ref{spp_con2})
+then it also
+%vector $x^*$ transformed using (\ref{xz-convert})
+satisfies the chain barring inequalities (\ref{chb-1b}) and (\ref{chb-2b}).
+\end{prop}
+\begin{proof}
+Let $r=(j_1, i_1, i_2, i_3, .., i_k, j_2)$ be a path from
+depot $j_1$ to $j_2$ including customers $i_1, i_2, .., i_k$
+and assume that $z^*$ violates either (\ref{chb-1b}) or (\ref{chb-2b}).
+Let $P^*_{nj}$ be the set of pairings visiting exactly $n$ of the customers
+in $r$ for facility $j$, for all $j \in J$ and $n = 1, ..,k$.
+
+We take the summation of constraints (\ref{spp_con1}) for customers in set
+$S=\{i_1, i_2,.., i_k \}$:
+\begin{optprog}
+& \sum_{j \in J}\sum_{p \in P^*_j}\sum_{i \in S}a_{ip}z^*_{p} & = & k, \\
+& \sum_{j \in J}\sum_{n = 1}^{k}\sum_{p \in P^*_{nj}}n z^*_{p} & = & k.  \label{sumset-k}
+\end{optprog}
+For $k = 2$, using lemma \ref{contr-p} part (i):
+\begin{optprog}
+& \sum_{j \in J}\sum_{p \in P^*_j}\alpha_p z_p & \leq & \sum_{j \in J}\sum_{n = 1}^{2}(3n-2)\sum_{p \in P^*_{nj}} z^*_{p} = \sum_{j \in J}\sum_{p \in P^*_{1j}}z^*_{p} + 4\sum_{j \in J}\sum_{p \in P^*_{2j}}z^*_{p} \nonumber\\
+& & \leq & 2(\sum_{j \in J}\sum_{p \in P^*_{1j}}z^*_{p} + 2\sum_{j \in J}\sum_{p \in P^*_{2j}}z^*_{p}) = 4 \label{chain-2}
+\end{optprog}
+%\begin{optprog}
+%& x^*_{j_1i_1} + 3x^*_{i_1i_2} + x^*_{i_2j_2} & \leq & \sum_{j \in J}\sum_{n = 1}^{2}(3n-2)\sum_{p \in P^*_{nj}} z^*_{p} = \sum_{j \in J}\sum_{p \in P^*_{1j}}z^*_{p} + 4\sum_{j \in J}\sum_{p \in P^*_{2j}}z^*_{p} \nonumber\\
+%& & \leq & 2(\sum_{j \in J}\sum_{p \in P^*_{1j}}z^*_{p} + 2\sum_{j \in J}\sum_{p \in P^*_{2j}}z^*_{p}) = 4 \label{chain-2}
+%\end{optprog}
+The equality in (\ref{chain-2}) follows from the equality (\ref{sumset-k}) for $k=2$. Therefore,
+(\ref{chb-1b}) cannot be violated for any fractional solution.
+
+\noindent For $k \geq 3$, using lemma \ref{contr-p} part (ii):
+\begin{optprog}
+&\sum_{j \in J}\sum_{p \in P^*_j}\alpha_p z_p & \leq &  \sum_{n = 1}^{k}(2n-1)\sum_{j \in J}\sum_{p \in P^*_{nj}}z^*_{p}  \nonumber\\
+& & \leq & \sum_{n = 1}^{k}(n \frac{(2k-1)}{k})\sum_{j \in J}\sum_{p \in P^*_{nj}}z^*_{p} & = & 2k - 1 \label{chain-k}
+\end{optprog}
+%\begin{optprog}
+%& x^*_{j_1i_1} + 2\sum_{t=1}^{k-1}x^*_{i_ti_{t+1}} + x^*_{i_kj_2} & \leq &  \sum_{n = 1}^{k}(2n-1)\sum_{j \in J}\sum_{p \in P^*_{nj}}z^*_{p}  \nonumber\\
+%& & \leq & \sum_{n = 1}^{k}(n \frac{(2k-1)}{k})\sum_{j \in J}\sum_{p \in P^*_{nj}}z^*_{p} & = & 2k - 1 \label{chain-k}
+%\end{optprog}
+To second inequality in (\ref{chain-k}) follows from the fact that $(2n-1) \leq n\frac{(2k-1)}{k}$ 
+for all $n = 1..k$. To obtain the equality,  multiply (\ref{sumset-k}) with $(2k-1)/k$. 
+%he inequality  And, the last equality, 
+The right hand side of (\ref{sumset-k}) after the multiplication with  $(2k-1)/k$ is equal to
+$2k-1$. Therefore, (\ref{chb-2b}) can not be violated  for any fractional solution of SPP-LRSP. \qed
+\end{proof}
+
+
+\paragraph{Facility Capacity Inequalities}
+\citet{Belenguer06} define the following inequalities to satisfy facility capacity constraints:
+\begin{optprog}
+& \sum_{i \in S \cup \{j\}}\sum_{k \in V\backslash (S\cup \{j\})} x_{ik}  & \geq & 1 &
+       \forall j \in J, \forall S \subseteq I | \sum_{i \in I}D_i) > L^F_j  \label{FacCap2b}
+\end{optprog}
+\zaupdate{I do not think this is implied by AUG-SPP-LRSP. But, also I do not think, they
+would be helpful. Since there are multiple customers visited by more than one facility in a 
+fractional solution. This forces total flow (in the left hand side of inequality) to be $\geq$ 1.
+So either, I should comment on that, or remove this inequality from the section.}
+
+%The LP relaxation of the SPP-LRS does not imply these constraints since facility
+%capacity constraints are not part of the pricing problem and integer feasibility of
+%the constraints are not guaranteed either with pricing or master problem constraints.
+
+%
+%\zaupdate{lower bound for number of links from depots to customers based
+%on vehicle capacity (rounded vehicle capacity ineqaulity for all customers}
+
+%\zaupdate{Look at Jan1207/ convert a cut in x space to z space}
+
+%\zaupdate{lower bound for $\sum_{j \in J}v_j >= ? $, see may1608}
+\vspace{1in}
+\zaupdate{Is there any other possible contribution to this chapter? Do you have any suggestions?}

@@ -1,0 +1,1161 @@
+%May, 23 2008
+
+%\documentclass[11pt]{article}
+\documentclass[graybox]{./styles/svmult}
+\usepackage{graphicx}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{mathptmx}
+\usepackage{type1cm}
+\usepackage[bottom]{footmisc}
+%\usepackage{footmisc}
+\usepackage[authoryear]{natbib}
+
+\usepackage{theorem}
+\usepackage{times} %greatly improves the on-screen readability
+
+%old packages
+
+\usepackage{optprog}
+\usepackage{amssymb,amsmath}
+%\usepackage{amsthm}
+\usepackage{rotating}
+\usepackage{setspace}
+\usepackage{lscape}
+\usepackage{verbatim}
+
+\newcommand{\zaupdate}[1]{\noindent \textcolor{blue}{\bf ZE -- #1 } }
+
+\newcommand{\fvarj}{t_j}
+\newcommand{\colq}{q = ({\mbox{x}^q}^T, {\mbox{y}^q}^T, {\mbox{t}^q}^T )^T}
+\newcommand{\zq}{q' = ({\mbox{x}^{q'}}^T, {\mbox{y}^{q'}}^T, {\mbox{t}^{q'}}^T )^T}
+\newcommand{\Z}{\mathbb{Z}}
+
+%\setlength{\evensidemargin}{0in}
+%\setlength{\oddsidemargin}{0in}
+%\setlength{\textwidth}{6.5in}
+%\setlength{\parindent}{0in}{\bf }
+%\setlength{\parskip}{0.06in}
+%\setlength{\textheight}{9.0in}
+%\onehalfspacing
+\makeindex
+
+\begin{document}
+  \title*{A Branch-and-Price Algorithm for Combined Location and Routing Problems Under Capacity Restrictions}
+\author{Z. Akca \and R.T. Berger \and T.K. Ralphs}
+\institute {Z. Akca \at Department of Industrial and Systems Engineering, Lehigh University, Bethlehem, PA 18015, \\
+\email{zea2@lehigh.edu}
+\and
+R.T. Berger \at 18 Whittemore Street, Concord, MA 01742, \email{rosemary.berger@verizon.net}
+\and
+T.K. Ralphs \at Department of Industrial and Systems Engineering, Lehigh University, Bethlehem, PA 18015, \\
+\email{ted@lehigh.edu}, http://coral.ie.lehigh.edu/\~{ }ted }
+
+\titlerunning{A Branch-and-Price Algorithm for LRPs Under Capacity Restrictions }
+\maketitle
+\abstract{
+We investigate the problem of simultaneously determining
+the location of facilities and the design of vehicle routes to
+serve customer demands under vehicle and facility capacity
+restrictions. We present a set-partitioning-based formulation of
+the problem and study the relationship between this formulation
+and the graph-based formulations that have been used in previous
+studies of this problem. We describe a branch-and-price algorithm
+based on the set-partitioning formulation and discuss
+computational experience with both exact and heuristic
+variants of this algorithm.
+\keywords{branch-and-price, facility location, vehicle routing, column generation} 
+}
+   
+\section {Introduction}
+The design of a distribution system begins with the questions of where
+to locate the facilities and how to allocate customers to the selected
+facilities. These questions can be answered
+using location-allocation models, which are based on the assumption that
+customers are served individually on out-and-back routes. However, when
+customers have demands that are
+less-than-truckload and thus can receive service from routes
+making multiple stops, the assumption of individual routes will not
+accurately capture the transportation cost. Therefore, the integration
+of location-allocation and routing decisions may yield more accurate
+and cost-effective solutions.
+
+In this paper, we investigate the so-called \emph{location and routing
+problem} (LRP). Given a set of candidate facility locations and a set
+of customer locations, the objective of the LRP is to determine the
+number and location of facilities and construct a set of vehicle
+routes from facilities to customers in such a way as to minimize total
+system cost. The system cost may include both the fixed and operating
+costs of both facilities and vehicles. In this study, we consider an
+LRP with capacity constraints on both the facilities and the vehicles.
+
+Vehicle routing models in general have been the subject of a wide range of
+academic papers, but the number of these devoted to combined location and
+routing models is much smaller. \citet{Laporte} surveyed the work on
+deterministic LRPs and described different formulations of the problem,
+solution methods used, and the computational results published up to 1988.
+\citet{Min} classified both deterministic and stochastic models in the LRP
+literature with respect to problem characteristics and solution methods. 
+
+Solution approaches for the LRP can be divided broadly into heuristics
+and exact methods, with much of the literature devoted to heuristic
+approaches. Most heuristic algorithms divide the problem into
+subproblems and handle these subproblems sequentially or iteratively.
+Examples of heuristics developed for the LRP can be found in
+\citet{Perl}, \citet{Hansen} and \citet{Barreto07}. 
+
+Many fewer papers have been devoted to the study of exact algorithms
+for the LRP and most of these have been based on the so-called
+two-index vehicle flow formulation. \citet{Laporte81} solved a single
+depot model with a constraint relaxation method and a branch-and-bound
+algorithm. They reported solving problems with 50 customer locations.
+\citet{Laporte83} solved a multi-depot model using a constraint
+relaxation method and Gomory cutting planes to satisfy integrality.
+They were able to solve problems with at most 40 customer sites.
+\citet{Laporte86} applied a branch-and-cut algorithm to a multi-depot
+LRP model with vehicle capacity constraints. They used subtour
+elimination constraints and chain barring constraints that guarantee
+that each route starts and ends at the same facility. They reported
+computational results for problems with 20 customer locations and 8
+depots. Finally, \citet{Belenguer} provided a two-index formulation of
+the LRP with capacitated facilities and capacitated vehicles and
+presented a set of valid inequalities for the problem. They developed
+two branch-and-cut algorithms based on different formulations of the
+problem. They reported that they could solve instances with up to
+32 customers to optimality in less than 70 CPU seconds and could provide
+good lower bounds for the rest of the instances, which had up to 134
+customers.
+
+\citet{Berger} developed a set-partitioning-based model for a special
+case of the LRP with route length constraints and uncapacitated
+vehicles and facilities. \citet{Berger07} extended that work to
+develop an exact branch-and-price algorithm in which they solved the
+pricing problem as an elementary shortest path problem with one
+resource constraint. They reported computational results for problems
+with 100 customers and various distance constraints. \citet{Akca}
+developed an exact solution algorithm using branch-and-price
+methodology for the integrated location routing and scheduling problem
+(LRSP), which is a generalization of the LRP. In the LRSP, the
+assumption that each vehicle covers exactly one route is removed and
+the decision of assigning routes to vehicles subject to the scheduling
+constraints is considered in conjunction with the location and routing
+decisions. They considered instances with capacitated facilities and
+time- and capacity-limited vehicles. They provided solutions for
+instances with up to 40 customers.
+ 
+In this study, we utilize a variant of the model presented by
+\citet{Akca} to solve the LRP under capacity restrictions and modify
+their exact algorithm for the LRSP to solve the LRP. We develop a
+number of variants and heuristic extensions of the basic algorithm and
+report on our computational experience solving both randomly generated
+instances and instances from the literature. The remainder of the
+paper is organized as follows. Section \ref{sec:ProbDef} presents a
+formal description of the problem, provides two formulations, and
+investigates the relationship between the formulations. Section
+\ref{sec:SolAlg} describes details of the heuristic and the exact
+algorithms for the set-partitioning formulation. Section \ref{sec:CompR}
+provides some computational results evaluating the performance of the
+algorithms. Section \ref{sec:Conc} concludes the paper.
+\section{Problem Definition and Formulations}
+\label{sec:ProbDef}
+The objective of the LRP is to select a subset of facilities and
+construct an associated set of vehicle routes serving customers at
+minimum total cost, where the cost includes the fixed and operating
+costs of both facilities and vehicles. The constraints of the problem
+are as follows: (i) each customer must be serviced by exactly one
+vehicle, (ii) each vehicle must be assigned to exactly one facility at
+which it must start and end its route, (iii) the total demand of the
+customers assigned to a route must not exceed the vehicle capacity,
+and (iv) the total demand of the customers assigned to a facility must
+not exceed the capacity of the facility. In the literature, most of
+the exact methods developed for the described LRP or its special cases
+are based on the two-index vehicle flow formulation of the problem. To
+the best of our knowledge, an exact solution algorithm based on a
+set-partitioning formulation has not been applied to the case of the
+LRP with capacity constraints. The theoretical relationship between
+the two-index formulation and the set-partitioning formulation can be
+understood by considering a closely related three-index formulation
+that we present below. 
+We show that applying Dantzig-Wolfe
+decomposition to the three-index formulation yields the
+set-partitioning formulation. This is turn shows that the bounds
+yielded by the LP relaxation of the set-partitioning model must be at
+least as tight as those of the three-index formulation.
+
+\subsection{Vehicle Flow Formulation}
+
+We let $I$ denote the set of customers, $J$ denote the set of
+candidate facilities, and $V = I \cup J$. To bypass the decision 
+of assigning vehicles to facilities, we assume that each facility
+has its own set of vehicles and that a vehicle located at facility $j$ can
+only visit customer locations and the facility $j$ during its trip.
+Let $H_j$ be the set of
+vehicles located at facility $j$, $\forall j \in J$ and $H$ be the set
+of all vehicles, $H = \bigcup_{j \in J}H_j$. We define the following
+parameters and decision variables:
+
+\noindent\underline{Parameters:}
+\begin{eqnarray*}
+D_i & = & \mbox{demand of customer $i$, $\forall i \in I$}, \\
+C^F_j & = & \mbox{capacity of facility $j$, $\forall j \in J$}, \\
+C^V  & = & \mbox{capacity of a vehicle}, \\
+F_j & = & \mbox{fixed cost of opening facility $j$, $\forall j \in J$}, \\
+O_{ik} & = & \mbox{operating cost of traveling arc $(i,k)$ $\forall i,k \in V$}. 
+\end{eqnarray*}
+\noindent\underline{Decision Variables:}
+\begin{eqnarray*}
+x_{ikh} & = & \left\{ \begin{array}{ll}
+                 1  & \mbox{if vehicle $h$ travels directly from location $i$ to location $k$, $\forall i \in V, k \in V, h \in H$}\\
+                 0  & \mbox{otherwise},                                                  
+                \end{array} 
+              \right. \\
+y_{ih} & = & \left\{ \begin{array}{ll}
+                 1  & \mbox{if vehicle $h$ visits customer $i$, $\forall i \in I, h \in H$}\\
+                 0  & \mbox{otherwise},                                                  
+                \end{array} 
+              \right. \\
+\fvarj & = & \left\{ \begin{array}{ll}
+                1  & \mbox{if facility $j$ is selected to be open, $\forall j \in J$}\\
+                 0  & \mbox{otherwise}.                                                  
+                \end{array}  
+              \right. 
+\end{eqnarray*}
+A vehicle flow formulation of the LRP is as follows: 
+\begin{optprog}
+{\bf (VF-LRP)} Minimize & \objective{\sum_{j\in J} F_j \fvarj  +  \sum_{h \in H}\sum_{i \in V}\sum_{k \in V} O_{ik}x_{ikh}} \label{obj-eb} \\
+s.t. & \sum_{h\in H}\sum_{k \in V} x_{ikh} & = & 1 &  \forall  i \in I, \label{set-part}\\
+           & \sum_{k\in V} x_{ikh}-\sum_{k \in V} x_{kih} & = & 0 & \forall i \in V, h \in H, \label{enterleave}\\
+           & \sum_{k\in V} x_{kih} - y_{ih} & = & 0 & \forall i \in I, h \in H, \label{cust-assgn}\\   
+           &  y_{ih} - \sum_{k \in S}\sum_{l \in V\backslash S}x_{klh} & \leq & 0 &  \forall S \subseteq I, i \in S, h \in H, \label{subtour}\\   
+           & \sum_{i \in I}D_i y_{ih} - C^V & \leq & 0 & \forall  h \in H, \label{VehCap}\\
+           & \sum_{h \in H_j}\sum_{i \in I} D_i y_{ih} - C^F_j \fvarj & \leq & 0 & \forall j \in J, \label{FacCap}\\
+           & x_{ikh} & \in & \{0,1\} & \forall i,k \in V, h \in H, \label{x-var}\\
+           & y_{ih} & \in & \{0,1\} &  \forall i \in I, h \in H, \label{dri-var}\\
+           & \fvarj  & \in & \{0,1\} & \forall j \in J. \label{t-var}
+\end{optprog}
+In (VF-LRP), the objective function (\ref{obj-eb}) seeks to minimize
+the total cost, which includes the fixed cost of the selected
+facilities and the operating cost of the vehicles. Vehicle fixed costs
+can easily be incorporated into the model by increasing the cost of
+traveling from the facility to each customer location by a fixed
+amount. Constraints (\ref{set-part}) specify that exactly one vehicle
+must service customer $i$. Constraints (\ref{enterleave}) require that
+each vehicle should enter and leave a location the same
+number of times.
+Constraints (\ref{cust-assgn}) determine the assignment of customers
+to vehicles. Constraints (\ref{subtour}) eliminate subtours, i.e. routes that do not
+include a facility. Constraints (\ref{VehCap}) are vehicle capacity
+constraints. Constraints (\ref{FacCap}) ensure that the capacity of
+a facility is not exceeded by demand flows to customer locations. 
+For notational convenience, we assume that variables associated with
+travel between different facilities or travel between a customer and a
+facility using a truck not associated with that facility are fixed to
+zero. Constraints (\ref{x-var}), (\ref{dri-var}), and (\ref{t-var}) are
+the set of binary restrictions on the variables.
+\subsection{Set-Partitioning Formulation}
+Here we utilize a modified version of the set-partitioning formulation for the
+LRSP presented by \citet{Akca}. 
+We define the set $P$ to be a set indexing all vehicle routes feasible
+with respect to vehicle capacity and originating from and returning to
+the same facility. We let $P_j \subseteq P$
+index routes associated with vehicles assigned to facility $j$ for $j
+\in J$. In addition to the parameters and sets defined for
+(VF-LRP), we use the following parameters and decision variables:
+
+\noindent\underline{Parameters:}
+\begin{eqnarray*}
+O_p & = & \mbox{operating cost of route $p \in P$}, \\
+a_{ip} & = & \left \{  \begin{array}{ll}
+                 1 & \mbox{if customer $i \in I$ is assigned to route
+		   $p \in P$, and }\\ 
+                 0 & \mbox{otherwise}.
+                         \end{array}
+              \right. 
+\end{eqnarray*}
+\noindent\underline{Decision Variables:}
+\begin{eqnarray*}
+z_{p} & = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if route $p \in P$ is selected, and}\\
+                 0  & \mbox{otherwise},                                                  
+                \end{array}
+       \right. \\
+\fvarj &  = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if facility $j \in J$ is selected to be open, and}\\
+                 0  & \mbox{otherwise},                                                  
+                \end{array}
+       \right.
+\end{eqnarray*}
+The formulation is as follows: 
+\begin{optprog}
+{\bf(SPP)} Minimize & \objective{\sum_{j \in J} F_j \fvarj + \sum_{p\in P} O_{p} z_{p} } \label{spp-obj}\\
+subject to & \sum_{p \in P} a_{ip} z_{p} & = & 1 & \forall i \in I, \label{spp_con1} \\
+           & \sum_{p \in P_j} \sum_{i \in I} D_i a_{ip}  z_{p} - C^F_{j} \fvarj & \leq & 0 & \forall j \in J, \label{spp_con2} \\
+           & z_{p} &  \in & \{0,1\} & \forall p \in P, \label{binary1} \\
+           & \fvarj  & \in & \{0,1\} & \forall  j \in J. \label{binary2} 
+\end{optprog} 
+The objective function (\ref{spp-obj}) seeks to minimize the total
+cost, which includes the fixed cost of the selected facilities and the
+operating cost of the vehicles. Constraints (\ref{spp_con1}) guarantee
+that each customer location is served by exactly one route.
+Constraints (\ref{spp_con2}) ensure that the total demand of the
+selected routes for a facility does not exceed the facility capacity.
+Constraints (\ref{binary1}) and (\ref{binary2}) are standard
+binary restrictions on the variables.
+
+\subsection{Comparing the Formulations}
+Observe that the three-index formulation (VF-LRP) exhibits a high
+degree of symmetry under the assumption that the vehicle fleet
+assigned to each facility is homogeneous. This is due to the fact that
+the assignment of routes to a specific vehicle is essentially arbitrary,
+i.e., the cost of a given solution to (VF-LRP) is invariant under
+permutation of the indices assigned to specific vehicles. This
+symmetry can be dealt with either (i) by using a two-index
+formulation, which requires the addition of an exponential number of
+valid inequalities to the formulation or (ii) by applying
+Dantzig-Wolfe decomposition (DWD). \citet{Laporte86} and
+\citet{Belenguer} have each developed branch-and-cut algorithms using
+the former approach. Here, we explore the latter approach.
+
+As is standard in DWD, we decompose the constraints of (VF-LRP) into
+two subsystems. The \emph{master problem} is defined by constraints
+(\ref{set-part}) and (\ref{FacCap}), while the \emph{subproblem} is
+defined by constraints (\ref{enterleave}), (\ref{cust-assgn}),
+(\ref{subtour}), (\ref{VehCap}), (\ref{x-var}), (\ref{dri-var}), and
+(\ref{t-var}). All constraints of the subproblem are indexed by the
+set $J$ and it is therefore immediate that the subproblem decomposes
+by facility. The objective of each of the resulting single-facility
+subproblems is to generate least-cost routes for all vehicles assigned
+to the facility, though without the constraint that customers appear
+on exactly one route. For each candidate facility $j \in J$, the set
+of integer solutions of the decomposed subproblem can be represented
+by the set of vectors
+\begin{eqnarray*}
+\{(x, y, t) \in \Z^{(|V|\times |V| \times |H_j|) \times (|V| \times
+  |H_j|) \times \{0, 1\}}  \mid & &   (x, y, t) \mbox{ satisfies } (\ref{enterleave})_j, 
+ (\ref{cust-assgn})_j, (\ref{subtour})_j, \\
+& & (\ref{VehCap})_j, (\ref{x-var})_j,
+(\ref{dri-var})_j, (\ref{t-var})_j\},
+\end{eqnarray*}
+which is described only by those constraints associated with facility
+$j$ and specifies values only for those variables associated with
+vehicles assigned to facility $j$. Hence, the index $j$ for the
+constraints represents the set of constraints associated with facility
+$j$. Let $E$ be a set indexing the members of all of the above sets,
+with $E_j$ the indices for vectors associated with facility $j$ only,
+so that $E = \cup_{j \in J} E_j$. For a facility $j$ and an index $q
+\in E_j$, the corresponding member $(\mbox{x}^q, \mbox{y}^q,
+\mbox{t}^q)$ of the above set is then a vector with the following
+interpretation: for each pair $(i, k) \in |V| \times |V|$ and $h \in
+H_j$, the parameter $\mbox{x}_{ikh}^q = 1$ if vehicle $h$ travels on
+arc $(i,k)$ in solution $q$ and is 0 otherwise; for each $i \in I$ and
+$h \in H_j$, $\mbox{y}_{ih}^q = 1$ if customer $i$ is visited by
+vehicle $h$ in solution $q$ and is 0 otherwise; and $\mbox{t}^q =1$ if
+facility $j$ is open in solution $q$. Note that the variable $t$
+indicating whether the facility is open does not appear in any of the
+linear constraints of the subproblem and can hence be set to either 0
+or 1 without affecting feasibility. 
+
+Because the subproblem decomposes as described above, solutions to the
+original problem can be seen as vectors obtained by ``recomposing'' convex
+combinations of the members of $E_j$ for each $j \in J$. In other words, any
+solution $(x, y, t)$ to the LP relaxation of the original problem can be
+written as:
+\begin{optprog}
+& x_{ikh} & = & \sum_{q \in E}\mbox{x}_{ikh}^q \theta_q &  \forall  i,k \in V, h \in H,  \label{XintermsTeta}\\
+& y_{ih} & = &  \sum_{q \in E}\mbox{y}_{ih}^q \theta_q & \forall  i \in I, h \in H, \label{TotalYintermsTeta}\\
+& t_j  & = & \sum_{q \in E_j}\mbox{t}^q\theta_q   &  \forall  j \in J, \label{Tvartrans}\\
+& \sum_{q \in E_j}\theta_q & = & 1 & \forall  j \in J, \label{eq1}\\
+& \theta_q  & \geq & 0 &  \forall q \in E. \label {conv}
+\end{optprog}  
+Using (\ref{XintermsTeta}) - (\ref {conv}), we can then formulate the
+LP relaxation of the master problem as:
+\begin{optprog}
+{\bf (MDW)} Minimize & \objective{\sum_{q \in E} \tilde{C_{q}} \theta_q} \nonumber\\
+s.t. & \sum_{q \in E} b_{iq} \theta_q & = & 1 & \forall i \in I, \label{spar} \\
+           & \sum_{q \in E_j} \sum_{i \in I} b_{iq} D_i \theta_q  -
+C^F_j \sum_ {q \in E_j}\theta_q \mbox{t}^q & \leq & 0 & \forall j \in J, \label{rel-2}  \\
+           & \sum_{q \in E_j} \theta_q  & = & 1 & \forall j \in J,\label{conv2} \\
+           & \theta_q  & \geq & 0 &  \forall q \in E, \label {conv3}
+\end{optprog} 
+where 
+\begin{eqnarray*}
+ b_{iq} & = & \sum_{h \in H}\sum_{k \in I}\mbox{x}_{ikh}^q = \sum_{h \in H}\mbox{y}_{ih}^q, \hspace{0.2in} \forall i \in I, q \in E, \label{transform-xa}\\
+\tilde{C_{q}} & = & F_q {\mbox{t}}^q+ \sum_{i \in V} \sum_{k \in V}\sum_{h \in H} O_{ik}\mbox{x}_{ikh}^q, \hspace{0.2in} \forall  q \in E, \label{transform-cost} \\
+\end{eqnarray*}
+where $F_q = F_j$ when $q \in E_j$ for $j \in J$. Here, $ b_{iq}$ can be
+interpreted as the number of times customer $i$ is visited in solution
+$q$, and $\tilde{C_{q}}$ is the cost of solution $q$ (including
+facility fixed cost) for all $q\in E$. 
+
+The similar forms of (SPP) and (MDW) should now be evident, but to
+rigorously show their equivalence, we need to dissect the relationship
+between set $E_j$ and $P_j$ for a given facility $j \in J$. A member
+of set $E_j$ consists of a collection of routes assigned to vehicles
+located at facility $j$. A member of set $P_j$, on the other hand, is
+a single route that can be assigned to any vehicle at facility $j$.
+Therefore, a member of $E_j$ can be constructed by associating at most
+$|H_j|$ members of set $P_{j}$ and some number of empty routes (zero
+vectors representing vehicles that are not used) to the vehicles
+assigned to facility $j$.
+
+Now, by utilizing the integrality requirements from the original
+problem and carefully eliminating the indices of symmetric solutions
+from $E$, we get a much smaller set that we will show is in one-to-one
+correspondence with collections of members of $P_j$ of cardinality at
+most $|H_j|$. We proceed as follows:
+
+\begin{enumerate}
+\item 
+First, as the vehicles associated with a given facility $j$ are
+identical, a set of routes from $P_j$ can be assigned to vehicles in
+any arbitrary order and each route can also visit the customers in
+either clockwise or counterclockwise order. Hence, we obtain
+different members of $E_j$ that are all equivalent from the standpoint
+of both feasibility and cost.
+To eliminate superfluous equivalent members of $E_j$, we divide the
+members of set $E_j$ into equivalence classes, where two members of
+$E_j$ are considered equivalent if the set of customers assigned to
+the facility and the partition of that set of customers defined by the
+routes are identical. It is clear that any two members of $E_j$ that
+are equivalent by this definition will have exactly the same impact on
+both cost and feasibility. We then form equivalence classes from which
+all but one member may safely be eliminated from $E_j$.
+
+\item Let $\hat{\theta}$ represent a solution to (MDW) for which the
+  corresponding solution in the original space obtained by applying
+  equations (\ref{XintermsTeta})-(\ref{Tvartrans}) is feasible for the
+  original problem (VF-LRP). From (\ref{XintermsTeta}) and
+  (\ref{x-var}), along with the fact that $\mbox{x}^q_{ikh}$ is binary
+  for $q \in E$, we get that $\mbox{x}^q_{ikh} = 1$ whenever
+  $\hat{\theta}_q > 0$ in the solution to (MDW). In other words, all
+  members $q$ of $E_j$ with $\hat{\theta}_q > 0$ must correspond to
+  routes visiting exactly the same customers in exactly the same
+  order. Hence, we must in fact have $\hat{\theta}_q = 1$ for exactly
+  one $q \in E_j$ for each $j \in J$ and so $\theta_q \in \{0, 1\}$
+  for all $q \in E$.
+\item It then follows easily that index $q$ can be removed from $E_j$
+if there exist vehicles $h_1, h_2 \in H_j$ such that
+$\mbox{x}_{ikh_1}^q = \mbox{x}_{ikh_2}^q$ $\forall i, k \in V$, where
+$\mbox{x}_{ikh_1}^q>0$ for some $i, k \in I$ (i.e., this is not an
+empty route). In this case, vehicles $h_1$ and $h_2$ define exactly
+the same set of routes, which means that $b_{iq}> 1$ for some $i \in
+I$. Because of constraint (\ref{spar}), such a solution must have
+$\hat{\theta}_q=0$.
+\item Finally, from (\ref{Tvartrans}) and (\ref{rel-2}), we can
+  conclude that if $\hat{\theta}_q =1$ and we have $\mbox{x}_{ikh}^q>0$
+  for some $i, k \in V$ and $h \in H$, then $\mbox{t}^q$ must be $1$.
+  Hence, we can eliminate any solutions for which $\mbox{t}^q = 0$
+  that does not correspond to a zero solution (i.e., closed facility).
+  All of this allows us to rewrite (\ref{rel-2}) in the form
+\begin{equation}
+\sum_{q \in E_j} \sum_{i \in I} b_{iq} D_i \theta_q  -
+C^F_j \sum_{q \in E_j} \theta_q \leq 0 \ \ \forall j \in J. \label{rel-2-new}
+\end{equation}
+\end{enumerate}   
+If we restrict set $E_j$ according to the rules described above and call the
+restricted set $\bar{E}_j$ for each $j \in J$, then we can finally
+conclude the following.
+\begin{proposition}
+\label{dw-prop-p1}
+There is a one-to-one correspondence between subsets of $P_j$ with
+cardinality less than $|H_j|$ and members of $\bar{E}_j$.
+\end{proposition}
+The proof follows easily from the definition of sets $P_j$ and $\bar{E}_j$
+and the restriction rules. By replacing set $E_j$ with $\bar{E}_j$
+for all $j \in J$ in (MDW), as well as replacing (\ref{rel-2}) with
+(\ref{rel-2-new}) and adding the constraint $\theta_q \in \{0, 1\}$ for
+all $q \in E$, we obtain a new (equivalent) formulation (MDW'). Then,
+we finally have the equivalence of (SPP) and (MDW) as follows
+\begin{proposition}
+\label{dw-prop-p2}
+There is a one-to-one correspondence between solutions to (SPP)
+and solutions to (MDW') such that corresponding solutions also have the
+same objective function value. Thus, (SPP), (MDW'), and (MDW) are all
+equivalent.
+\end{proposition}
+
+\section{Solution Algorithm}
+\label{sec:SolAlg}
+\subsection{Branch-and-Price}
+Having shown that (SPP) is equivalent to a DWD
+of (VF-LRP), we now discuss an exact solution algorithm based on a
+branch-and-price implementation utilizing the formulation (SPP).
+First, we strengthen the original formulation by adding the
+following additional valid constraints:
+\begin{optprog}
+           & \sum_{p \in P_{j}}a_{ip}z_{p} - \fvarj &\leq & 0 & \forall i \in I, \forall j \in J, \label{relation}\\
+           & \sum_{j \in J} \fvarj & \geq & N^F, \label{lb-open-fac} \\
+           & \sum_{p \in P_j}z_p & = & v_j  &\forall j \in J, \label{veh_var} \\
+           & \sum_{j \in J} v_j & \geq & \left \lceil \frac{\sum_{i \in I} D_i}{C^V} \right \rceil \label{vec_bnd} \\
+           & v_j & \geq & t_j  &\forall j \in J, \label{vec_fac} \\
+           & v_j  & \in & \mathbb{Z}^+ & \forall  j \in J, \label{vint}  
+\end{optprog} 
+where $v_j$ represents the number of vehicles used at facility $j$,
+$\forall j \in J$ and $N^F$ is a lower bound on the number of facilities
+that must be opened in any integer solution, calculated as follows:
+\begin{eqnarray*}
+N^F  & = & \mbox{argmin}_{\{l = 1,...,|J|\}} \left (\sum_{t=1}^{l}C^F_{j_t}\geq \sum_{i \in I} D_i \right ) \ \ \mbox{s.t. }  C^F_{j_1}\geq C^F_{j_2} \geq ...\geq C^F_{j_n}.
+\end{eqnarray*}
+Constraints (\ref{relation}) force a facility to be open if any
+customer is assigned to it. Constraint (\ref{lb-open-fac}) sets a
+lower bound on the total number of facilities required in any integer
+feasible solution.
+Constraints (\ref{relation}) (from \citet{Berger07} and \citet{Akca})
+and constraint (\ref{lb-open-fac}) (from \citet{Akca}) are shown
+computationally to improve the LP relaxation of the model.
+Constraints (\ref{veh_var}) are only added to facilitate branching
+on the integrality of the number of vehicles at each facility in the
+branch-and-price algorithm. Constraint (\ref{vec_bnd}) sets a lower
+bound for the total number of vehicles in the solution.
+Finally, constraints (\ref{vec_fac}) force the number of vehicles used
+at a facility to be at least 1 if the facility is open. We refer to
+formulation (\ref{spp-obj})--(\ref{binary2}) and
+(\ref{relation})--(\ref{vint}) as (SP-LRP) in the rest of the paper.
+
+The formulation (SP-LRP) contains a variable for each possible vehicle
+route originating from each facility. Hence, the number of routes will
+be too large to enumerate even for small instances. To solve the LP
+relaxation of models that contain exponentially many columns, column
+generation algorithms can be used. By solving a sequence of linear
+programs and dynamically generating columns eligible to enter the
+basis, such an algorithm implicitly considers all columns but generates
+only those that may improve the objective function. In order to
+generate integer solutions, a branch-and-bound approach is used in
+combination with the column generation and the overall approach is
+referred to as branch-and-price. \citet{Desrochers2}, \citet{Vance2},
+\citet{Berger07}, and \citet{Akca} provide examples of
+branch-and-price algorithms from the literature.
+
+Here, we modify the branch-and-price algorithm used in \citet{Akca} to
+solve the LRSP. Therefore, some parts of the algorithm are described
+only briefly. For details, we refer the reader to \citet{Akca}. To
+initialize the algorithm, we construct a \emph{restricted master
+problem} (RMP), that is, an LP relaxation of (SP-LRP) that contains
+all facility variables ($t_j$ for $j \in J$) and vehicle variables
+($v_j$ for $j \in J$), but only a subset of the vehicle route
+variables ($z_p$ for $p \in P$). The branch-and-price
+algorithm consists of two main components: an algorithm for
+solving the \emph{pricing problem} or \emph{column generation
+subproblem}, which is used to construct new columns in each iteration,
+and \emph{branching rules}, which specify how to partition the
+feasible region into subsets to which the algorithm is then applied
+recursively until exhaustion.
+
+At each iteration of the solution process for the LP relaxation of
+(SP-LRP), the objective of the column generation subproblem is to find
+a feasible vehicle route originating from each facility $j \in J$ with
+minimum reduced cost with respect to the current dual solution of the
+RMP. The reduced cost of a given route $p \in P$ is
+\begin{eqnarray}
+\label{red-cost}
+\hat{C}_{p}=O_{p}-\sum_{i\in N}a_{ip}\pi_{i}+\sum_{i \in N}a_{ip}
+D_{i} \mu_{j}+\sum_{i \in N}a_{ip} \sigma_{ji} - \nu_j,
+\end{eqnarray}
+where $\pi$, $\mu$, $\sigma$ and $\nu$ are the dual variables
+associated with constraints (\ref{spp_con1}), (\ref{spp_con2}),
+(\ref{relation}), and (\ref{veh_var}), respectively, from the RMP.
+Hence, the column generation subproblem for facility $j \in J$ can be
+formulated as follows:
+\begin{optprog}
+Minimize & \objective{\sum_{i \in M}(\sum_{k \in I} (O_{ik}-\pi_{k}+D_k \mu_j + \sigma_{jk})x_{ik} + O_{ij}x_{ij})- \nu_j}  \label{obj-pri} \\
+s.t.       & y_j & = & 1, \\ 
+           & \sum_{k \in M} x_{ik} = \sum_{k \in M} x_{ki} & = & y_i &  \forall  i \in I, \label{set-part-pri}\\
+           &  y_{i} - \sum_{k \in S}\sum_{l \in V \backslash S}x_{kl} & \leq & 0 &  \forall S \subseteq I, i \in S, \label{subtour-pri}\\   
+           & \sum_{i \in I}D_i y_{i} - C^V & \leq & 0, \label{VehCap-pri}\\
+           & x_{ik} & \in & \{0,1\} & \forall i,k \in M, \label{x-var-pri}\\
+           & y_{i} & \in & \{0,1\} &  \forall i \in M, \label{dri-var-pri}
+\end{optprog}
+where $M = I \cup \{j\}$, $x_{ik} = 1$ if link $(i,k)$ is used in
+solutions, and $y_i = 1$ if customer $i$ is assigned to the route.
+
+The column generation subproblem above can be seen as an instance of the
+well-known \emph{elementary shortest path problem with resource
+constraints} (ESPPRC), which is well-studied and arises as a
+subproblem in many different routing applications. To cast the above
+subproblem as an ESPPRC, we consider a network with $|I| + 2$ nodes,
+one node for each customer, one for the facility $j$ as a source node
+and a copy of the facility $j$ as a sink node. We assign each customer
+node a demand equal to its demand in the original problem and let the
+cost of each arc $(i,l)$ in the network equal the coefficient of
+$x_{il}$ in (\ref{obj-pri}). A shortest path from source to sink
+visiting a customer at most once (called \emph{elementary}) and
+satisfying the constraint that the total demand of customers included
+in the path does not exceed the vehicle capacity then corresponds to a
+vehicle route. The total cost of the path plus the fixed cost $-\nu_j$
+is the reduced cost of the associated column. 
+
+To solve the ESPPRC, we use \citet{Feillet}'s label setting algorithm
+with a single resource (the vehicle capacity). In the algorithm, each
+path from source to sink that is not dominated by another with respect
+to vehicle capacity, cost, and the set of nodes that can still be
+visited is explored. More details on the variants of this approach
+that were used in the computational experiments are given in
+Section~\ref{sec:pricing} below.
+
+When the pricing problem cannot identify any more columns with
+negative reduced cost, then the current solution to the LP relaxation
+of the master problem is optimal. If this optimal LP solution is not
+integral, then we are forced to branch. Devising good branching rules
+is an important step in developing a branch-and-price algorithm. Since
+the LP relaxations of the new nodes generated after branching are also
+solved using column generation, the branching constraints must be
+incorporated into the pricing problem and the columns to be generated
+must satisfy branching constraints for the node. Therefore, the
+specific branching rules employed may affect the structure of the
+pricing problem, causing it to become more difficult to solve. Here,
+we implement the same four branching rules we used for our work on the
+LRSP: branching on fractional variables $t$ and $v$, forcing/forbidding the
+assignment of a specific customer to a specific facility, and
+forcing/forbidding flow on a single arc (originally used in
+\citet{Desrochers4}). All branching rules
+can easily be incorporated into the pricing problem without
+changing the structure. Details on the effect of these rules on the
+pricing problem and the implementation of them can be found in
+\citet{Akca}.
+
+\subsection{Solving the Column Generation Subproblem}
+\label{sec:pricing}
+The ESPPRC is an NP-hard optimization problem, but small
+instances may generally be solved effectively in practice using
+dynamic programming-based labeling algorithms. In general, the number
+of labels that must be generated and evaluated in the label setting
+algorithm increases as either the number of customers or the vehicle
+capacity increases. To enhance efficiency, we therefore augment the
+basic scheme with some heuristic versions of the algorithm, since it
+is not necessary to find the column with the most negative reduced
+cost in every iteration. We refer to the exact pricing algorithm (that is
+guaranteed to produce a column with the smallest reduced cost) as ESPPRC.
+The following are heuristic versions of the exact algorithm and are
+not guaranteed to produce a column with negative reduced cost when one
+exists.
+
+%\paragraph{ESPPRC-LL(n).} 
+{\bf ESPPRC-LL(n).} The ESPPRC algorithm keeps all non-dominated labels
+at each node. Depending on the size of the instance, the number of labels 
+kept can become very large. 
+In this heuristic version proposed by \citet{Dumitrescu}, we set a limit $n$ on the number of
+unprocessed labels stored at each node. At each iteration, labels are
+sorted based on reduced cost and among the unprocessed labels, the
+$n$ with smallest reduced cost are kept and the rest are permanently
+deleted. Therefore, the ESPPRC-LL(n) algorithm tends to terminate much
+more quickly than the ESPPRC for small values of $n$.
+
+%\paragraph{ESPPRC-CS(n).} 
+{\bf ESPPRC-CS(n).} The ESPPRC algorithm is efficient for instances
+with small numbers of customers. In addition, the total number of
+customers in a route is restricted by the vehicle capacity. To be able
+to take advantage of this, we choose a subset of customers $C_S$ with
+size $n$ based on the cost of arcs in the network 
+(coefficients of link variables in (\ref{obj-pri})).  Since the
+objective of the pricing problem is to find a route with smallest
+reduced cost, we determine the $n$ customers in the subset by
+constructing a minimum spanning tree over the customer locations. We stop
+the spanning tree algorithm when we have $n$ customers in the tree.
+The first customer in the subset (and the tree) is chosen based on the
+cost of the links from source to customers. Then to find valid vehicle
+routes, we run ESPPRC that include only customers in $C_S$.
+
+%\paragraph{2-Cyc-SPPRC-PE(n).}  
+{\bf 2-Cyc-SPPRC-PE(n).} The shortest path problem with resource
+constraints (SPPRC) is a relaxation of the ESPPRC in which the path
+may visit some customers more than once.
+The SPPRC is solvable in pseudo-polynomial time, but use of this
+further relaxation of the column generation subproblem results in
+reduced bounds. Eliminating solutions containing cycles of length two
+strengthens this relaxation of the pricing problem and improves the
+bound (for details of the algorithm, see
+\citet{IrnichDesaulniers2005}). We refer to this
+pricing algorithm as 2-Cyc-SPPRC. In addition, we can also generate
+paths that are elementary with respect to a given subset of customers.
+We call the resulting algorithm 2-Cyc-SPPRC-PE(n), where $n$ is the
+size of the customer set to be considered.
+At each iteration of the pricing problem, for each
+facility, the algorithm consists of the following steps:
+\begin{enumerate}
+\item Solve the 2-Cyc-SPPRC.  
+\item Consider the column with minimum cost and choose at most $m$
+customers that are visited more than once. Let $C_{E1}$ be the set of
+these customers. If the set is empty, stop (the path is already
+elementary).
+\item Solve 2-Cyc-SPPRC-PE(m) with set $C_{E1}$ from step 2. 
+\item Pick at most $m$ customers that are visited more than once. Let $C_{E2}$
+be the set of these customers. Let $C_{E3} = C_{E1}\cup C_{E2}$ and $m_3 =
+|C_{E3}|$. If the set is empty, let $C_{E3} = C_{E1}$ and stop.
+\item Solve  2-Cyc-SPPRC-PE($m_3$) with set $C_{E3}$.
+\end{enumerate} 
+In our experiments, we generally had the same set of customers
+$C_{E3}$ in every step of the column generation. Thus, we decided to
+determine set $C_{E3}$ for each facility at the first iteration of
+column generation at each node, and we use the same set for the rest
+of the iterations at the node.
+  
+For computational testing, we implemented four variants of the
+branch-and-price algorithm based on the above pricing schemes.
+\begin{itemize}
+\item \emph{Heuristic Branch-and-Price} (HBP): The purpose of this
+algorithm is to provide a good upper bound. At each node of the tree,
+we use ESPPRC-CS(n) and ESPPRC-LL(m) with small values of $n$ and
+$m$ ($n$ is chosen to be 12 to 15 depending on the average demand and
+the vehicle capacity, while $m$ is chosen to be 5 or 10). In addition, we
+also used combinations of ESPPRC-CS(n) and ESPPRC-LL(m) for
+larger values of $n$. In the algorithm, we use an iteration limit for
+the number of pricing problems solved at any node of the tree. If the
+number of iterations exceeds the limit, we branch.
+
+\item \emph{Elementary Exact Branch-and-Price} (EEBP): The purpose of
+this algorithm is to prove the optimality of the solution or provide
+an integrality gap. At each node of the tree,
+we use ESPPRC-CS(n), ESPPRC-LL(m) and ESPPRC.
+
+\item \emph{2 Step Elementary Exact Branch-and-Price} (EEBP-2S): In
+  this variant, HBP is run first to generate initial columns and an
+  upper bound. Then, EEBP is initiated with the columns and the upper
+  bound obtained from HBP.
+
+\item \emph{Non-elementary Exact Branch-and-Price (NEBP)}: This is
+similar to elementary exact branch-and-price algorithm except that
+the pricing problem solved is 2-Cyc-SPPRC-PE(n).
+
+\end{itemize}
+
+\section{Computational Results}
+\label{sec:CompR}
+In this section, we discuss the performance of our branch-and-price
+algorithm for the LRP on two sets of instances. The first set contains the
+LRP instances used in \citet{Barreto07} that are available from
+\citet{Barreto-data}. 
+We used these instances to test the performance of our HBP and NEBP
+algorithms. The second set of instances were random instances we
+generated to test the performance of our EEBP and EEBP-2S algorithms.
+We evaluate the effect of facility capacity constraints and other
+parameters using this set of instances. For all of our experiments, we
+used a Linux-based workstation with a 1.8 GHz processor and 2GB RAM.
+
+\subsection{Instances From the Literature}
+To the best of our knowledge, there are no benchmark instances
+available specifically for the LRP. \citet{Barreto07} used the
+instances in the literature available for other types of problems to
+construct a set of LRP instances. They report lower bounds found by
+applying a branch-and-cut algorithm to the two-index formulation of
+the problem \citep{Barreto04} and upper bounds found by applying
+a sequential heuristic based on clustering techniques
+\citep{Barreto07}. They listed 19 instances, three of which have
+more than 150 customers, too large for our approach to work
+efficiently. We removed these three instances plus one more with 117
+customers and fractional demand, since we assume integer demands. The
+labels of the instances denote the source of the instance and the
+number of customers and facilities in the instances
+(for more details about the references, see \citet{Barreto-data}).
+
+We first ran HBP with a time limit of 3 CPU hours, focusing on
+producing quality upper bounds. 
+Table \ref{brt-ub} presents the instances we tested and compares the
+results with the upper bounds reported in \citet{Barreto07}. Since
+neither our HBP nor \citet{Barreto07} can provide a valid lower bound
+for the problem, we used the best lower bounds as found in
+\citet{Barreto04} (second column in Table \ref{brt-ub}) to measure the
+quality of our upper bound. The ``Gap'' in Table \ref{brt-ub} is the
+percent gap between the upper bound and the LB listed in the second column. HBP
+is capable of finding better upper bounds (usually optimal) for the
+instances of small and medium size. In these cases, the computation
+time is also very short. However, for larger instances, the upper
+bounds reported by \citet{Barreto07} are generally better. In
+addition, their heuristic algorithm is very efficient---they report
+that in most of the instances, it provides the result in less than one
+second.
+
+\begin{table}[ht]
+\centering
+\caption{Performance of  Heuristic Branch-and-Price}\label{brt-ub}
+\begin {tabular}[t]{|l|c|c|c|c|c|c|}  
+\hline
+Instance & LB$^1$ & \multicolumn{2}{|c|}{\citet{Barreto07}} &  \multicolumn{3}{|c|}{Heuristic Branch-and-Price} \\\cline{3-7}
+\mbox{} & \mbox{} & UB$^2$  & Gap & UB & Gap & CPU(s)\\\hline
+Gaskell67-21x5	&	424.9$^*$	&	435.9	&	2.59	&	424.9	&	0	&	1.2	\\
+Gaskell67-22x5 	&	585.1$^*$	&	591.5	&	1.09	&	585.1     &	0	&	41.5	\\
+Gaskell67-29x5 	&	512.1$^*$	&	512.1	&	0	&	512.1	        &	0	&	67.7	\\
+Gaskell67-32x5 	&	556.5	        &	571.7	&	2.73	&	562.3	&	1.04	&	10801.8	\\
+Gaskell67-32x5-2 \ \ &	504.3$^*$	&	511.4	&	1.41	&       505.8	&	0.3	&	85.6	\\
+Gaskell67-36x5 	&	460.4$^*$	&	470.7	&	2.24	&	460.4     &	0	&	1077.6	\\
+C69-50x5 	&	549.4	        &	582.7	&	6.06	&	565.6	&	2.95	&	239.4	\\
+C69-75x10 	&	744.7	        &	886.3	&	19.01	&	852.1	&	14.42	&	10802.3	\\
+C69-100x10 	&	788.6	        &	889.4 &	12.78	&	929.5     	&	17.86	&	10836.6	\\
+Perl83-12x2 	&	204$^*$	        &	204	&	0	&	204.0	        &	0	&	0.2	\\
+Perl83-55x15 	&	1074.8 \ \	        &	1136.2	&	5.71	&	1121.8  &	4.37	&	10800.0	\\
+Perl83-85x7 	&	1568.1	        &	1656.9 &	5.66	&	1668.2	        &	6.38	&	10813.8	\\
+Min92-27x5 	&	3062$^*$	&	3062	&	0	&	3062.0	        &	0	&	4.2	\\
+Min92-134x8 	&	  -	        &	6238 &	-	&	6421.6	        &	-	&	10850.9	\\
+Dsk95-88x8 	&	356.4	        &	384.9 &	8	&	390.6	        &	9.58	&	10808.9	\\
+\hline
+\multicolumn{7}{l}{$^1$ Reported by \citet{Barreto04}, found using branch-and-cut}\\
+\multicolumn{7}{l}{$^2$ Reported by \citet{Barreto07}, found using a heuristic}\\
+\multicolumn{7}{l}{$^*$ Branch-and-cut used in \citet{Barreto04} proves the optimality}\\
+\end{tabular}
+\end{table}
+
+Next, we used the EEBP-2S algorithm to test the ability to produce
+lower bounds and prove optimality. With this algorithm, we could not
+solve all of the instances within the total time limit of 5 CPU hours (3 CPU 
+hours for HBP and 2 CPU hours for EEBP). The
+lower bounds found by our algorithm, along with the best integer
+solution found, optimality gap, and computation time are reported in
+Table \ref{brt-gr2}. Note that because Gaskell67-21x5 and Perl83-12x2
+are very easy to solve, we used the EEBP algorithm instead of the
+EEBP-2S algorithm in these cases.
+\begin{table}[ht]
+\centering
+\caption{Performance of 2 Step Elementary Exact Branch-and-Price}\label{brt-gr2}
+\begin {tabular}[t]{|l|c|c|c|c|c|}  
+\hline
+Instance	        &       LB	&	OPT/BestIP &	Gap    & CPU(s)	& 	Total CPU(s)	\\\hline
+Gaskell67-21x5$^1$	&	424.9	&	424.9	&	0	&	3.0	&	3.0	\\
+Gaskell67-22x5   	&	585.1	&	585.1	&	0	&	2999.9	&	3041.4	\\
+Gaskell67-32x5  	&	544.1	&	562.3	&	3.24\%	&	8453.1	&	19254.9	\\
+Perl83-12x2$^1$ 	&	204.0	&	204.0	&	0	&	0.2	&	0.2	\\
+Min92-27x5      	&	3062.0 \ \ &	3062.0	&	0	&	833.6	&	837.8	\\
+\hline
+\multicolumn{6}{l}{$^1$ EEBP algorithm is used}\\
+\end{tabular}
+\end{table}
+
+Finally, for instances that we could not provide lower bounds by using
+the EEBP or the EEBP-2S algorithm, we used the NEBP algorithm with a
+time limit of 5 CPU hours or evaluated node limit of 50 nodes. The
+results are reported in Table \ref{brt-gr3}. For the instances
+C69-100x10, Min92-134x8 and Dsk95-88x8, we could not solve even the
+root node within the time limit. 
+
+In general, the lower bounds found by using branch-and-cut \citep{Barreto04} 
+are better than our lower bounds. However, in some
+cases, their computation times are much larger than our time limits.
+The HBP algorithm can provide good upper bounds, but for the medium
+and large size problems, we need to improve our lower bounding,
+perhaps by adding dynamic cut generation to our algorithm in order to
+close the optimality gap.
+\begin{table}[ht]
+\centering
+\caption{Performance of Non-elementary Exact Branch-and-Price}\label{brt-gr3}
+\begin {tabular}[t]{|l|c|c|c|c|}  
+\hline
+Instance	        &       LB	&	OPT/BestIP &	Gap    & CPU(s)\\\hline
+Gaskell67-29x5 	&	441.2	&	512.1	&	13.85\%	&	14411.5	\ \ \\
+Gaskell67-32x5-2 \ \	&	494.4	&	505.8	&	2.26\%	&	5654.8	\\
+Gaskell67-36x5 	&	455.5	&	460.4	&	1.05\%	&	100.1\\
+C69-50x5 	&	526.2	&	565.6	&	6.96\%	&	2634.1\\
+C69-75x10 	&	693.5	&	852.1	&	18.62\%	&	8785.8\\
+Perl83-55x15 	&	852.3	&	1121.8	&	24.02\%	&	319.5\\
+Perl83-85x7 	&	1272.4	&	1668.2	&	23.73\%	&	1379.6\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Random Instances}
+On random instances, \citet{Laporte86} provided computational results
+for an exact method (branch-and-cut algorithm) for the capacitated
+LRP.
+\citet{Belenguer} also developed a branch-and-cut algorithm for the
+capacitated LRP, but neither the details of the instances nor the
+computational results are publicly available. Therefore, we evaluated
+our algorithm by generating random instances as in \citet{Laporte86},
+where they generated instances with 10, 15 and 20 customers and 4 to 8
+facilities. In addition to these, we generated instances with 30 and
+40 customers and 5 facilities to test the performance of the algorithm
+on larger instances. The coordinates of the customers and the
+facilities and the demand of each customer were generated using a
+Uniform distribution on [0,100]. We then calculated the Euclidean
+distance between each pair of customers and between customers and
+facilities and rounded the calculated distance to two decimal places.
+Demand for each customer was rounded to the nearest integer. Vehicle
+capacity $C^V$ was calculated as
+\begin{equation}
+C^V = (1-\alpha) max_{i \in I}\{D_i\} + \alpha \sum_{i \in I}D_i,
+\end{equation}   
+where $\alpha$ was a parameter and the  values were chosen in set \{0,
+0.25, 0.5, 0.75, 1\}.  
+
+\subsubsection{Small and Medium Random Instances}
+\citet{Laporte86} solved location and routing problems with capacitated
+vehicles, but they did not have a facility capacity. Instead, they had
+a lower and upper bound for the total number of facilities that could
+be open in a solution. In this experiment, in order to provide a
+better comparison of our algorithm with that of \citet{Laporte86}, we
+removed constraint (\ref{spp_con2}) from the SP-LRP. We set $N^F$, the
+minimum number of open facilities in (\ref{lb-open-fac}), to 1, and we
+added constraint $\sum_{j \in J} t_{j} \leq M^F$, where $M^F$ be the
+maximum number of facilities that can be open in any solution.
+Facility and vehicle fixed costs were set to be zero. As in
+\citet{Laporte86}, three groups of instances with different numbers of
+customers and facilities were available. For each group, five
+different vehicle capacities were calculated by changing $\alpha$.
+Some details about the instances are listed in Table \ref{inst1}.
+\begin {table}[ht]
+\begin{center}
+\caption {Details for the instances} \label{inst1}
+\begin {tabular}[t]{|c|c|c|c|c|c|} \hline
+\# of Customers & \# of Facilities & $N^F$ & $M^F$ & \# of instances & $\alpha$ \\ \hline
+10 & 4 & 1 & 3 & 3 & \{0, 0.25, 0.5, 0.75, 1\} \\
+15 & 6 & 1 & 4 & 3 & \{0, 0.25, 0.5, 0.75, 1\} \\
+20 & 8 & 1 & 5 & 3 & \{0, 0.25, 0.5, 0.75, 1\} \\\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Tables \ref{gr1-10}, \ref{gr2-15} and \ref{gr3-20} present the results
+achieved with our branch-and-price algorithm. Instances listed in
+these tables are labeled with the number of customers, facilities and
+with letters \{a,b,c,d,e\} based on the $\alpha$ value used. For
+example, the instance $r10x\textrm{4-a-1}$ has 10 customers, 4 facilities and
+$\alpha = 0$. The integer from 1 to 3 after the letters represents the id
+of the instances within the same group. The tables present the name of each
+instance, the LP solution value at the root node, the optimal solution
+value, the number of evaluated nodes, and the CPU time in seconds. In
+these instances, we first ran the EEBP algorithm for 5 minutes and if
+the algorithm did not terminate within 5 minutes, we switched to the
+EEBP-2S algorithm. Table \ref{gr1-10} presents the results for
+instances with 10 customers, Table \ref{gr2-15} presents instances
+with 15 customers, and Table \ref{gr3-20} presents instances with 20
+customers. We marked the instances with a ``+'' sign if the EEBP-2S
+algorithm was used. For problems with at least 20 customers, we needed
+to use the EEBP-2S algorithm. The branch-and-price algorithm was very
+successful in finding the optimal solution quickly. 
+In general, our computation times were much smaller than those
+reported by \citet{Laporte86}, but it is difficult to make a fair
+comparison, given advances in computing technology. In most of the
+instances, the LP solution found by our algorithm at the root node was
+the optimal.
+
+The instances become more difficult when the vehicle capacity
+increases ($\alpha$ increases) because the number of labels
+generated in the pricing problem depends directly on the vehicle
+capacity. \citet{Laporte86} observed the reverse effect with regard to
+their branch-and-cut algorithm. The number of cuts generated increases
+and the problem gets more difficult when the vehicle capacity is
+small. This is most likely due to the fact that the problem structure
+becomes more like that of the traveling salesman problem (TSP) as the
+capacity is increased and the TSP is much easier to solve by branch
+and cut than as a capacitated routing problem.
+
+\begin{table}[ht]
+\centering
+\caption{Performance of Elementary Exact Branch-and-Price for 10 customer instances}\label{gr1-10}
+\begin {tabular}[t]{|l|c|c|c|c|}  
+\hline
+Instance & LP & OPT. & \# of Nodes & CPU(s) \\\hline
+r10x4-a-1 \ \	&	472.11	&	472.11	&	1	&	0.00	\\
+r10x4-a-2 \ \	&	421.44	&	421.44	&	1	&	0.00	\\
+r10x4-a-3 \ \	&	548.28	&	548.28	&	1	&	0.02	\\
+r10x4-b-1 \ \	&	313.01	&	313.18	&	3	&	0.04	\\
+r10x4-b-2 \ \	&	297.57	&	305.27	&	19	&	0.08	\\
+r10x4-b-3 \ \	&	352.66	&	354.92	&	3	&	0.03	\\
+r10x4-c-1 \ \	&	257.25	&	257.25	&	1	&	0.06	\\
+r10x4-c-2 \ \	&	259.76	&	259.76	&	1	&	0.04	\\
+r10x4-c-3 \ \	&	296.82	&	296.82	&	1	&	0.05	\\
+r10x4-d-1 \ \	&	243.42	&	257.25	&	21	&	0.52	\\
+r10x4-d-2 \ \	&	250.04	&	250.04	&	1	&	0.04	\\
+r10x4-d-3 \ \	&	296.82	&	296.82	&	1	&	0.04	\\
+r10x4-e-1 \ \	&	226.46	&	226.46	&	1	&	0.32	\\
+r10x4-e-2 \ \	&	225.82	&	225.82	&	1	&	0.17	\\
+r10x4-e-3 \ \	&	272.85	&	272.85	&	1       &	0.31	\\
+\hline
+\end{tabular}
+\end{table} 
+
+\begin{table}[ht]
+\centering
+\caption{Performance of Elementary Exact Branch-and-Price for 15 customer instances}\label{gr2-15}
+\begin {tabular}[t]{|l|c|c|c|c|}  
+\hline
+Instance & LP & OPT. & \# of Nodes & CPU(s) \\\hline
+r15x6-a-1 \ \	&	435.2 \ \	&	435.2	&	1	&	0.01	\\
+r15x6-a-2 \ \	&	663.32 \ \	&	663.32	&	1	&	0.01	\\
+r15x6-a-3 \ \	&	411.45 \ \	&	411.45	&	1	&	0.01	\\
+r15x6-b-1 \ \	&	313.46 \ \	&	313.46	&	1	&	0.31	\\
+r15x6-b-2 \ \	&	414.65 \ \	&	414.65	&	1	&	0.21	\\
+r15x6-b-3 \ \	&	285.01 \ \	&	285.01	&	1	&	0.12	\\
+r15x6-c-1 \ \	&	313.46 \ \	&	313.46	&	1	&	3.1	\\
+r15x6-c-2 \ \	&	392.75 \ \	&	392.75	&	1	&	1.98	\\
+r15x6-c-3 \ \	&	279.82 \ \	&	279.82	&	1	&	5.37	\\
+r15x6-d-1 \ \	&	313.36 \ \	&	313.46	&	3	&	4.92	\\
+r15x6-d-2 \ \	&	378.76 \ \	&	378.76	&	1	&	9.41	\\
+r15x6-d-3 \ \	&	279.82 \ \	&	279.82	&	1	&	14.13	\\
+r15x6-e-1 \ \	&	305.86 \ \	&	312.18	&	5	&	9.82	\\
+r15x6-e-2$^+$ \ \	&	374.86 \ \	&	374.86	&	1	&	16.62$^+$	\\
+r15x6-e-3 \ \	&	274.22	 \ \ &	274.22	&	1	&	300.01	\\
+\hline
+\multicolumn{5}{l}{$^+$ The EEBP-2S algorithm was used, total time is reported.}\\
+\end{tabular}
+\end{table} 
+
+\begin{table}[ht]
+\centering
+\caption{Performance of Elementary Exact Branch-and-Price for 20 customer instances}\label{gr3-20}
+\begin {tabular}[t]{|l|c|c|c|c|}  
+\hline
+Instance & LP & OPT. & \# of Nodes & CPU(s) \\\hline
+r20x8-a-1 \ \	&	639.77	&	653.11	&	57	&	0.41	\\
+r20x8-a-2 \ \	&	542.23	&	551.58	&	25	&	0.98	\\
+r20x8-a-3 \ \	&	760.42	&	760.42	&	1	&	0.05	\\
+r20x8-b-1 \ \	&	415.3	&	417.13	&	7	&	8.35	\\
+r20x8-b-2 \ \	&	383.19	&	383.19	&	1	&	6.32	\\
+r20x8-b-3 \ \	&	439.18	&	447.72	&	121	&	37.32	\\
+r20x8-c-1$^+$ \ \	&	398.34	&	398.34	&	1	&	26.25$^+$	\\
+r20x8-c-2$^+$ \ \	&	363.86	&	363.86	&	1	&	110.87$^+$	\\
+r20x8-c-3$^+$ \ \	&	402.85	&	402.85	&	1	&	28.74$^+$	\\
+r20x8-d-1$^+$ \ \	&	392.26	&	392.26	&	1	&	10.04$^+$	\\
+r20x8-d-2$^+$ \ \	&	359.49	&	359.49	&	1	&	200.29$^+$	\\
+r20x8-d-3$^+$ \ \	&	402.85	&	402.85	&	1	&	124.24$^+$	\\
+r20x8-e-1$^+$ \ \	&	392.28	&	392.28	&	1	&	12.39$^+$	\\
+r20x8-e-2$^+$ \ \	&	355.39	&	355.39	&	1	&	82.77$^+$	\\
+r20x8-e-3$^+$ \ \	&	402.46	&	402.46	&	1	&	103.27$^+$	\\
+\hline
+\multicolumn{5}{l}{$^+$ The EEBP-2S algorithm is used, total time is reported.}\\
+\end{tabular}
+\end{table} 
+
+To strictly differentiate the instances from those with a single
+depot, we experimented with changing the value of parameter $N^F$, the
+minimum number of open facilities, to 2 and ran the r15x6 and r20x8 b
+and c instances. There were no significant changes in the
+computational times or the number of evaluated nodes. We then added
+facility capacities to the same set of problems and ran our algorithm
+again. Table \ref{gr4-fc} presents the computational results, as well
+as the facility capacity values used for the facilities. The capacity
+value was chosen in order to require at least two open facilities. The
+computational results do not show any significant difference from
+those of the uncapacitated instances. For larger instances, we expect
+that the LP solution times will tend to increase if the master problem
+has facility capacity constraints. Adding a facility capacity to a
+two-index vehicle flow formulation requires an additional set of
+constraints \citep{Belenguer}, the size of which can be large.
+In a branch-and-cut algorithm, it may require additional time to
+generate this set of constraints.
+\begin{table}[ht]
+\centering
+\caption{Instances with Capacitated Facilities}\label{gr4-fc}
+\begin {tabular}[t]{|l|c|c|c|c|c|}  
+\hline
+Instance & Fac. Cap & LP & OPT. & \# of Nodes & Total Time \\\hline
+cr15x6-c-1 \ \	&	600	&	299.07	&	299.07	&	1	&	1.15	\\
+cr15x6-c-2 \ \	&	600	&	392.75	&	392.75	&	1	&	2.53	\\
+cr15x6-c-3 \ \	&	600	&	279.82	&	279.82	&	1	&	1.86	\\
+cr15x6-d-1 \ \	&	700	&	299.07	&	299.07	&	1	&	0.57	\\
+cr15x6-d-2 \ \	&	700	&	378.76	&	378.76	&	1	&	6.42	\\
+cr15x6-d-3 \ \	&	700	&	279.82	&	279.82	&	1	&	11.01	\\
+cr20x8-c-1 \ \	&	750	&	398.34	&	398.34	&	1	&	40.46	\\
+cr20x8-c-2 \ \	&	750	&	363.86	&	363.86	&	1	&	88.12	\\
+cr20x8-c-3 \ \	&	750	&	402.85	&	402.85	&	1	&	15.25	\\
+cr20x8-d-1 \ \	&	900	&	392.29	&	392.29	&	1	&	29.1	\\
+cr20x8-d-2 \ \	&	750	&	359.49	&	359.49	&	1	&	257.94	\\
+cr20x8-d-3 \ \	&	900	&	402.85	&	402.85	&	1	&	31.3	\\\hline
+\end{tabular}
+\end{table} 
+
+\citet{Laporte86} report that adding facility fixed costs to the
+problem makes the problem easier. We added facility fixed costs to
+r15x6 and r20x8 b and c instances. The performance of the
+branch-and-price algorithm was not affected in instances with 15
+customers. However, for some of the 20 customer instances, the
+computational times exceeded 2 CPU hours (for the results, see
+\citet{Akca2}).
+
+
+\subsubsection{Large Random Instances}
+In this section, we present the results of applying our algorithm to
+larger capacitated random instances. We generated 6 instances with 30
+customers and 6 instances with 40 customers. Each instance had 5
+facilities with capacity constraints. The facilities had a fixed cost
+of 100. The characteristics of each instance are listed in Table
+\ref{soln-tb}. The first column includes the name of each instance,
+labeled based on the number of customers and facilities and the
+vehicle capacity. For instances in group ``a'' the vehicle capacity
+value (listed in the fourth column) was chosen to be 7 times the
+average demand and for group ``b'', the vehicle capacity value was 5.5
+times the average demand. Facility capacity (listed in the second
+column) was chosen based on total demand such that at least two
+facilities (the minimum number of facilities is listed in the third
+column) should be open in an integer solution.
+
+\begin{table}[ht]
+\centering
+\caption{Characteristics of the Instances and the Optimal Solutions}\label{soln-tb}
+\begin {tabular}[t]{|l|c|c|c|c|c|c|c|}  
+\hline
+ \multicolumn{4}{|c|}{Instance} & \multicolumn{4}{|c|}{OPT/BestIP Solution Info} \\\hline
+Name & Fac.& $N^F$ & $L^V$ &  \# of & \# of & Avg. \# of & \# of Cust. \\
+\mbox{} & \mbox{Cap.} & \mbox{} & \mbox{} & Fac. & Vec. & Cust/route & longest route \\\hline
+cr30x5a-1  \ \	&	1000	&	2	&	350	&	2	&	3,2	&	6	&	8	\\
+cr30x5a-2  \ \	&	1000	&	2	&	350	&	2	&	3,2	&	6	&	7	\\
+cr30x5a-3  \ \	&	1000	&	2	&	350	&	2	&	3,3	&	5	&	7	\\
+cr30x5b-1  \ \	&	1000	&	2	&	275	&	2	&	3,2	&	6	&	8	\\
+cr30x5b-2  \ \	&	1000	&	2	&	275	&	2	&	4,3	&	4.29	&	7	\\
+cr30x5b-3  \ \	&	1000	&	2	&	275	&	2	&	3,4	&	4.29	&	6	\\
+cr40x5a-1  \ \	&	1750	&	2	&	340	&	2	&	3,3	&	6.67	&	8	\\
+cr40x5a-2  \ \	&	1750	&	2	&	390	&	2	&	3,4	&	5.71	&	8	\\
+cr40x5a-3  \ \	&	1750	&	2	&	370	&	2	&	3,3	&	6.67	&	7	\\
+cr40x5b-1  \ \	&	1750	&	2	&	275	&	2	&	3,5	&	5	&	7	\\
+cr40x5b-2 \ \ 	&	1750	&	2	&	275	&	2	&	3,5	&	5	&	7	\\
+cr40x5b-3  \ \	&	1750	&	2	&	325	&	2	&	5,3	&	5	&	7	\\
+\hline
+\end{tabular}
+\end{table} 
+We used the EEBP-2S algorithm in which the HBP and EEBP algorithms
+were both used with a time limit of 3 CPU hours. Table \ref{gr5-fc}
+presents the results of both steps. The algorithm was very successful
+in finding optimal or near-optimal solutions for these larger
+instances. 
+Some details, such as the number of open facilities, the number of
+vehicles used at each open facility, the average number of customers
+in each route (vehicle), and the number of customers in the longest
+route, are presented in Table
+\ref{soln-tb}.
+\begin{table}[ht]
+%\centering
+\caption{Performance of the EEBP-2S for Instances up to 40 Customers with Capacitated Facilities and Facility Fixed Cost}\label{gr5-fc}
+\begin {tabular}[t]{|l|c|c|c|c|c|c|c|c|}  
+\hline
+Instance & \multicolumn{2}{|c|}{HBP} & \multicolumn{5}{|c|}{EEBP}& Total \\\cline{2-8}
+\mbox{} & IP & CPU(s) & LP & IP & Gap & \# of N. & CPU(s) & CPU (s) \\\hline
+cr30x5a-1  \ \ &	819.53	&	43.5	&	810.29	&	819.5	&	0	&	33	&	993.3	&	1036.8	     \\
+cr30x5a-2 \ \ &	823.49	&	7202.3	&	790.49	&	823.49	&	2.55	&	500	&	10806.5 \ \	& 18008.8   \ \ \\
+cr30x5a-3 \ \ &	702.29	&	44.2	&	687.72	&	702.19	&	0	&	51	&	917.9	&	962.1	\\
+cr30x5b-1 \ \ &	880.02	&	164.3	&	865.47	&	880.01	&	0	&	251	&	6420.6	&	6585	\\
+cr30x5b-2  \ \ &	825.32	&	8.3	&	815.95	&	825.3	&	0	&	7	&	33.2	&	41.5	\\
+cr30x5b-3 \ \ &	884.62	&	13.4	&	881.33	&	884.55	&	0	&	19	&	41.7	&	55.1	\\
+cr40x5a-1 \ \ &	928.11	&	631.8	&	911.39	&	928.11	&	1.49	&	11	&	10882.8 &	11514.6	\\
+cr40x5a-2 \ \ &	888.37	&	378.4	&	871.66	&	888.37	&	0.93	&	13	&	11052.9 &	11431.3	\\
+cr40x5a-3 \ \ &	947.24	&	173	&	939.54	&	947.24	&	0.18	&	28	&	10862 &	11035	\\
+cr40x5b-1 \ \ &	1052.07 \ \	&	257.3	&	1043.62	&	1052	&	0	&	627	&	8084.6	&	8342	\\
+cr40x5b-2 \ \ &	981.52	&	60.1	&	976.88	&	981.27	&	0	&	47	&	862.5	&	922.7	\\
+cr40x5b-3 \ \ &	964.32	&	62.6	&	959.05	&	964.23	&	0	&	45	&	963	&	1025.6	\\
+\hline
+\end{tabular}
+\end{table} 
+
+\section{Conclusion}
+\label{sec:Conc}
+We have presented a set-partitioning-based formulation for the
+capacitated location and routing problem, which to our knowledge is
+the first of its kind for this class of problem. We have demonstrated
+that it can be obtained by applying Dantzig-Wolfe decomposition to the
+graph-based formulation employed in most previously reported research.
+We have described a branch-and-price algorithm and reported on our
+experience using it to solve both problems from the literature and
+randomly generated instances. Our experiments indicate that the
+algorithm is very effective at producing quality solutions and can
+handle larger instances than previously suggested approaches, which
+have been primarily based on two-index formulations. The approach, however, does
+not seem as effective at producing quality lower bounds. This is
+likely due to the absence of dynamic cut generation.
+The next step in this research will be to incorporate the generation
+of known classes of valid inequalities into our algorithm. This should
+produce an algorithm exhibiting the advantages of both the
+branch-and-price and branch-and-cut approaches.
+
+%\pagebreak
+
+\bibliography{lrp.bib}
+\bibliographystyle{./styles/spbasic}
+%\bibliographystyle{plainnat}
+\end{document}

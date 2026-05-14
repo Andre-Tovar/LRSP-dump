@@ -1,0 +1,8 @@
+* text=auto !eol
+/clean -text
+/compile -text
+/lrp.bib -text
+/lrp_paper.pdf -text svneol=unset#unset
+/lrp_paper.tex -text
+/proposal-ref.bib -text
+/svmult.zip -text

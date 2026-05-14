@@ -1,0 +1,1 @@
+[0412/002231.629:ERROR:chrome\app\chrome_main.cc:171] Multiple targets are not supported in headless mode.

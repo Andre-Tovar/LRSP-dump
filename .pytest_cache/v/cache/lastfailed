@@ -1,0 +1,4 @@
+{
+  "tests/test_mespprc_c.py": true,
+  "mespprc_native/tests/test_foundation.py::test_phase1_solver_currently_returns_not_implemented": true
+}

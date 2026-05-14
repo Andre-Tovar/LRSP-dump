@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS\CMakeFiles\_CMakeLTOTest-C\src\main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS\CMakeFiles\_CMakeLTOTest-C\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{A2C26D27-E4B8-3D17-AB33-A6517B84D75E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

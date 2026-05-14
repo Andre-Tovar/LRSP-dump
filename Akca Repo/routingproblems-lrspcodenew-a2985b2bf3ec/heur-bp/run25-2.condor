@@ -1,0 +1,17 @@
+executable = minto
+universe = vanilla
+notify_user = zea2@lehigh.edu
+getenv = True
+rank = kflops
+
+requirements = Subnet == "192.168.0"
+
+
+
+
+
+arguments = -p0 -o2 -n3 -e0 -E0 -c -g -k -i -f -b -t28800 p11-f30-v1t1.txt
+output = p11-f30-v1t1.out
+queue
+
+

@@ -1,0 +1,3 @@
+instance_name,pipeline_label,pricing_phase2,wall_clock_seconds,column_generation_seconds,integer_objective,root_lp_objective,pricing_call_count,total_columns,master_iterations,status
+p01-f25-v1t1,DP/DP,dp,21.3704063000,21.3702856000,8683.0,9913.0,5,130,1,Optimal
+p01-f25-v1t1,DP/IP,ip,19.9792562000,19.9791470000,8683.0,9913.0,5,130,1,Optimal

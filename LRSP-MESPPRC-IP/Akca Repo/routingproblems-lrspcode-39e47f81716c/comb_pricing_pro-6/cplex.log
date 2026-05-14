@@ -1,0 +1,1023 @@
+
+Log started (V8.1.0) Mon Oct 11 16:22:29 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'cor10.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 6 rows and 0 columns.
+MIP Presolve modified 37 coefficients.
+Reduced MIP has 26 rows, 45 columns, and 402 nonzeros.
+Presolve time =    0.00 sec.
+Clique table members: 35
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.01 sec.
+
+Integer optimal solution:  Objective =    5.2993333333e+03
+Solution time =    0.01 sec.  Iterations = 20  Nodes = 0
+
+
+Log started (V8.1.0) Mon Oct 11 16:23:43 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'cor10.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =    0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           530.333333
+
+Dual simplex - Optimal:  Objective =    4.0156666667e+03
+Solution time =    0.00 sec.  Iterations = 23 (0)
+
+
+Log started (V8.1.0) Fri Oct 15 00:23:49 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =    0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           530.000000
+
+Dual simplex - Optimal:  Objective =    4.0156666667e+03
+Solution time =    0.00 sec.  Iterations = 30 (0)
+
+
+Variable Name           Solution Value
+T_1                           1.000000
+x4                            0.083333
+x6                            0.500000
+x8                            0.083333
+x10                           0.166667
+x22                           0.166667
+x26                           0.083333
+x32                           0.333333
+x34                           0.166667
+All other variables in the range 1-48 are zero.
+
+Log started (V8.1.0) Fri Oct 15 11:52:35 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =    0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           526.000000
+
+Dual simplex - Optimal:  Objective =    4.0156666667e+03
+Solution time =    0.00 sec.  Iterations = 32 (0)
+
+
+Variable Name           Solution Value
+T_1                           1.000000
+x4                            0.083333
+x6                            0.500000
+x8                            0.083333
+x10                           0.166667
+x22                           0.166667
+x26                           0.083333
+x31                           0.333333
+x32                           0.166667
+All other variables in the range 1-44 are zero.
+
+Log started (V8.1.0) Fri Oct 15 13:44:35 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =   -0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           526.000000
+
+Dual simplex - Optimal:  Objective =    4.0156666667e+03
+Solution time =    0.00 sec.  Iterations = 32 (0)
+
+
+Constraint Name             Dual Price
+C_0                          14.333333
+C_1                         758.444444
+C_2                         205.666667
+C_3                         512.000000
+C_4                          45.666667
+C_5                        2009.888889
+C_6                         147.666667
+C_7                         103.333333
+C_8                         107.333333
+C_9                         111.333333
+C_0_2                       461.777778
+C_0_4                       813.444444
+C_0_7                       849.111111
+C_0_8                       490.666667
+C_1_1                       611.777778
+C_1_3                       391.666667
+C_1_5                      1996.555556
+All other dual prices in the range 1-32 are zero.
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =   -0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           526.000000
+
+Dual simplex - Optimal:  Objective =    4.0110000000e+03
+Solution time =    0.00 sec.  Iterations = 33 (0)
+
+
+Variable Name           Solution Value
+T_1                           1.000000
+x2                            0.142857
+x6                            0.428571
+x8                            0.142857
+x10                           0.142857
+x22                           0.285714
+x28                           0.142857
+x31                           0.142857
+y33                           0.142857
+All other variables in the range 1-45 are zero.
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+CPLEX Error  1449: Line 320: 'Y_1_56' is not a column name.
+No file read.
+No problem exists.
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =   -0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           526.000000
+
+Dual simplex - Optimal:  Objective =    4.0095714286e+03
+Solution time =    0.00 sec.  Iterations = 33 (0)
+
+
+Variable Name           Solution Value
+T_1                           1.000000
+x4                            0.142857
+x6                            0.428571
+x10                           0.285714
+x31                           0.285714
+x32                           0.142857
+y33                           0.142857
+Y_1_56                        0.142857
+All other variables in the range 1-46 are zero.
+
+Log started (V8.1.0) Fri Oct 15 16:52:10 2004
+
+
+Log started (V8.1.0) Fri Oct 15 16:52:25 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'cor10_1.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =    0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           526.000000
+
+Dual simplex - Optimal:  Objective =    4.0095714286e+03
+Solution time =    0.00 sec.  Iterations = 33 (0)
+
+
+Constraint Name             Dual Price
+C_0                          77.142857
+C_1                         753.761905
+C_2                         181.285714
+C_3                         512.000000
+C_4                          76.142857
+C_5                        2020.666667
+C_6                         103.142857
+C_7                          91.142857
+C_8                          95.142857
+C_9                          99.142857
+C_0_2                       483.333333
+C_0_4                       827.047619
+C_0_7                       820.047619
+C_0_8                       427.857143
+C_1_1                       651.619048
+C_1_3                       403.857143
+C_1_5                      1944.523810
+All other dual prices in the range 1-32 are zero.
+
+Log started (V8.1.0) Fri Oct 15 16:54:44 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'cor10_1.mps' read.
+Read time =    0.01 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =   -0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           526.000000
+
+Dual simplex - Optimal:  Objective =    4.0156666667e+03
+Solution time =    0.00 sec.  Iterations = 32 (0)
+
+
+Constraint Name             Dual Price
+C_0                          14.333333
+C_1                         758.444444
+C_2                         205.666667
+C_3                         512.000000
+C_4                          45.666667
+C_5                        2009.888889
+C_6                         147.666667
+C_7                         103.333333
+C_8                         107.333333
+C_9                         111.333333
+C_0_2                       461.777778
+C_0_4                       813.444444
+C_0_7                       849.111111
+C_0_8                       490.666667
+C_1_1                       611.777778
+C_1_3                       391.666667
+C_1_5                      1996.555556
+All other dual prices in the range 1-32 are zero.
+
+Log started (V8.1.0) Sat Oct 16 16:21:12 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 5 rows and 0 columns.
+MIP Presolve modified 39 coefficients.
+Reduced MIP has 27 rows, 47 columns, and 447 nonzeros.
+Presolve time =    0.00 sec.
+Clique table members: 35
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0     5260.3333     7                   5260.3333       26         
+*     0+    0                   0     5281.0000     5260.3333       26    0.39%
+*                 5278.0000     0     5278.0000     Cuts:  10       27    0.00%
+
+Clique cuts applied:  2
+Gomory fractional cuts applied: 1
+
+Integer optimal solution:  Objective =    5.2780000000e+03
+Solution time =    0.00 sec.  Iterations = 27  Nodes = 0
+
+
+Log started (V8.1.0) Sat Oct 16 16:22:04 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 5 rows and 0 columns.
+MIP Presolve modified 39 coefficients.
+Reduced MIP has 27 rows, 47 columns, and 447 nonzeros.
+Presolve time =   -0.00 sec.
+Clique table members: 35
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =   -0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0     5260.3333     7                   5260.3333       26         
+*     0+    0                   0     5281.0000     5260.3333       26    0.39%
+*                 5278.0000     0     5278.0000     Cuts:  10       27    0.00%
+
+Clique cuts applied:  2
+Gomory fractional cuts applied: 1
+
+Integer optimal solution:  Objective =    5.2780000000e+03
+Solution time =    0.01 sec.  Iterations = 27  Nodes = 0
+
+
+Log started (V8.1.0) Sat Oct 16 16:22:43 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 5 rows and 0 columns.
+MIP Presolve modified 39 coefficients.
+Reduced MIP has 27 rows, 47 columns, and 447 nonzeros.
+Presolve time =   -0.00 sec.
+Clique table members: 35
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =   -0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0     5260.3333     7                   5260.3333       26         
+*     0+    0                   0     5281.0000     5260.3333       26    0.39%
+*                 5278.0000     0     5278.0000     Cuts:  10       27    0.00%
+
+Clique cuts applied:  2
+Gomory fractional cuts applied: 1
+
+Integer optimal solution:  Objective =    5.2780000000e+03
+Solution time =    0.01 sec.  Iterations = 27  Nodes = 0
+
+
+Log started (V8.1.0) Sat Oct 16 16:23:30 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 5 rows and 0 columns.
+MIP Presolve modified 39 coefficients.
+Reduced MIP has 27 rows, 47 columns, and 447 nonzeros.
+Presolve time =    0.00 sec.
+Clique table members: 35
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0     5260.3333     7                   5260.3333       26         
+*     0+    0                   0     5281.0000     5260.3333       26    0.39%
+*                 5278.0000     0     5278.0000     Cuts:  10       27    0.00%
+
+Clique cuts applied:  2
+Gomory fractional cuts applied: 1
+
+Integer optimal solution:  Objective =    5.2780000000e+03
+Solution time =    0.00 sec.  Iterations = 27  Nodes = 0
+
+
+Log started (V8.1.0) Sat Oct 16 16:24:17 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =    0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           526.000000
+
+Dual simplex - Optimal:  Objective =    4.0156666667e+03
+Solution time =    0.00 sec.  Iterations = 28 (0)
+
+
+Log started (V8.1.0) Sat Oct 16 16:24:55 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =    0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           526.000000
+
+Dual simplex - Optimal:  Objective =    4.0156666667e+03
+Solution time =    0.00 sec.  Iterations = 28 (0)
+
+
+Constraint Name             Dual Price
+C_0                         201.666667
+C_1                        2959.333333
+C_2                         205.666667
+C_3                         120.333333
+C_4                          45.666667
+C_5                          55.666667
+C_6                         105.333333
+C_7                         103.333333
+C_8                         107.333333
+C_9                         111.333333
+C_0_1                      2750.666667
+C_0_2                        13.000000
+C_0_4                        41.666667
+C_0_9                       194.666667
+C_1_0                       157.000000
+C_1_1                      2843.000000
+All other dual prices in the range 1-32 are zero.
+
+Log started (V8.1.0) Sat Oct 16 23:48:06 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 4 rows and 0 columns.
+MIP Presolve modified 40 coefficients.
+Reduced MIP has 59 rows, 120 columns, and 1368 nonzeros.
+Presolve time =    0.00 sec.
+Clique table members: 127
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0     5370.5909    20                   5370.5909      126         
+                  5559.2804    36                   Cuts:  21      267         
+                  5875.1316    29                  Fract:  32      368         
+*     0+    0                   0     8855.0000     5875.1316      368   33.65%
+                  5976.9962    30     8855.0000   Cliques:  7      416   32.50%
+*     0+    0                   0     8800.0000     5976.9962      416   32.08%
+                  5982.3253    34     8800.0000   Cliques:  1      432   32.02%
+*     0+    0                   0     7785.0000     5982.3253      432   23.16%
+
+Clique cuts applied:  3
+Gomory fractional cuts applied: 2
+
+Integer optimal solution:  Objective =    7.7850000000e+03
+Solution time =    0.33 sec.  Iterations = 2020  Nodes = 93
+
+
+Log started (V8.1.0) Sat Oct 16 23:49:28 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =    0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           518.000000
+Iteration:    62   Dual objective     =          4714.254296
+
+Dual simplex - Optimal:  Objective =    5.3436740259e+03
+Solution time =    0.00 sec.  Iterations = 116 (0)
+
+
+Variable Name           Solution Value
+T_1                           0.464347
+T_2                           0.739653
+x33                           0.102000
+x36                           0.535653
+x45                           0.193966
+x54                           0.239818
+x56                           0.107117
+x62                           0.209117
+x65                           0.107117
+x66                           0.193835
+x69                           0.010165
+x71                           0.183732
+x72                           0.249852
+x74                           0.148313
+x78                           0.102000
+x80                           0.055886
+x84                           0.045852
+x87                           0.035818
+x93                           0.056347
+x96                           0.153031
+x97                           0.020268
+x99                           0.076615
+x100                          0.051231
+x102                          0.015151
+All other variables in the range 1-120 are zero.
+
+Log started (V8.1.0) Sun Oct 17 01:10:59 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 2 rows and 0 columns.
+MIP Presolve modified 42 coefficients.
+Reduced MIP has 61 rows, 120 columns, and 1394 nonzeros.
+Presolve time =    0.00 sec.
+Clique table members: 134
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0     5368.3148    31                   5368.3148      155         
+*     0+    0                   0     7793.0000     5368.3148      155   31.11%
+                  5432.9748    37     7793.0000     Cuts:  33      268   30.28%
+                  5452.7400    41     7793.0000    Fract:  22      346   30.03%
+*    95    30                   0     7782.0000     5482.3965     1906   29.55%             x40 U     20     21
+    100    25        cutoff           7782.0000     5525.6800     2155   28.99%              x5 U     35     36
+
+Cover cuts applied:  4
+Gomory fractional cuts applied: 6
+
+Integer optimal solution:  Objective =    7.7820000000e+03
+Solution time =    0.46 sec.  Iterations = 3058  Nodes = 191
+
+
+Log started (V8.1.0) Sun Oct 17 01:12:25 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =   -0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           516.000000
+Iteration:    62   Dual objective     =          4710.571429
+
+Dual simplex - Optimal:  Objective =    5.3436740259e+03
+Solution time =    0.01 sec.  Iterations = 117 (0)
+
+
+Variable Name           Solution Value
+T_1                           0.464347
+T_2                           0.739653
+x33                           0.102000
+x36                           0.535653
+x53                           0.148313
+x56                           0.107117
+x57                           0.102000
+x60                           0.249852
+x62                           0.183732
+x69                           0.193835
+x71                           0.055886
+x72                           0.010165
+x75                           0.193966
+x77                           0.209117
+x81                           0.239818
+x83                           0.153031
+x89                           0.076615
+x90                           0.045852
+x92                           0.020268
+x93                           0.035818
+x95                           0.107117
+x97                           0.051231
+x101                          0.056347
+x102                          0.015151
+All other variables in the range 1-120 are zero.
+
+Log started (V8.1.0) Sun Oct 17 01:52:15 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 2 rows and 0 columns.
+MIP Presolve modified 42 coefficients.
+Reduced MIP has 61 rows, 120 columns, and 1394 nonzeros.
+Presolve time =    0.00 sec.
+Clique table members: 134
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0     5368.3148    31                   5368.3148      155         
+*     0+    0                   0     7793.0000     5368.3148      155   31.11%
+                  5432.9748    37     7793.0000     Cuts:  33      268   30.28%
+                  5452.7400    41     7793.0000    Fract:  22      346   30.03%
+*    95    30                   0     7782.0000     5482.3965     1906   29.55%             x40 U     20     21
+    100    25        cutoff           7782.0000     5525.6800     2155   28.99%              x5 U     35     36
+
+Cover cuts applied:  4
+Gomory fractional cuts applied: 6
+
+Integer optimal solution:  Objective =    7.7820000000e+03
+Solution time =    0.46 sec.  Iterations = 3058  Nodes = 191
+
+
+Log started (V8.1.0) Sun Oct 17 01:53:54 2004
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.00 sec.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time =    0.00 sec.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           516.000000
+Iteration:    62   Dual objective     =          4710.571429
+
+Dual simplex - Optimal:  Objective =    5.3436740259e+03
+Solution time =    0.00 sec.  Iterations = 117 (0)
+
+
+Variable Name           Solution Value
+T_1                           0.464347
+T_2                           0.739653
+x33                           0.102000
+x36                           0.535653
+x53                           0.148313
+x56                           0.107117
+x57                           0.102000
+x60                           0.249852
+x62                           0.183732
+x69                           0.193835
+x71                           0.055886
+x72                           0.010165
+x75                           0.193966
+x77                           0.209117
+x81                           0.239818
+x83                           0.153031
+x89                           0.076615
+x90                           0.045852
+x92                           0.020268
+x93                           0.035818
+x95                           0.107117
+x97                           0.051231
+x101                          0.056347
+x102                          0.015151
+All other variables in the range 1-120 are zero.
+
+Log started (V8.1.0) Fri Feb  4 19:15:05 2005
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'a1_53.mps' read.
+Read time =    0.02 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 17 rows and 317 columns.
+MIP Presolve modified 28 coefficients.
+Reduced MIP has 84 rows, 1340 columns, and 10811 nonzeros.
+Presolve time =    0.06 sec.
+Dual steepest-edge pricing selected.
+Clique table members: 1075
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0     7607.4321    21                   7607.4321       86         
+*     0+    0                   0    10792.8333     7607.4321       86   29.51%
+                  7632.7778     9    10792.8333      Cuts:  9      105   29.28%
+*     0+    0                   0     7819.6667     7632.7778      105    2.39%
+                  7638.5311    27     7819.6667     Cuts:  10      117    2.32%
+*     0+    0                   0     7796.3333     7638.5311      117    2.02%
+                  7643.7416    30     7796.3333  Cliques:  11      138    1.96%
+
+GUB cover cuts applied:  3
+Clique cuts applied:  4
+
+Integer optimal solution:  Objective =    7.7963333333e+03
+Solution time =    0.26 sec.  Iterations = 327  Nodes = 15
+
+
+Variable Name           Solution Value
+T_0                           1.000000
+T_4                           1.000000
+V_0                           2.000000
+V_4                           1.000000
+Y_0_250                       1.000000
+x51                           1.000000
+x64                           1.000000
+All other variables in the range 1-1657 are zero.
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'a1_54.mps' read.
+Read time =    0.02 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 17 rows and 319 columns.
+MIP Presolve modified 28 coefficients.
+Reduced MIP has 84 rows, 1341 columns, and 10825 nonzeros.
+Presolve time =    0.06 sec.
+Dual steepest-edge pricing selected.
+Clique table members: 1076
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0     7607.3028    19                   7607.3028       89         
+*     0+    0                   0    10792.8333     7607.3028       89   29.52%
+                  7632.7778     9    10792.8333     Cuts:  10      122   29.28%
+                  7632.9722    23    10792.8333      Cuts:  9      125   29.28%
+*     0+    0                   0     7796.3333     7632.9722      125    2.10%
+
+GUB cover cuts applied:  2
+Clique cuts applied:  4
+Cover cuts applied:  1
+
+Integer optimal solution:  Objective =    7.7963333333e+03
+Solution time =    0.23 sec.  Iterations = 247  Nodes = 11
+
+
+Variable Name           Solution Value
+T_0                           1.000000
+T_4                           1.000000
+V_0                           2.000000
+V_4                           1.000000
+Y_0_250                       1.000000
+x51                           1.000000
+x64                           1.000000
+All other variables in the range 1-1660 are zero.
+
+Log started (V8.1.0) Tue Mar 22 22:24:34 2005
+
+
+Log started (V9.1.0) Wed Oct  5 15:20:59 2005
+
+
+Log started (V9.1.0) Thu Oct  6 09:32:06 2005
+
+
+Log started (V9.1.0) Tue Oct 11 12:03:32 2005
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.01 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 92 rows and 1071 columns.
+MIP Presolve modified 572 coefficients.
+Reduced MIP has 24 rows, 709 columns, and 4085 nonzeros.
+Presolve time =    0.08 sec.
+Clique table members: 22
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0    infeasible                                         32
+
+Integer infeasible or unbounded.
+Current MIP best bound is infinite.
+Solution time =    0.08 sec.  Iterations = 32  Nodes = 0
+
+
+Log started (V9.1.0) Tue Oct 11 13:14:51 2005
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.01 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 92 rows and 1071 columns.
+MIP Presolve modified 572 coefficients.
+Reduced MIP has 24 rows, 709 columns, and 4085 nonzeros.
+Presolve time =    0.08 sec.
+Clique table members: 22
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0    infeasible                                         32
+
+Integer infeasible or unbounded.
+Current MIP best bound is infinite.
+Solution time =    0.08 sec.  Iterations = 32  Nodes = 0
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr.mps' read.
+Read time =    0.01 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 77 rows and 1055 columns.
+MIP Presolve modified 571 coefficients.
+Reduced MIP has 39 rows, 725 columns, and 4130 nonzeros.
+Presolve time =    0.08 sec.
+Clique table members: 22
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0    11512.2375    19                  11512.2375       49         
+*     0+    0                   0    15452.3333    11512.2375       49   25.50%
+                 11792.2857    18    15452.3333   Cliques:  3       57   23.69%
+*     0+    0                   0    15448.8333    11792.2857       57   23.67%
+*     0+    0                   0    15431.3333    11792.2857       57   23.58%
+
+Clique cuts applied:  3
+
+Integer optimal solution:  Objective =    1.5431333333e+04
+Solution time =    0.12 sec.  Iterations = 83  Nodes = 0
+
+
+Variable Name           Solution Value
+T_0                           1.000000
+T_4                           1.000000
+V_0                           1.000000
+V_4                           1.000000
+T_M                           1.000000
+A_M_5                         1.000000
+A_M_13                        1.000000
+x11                           1.000000
+x63                           1.000000
+All other variables in the range 1-1780 are zero.
+
+Log started (V9.1.0) Fri Oct 21 01:33:23 2005
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'curr21.mps' read.
+Read time =    0.01 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 14 rows and 1 columns.
+Reduced MIP has 102 rows, 1636 columns, and 11339 nonzeros.
+Presolve time =    0.04 sec.
+Clique table members: 1377
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0     7586.7667    13                   7586.7667       64         
+*     0+    0                   0     7790.5000     7586.7667       64    2.62%
+                  7678.0417    20     7790.5000   Cliques:  5      173    1.44%
+                  7760.1190    29     7790.5000   Cliques:  3      288    0.39%
+*                 7785.8333     0     7785.8333   Cliques:  8      338    0.00%
+
+Clique cuts applied:  14
+
+Integer optimal solution:  Objective =    7.7858333333e+03
+Solution time =    0.14 sec.  Iterations = 338  Nodes = 0
+
+
+Log started (V9.1.0) Wed Nov 23 10:56:41 2005
+
+
+Selected objective sense:  MINIMIZE
+Selected objective  name:  obj
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+
+Problem 'cul2Nofrac.mps' read.
+Read time =    0.04 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 74 rows and 2287 columns.
+MIP Presolve modified 4 coefficients.
+Reduced MIP has 217 rows, 2323 columns, and 23009 nonzeros.
+Presolve time =    0.10 sec.
+Clique table members: 2423
+MIP emphasis: balance optimality and feasibility
+Root relaxation solution time =    0.04 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer     Best Node    ItCnt     Gap         Variable B Parent  Depth
+
+      0     0    13473.0000    12                  13473.0000      306         
+                 13473.0000     8                 Cliques:  2      350         
+*                13473.0000     0    13473.0000   Cliques:  1      386    0.00%
+
+Clique cuts applied:  3
+
+Integer optimal solution:  Objective =    1.3473000000e+04
+Solution time =    0.29 sec.  Iterations = 386  Nodes = 0
+
+
+Log started (V9.1.0) Wed Jul 26 15:39:09 2006
+

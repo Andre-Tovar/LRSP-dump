@@ -1,0 +1,8 @@
+* text=auto !eol
+/clean -text
+/compile -text
+/informs1.cls -text
+/lrs-paper.bib -text
+/lrs-paper.pdf -text svneol=unset#application/octet-stream
+/lrs-paper.tex -text
+/pairexp2.eps -text

@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RouteCraft prototype for a browser-based logistics planning game.">
+  <title>RouteCraft | Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="lehigh-university">
+  <div class="page-backdrop" aria-hidden="true">
+    <div class="page-backdrop__grid"></div>
+    <div class="page-backdrop__glow page-backdrop__glow--one"></div>
+    <div class="page-backdrop__glow page-backdrop__glow--two"></div>
+  </div>
+
+  <div class="app-shell">
+    <header class="site-header panel">
+      <div class="site-header__brand">
+        <div class="site-brand">
+          <h1>RouteCraft</h1>
+        </div>
+      </div>
+
+      <div class="header-current" aria-live="polite">
+        <span class="header-current__label" id="headerCurrentPage">Home</span>
+        <span class="header-current__subpage" id="headerCurrentSubpage" hidden></span>
+      </div>
+
+      <nav class="header-actions" aria-label="Primary">
+        <button
+          class="button button--ghost button--small"
+          type="button"
+          data-screen-target="landing"
+          data-nav-screen="landing"
+          data-nav-section="Home"
+        >
+          Home
+        </button>
+        <button
+          class="button button--ghost button--small"
+          type="button"
+          data-screen-target="levels"
+          data-nav-screen="levels"
+          data-nav-section="Levels"
+          data-toast="Opening level select."
+          data-hide-on-game="true"
+        >
+          Levels
+        </button>
+        <button
+          class="button button--ghost button--small"
+          type="button"
+          data-screen-target="about"
+          data-nav-screen="about"
+          data-nav-section="About"
+        >
+          About
+        </button>
+        <button
+          class="button button--ghost button--small"
+          type="button"
+          data-screen-target="howto"
+          data-nav-screen="howto"
+          data-nav-section="How To Play"
+        >
+          How to Play
+        </button>
+      </nav>
+    </header>
+
+    <main class="screen-stack">
+      <!-- Landing screen -->
+      <section class="screen screen--active" id="landing" data-screen-title="Home" data-top-section="Home">
+        <div class="hero panel">
+          <div class="hero__copy">
+            <h2>Efficiency wins<br>Plan accordingly</h2>
+            <p class="hero__lede">
+              RouteCraft turns a vehicle routing problem into a readable planning game: choose buses, build legal
+              routes, bring workers back to LMSA, and keep costs low.
+            </p>
+
+            <section class="play-demo panel" aria-label="How to play RouteCraft">
+              <div class="play-demo__copy">
+                <p class="eyebrow">Gameplay Loop</p>
+                <h3>A strong plan reuses the same bus before adding to the fleet</h3>
+              </div>
+
+              <div class="play-demo__rail" aria-hidden="true">
+                <span class="play-demo__line"></span>
+                <div class="play-demo__bus">
+                  <span class="play-demo__window"></span>
+                  <span class="play-demo__decal">
+                    <span class="play-demo__decal-top">PACKARD EXPRESS</span>
+                  </span>
+                </div>
+
+                <article class="play-step">
+                  <span class="play-step__dot"></span>
+                  <strong>Choose<br>a bus</strong>
+                </article>
+                <article class="play-step">
+                  <span class="play-step__dot"></span>
+                  <strong>Build<br>a route</strong>
+                </article>
+                <article class="play-step">
+                  <span class="play-step__dot"></span>
+                  <strong>Pick up<br>riders</strong>
+                </article>
+                <article class="play-step">
+                  <span class="play-step__dot"></span>
+                  <strong>Return to<br>LMSA</strong>
+                </article>
+                <article class="play-step">
+                  <span class="play-step__dot"></span>
+                  <strong>Head back<br>out</strong>
+                </article>
+              </div>
+
+              <div class="play-demo__actions">
+                <button
+                  class="button button--ghost"
+                  type="button"
+                  data-screen-target="howto"
+                >
+                  Open Full How To Play
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <aside class="hero__visual panel panel--dark">
+            <div class="hero__visual-top">
+              <p class="eyebrow eyebrow--accent">Try It Out!</p>
+              <h3 id="featuredLevelTitle">Level 1 - Foundry Morning</h3>
+              <p class="hero__visual-copy" id="featuredLevelDescription">
+                You're building the bus schedule for Logistical Models for Scheduling Architects (LMSA), a
+                manufacturing firm that needs employees collected from roads around the district and brought back
+                to the LMSA manufacturing plant. Be precise! The fate of their mornings are in your hands.
+              </p>
+            </div>
+
+            <div class="hero-metrics">
+              <article class="metric-block">
+                <span>Difficulty</span>
+                <strong id="featuredDifficulty">Easy</strong>
+              </article>
+              <article class="metric-block">
+                <span>Budget</span>
+                <strong id="featuredBudget">$100</strong>
+              </article>
+            </div>
+
+            <p class="eyebrow eyebrow--accent featured-list__title">Mission Brief</p>
+            <ul class="featured-list" id="featuredRuleList">
+              <li>Build a fleet by purchasing buses from the bus rental.</li>
+              <li>Click on brown "intersection" nodes in sequence to form a route.</li>
+              <li>Click on blue "bus stop" nodes to pick up LMSA employees.</li>
+              <li>Bring passengers back to the LMSA manufacturing plant.</li>
+              <li>Clear the map without blowing the budget.</li>
+            </ul>
+
+            <div class="hero__visual-actions">
+              <button
+                class="button button--primary"
+                id="launchLevelOneButton"
+                type="button"
+                data-launch-level="Level 1 - Foundry Morning"
+              >
+                Launch Level 1
+              </button>
+              <button
+                class="button button--ghost"
+                type="button"
+                data-screen-target="levels"
+                data-toast="Opening level select."
+              >
+                Browse All Levels
+              </button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- How to play -->
+      <section class="screen" id="howto" data-screen-title="How To Play" data-top-section="How To Play">
+        <div class="guide-layout">
+          <section class="panel guide-main">
+            <div class="guide-main__header">
+              <h2>Mission Critical Steps</h2>
+            </div>
+
+            <article class="guide-step">
+              <span class="guide-step__number">1</span>
+              <div>
+                <h3>Choose a level</h3>
+                <p>
+                  Every level has a fixed road network, employee demand placed along roads, and a benchmark budget.
+                  Start with a smaller scenario, then move to tougher maps as you get comfortable.
+                </p>
+              </div>
+            </article>
+
+            <article class="guide-step">
+              <span class="guide-step__number">2</span>
+              <div>
+                <h3>Buy buses</h3>
+                <p>
+                  Use the shop to build your fleet. Smaller buses are cheaper. Larger buses carry more people.
+                  Your score depends on how well you balance purchase cost, route efficiency, and bus reuse.
+                </p>
+              </div>
+            </article>
+
+            <article class="guide-step">
+              <span class="guide-step__number">3</span>
+              <div>
+                <h3>Select a bus and build a route one node at a time</h3>
+                <p>
+                  Pick a bus from the lot, then click connected intersections to create a route. Routes must start
+                  at LMSA and return to LMSA. You cannot instantly reverse over the same road.
+                </p>
+              </div>
+            </article>
+
+            <article class="guide-step">
+              <span class="guide-step__number">4</span>
+              <div>
+                <h3>Pick up employees at blue demand nodes</h3>
+                <p>
+                  Demand nodes live on the edges of roads, not at the brown intersections. Click on the blue nodes
+                  along your route to pick up the employees waiting there.
+                </p>
+              </div>
+            </article>
+
+            <article class="guide-step">
+              <span class="guide-step__number">5</span>
+              <div>
+                <h3>Return to LMSA and send the bus again if needed</h3>
+                <p>
+                  Returning to LMSA unloads passengers and completes the route. The same bus can then be used on
+                  another route as long as it still fits inside the level's per-bus duty allotment.
+                </p>
+              </div>
+            </article>
+
+            <article class="guide-step">
+              <span class="guide-step__number">6</span>
+              <div>
+                <h3>Repeat until all demand is delivered</h3>
+                <p>
+                  Keep planning until every employee has been picked up and returned to LMSA. Then submit the full
+                  fleet solution and compare your cost against the optimal benchmark.
+                </p>
+              </div>
+            </article>
+          </section>
+
+          <aside class="guide-side">
+            <section class="panel guide-card">
+              <h3 class="guide-card__title--centered">Core Rules</h3>
+              <ul class="guide-list">
+                <li>Routes must start and end at LMSA.</li>
+                <li>Route time cannot exceed the route limit.</li>
+                <li>Bus capacity cannot be exceeded.</li>
+                <li>No single bus can run for more than 1 hour total across its trips.</li>
+                <li>Lower total cost means a better score.</li>
+              </ul>
+            </section>
+
+            <!--
+            <section class="panel guide-card">
+              <h3 class="guide-card__title--centered">Small Example</h3>
+              <div class="guide-replay-demo">
+                <div class="guide-replay-demo__stage" id="guideReplayStage" aria-label="Level 1 optimal schedule replay">
+                  <svg
+                    class="guide-replay-demo__roads"
+                    id="guideReplayRoadLayer"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  ></svg>
+                  <div class="guide-replay-demo__nodes" id="guideReplayNodeLayer" aria-hidden="true"></div>
+                  <div class="guide-replay-demo__runner is-hidden" id="guideReplayRunner" aria-hidden="true">
+                    <span class="guide-replay-demo__runner-body" id="guideReplayRunnerBody">
+                      <span class="map-bus map-bus--lift">
+                        <span class="map-bus__window"></span>
+                        <span class="map-bus__mark"></span>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            -->
+
+            <section class="panel guide-card">
+              <h3 class="guide-card__title--centered">Goal</h3>
+              <p>
+                Good solutions do not just finish the level. They finish it with clean route structure, useful bus
+                capacity, and minimal wasted travel. The goal is to minimize your total cost while still clearing the
+                map.
+              </p>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Main menu -->
+      <section class="screen" id="menu" data-screen-title="Route Hub" data-top-section="Home">
+        <div class="screen-header">
+          <div>
+            <p class="eyebrow">Operations Board</p>
+            <h2>Route Hub</h2>
+            <p>Use the prototype the way the full game is meant to feel: review scenarios, inspect the rules, and jump straight into a planning run.</p>
+          </div>
+
+          <button class="button button--ghost" type="button" data-screen-target="landing">Back to Title</button>
+        </div>
+
+        <div class="menu-grid">
+          <button
+            class="menu-card panel"
+            type="button"
+            data-screen-target="levels"
+            data-toast="Opening level select."
+          >
+            <span class="menu-card__icon">01</span>
+            <h3>Quick Start</h3>
+            <p>Open the scenario library and launch directly into a road-demand planning problem.</p>
+          </button>
+
+          <button
+            class="menu-card panel"
+            type="button"
+            data-screen-target="levels"
+            data-toast="Opening level select."
+          >
+            <span class="menu-card__icon">02</span>
+            <h3>Scenario Library</h3>
+            <p>Compare network size, budget pressure, duty limits, and demand patterns before you choose.</p>
+          </button>
+
+          <button class="menu-card panel" type="button" data-screen-target="settings">
+            <span class="menu-card__icon">03</span>
+            <h3>Settings</h3>
+            <p>Adjust presentation and route preview behavior for longer planning sessions.</p>
+          </button>
+
+          <button
+            class="menu-card panel"
+            type="button"
+            data-screen-target="about"
+            data-focus-panel="creditsCard"
+          >
+            <span class="menu-card__icon">04</span>
+            <h3>Design Notes</h3>
+            <p>Read what RouteCraft is trying to teach: constrained routing, fleet tradeoffs, and cost discipline.</p>
+          </button>
+        </div>
+      </section>
+
+      <!-- Level selection -->
+      <section class="screen" id="levels" data-screen-title="Levels" data-top-section="Levels">
+        <div class="level-grid" id="levelGrid"></div>
+      </section>
+
+      <!-- Game layout -->
+      <section class="screen" id="game" data-screen-title="Planning Console" data-top-section="Home">
+        <div class="game-layout">
+          <aside class="panel shop-panel">
+            <section class="panel-section">
+              <div class="section-heading">
+                <h3>Bus Rental</h3>
+              </div>
+
+              <div class="shop-list shop-list--fleet">
+                <article class="shop-card shop-card--lift console-ref" data-ref="34">
+                  <div class="shop-card__visual" data-console-ref-hidden="true">
+                    <span class="pill shop-card__pill shop-card__pill--capacity">2 seats</span>
+                    <span class="pill shop-card__pill shop-card__pill--route">Route Limit: 20 min</span>
+                    <div class="shop-vehicle shop-vehicle--lift" aria-hidden="true">
+                      <span class="shop-vehicle__window"></span>
+                      <span class="shop-vehicle__mark"></span>
+                    </div>
+                  </div>
+                  <div class="shop-card__title">
+                    <strong>Personal Lift</strong>
+                    <span class="shop-card__price">$30</span>
+                  </div>
+                  <button
+                    class="button button--primary button--wide js-placeholder-action"
+                    type="button"
+                    data-buy-bus="lift"
+                    data-console-ref-hidden="true"
+                    data-toast="Personal Lift added to the fleet."
+                  >
+                    Buy Personal Lift
+                  </button>
+                </article>
+
+                <article class="shop-card shop-card--shuttle console-ref" data-ref="35">
+                  <div class="shop-card__visual" data-console-ref-hidden="true">
+                    <span class="pill shop-card__pill shop-card__pill--capacity">6 seats</span>
+                    <span class="pill shop-card__pill shop-card__pill--route">Route Limit: 40 min</span>
+                    <div class="shop-vehicle shop-vehicle--shuttle" aria-hidden="true">
+                      <span class="shop-vehicle__window"></span>
+                      <span class="shop-vehicle__mark"></span>
+                    </div>
+                  </div>
+                  <div class="shop-card__title">
+                    <strong>Mini Shuttle</strong>
+                    <span class="shop-card__price">$60</span>
+                  </div>
+                  <button
+                    class="button button--primary button--wide js-placeholder-action"
+                    type="button"
+                    data-buy-bus="shuttle"
+                    data-console-ref-hidden="true"
+                    data-toast="Mini Shuttle added to the fleet."
+                  >
+                    Buy Mini Shuttle
+                  </button>
+                </article>
+
+                <article class="shop-card shop-card--coach console-ref" data-ref="36">
+                  <div class="shop-card__visual" data-console-ref-hidden="true">
+                    <span class="pill shop-card__pill shop-card__pill--capacity">20 seats</span>
+                    <span class="pill shop-card__pill shop-card__pill--route">Route Limit: 60 min</span>
+                    <div class="shop-vehicle shop-vehicle--coach" aria-hidden="true">
+                      <span class="shop-vehicle__window"></span>
+                      <span class="shop-vehicle__mark"></span>
+                    </div>
+                  </div>
+                  <div class="shop-card__title">
+                    <strong>Coach</strong>
+                    <span class="shop-card__price">$120</span>
+                  </div>
+                  <button
+                    class="button button--primary button--wide js-placeholder-action"
+                    type="button"
+                    data-buy-bus="coach"
+                    data-console-ref-hidden="true"
+                    data-toast="Coach added to the fleet."
+                  >
+                    Buy Coach
+                  </button>
+                </article>
+              </div>
+            </section>
+          </aside>
+
+          <section class="map-column">
+            <section class="panel map-panel">
+              <div class="map-panel__header">
+                <div>
+                  <h3 id="mapPanelTitle">Foundry District Network</h3>
+                </div>
+              </div>
+
+              <div class="map-stage map-stage--foundry" aria-label="Route map area">
+                <div class="map-zone-layer" id="foundryZoneLayer" aria-hidden="true"></div>
+                <div class="map-road-layer" id="foundryRoadLayer" aria-hidden="true"></div>
+                <div class="map-animation-layer" id="foundryAnimationLayer" aria-hidden="true"></div>
+                <div class="map-legend map-legend--travel-time" aria-label="Travel time key">
+                  <span class="map-legend__item">
+                    <span class="map-legend__node map-legend__node--brown" aria-hidden="true"></span>
+                    <span class="map-legend__equals" aria-hidden="true">=</span>
+                    <span class="map-legend__label">3 min</span>
+                  </span>
+                  <span class="map-legend__item">
+                    <span class="map-legend__node map-legend__node--pickup" aria-hidden="true"></span>
+                    <span class="map-legend__equals" aria-hidden="true">=</span>
+                    <span class="map-legend__label">1 min</span>
+                  </span>
+                </div>
+                <div class="map-roundabout map-roundabout--factory" id="foundryFactoryRoundabout" aria-hidden="true" hidden>
+                  <span class="map-roundabout__arc"></span>
+                  <button class="map-roundabout__node" id="foundryFactoryStartNode" type="button" data-route-node-label="factory" aria-label="Factory start node"></button>
+                </div>
+                <div class="lmsa-campus-asset lmsa-campus-asset--factory" data-campus-asset="factory" aria-label="LMSA factory">
+                  <img class="lmsa-campus-asset__image" src="LMSA%20Factory.png" alt="LMSA Factory" draggable="false">
+                </div>
+                <button class="map-pickup-node" id="foundryPickupNode1" type="button" data-route-node-label="pickup-1" aria-label="Blue demand node with 1 worker waiting" hidden>
+                  <div class="lmsa-stop-demand" aria-label="1 worker waiting">
+                    <span class="lmsa-stop-demand__icon">
+                      <img class="lmsa-stop-demand__icon-image" src="LMSA%20Worker%20Head.png" alt="" draggable="false">
+                    </span>
+                    <span class="lmsa-stop-demand__count">x1</span>
+                  </div>
+                </button>
+                <button class="map-pickup-node" id="foundryPickupNode3" type="button" data-route-node-label="pickup-3" aria-label="Blue demand node with 1 worker waiting" hidden>
+                  <div class="lmsa-stop-demand" aria-label="1 worker waiting">
+                    <span class="lmsa-stop-demand__icon">
+                      <img class="lmsa-stop-demand__icon-image" src="LMSA%20Worker%20Head.png" alt="" draggable="false">
+                    </span>
+                    <span class="lmsa-stop-demand__count">x1</span>
+                  </div>
+                </button>
+                <div class="map-fleet-yard" id="foundryFleetYard" aria-label="Purchased buses at LMSA" hidden></div>
+                <button class="map-delete-can" id="foundryDeleteCan" type="button" aria-label="Delete selected bus">
+                  <img class="map-delete-can__image" src="LMSA%20Garbage%20Can.png" alt="" draggable="false">
+                </button>
+                <section class="foundry-edit-sandlot" id="foundryEditSandlot" aria-label="Level builder sandlot">
+                  <p class="foundry-edit-sandlot__title">Sandlot</p>
+                  <div class="foundry-edit-sandlot__items">
+                    <button class="foundry-edit-sandlot__item" type="button" data-sandlot-spawn="brown-node" aria-label="Add a brown node">
+                      <span class="foundry-edit-sandlot__token foundry-edit-sandlot__token--brown-node" aria-hidden="true"></span>
+                      <span class="foundry-edit-sandlot__label">Brown Node</span>
+                    </button>
+                    <button class="foundry-edit-sandlot__item" type="button" data-sandlot-spawn="blue-node" aria-label="Add a blue demand node">
+                      <span class="foundry-edit-sandlot__token foundry-edit-sandlot__token--blue-node" aria-hidden="true"></span>
+                      <span class="foundry-edit-sandlot__label">Blue Node</span>
+                    </button>
+                  </div>
+                </section>
+                <span class="map-node map-node--1" data-label="1"></span>
+                <span class="map-node map-node--2" data-label="2"></span>
+                <span class="map-node map-node--3" data-label="3"></span>
+                <span class="map-node map-node--4" data-label="4"></span>
+                <span class="map-node map-node--5" data-label="5"></span>
+                <span class="map-node map-node--6" data-label="6"></span>
+                <span class="map-node map-node--7" data-label="7"></span>
+                <span class="map-node map-node--8" data-label="8"></span>
+                <span class="map-node map-node--9" data-label="9"></span>
+                <span class="map-node map-node--10" data-label="10"></span>
+                <span class="map-node map-node--11" data-label="11"></span>
+                <span class="map-node map-node--12" data-label="12"></span>
+                <span class="map-node map-node--13" data-label="13"></span>
+                <span class="map-node map-node--14" data-label="14"></span>
+                <span class="map-node map-node--15" data-label="15"></span>
+                <span class="map-node map-node--16" data-label="16"></span>
+                <span class="map-node map-node--17" data-label="17"></span>
+                <span class="map-node map-node--18" data-label="18"></span>
+                <span class="map-node map-node--19" data-label="19"></span>
+                <span class="map-node map-node--20" data-label="20"></span>
+                <span class="map-node map-node--21" data-label="21"></span>
+                <span class="map-node map-node--22" data-label="22"></span>
+                <span class="map-node map-node--23" data-label="23"></span>
+                <span class="map-node map-node--24" data-label="24"></span>
+                <span class="map-node map-node--25" data-label="25"></span>
+                <span class="map-node map-node--26" data-label="26"></span>
+                <span class="map-node map-node--27" data-label="27"></span>
+                <span class="map-node map-node--28" data-label="28"></span>
+                <span class="map-node map-node--29" data-label="29"></span>
+                <span class="map-node map-node--30" data-label="30"></span>
+                <span class="map-node map-node--31" data-label="31"></span>
+                <span class="map-node map-node--32" data-label="32"></span>
+                <span class="map-node map-node--33" data-label="33"></span>
+                <span class="map-node map-node--34" data-label="34"></span>
+                <span class="map-node map-node--35" data-label="35"></span>
+                <span class="map-node map-node--36" data-label="36"></span>
+                <span class="map-node map-node--37" data-label="37"></span>
+                <span class="map-node map-node--38" data-label="38"></span>
+                <span class="map-node map-node--39" data-label="39"></span>
+                <span class="map-node map-node--40" data-label="40"></span>
+
+                <div class="game-victory-overlay" id="gameVictoryOverlay" hidden>
+                  <section class="panel game-victory-card" role="dialog" aria-modal="true" aria-labelledby="gameVictoryTitle">
+                    <div class="game-victory__heading">
+                      <div class="game-victory__heading-copy">
+                        <h2 class="game-victory__delayed-reveal" id="gameVictoryTitle">Result: Route Complete</h2>
+                      </div>
+                    </div>
+
+                    <div class="game-victory__stars" id="gameVictoryStars" aria-label="Star rating"></div>
+
+                    <div class="game-victory__scoreline" aria-label="Cost benchmark meter">
+                      <div class="game-victory__track">
+                        <span class="game-victory__track-fill" id="gameVictoryScaleFill"></span>
+
+                        <span class="game-victory__marker game-victory__marker--optimal" id="gameVictoryMarkerOptimal">
+                          <span class="game-victory__tick" aria-hidden="true"></span>
+                          <span class="game-victory__marker-label">Optimal</span>
+                          <strong id="gameVictoryOptimal">$77</strong>
+                        </span>
+
+                        <span class="game-victory__marker game-victory__marker--budget" id="gameVictoryMarkerBudget">
+                          <span class="game-victory__tick" aria-hidden="true"></span>
+                          <span class="game-victory__marker-label">Budget</span>
+                          <strong id="gameVictoryBudget">$100</strong>
+                        </span>
+
+                        <span class="game-victory__marker game-victory__marker--threshold" id="gameVictoryMarkerThreshold">
+                          <span class="game-victory__tick" aria-hidden="true"></span>
+                          <span class="game-victory__marker-label">1.4x</span>
+                          <strong id="gameVictoryThreshold">$120</strong>
+                        </span>
+
+                        <span class="game-victory__player" id="gameVictoryPlayerMarker">
+                          <span class="game-victory__player-value" id="gameVictoryPlayerCost">$0</span>
+                          <span class="game-victory__player-dot" aria-hidden="true"></span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="game-victory__metrics">
+                      <article class="game-victory__metric game-victory__metric--costs">
+                        <dl class="game-victory__cost-breakdown">
+                          <div class="game-victory__cost-row">
+                            <dt>Bus Rental Cost</dt>
+                            <dd class="game-victory__delayed-reveal" id="gameVictoryBusRentalCost">$0</dd>
+                          </div>
+                          <div class="game-victory__cost-row">
+                            <dt>Opportunity Cost</dt>
+                            <dd class="game-victory__delayed-reveal" id="gameVictoryOpportunityCost">$0</dd>
+                          </div>
+                          <div class="game-victory__cost-row game-victory__cost-row--total">
+                            <dt>Total Cost</dt>
+                            <dd class="game-victory__delayed-reveal" id="gameVictoryTotalCost">$0</dd>
+                          </div>
+                        </dl>
+                      </article>
+                      <div class="game-victory__replay-stack" aria-label="Solution playback actions">
+                        <button
+                          class="button button--ghost button--small game-victory__top-button"
+                          id="gameVictoryViewSolutionReplayButton"
+                          type="button"
+                        >
+                          <span class="game-victory__top-button-text">View Your Full<br>Schedule Replay</span>
+                        </button>
+                        <button
+                          class="button button--ghost button--small game-victory__top-button"
+                          id="gameVictoryViewOptimalReplayButton"
+                          type="button"
+                        >
+                          <span class="game-victory__top-button-text">View the Optimal<br>Schedule Replay</span>
+                        </button>
+                      </div>
+                      <article class="game-victory__metric game-victory__metric--gap" id="gameVictoryGapMetric">
+                        <dl class="game-victory__cost-breakdown">
+                          <div class="game-victory__cost-row">
+                            <dt>Your Cost</dt>
+                            <dd class="game-victory__delayed-reveal" id="gameVictoryMetricYourCost">$0</dd>
+                          </div>
+                          <div class="game-victory__cost-row">
+                            <dt>Optimal Cost</dt>
+                            <dd class="game-victory__delayed-reveal" id="gameVictoryMetricOptimalCost">$0</dd>
+                          </div>
+                          <div class="game-victory__cost-row game-victory__cost-row--total">
+                            <dt>Gap</dt>
+                            <dd class="game-victory__delayed-reveal" id="gameVictoryGap">0.0%</dd>
+                          </div>
+                        </dl>
+                      </article>
+                    </div>
+
+                    <div class="game-victory__actions">
+                      <button class="button button--primary" id="gameVictoryNextLevelButton" type="button">Next Level</button>
+                      <button class="button button--secondary" id="gameVictoryReplayButton" type="button">Replay Level</button>
+                      <button class="button button--ghost" id="gameVictoryLevelSelectButton" type="button">Level Select</button>
+                    </div>
+                  </section>
+                </div>
+                <div class="map-celebration-layer" id="foundryCelebrationLayer" aria-label="Confetti emitter tuning layer">
+                  <div class="map-celebration-burst-host" id="foundryCelebrationBurstHost" aria-hidden="true"></div>
+                  <!--
+                  <button
+                    class="confetti-emitter-handle confetti-emitter-handle--brown"
+                    id="foundryConfettiEmitterHandle1"
+                    type="button"
+                    aria-label="Adjust left confetti emitter"
+                  ></button>
+                  <button
+                    class="confetti-emitter-handle confetti-emitter-handle--white"
+                    id="foundryConfettiEmitterHandle2"
+                    type="button"
+                    aria-label="Adjust right confetti emitter"
+                  ></button>
+                  -->
+                </div>
+                <div class="top-bar" aria-label="Live game information">
+                  <article class="stat-pill console-ref" data-ref="4">
+                    <span>Selected Bus</span>
+                    <strong id="statSelectedBus">None</strong>
+                    <p class="stat-pill__detail" id="statSelectedBusDetail">Choose from fleet</p>
+                  </article>
+                  <article class="stat-pill console-ref" data-ref="7">
+                    <span>Load</span>
+                    <strong id="statLoad">0 riders</strong>
+                    <p class="stat-pill__detail" id="statLoadDetail">Max Capacity:</p>
+                  </article>
+                  <article class="stat-pill console-ref" data-ref="5">
+                    <span>Route Time</span>
+                    <strong id="statRouteTime">0 min</strong>
+                    <p class="stat-pill__detail" id="statRouteTimeDetail">Limit:</p>
+                  </article>
+                  <article class="stat-pill console-ref" data-ref="6">
+                    <span>Duty Time</span>
+                    <strong id="statDutyTime">60 min</strong>
+                    <p class="stat-pill__detail" id="statDutyTimeDetail">Limit:</p>
+                  </article>
+                  <article class="stat-pill console-ref" data-ref="9">
+                    <span>Total Cost</span>
+                    <strong id="statTotalCost">$0</strong>
+                    <p class="stat-pill__detail" id="statTotalCostDetail">Budget $100</p>
+                  </article>
+                </div>
+              </div>
+            </section>
+          </section>
+
+          <aside class="panel control-panel" data-console-ref-hidden="true">
+            <div class="section-heading">
+              <h3>Route Controls</h3>
+            </div>
+
+            <section class="panel-section control-panel__section control-panel__section--routes">
+              <div class="control-list">
+                <button class="button button--secondary js-placeholder-action console-ref" data-ref="13" id="undoRouteButton" type="button" data-toast="Last route node removed.">
+                  Undo Last Node
+                </button>
+                <button class="button button--secondary js-placeholder-action console-ref" data-ref="15" id="clearBusScheduleButton" type="button" data-toast="Bus schedule cleared.">
+                  Clear Bus Schedule
+                </button>
+                <button class="button button--ghost console-ref" data-ref="16" id="restartLevelButton" type="button">
+                  Restart Level
+                </button>
+              </div>
+            </section>
+
+            <section class="panel-section control-panel__section control-panel__section--submit">
+              <div class="button-column">
+                <button class="button button--primary button--wide console-ref" data-ref="43" id="submitSolutionButton" type="button">Submit Solution</button>
+              </div>
+            </section>
+
+            <section class="panel-section control-panel__section opportunity-panel">
+              <div class="section-heading section-heading--centered control-panel__heading">
+                <h3>Opportunity Cost</h3>
+              </div>
+
+              <div class="opportunity-card">
+                <div class="worker-icon" aria-hidden="true">
+                  <img class="worker-icon__image" src="LMSA%20Worker.png" alt="">
+                </div>
+
+                <div class="opportunity-card__value">$30<span>/hr</span></div>
+                <p class="opportunity-card__note">per employee not yet<br>returned to LMSA</p>
+              </div>
+            </section>
+          </aside>
+        </div>
+
+      </section>
+
+      <!-- Results -->
+      <section class="screen" id="results" data-screen-title="Results" data-top-section="Home">
+        <div class="screen-header">
+          <div>
+            <p class="eyebrow">Benchmark Comparison</p>
+            <h2>Level Results</h2>
+            <p id="resultsSubtitle">Level 1 - Foundry Morning | Cost, benchmark, and star summary</p>
+          </div>
+
+          <button class="button button--ghost" type="button" data-screen-target="levels">Return to Level Select</button>
+        </div>
+
+        <div class="results-layout">
+          <div class="results-grid">
+            <article class="panel result-card">
+              <span>Player Cost</span>
+              <strong id="resultPlayerCost">$4,850</strong>
+            </article>
+            <article class="panel result-card">
+              <span>Optimal Cost</span>
+              <strong id="resultOptimalCost">$4,420</strong>
+            </article>
+            <article class="panel result-card">
+              <span>Gap %</span>
+              <strong id="resultGap">9.7%</strong>
+            </article>
+            <article class="panel result-card">
+              <span>Budget Benchmark</span>
+              <strong id="resultBudget">$100</strong>
+            </article>
+            <article class="panel result-card">
+              <span>Fleet Used</span>
+              <strong id="resultFleet">2 buses</strong>
+            </article>
+            <article class="panel result-card">
+              <span>Stars Earned</span>
+              <strong id="resultStars">&#9733;&#9733;&#9734;</strong>
+            </article>
+          </div>
+
+          <div class="results-side">
+            <aside class="panel results-summary">
+              <h3>What This Result Means</h3>
+              <p id="resultsSummaryText">
+                You cleared all demand and stayed fairly close to the benchmark, but one extra purchase kept the
+                solution from matching the cheapest known plan.
+              </p>
+              <ul class="objective-list" id="resultsHighlights">
+                <li>All riders delivered back to LMSA.</li>
+                <li>4 routes dispatched across 2 buses.</li>
+                <li>Cost mostly driven by one additional cleanup trip.</li>
+              </ul>
+            </aside>
+
+            <aside class="panel results-summary">
+              <h3>Playback Actions</h3>
+              <p>
+                This area is ready for route replay, benchmark overlays, and side-by-side comparison against the
+                optimal solution once the solver connection is added.
+              </p>
+
+              <div class="button-column">
+                <button class="button button--secondary js-placeholder-action" type="button" data-toast="Replay placeholder only.">
+                  Replay Your Solution
+                </button>
+                <button class="button button--secondary js-placeholder-action" type="button" data-toast="Optimal solution view is not connected yet.">
+                  View Optimal Solution
+                </button>
+                <button class="button button--secondary js-placeholder-action" type="button" data-toast="Route detail view is a placeholder.">
+                  Show Route Details
+                </button>
+                <button class="button button--primary" id="retryLevelButton" type="button">Retry from Start</button>
+                <button class="button button--ghost" type="button" data-screen-target="levels">Return to Level Select</button>
+              </div>
+            </aside>
+              </div>
+            </div>
+          </section>
+
+      <!-- Settings -->
+      <section class="screen" id="settings" data-screen-title="Settings" data-top-section="Home">
+        <div class="screen-header">
+          <div>
+            <p class="eyebrow">Preferences</p>
+            <h2>Settings</h2>
+            <p>These controls tune how the prototype feels during planning sessions. The Lehigh University theme is the fixed visual style for this build.</p>
+          </div>
+
+          <button class="button button--ghost" type="button" data-screen-target="menu">Back</button>
+        </div>
+
+        <div class="settings-layout">
+          <form class="panel settings-form" id="settingsForm">
+            <div class="field-group">
+              <label for="animationSpeed">Animation Speed</label>
+              <select id="animationSpeed" name="animationSpeed">
+                <option>Slow</option>
+                <option selected>Normal</option>
+                <option>Fast</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label>Visual Theme</label>
+              <div class="settings-static">Lehigh University</div>
+            </div>
+
+            <div class="toggle-list">
+              <label class="setting-toggle">
+                <span class="setting-toggle__copy">
+                  <span>Sound Effects</span>
+                  <small>Play interface feedback cues during planning actions.</small>
+                </span>
+                <input type="checkbox" name="soundEffects" checked>
+                <span class="switch"></span>
+              </label>
+
+              <label class="setting-toggle">
+                <span class="setting-toggle__copy">
+                  <span>Show Route Preview</span>
+                  <small>Display draft route visuals while building a solution.</small>
+                </span>
+                <input type="checkbox" name="routePreview" checked>
+                <span class="switch"></span>
+              </label>
+            </div>
+
+            <div class="settings-actions">
+              <button class="button button--primary" type="submit">Save Settings</button>
+              <button class="button button--ghost" id="resetSettingsButton" type="reset">Reset</button>
+            </div>
+          </form>
+
+          <aside class="panel settings-note">
+            <p class="eyebrow">Planning Comfort</p>
+            <h3>Future Integration Space</h3>
+            <p>
+              Future versions can add benchmark overlays, route-density controls, accessibility adjustments, and
+              replay speed tuning for longer optimization sessions.
+            </p>
+            <p>
+              The goal is to keep RouteCraft readable while the route-building and scoring systems grow more
+              detailed.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- About / credits -->
+      <section class="screen" id="about" data-screen-title="About" data-top-section="About">
+        <div class="about-layout">
+          <section class="panel info-card about-main" id="aboutCard">
+            <p class="eyebrow">Grounded Overview</p>
+            <h2>About RouteCraft</h2>
+            <p class="about-main__lede">
+              RouteCraft is a route-planning game built around Logistical Models for Scheduling Architects (LMSA),
+              a manufacturing firm that needs its employees collected from roads around the district and returned
+              to the LMSA depot.
+            </p>
+            <p>
+              Each level asks you to build a complete morning pickup plan. You choose which buses to activate,
+              draw legal routes across the fixed road network, and decide whether it is cheaper to reuse a bus or
+              put another one into service.
+            </p>
+            <p class="about-formula">Total Cost = Activated Bus Cost + Opportunity Cost</p>
+
+            <div class="about-bands">
+              <article class="score-band">
+                <strong>Objective</strong>
+                <span>
+                  Every activated bus adds its shop cost once. Every employee who is still away from LMSA adds
+                  $25 per hour until they are returned.
+                </span>
+              </article>
+
+              <article class="score-band">
+                <strong>Tradeoff</strong>
+                <span>
+                  Reusing a bus saves activation cost, but waiting too long to bring employees back increases
+                  opportunity cost.
+                </span>
+              </article>
+
+              <article class="score-band">
+                <strong>Submission</strong>
+                <span>
+                  A plan cannot be submitted until all demand is cleared and every route follows the rules of the
+                  level.
+                </span>
+              </article>
+            </div>
+          </section>
+
+          <aside class="about-side">
+            <article class="panel info-card about-card" id="howItWorksCard">
+              <h3>What You Control</h3>
+              <ul class="about-list">
+                <li>Choose which buses to activate from the shop.</li>
+                <li>Build one route at a time across the fixed road network.</li>
+                <li>Send the same bus back out if reuse is cheaper than activating another vehicle.</li>
+              </ul>
+            </article>
+
+            <article class="panel info-card about-card" id="creditsCard">
+              <h3>What A Legal Plan Requires</h3>
+              <ul class="about-list">
+                <li>Every employee must be picked up and returned to LMSA.</li>
+                <li>Every route must start and end at LMSA.</li>
+                <li>Bus capacity, route time, and duty time limits must all be respected.</li>
+                <li>The no immediate U-turn rule still applies while building routes.</li>
+              </ul>
+            </article>
+
+            <article class="panel info-card about-card" id="creditsCardSecondary">
+              <h3>What Good Play Looks Like</h3>
+              <p>
+                Strong solutions do not just clear the map. They return employees earlier, avoid wasteful detours,
+                and reuse the right buses often enough to keep activation cost under control.
+              </p>
+              <p>
+                In practice, that usually means batching nearby demand, limiting empty travel, and avoiding extra
+                vehicles unless the time savings clearly justify the added cost.
+              </p>
+            </article>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="global-confetti-host" id="globalConfettiHost" aria-hidden="true"></div>
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

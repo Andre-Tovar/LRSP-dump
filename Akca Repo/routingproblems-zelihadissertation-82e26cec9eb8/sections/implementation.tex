@@ -1,0 +1,173 @@
+\section{Implementation Details}
+
+We use MINTO 3.1 and CPLEX 9.1 to implement our branch-and-price
+algorithm. MINTO (\citet{Savelsbergh2}) is a mixed integer solver 
+that uses a branch-and-bound algorithm with an LP solver. 
+MINTO has built-in applications such as preprocessing, constraint 
+generation and primal heuristics, but it also allows a user to write 
+his/her own application code that is specific to a problem. In 
+implementing our branch-and-price algorithm, we have written routines 
+to generate an initial set of columns, to solve the pricing problem 
+and to select a branching variable. 
+
+\begin{comment}
+{\bf Initial Feasible Solution} Before beginning the branch-and-price 
+algorithm, we need to define a restricted master problem with 
+an initial set of columns that contains a feasible solution. For each 
+facility, we create all feasible paths (considering the vehicle capacity 
+constraint and the time limit constraint) that have one customer, two 
+customers and three customers. Since the cost matrix is symmetric, only
+$N \choose 2$ paths with two customers are considered. For paths that include 
+three customers, we select the minimum cost path among the feasible orderings 
+of the customers.
+\end{comment}
+
+{\bf Pricing Problem} In step 1 of the 2-step branch and price  algorithm, we solve the 
+pricing problem heuristically in which we use modified label correcting
+algorithm for modified ESPPRC with label limit. We use label limit 400
+at each node. 
+In step 2, at each node, first we solve the pricing problem 
+heuristically using ESPPRC algorithm with label limit 400. Then, if
+the algorithm cannot find a column with negative reduced cost, the 
+algorithm is run for label limit 800. If the heuristic ESPPRC algorithm
+with label limit 800 cannot find any columns, we solve exact ESPPRC.
+At each step of the column generation, we select the  
+40 columns with the most negative reduced costs to add to the RMP. 
+
+{\bf Primal Feasible Solution} In step 1 of the 2-step branch and price algorithm,
+at the root node of the branch-and-price tree, we use CPLEX with a time limit of
+1 hour to solve an integer program defined over the set of generated columns  
+to get an incumbent solution.  
+In other nodes of the branch-and-price tree, we call the default primal heuristic 
+in MINTO to find a primal feasible solution. In step 2, we use the solution
+obtained in step 1 as an intial upper bound and use  default primal heuristic 
+in MINTO during the algorithm.
+
+{\bf Branching Variable} At each node of the branch-and-price tree with 
+a fractional solution, we first branch on any fractional location variables. 
+If there is more than one fractional $T_j$ variable, we select 
+the one that has a value closest to $0.5$. If all of the $T_j$ variables are 
+integer, we next branch on a fractional $nV_j$ variable, which equals the number 
+of vehicles in use at facility $j$. Of all the fractional $nV_j$ variables, 
+we choose the one that is closest to $0.5$. In a fractional solution, if all 
+the location variables and the total number of vehicle variables are integer, then we 
+select the facility $j$ and the customer $i$ such that 
+$\sum_{p \in P_j}a_{ipj}Z_{jp} $  is closest to 0.5. Similarly, for
+branching rule 4, we choose a pair customer of nodes $(n_1,n_2)$ such that   
+$\sum_{j \in M}\sum_{\{p \in P_j | (n_1\to n_2) \in p\}} Z_{jp}$
+is closest to 0.5. 
+
+{\bf Artificial variables} At every node of the branch-and-price tree, we need to start 
+the column generation algorithm with a feasible solution or we need to know that the 
+node is infeasible to be able to fathom it. Since the RMP does not contain all of the columns,
+it is not necessarily true that the node is infeasible if the current LP at the node is 
+infeasible. At the root node, we start with a feasible LP solution, but the RMP might become 
+infeasible with respect to the current set of columns as the branching rules are added. 
+Therefore, if the current LP solution at a node is infeasible, we need to verify that it 
+truly is infeasible or we need to find a feasible solution from which to start
+the column generation algorithm.    
+
+At a node where the branching rules apply only to the facility location variables, 
+it is easy to detect the infeasibility with respect to the number of facilities. By 
+considering fixed and unfixed location variables,  we can simply check whether the 
+lower bound on the number of selected facilities (constraint (\ref{lb-open-fac})) 
+is satisfied or not.
+
+Detecting the infeasibility  of the model with respect to the number of vehicles at 
+each facility is more difficult.  One reason is that the number of pairing variables, 
+the summation of which determines the number of vehicles in each facility, is large.
+Another reason is that to decide whether there is a feasible solution with given upper bounds and
+lower bounds for the number of vehicles in facilities, one must check the set partitioning constraints
+(\ref{spp_con1}) as well as the facility capacity constraints (\ref{spp_con2}). 
+In this case, we need to introduce artificial 
+variables. We can add the artificial variables at the root node or at any node in which the
+RMP is infeasible. Currently, we introduce the artificial variables at the root node. With the artificial 
+variables, we are able to 
+find an initial feasible solution at any node for any set of restrictions on the 
+facility variables, the total number of vehicle variables and the pairing variables.    
+
+We create an imaginary facility with $N$ pairings, one for each customer. Each pairing (column) 
+visits only one customer. We define the following variables and parameters: 
+%\singlespace
+\begin{align*}
+T_A & = \text {artificial facility} \nonumber \\
+Z_{A0},Z_{A1},..,Z_{A(N-1)} & = \text {artificial columns} \nonumber \\
+C_A & = \text {cost of an artificial column} \nonumber \\
+FC_A & = \text {fixed cost of the artificial facility }\nonumber \\
+l_j^u & = \text {lower bound for the number of vehicles for facility j at node u} \nonumber \\
+u_j^u & = \text {upper bound for the number of vehicles for facility j at node u} \nonumber  
+\end {align*}  
+
+We add these artificial variables to our RMP: 
+\begin{optprog}
+Minimize & \objective{\sum_{j \in M} FC T_{j} + \sum_{j \in M} \sum_{p\in P_{j}} C_{jp} Z_{jp} + FC_A T_{A}+ C_A \sum_{i \in N}Z_{Ai}} \\
+subject to & \sum_{j \in M} \sum_{p \in P_{j}} a_{ipj} Z_{jp} + Z_{Ai} & = & 1 & \forall i \in N  \label {spc}\\
+           & \sum_{p \in P_j} \sum_{i \in N} a_{ipj} d_i Z_{jp} & \leq & CapF_{j} T_{j} & \forall j \in M  \\
+           & \sum_{j \in M} T_{j} & \geq & nREQ \\
+           & \sum_{p \in P_{j}}a_{ipj}Z_{jp}\ & \leq & T_{j} & \forall j \in M, \forall i \in N \\
+           & Z_{Ai} & \leq & T_{A}  & \forall i \in N \\
+           & \sum_{p \in P_j}Z_{jp} & \leq & l_j^u  & \forall j \in M \label{low-bd}\\
+           & \sum_{p \in P_j}Z_{jp} & \geq & u_j^u  & \forall j \in M \label{up-bd}\\
+           & Z_{jp} &  \in & \{0,1\} & \forall j \in M, \forall p \in P_{j} \\
+           & Z_{Ai} &  \in & \{0,1\} & \forall i \in N \\
+           & T_{j}  & \in & \{0,1\} & \forall  j \in M \\
+           & 0 \leq & T_{A} & \leq  1 
+\end{optprog} 
+
+There is always a feasible solution if we allow the artificial columns, $T_A,Z_{A0},Z_{A1},..,Z_{A(N-1)}$
+to be included, since they will eliminate any infeasibility caused by the set partitioning constraints 
+(\ref{spc}) and/or  the branching constraints of (\ref{low-bd}) and (\ref{up-bd}).  
+
+We add these $|N|+1$ variables and $|N|$ constraints to the model at the root node and define large costs for them:
+\begin{align*}
+ FC_A & =nREQ \cdot max_{j \in M}\{FC_j\}+1 \nonumber \\
+ C_A & = \sum_{i \in N}(2 \cdot t_{facility_j,i}) \cdot OC + VF  \nonumber
+\end {align*} 
+
+The fixed cost of the artificial facility is set equal to the minimum number of required facilities 
+times the maximum fixed cost of the facilities plus one to get a larger cost than selecting
+real facilities. The total operating cost of each artificial 
+pairing is the same with  a value equal to the sum of the operating costs of all single 
+customer routes from depot $j$. We can select depot $j$ arbitrarily. The fixed cost of an artificial pairing is equal to the vehicle fixed cost. 
+ 
+
+
+
+\zaupdate{\bf TAILING OFF IMPLEMENTATION}
+
+
+
+
+
+
+
+
+
+
+%we created a column pool and path pool. The column pool includes
+%every column created with CG algorithm. The path pool includes every path that is included in at 
+%least one of the pairings in the column pool. First we branch on the location variables. When 
+%there are no fractional location variables, we branch on paths. We construct a network in which 
+%each path in the path pool is represented by a node. We add a source node and a sink node to 
+%the network. We carry the cost and the total travel time of each path on to the incoming arcs of 
+%the node representing that path. Also, each node has a demand that is equal to the total demand 
+%of the path corresponding to that node. An adjacency matrix is constructed according to the customers 
+%in each path. Suppose that P1=(source-1-2-sink) and P2=(source-2-3-4-sink). There is no arc 
+%between P1 and P2 in the constructed network since both paths include the customer node 2. Otherwise,
+%if we were to form a pairing with P1 and P2, it would not be integer feasible because of the set 
+%partitioning constraint (\ref{spp_con1}). We include arcs from the source to all nodes (paths), 
+%arcs from all nodes (paths) to the sink and all arcs between two path nodes that are adjacent according 
+%to the adjacency matrix.
+%*******************
+%The ESPPRC algorithm is used over this network to find an elementary shortest path from the source to 
+%the sink and new columns are created according to the branching rules. Branching rules for the paths 
+%are applied with some modifications on the network. For the left branch, we set the travel time 
+%between path1 and path2 to infinity. For right branch, we set the travel time on all the arcs going out 
+%of path1 and all the arcs going into path2 to infinity except the arc between path1 and path2. 
+%With this modification, the structure of the pricing problem does not change but the new pairings 
+%satisfy the branching rules. Also, before we process the left or the right branch, we must fix 
+%the values of some variables. For example, for the left branch, the pairings in which path2 follows path1
+%are set to zero. For the right branch, the pairings in which there is only one of path1 or path2 or 
+%both path1 and path2 but in incorrect order (not like $path1\to path2$) are fixed to zero.
+%In some of our solutions a fractional pairing may include only one path. If this is the case, we may 
+%apply our branching strategy to the arc between source and path1 similar to the arc between path1 and path2.

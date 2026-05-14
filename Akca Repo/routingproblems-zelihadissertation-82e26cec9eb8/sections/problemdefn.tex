@@ -1,0 +1,672 @@
+%created on August 18, 2005
+%updated on december 19 2005
+
+
+%\chapter {Problem Definition and Formulations}
+\section{Problem Definition and Formulations}
+\label{problem}
+
+In this section, we provide a formal description of the LRSP 
+considered in this research and present two formulations
+of the problem.  
+
+We consider an LRSP with capacity constraints on the facilities and 
+on the vehicles, as well as time constraints on the vehicles.
+In particular, given a set of candidate facility locations and a set of
+customer locations, we seek a solution in which 
+\begin{itemize}
+\item[i.] each customer is visited exactly once, 
+\item [ii.] each route starts and ends at the same facility, 
+\item [iii.] the total demand of the customers assigned to a route is at 
+most the vehicle capacity, 
+\item [iv.] the total working time of a vehicle is no more than the  
+time limit, and 
+\item [v.] the total demand of the customers assigned to a facility 
+does not exceed the capacity of the facility. 
+\end{itemize}
+
+We develop models for the delivery form of the LRSP and assume that there is no
+service time at the customers.  The models, however, can be adapted easily for 
+pickup problems and for nonzero service times. We assume that the demand 
+information and distance matrix are known and not dynamic. 
+We assume that each facility has enough vehicles to serve the allocated customers.
+Simply, we assume that the number of vehicles at each facility is equal to the 
+number of customers. And we consider one class of vehicles, all having the same 
+characteristics and working under the same conditions. 
+
+At the heart of the LRSP is a network flow structure, deriving from the routing 
+of customer demands, that is constrained through the vehicle and facility 
+capacities.  Hence, we consider both {\em arc-based} and {\em path-based} formulations 
+for the LRSP, as each has been widely applied for related problems.
+In Section \ref{edge-based-form}, we present a three-index commodity flow 
+formulation of the LRSP. In Section \ref{set-part-form}, we present a 
+set-partitioning-based formulation of the problem.  
+%In Section \ref{sec:StrongForm},
+%we introduce several classes of valid inequalities to strengthen the set-partitioning-based 
+%formulation.
+
+\begin{comment}
+In this section, we present two formulations for a deterministic version 
+of the LRSP. In Section \ref{edge-based-form}, we present two edge-based 
+formulations of the problem. In Section \ref{set-part-form}, we present a set 
+partitioning-based formulation of the problem.
+
+Given a set of candidate facility locations and a set of customer locations, 
+the objective of the LRS problem is to select a subset of the facilities, 
+to construct a set of delivery routes and to assign routes to vehicles 
+in such a way as to minimize total cost subject to the following 
+constraints: (i) each customer must be visited exactly once, (ii) each 
+route must start at a facility and return to the same facility, (iii) the 
+total demand of the customers assigned to a route must be less than the vehicle 
+capacity, (iv) the total working hours of a vehicle must be less than the working 
+hour limit and (v) the total demand of the customers assigned to a facility 
+must not exceed the capacity of the facility.
+
+Throughout this section, we assume that the demand information and distance matrix 
+are known and not dynamic. We consider the problem as a delivery 
+problem, but the structure of the problem can easily be changed to a pickup problem. 
+We assume that each facility has enough vehicles to serve the allocated customers.
+Simply, we assume that the number of vehicles at each 
+facility is equal to the number of customers. And we consider one class of vehicles, 
+all having the same characteristics and working under the same conditions. 
+\end{comment}
+
+%\section{Edge-Based Formulations}
+\subsection{Graph-Based Formulation of LRSP}
+\label{edge-based-form}
+
+For the related problems of LRP and VRP, the literature contains two main types of
+graph-based models, vehicle flow and commodity flow. In both formulations, 
+integer variables represent the number of times a vehicle traverses a given arc or 
+edge in an underlying graph. In commodity flow formulations, an additional variable 
+representing the number of units of a given commodity transported along the arc is
+present. In general, vehicle flow models contain an exponential number of subtour 
+elimination constraints, whereas commodity flow models, with the help of additional 
+flow variables, use a polynomial number of constraints to eliminate subtours. 
+For the LRP and the VRP, two-index vehicle flow formulations are preferred 
+in solution algorithms based on branch-and-cut since these formulations include 
+a smaller number of variables and their LP relaxations yield better bounds. 
+However, it is not possible to formulate the LRSP using variables with only two 
+indices because of the time constraint for the vehicles. In this context, we require a 
+three-index commodity flow model.
+
+To formulate the model, we introduce the following notation.
+
+{\bf Sets}
+\begin{eqnarray*}
+I & = & \mbox{set of customer locations,} \\
+J & = & \mbox{set of candidate facility locations,} \\
+N & = & I \cup J = \mbox{set of all nodes,} \\
+A & = & (J \times I) \cup (I \times I) = \mbox{set of arcs,}\\ 
+H_j & = & \mbox{set of vehicles located at facility $j$, 
+$\forall j \in J$, such that $|H_j|=|I|$,} \\ 
+H & = & \bigcup_{j \in J}H_j = \mbox{set of all vehicles such that $|H|=|I||J|$.} 
+\end{eqnarray*}
+
+
+{\bf Parameters}
+\begin{eqnarray*}
+C^F_j & = & \mbox{daily equivalent fixed cost of opening facility $j$, $\forall j \in J$,} \\
+C^O & = & \mbox{vehicle operating cost per unit travel time,} \\
+C^V & = & \mbox{daily equivalent fixed cost of a vehicle (including the driver cost),} \\
+D_i & = & \mbox{demand of customer $i$, $\forall i \in I$,} \\
+L^F_j & = & \mbox{capacity of facility $j$, $\forall j \in J$,} \\
+L^V & = & \mbox{capacity of a vehicle,} \\
+L^T & = & \mbox{time limit for a vehicle and the driver, and} \\
+T_{ij} & = & \mbox{travel time between locations $i$ and $j$, $\forall (i,j) \in A$.} 
+\end{eqnarray*}
+
+{\bf Decision Variables}
+\begin{eqnarray*}
+x_{ikh} & = & \left\{ \begin{array}{ll}
+                 1  & \mbox{if vehicle $h$ travels on arc $(i,k)$, $\forall h \in H, (i,k) \in A$,} \\
+                 0  & \mbox{otherwise,}                                                  
+                \end{array} 
+              \right. \\
+y_{ikh} & = & \mbox{flow on arc $(i,k)$ carried by vehicle $h$, $\forall (i,k) \in A, h \in H$,} \\
+t_{j} & = & \left\{ \begin{array}{ll}
+                 1  & \mbox{if facility $j$ is selected, $\forall j \in J$,}\\
+                 0  & \mbox{otherwise,}                                                  
+                \end{array}  
+              \right. \\
+v_h & = &\left \{ \begin{array}{ll}
+                 1  & \mbox{if vehicle $h$ is used, $\forall h \in H$, and}\\
+                 0  & \mbox{otherwise.}                                                  
+                \end{array}  \right. 
+\end{eqnarray*}
+
+%{\bf Formulation}
+\begin{optprog}
+{\bf (G-LRSP)} Minimize & \objective{\sum_{j \in J} C^F_j t_{j}  + C^V \sum_{h \in H} v_h  + C^O \sum_{h \in H} \sum_{(i,k) \in A}T_{ik} x_{ikh} } \label{obj-eb} \\
+s.t. & \sum_{h\in H}\sum_{k \in N} x_{ikh} & = & 1 &  \forall  i \in I, \label{set-part}\\
+           & \sum_{k\in N} x_{ikh}-\sum_{k \in N} x_{kih} & = & 0 & \forall i \in N, h \in H, \label{enterleave}\\
+           & \sum_{h \in H_j}\sum_{k \in I} y_{jkh} - L^F_j t_{j} & \leq & 0 & 
+	   \forall j \in J, \label{FacCap}\\
+           & y_{ikh} - L^V x_{ikh} & \leq & 0 & \forall (i,k) \in A, h \in H, \label{VehCap}\\
+           & \sum_{k \in N} y_{ikh} - \sum_{k \in N} y_{kih} + D_i\sum_{k \in N}x_{ikh} & = & 0 & \forall i \in I, h \in H, \label{flow-conv}\\
+           & \sum_{(i,k) \in A} T_{ik} x_{ikh} - L^T v_h & \leq & 0 & \forall h \in H, \label{timeLim}\\
+          % & \mbox{NumH} - \sum_{h \in H} \mbox{Dri}_h & = & 0 & \\
+           %& \mbox{Tot} - \sum_{h \in H}\left[\sum_{i \in I}\sum_{k \in I}\left(t_{ik}+s_{k}\right)x_{ikh}\right] / 60 & = & 0 & \\
+         %  & x_{jih} - T_{j} & \leq & 0 & \forall j \in M, i \in I, h \in H \label{Rel-X-T-1}\\
+ %          & x_{ijh} - T_{j} & \leq & 0 & \forall j \in M ,i \in I, h \in H \label{Rel-X-T-2}\\
+           & x_{jkh} & = & 0 & \forall j \in J,k \in N, h \in H_t, t \in J \backslash \{j\},\label{fix-0} \\ 
+           & x_{ikh} & \in & \{0,1\} & \forall (i,k) \in A, h \in H, \label{x-var}\\
+           & y_{ikh} & \geq &  0 & \forall (i,k) \in A, h \in H, \label{y-var} \\           
+           & t_{j}  & \in & \{0,1\} & \forall j \in J, \mbox{ and} \label{t-var}\\
+           & v_{h} & \in & \{0,1\} &  \forall h \in H. \label{dri-var}
+        %  & \mbox{Tot} & \geq & 0 
+\end{optprog}
+
+The objective function (\ref{obj-eb}) states that the total cost, which  
+includes the fixed cost of the selected facilities, the fixed cost of the vehicles
+(including the driver cost), and the operating cost of the vehicles,
+should be minimized. Constraints (\ref{set-part}) specify that exactly one vehicle 
+must travel from customer node $i$ to some other node. Constraints (\ref{enterleave}) 
+require that a vehicle should enter and leave a node an equal number of times. 
+For customer nodes, constraints (\ref{set-part}) and (\ref{enterleave}) ensure 
+that if a vehicle enters a 
+customer node, it will leave this node and therefore that each customer 
+node is served exactly once. For facility nodes, the number of visits by any 
+vehicle can exceed one, since a vehicle can cover multiple routes. 
+Constraints (\ref{FacCap}) ensure that the total outbound flows to the customer nodes 
+from each facility do not exceed its capacity. 
+Constraints (\ref{VehCap}) are vehicle capacity constraints and define the 
+relationship between the binary variable $x_{ikh}$ and the flow variable 
+$y_{ikh}$. Each constraint ensures that flow between any pair of nodes
+cannot exceed the capacity of a vehicle. Constraints (\ref{flow-conv})
+require conservation of flow at each customer node; these constraints
+must be modified for pick-up problems.
+Constraints (\ref{VehCap}) and (\ref{flow-conv}) 
+together ensure that no route violates the vehicle capacity.
+The combined sets of constraints (\ref{set-part}), (\ref{enterleave}),
+and (\ref{flow-conv}) ensure that only valid traveling salesman
+tours that include a  facility are formed, as in 
+\citet {Nambiar}.  Constraints (\ref{timeLim}) limit the 
+total time of a vehicle's schedule to the time limit. 
+In this research, we assume that the set of vehicles in two different 
+facilities are disjoint and a vehicle located at facility $j$ can only 
+visit customer nodes and the facility $j$ during its trip.  
+Constraints (\ref{fix-0}) restrict travel on the arcs originating from 
+a facility to vehicles located at that facility.
+Constraints (\ref{x-var}), (\ref{y-var}), (\ref{t-var}), and (\ref{dri-var}) 
+are the integrality and non-negativity requirements on the variables.    
+
+\begin{comment}
+G-LRSP is a three-index commodity flow formulation.
+Because of the facility and vehicle capacity restrictions, we cannot
+know a priori the number of vehicles required at each facility, though the
+number is clearly at most $|I|$.  Thus, this formulation can require
+up to $O(|I|^4)$ binary variables and $O(|I|^4)$ constraints, which can be 
+as many as 6 million for an instance with $50$ customers. 
+Although it would be possible to develop a branch-and-bound algorithm for G-LRSP, 
+we suspect that such an approach would not yield positive results, given the inherent
+symmetry in the formulation and the known difficulty associated with solving related problems.
+Instead, we propose a set-partitioning-based formulation 
+similar to those that have been successful for other hard combinatorial problems.
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%          COMMENT           %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+In model (EB-LRS), the objective function (\ref{obj-eb}) seeks to minimize the total cost, which  
+includes the fixed cost of the selected facilities, the fixed cost of the 
+drivers and vehicles and the operating cost of the vehicles. Constraints 
+(\ref{set-part}) specify that exactly one vehicle must travel from demand node $i$
+to some other node. Constraints (\ref{enterleave}) say that each vehicle should enter 
+and leave a node an equal number of times. For demand nodes, constraints 
+(\ref{set-part}) and (\ref{enterleave}) ensure that if a vehicle enters a 
+demand node, eventually it leaves this node and therefore \zaupdate{that} each demand 
+node is served exactly once. For facility nodes, the number of visits by any 
+vehicle can be more than one, since a vehicle can cover multiple routes. 
+Constraints (\ref{FacCap}) are capacity constraints that ensure that the 
+capacity of a facility is not exceeded by flows to customer nodes. 
+Constraints (\ref{VehCap}) are vehicle capacity constraints and define the 
+relationship between the binary variable $x_{ikh}$ and flow variable 
+$f_{ikh}$. Each constraint in (\ref{VehCap}) ensures that any flow between any 
+node pair cannot be greater than the load capacity of a vehicle. Constraints (\ref{flow-conv})
+require conservation of flow at each customer node based on the assumption that the 
+problem is a delivery problem. This constraint should be changed if the type of
+service is pickup instead of delivery. Constraints (\ref{VehCap}) and (\ref{flow-conv}) 
+together ensure that the vehicle capacity is not violated in any route of the vehicle.
+In combination with constraints (\ref{set-part}) and (\ref{enterleave}), 
+constraints (\ref{flow-conv}) form the traveling salesman tours, as in 
+\citet {Nambiar}.  Constraints (\ref{timeLim}) limit the 
+total working time of a vehicle to the time limit. 
+In model (EB-LRS), we assume that the set of vehicles in two different 
+facilities are disjoint and a vehicle located at facility $j$ can only 
+visit customer nodes and the facility $j$ during its trip.  
+From this assumption, the model (EB-LRS) assumes that the $x$ and $f$ 
+variables for the edges attached to a facility are set to zero (or have
+large costs)
+for vehicles that are not located at that facility. Constraints 
+(\ref{set_to_0}) make sure that these variables are set to zero.
+Constraints (\ref{x-var}), (\ref{t-var}), (\ref{dri-var}) and (\ref{y-var}) 
+are the set of integrality and non-negativity requirements on the variables.    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The EB-LRS formulation is a three-index commodity flow model, and in 
+the worst case,  with the assumption that $|J|\leq |I|$, it has $O(|I|^4)$ 
+binary variables and $O(|I|^4)$ constraints. Therefore,
+there are more than 6 million constraints and binary variables for an 
+instance with $50$ customers. We could develop a branch-and-bound or
+a branch-and-cut algorithm for the EB-LRS problem, however, we suspect
+that such an approach will not yield good results, given the difficulty 
+others have had in solving related problems with similar commodity formulations. 
+For example, exact algorithms for the LRP generally are developed 
+for two-index formulations of the problem, and none of the commodity 
+flow models developed for the VRP is solved to optimality in the
+literature. 
+
+%Therefore, we instead are propose a set 
+%partitioning-based approach, which has been successful for other hard 
+%combinatorial problems. 
+ 
+%Besides the fact that the edge-based formulation, EB-LRS has many binary variables 
+%and many constraints, the EB-LRS is a three-index commodity flow model. 
+%Exact algorithms for the LRP are generally developed for two-index formulations of the 
+%problem.  Also, none of the commodity flow models developed for the VRP is solved to optimality in the
+%literature. Furthermore, if there are side constraints for the vehicle routes such as 
+%vehicle capacity, route length restriction and time windows, the decomposition algorithms 
+%are common in the literature. Based on these observations, we develop an equivalent set 
+%partitioning formulation for the LRS problem and we solve the set partitioning-based 
+%formulation using a branch-and-price algorithm. 
+
+%[moved to some other place]Although branch-and-price has been applied successfully to some of the 
+%large scale optimization problems such as crew scheduling, machine
+%scheduling, facility location and routing, since the mid-1990s, there are 
+%many difficulties associated with the algorithm and the success of the 
+%algorithm highly depends on the structure of the problem. \citet{Barnhart}
+%provide an overview of the general methodology and many of the challenges.
+%the formulation is not easily solved using conventional MIP methods
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{comment}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%          COMMENT           %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+\subsection{A Two Index Vehicle Flow Formulation}
+By removing the flow variable $f$ from (EB-LRS), rephrasing facility capacity constraint 
+(\ref{FacCap}) with $x$ variables and replacing vehicle capacity (\ref{VehCap}) 
+and flow conservation constraints (\ref{flow-conv}) with rounded capacity inequalities
+for each vehicle, we can obtain a three index vehicle flow formulation of LRSP. 
+\citet{Belenguer06} present a two index vehicle flow formulation for a location
+routing problem (LRP) with capacitated facilities and capacitated vehicles which is a
+special case of LRSP. To obtain a two index vehicle flow formulation of the
+LRSP, we need to add a scheduling constraint to the LRP to guarantee that the
+time limit is not exceeded while assigning routes to vehicles. 
+In distance constraint VRP (DCVRP), \citet{Laporte5} use optimal cost of multiple TSP 
+to drive a lower bound for the minimum number of vehicles based on the distance 
+constraint for vehicle routes. The time constraint in the LRSP is different from the
+distance constraint in the DCVRP in the sense that the time constraint in LRSP is for a 
+vehicle not for a single route and it is possible to assign multiple routes to a vehicle.
+
+To formulate the LRSP with two index variables, we duplicate each facility and
+add $|J|$ additional nodes representing the copies of the facilities to
+the problem. Let $J^A$ be the set of artificial facilities and $a(j) \in J^A$ be the
+index of the facility corresponds to facility $j \in J$. Let $V$ be the set of 
+nodes, i.e., $V = I \cup J \cup J^A$. We consider the symmetric version   
+of the problem (i.e., $T^T_{ik}=T^T_{ki}$ for all $i,k \in V$) and thus a undirected
+network. Let $E$ be the set of edges. There are not edges between any facility and a
+copy of another facility. 
+   
+{\bf Decision Variables}
+\begin{eqnarray*}
+x_{e} & = & \left\{ \begin{array}{ll}
+                 1  & \mbox{if edge $e$ is in the solution, $\forall e \in E$}\\
+                 0  & \mbox{otherwise}                                                  
+                \end{array} 
+              \right. \\
+t_{j} & = & \left\{ \begin{array}{ll}
+                1  & \mbox{if facility $j$ is selected to be open, $\forall j \in J$}\\
+                 0  & \mbox{otherwise}                                                  
+                \end{array}  
+              \right. 
+\end{eqnarray*}
+To simplify the notation, let $\delta(i)$ be the set of edges connected to node $i \in V$, 
+$\delta(S)$ denote the set of edges with one end in $S$ and the other in $V \backslash S$
+for all $S \subseteq V$, $\gamma(S)$ be the set of edges with both end in $S$ and 
+$D^C(S)=\sum_{i \in S}D^C_i$ for all $S \subseteq I$.  
+
+Using the same parameters in section \ref{3-ind-CFform}: 
+\begin{optprog}
+{\bf (EB-LRS2)} Min & \objective{\sum_{j\in J} C^F_j t_{j}  + C^V/2 \sum_{j \in J}\sum_{e \in \delta(j)}x_{e}  + C^O \sum_{e \in E}T^T_{e}x_{e}} \label{obj-eb2} \\
+s.t. & \sum_{e \in \delta(i)} x_{e} & = & 2 &  \forall  i \in I \label{set-part2}\\
+           & x_{e}-2y_{j} & \leq & 0 & \forall j \in J, e \in \delta(j) \cup \delta(a(j)) \label{con3}\\
+           & \sum_{e \in \delta(S\cup \{j\})} x_{e}  & \geq & 2 & 
+	   \forall j \in J, \forall S \subseteq I | D^C(S) > L^F_j  \label{FacCap2}\\
+           & \sum_{e \in \delta(S)} x_{e}  & \geq & 2 \lceil D^C(S) / L^V \rceil & \forall S \subseteq I \label{VehCap2}\\
+	   & \sum_{e \in \delta(S)} x_{e}  & \geq & 2 \lceil B^C(S) / L^T \rceil & \forall S \subseteq I \cup J^A \label{timeLim2}\\
+     
+%      & \sum_{e\in \gamma(S)\cup \{i\}}x_{e} + x_{ji}-  \sum_{e\in \gamma(S)\cup \{i\}}& \leq & 0 & \forall h \in H \label{timeLim}\\
+
+
+	%   & \sum_{i\in V} x_{jih} & = & 0 & \forall j \in J, h \in H \backslash H_j \label{set_to_0}\\
+
+           & x_{e} & \in & \{0,1,2\} & \forall j \in J \cup J^A, e \in \delta(j)  \label{x-var2}\\
+	   & x_{e} & \in & \{0,1\} & \forall S \subseteq I | |S|=2, e \in \gamma(S)  \label{x-var3}\\
+	   & t_{j}  & \in & \{0,1\} & \forall j \in J \label{t-var2}
+\end{optprog}
+\end{comment}
+
+
+%\section{A Set Partitioning Based Formulation}
+\subsection{Set-Partitioning-Based Formulation of LRSP}
+\label{set-part-form}
+In this section, we introduce a set-partitioning-based formulation of 
+the LRSP. First, we define the column set constructed to formulate
+the LRSP. 
+ 
+\subsubsection{Pairing Definition}
+To define the column set, the set-partitioning-based formulation 
+uses the idea of a {\em pairing}, which we adapt from the pairing concept in the 
+crew scheduling literature (e.g., \citet{Desrosiers}, \citet{Vance}, and \citet{Anbil}).
+In the crew scheduling literature, a pairing is a sequence of duty periods 
+and represents  a possible schedule for a single crew. In the LRSP context, 
+a pairing is a sequence of routes that represents a possible (feasible) schedule for a 
+single vehicle.
+%In the crew scheduling literature, a pairing is a sequence of duty periods and represents  
+%a possible schedule for a single crew. In the LRS context, a pairing is a 
+%set of routes that can be served sequentially by one vehicle within the 
+%vehicle's working hour limit. 
+
+A pairing is feasible if 
+\begin{itemize}
+\item [i.] each route included in the pairing starts and ends at the 
+same facility, 
+\item [ii.]for each route in the pairing, the total demand of the 
+customers assigned to the route is at most the vehicle capacity, 
+\item [iii.] the total travel time of the pairing is at most the vehicle time limit,
+\item [iv.] each customer included in the pairing must be visited only once.
+\end{itemize}
+By adding constraint (iv), we prevent the generation of pairings that
+visit some customer(s) multiple times since such pairings are set 
+to zero in an integer feasible solution of an LRSP.
+
+Figure \ref {fig:exppair} shows two possible pairing constructions.  
+Pairing 1 includes routes 1, 2 and 3; pairing 2 includes routes 4 and 5. 
+Each pairing specifies the routes covered by a vehicle and has an associated  
+cost, which is defined as the sum of the costs of the component routes plus a
+fixed cost for the vehicle. Since the cost of a multiple-stop route depends on the sequence 
+of nodes visited, the pairing information implicitly includes sequencing information
+for each route. The cost of a pairing, however, is not affected by the ordering of
+the routes in the absence of time windows and thus is arbitrary.  We will take this
+fact into consideration to improve the solution algorithms for the subproblem and 
+will not generate symmetric pairings corresponding to different orderings of the same routes.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.5]{figs/pairexp2.eps}
+  %\fbox{ \includegraphics[scale=0.5]{figure/pair2.eps}}
+  \caption{Example of pairings} \label{fig:exppair}
+\end{figure}
+
+\subsubsection{Formulation}
+\label{part1:sp_form}
+Given a set of candidate facility locations and the set of feasible pairings that can 
+be constructed for each candidate facility, the objective of the LRSP is to 
+select a subset of the facilities and an associated subset of pairings in such a way 
+as to minimize the total cost subject to the following constraints: 
+\begin{itemize}
+\item [i.] each customer must be covered by exactly one pairing, 
+\item [ii.] the total demand of the customers assigned to a facility must not 
+exceed the capacity of the facility, and  
+\item [iii.]  vehicles cannot be associated with a facility unless it is open. 
+\end{itemize}
+To present the formulation, we define additional parameters and 
+decision variables.  Associated with each candidate facility 
+$j \in J$, we let $P_j$ be the set of all feasible pairings for facility
+$j$.   
+
+{\bf Parameters}
+\begin{eqnarray*}
+a_{ip} & = & \left \{  \begin{array}{ll}
+                 1 & \mbox{if customer node $i$ is in pairing $p$ of facility $j$, $\forall i \in I, p \in P_j, j \in J$,} \\
+                 0 & \mbox{otherwise, and}
+                         \end{array}
+              \right. \\
+C_p & = & \mbox{cost (vehicle fixed cost plus operating cost) of pairing $p$ %associated with 
+of facility $j$, $\forall p \in P_j, j \in J$.} 
+\end{eqnarray*}
+{\bf Decision Variables}
+\begin{eqnarray*}
+t_j &  = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if facility $j$ is selected, $\forall j \in J$,}\\
+                 0  & \mbox{otherwise,}                                                  
+                \end{array}
+       \right. \\
+z_p & = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if pairing $p$ is selected for facility $j$, $\forall p \in P_{j}, j \in J$, and}\\
+                 0  & \mbox{otherwise.}                                                  
+                \end{array}
+       \right.
+\end{eqnarray*}
+\begin{optprog}
+{\bf(SPP-LRSP)} Minimize & \objective{\sum_{j \in J} C^F_j t_{j} + \sum_{j \in J} \sum_{p\in P_j} C_p z_p} \label{spp-obj}\\
+subject to & \sum_{j \in J} \sum_{p \in P_{j}} a_{ip} z_{p} & = & 1 & \forall i \in I, \label{spp_con1} \\
+           & \sum_{p \in P_j} \sum_{i \in I} a_{ip} D_i z_{p} - L^F_j t_j & \leq & 0 & \forall j \in J, \label{spp_con2} \\
+           & t_{j}  & \in & \{0,1\} & \forall  j \in J, \mbox{ and}\label{binary1} \\
+           & z_{p} &  \in & \{0,1\} & \forall p \in P_j, j \in J. \label{binary2} 
+\end{optprog} 
+ 
+
+The objective function (\ref{spp-obj}) seeks to minimize the total cost, which 
+includes the fixed cost of the selected facilities and the cost of the selected pairings.
+We note that the cost $C_{p}$ of a pairing includes both the vehicle fixed cost and 
+variable costs. Constraints (\ref{spp_con1}) 
+guarantee that each customer location is served by exactly one pairing. 
+%states that each customer must be in exactly one of the selected pairings.
+%Constraints (\ref{spp_con2}) guarantee that the total demand of the customers assigned to
+%a facility does not exceed the facility capacity.  
+Constraints (\ref{spp_con2}) ensure that the total demand of the selected pairings does 
+not exceed the facility capacity.  Constraints (\ref{binary1}) and (\ref{binary2}) are 
+standard binary restrictions on the variables. 
+
+
+%Constraints (\ref{vehicle-bound}) set an upper bound for the total number of pairings 
+%(i.e., number of vehicles) that can be selected for each facility. Based on our assumption in
+%section (\ref{edge-based-form}), $|H_j|=|I|$, since the cost of a pairing includes fixed cost
+%of vehicles and the size of set $|H_j|$ is large enough, we can drop this constraint,
+%it is redundant. 
+%Constraints (\ref{binary1}) and (\ref{binary2}) are standard binary restrictions on the 
+%variables. 
+The structure of the SPP-LRS is very similar to the CFLP with single sourcing (CFLPSS). In the
+CFLPSS, only pairings with one customer are considered and assigned to capacitated
+facilities. However, in the LRSP, pairings with multiple customers must be taken into account. 
+
+
+\section{Strengthening the Set-Partitioning-Based Formulation}
+\label{StrongForm}
+In this section, we discuss how we can strengthen the set-partitioning-based formulation
+SPP-LRSP by adding valid inequalities. First, we introduce a lower bound on the total 
+number of facilities required in any integer feasible solution.  Let $R$ denote a lower bound
+on the minimum number of required facilities. 
+Then we can add to SPP-LRSP a constraint to force the number of selected
+facilities to be at least $R$:
+\begin{eqnarray}
+\sum_{j \in J} t_{j} \geq R. \label{lb-open-fac}
+\end{eqnarray}
+For any instance, we can calculate a valid value for $R$ from the demands of the customers and
+the capacities of the facilities. There are two possible cases:\\
+\noindent {\bf Case 1.} If all of the facilities have the same capacity value, 
+$L^F_j = k$ $\forall j \in J$, then 
+\begin{equation}
+R =\left \lceil \frac{\sum_{i \in I} D_i}{k} \right \rceil . \nonumber
+\end{equation}
+\noindent {\bf Case 2.} If at least one facility capacity differs, then a lower bound 
+on the number of required facilities can be calculated using a greedy algorithm: 
+compute the total demand and assign it to the facilities in non-increasing order of their 
+capacities.  Let $n = |J|$ and let $(j_1,j_2,..,j_n)$ be an ordering of the facilities such that 
+$L^F_{j_1}\geq L^F_{j_2} \geq ...\geq L^F_{j_n}$. Then,
+\begin{eqnarray*}
+ R = \mbox{argmin}_{\{l = 1..n\}} \left (\sum_{s=1}^{l}L^F_{j_s}\geq \sum_{i \in I} D_i \right ).  
+\end{eqnarray*}
+
+Constraint (\ref{lb-open-fac}) is not necessary in the formulation of the LRSP. However, as a simple
+lower bound on the number of required facilities, it may eliminate some solutions in which 
+a fractional number of facilities is used, thereby improving the LP relaxation bound.
+ The following proposition can be stated:
+
+\begin {prop} 
+Chv\'atal-Gomory rank (CG rank) of constraint (\ref{lb-open-fac}) is 1, if
+$\left (\frac{\sum_{i \in I }D_i}{k}\right)$ is fractional in case 1 and
+$\left (\frac{\sum_{i \in I }D_i}{L^F_{j_1}}\right)$ is fractional or strictly less 
+than $R$ in case 2. 
+\end {prop}
+
+\begin{proof}
+
+Recall that the CG rank of any original inequality and any 
+inequality dominated by a nonnegative linear combination of the original inequalities 
+is 0.  An inequality which can be generated as a CG inequality based on rank 0 inequalities 
+but is not rank 0 itself has CG rank 1. 
+
+\noindent {\bf Case 1:} $L^F_j = k$ $\forall j \in J$.
+
+To prove the proposition, we compute the summation of constraints (\ref{spp_con2}) over all 
+facilities $j \in J$:
+\begin{eqnarray}
+ \sum_{j \in J} \sum_{p \in P_j} \sum_{i \in I} a_{ip} D_i z_{p} & \leq & k \sum_{j \in J} t_{j} \label{sum-spp_con2}
+\end{eqnarray} 
+Then, if we substitute constraint (\ref{spp_con1}) in (\ref{sum-spp_con2}) and divide by $k$, we get:
+\begin{eqnarray}
+ \sum_{j \in J} t_{j} &\geq &\frac {\sum_{i \in I}D_i}{k} \label{sum2-spp_con2}
+\end{eqnarray} 
+
+The $t_j$ variables are binary, so $\sum_{j \in J}t_{j}$ must be integer. 
+Therefore, if we let 
+$R =\left \lceil \frac{\sum_{i \in I }D_i}{k} \right \rceil$, then constraint
+(\ref{lb-open-fac}) must be valid. If  the right hand side of constraint (\ref{sum2-spp_con2})
+%$\frac {\sum_{i \in I}D_i}{k}$
+is fractional, the constraint (\ref{lb-open-fac}) has CG rank 1. Otherwise, its rank is 0,
+since it can be defined as the non-negative linear combination of the original inequalities.
+ 
+
+\noindent{\bf Case 2:} The facilities have different capacity values. 
+
+To generalize this statement for the problems in which the facility
+capacities might be different in value, we reorder the facilities as
+$t_{[1]},t_{[2]},..,t_{[J]}$ such that $L^F_{[1]} \geq L^F_{[2]} \geq 
+..\geq L^F_{[J]}$. Then, inequality (\ref{sum-spp_con2}) becomes 
+\begin{eqnarray}
+\sum_{j \in J} \sum_{p \in P_j} \sum_{i \in I} a_{ip} D_i z_{p} \leq   \sum_{j \in J} L^F_{[j]}t_{[j]} \label{nonhomo-sum}
+\end{eqnarray}  
+Again, if we substitute in (\ref{nonhomo-sum}) using constraint (\ref{spp_con1}) and 
+then divide each side by $L^F_{[1]}$, 
+we get:
+\begin{eqnarray}
+\label{nonhomo-sum2}
+ t_{[1]}+\frac{L^F_{[2]}}{L^F_{[1]}}t_{[2]}+..+ \frac{L^F_{[J]}}{L^F_{[1]}}t_{[J]} \geq \frac {\sum_{i \in I}D_i}{L^F_{[1]}} 
+\end{eqnarray} 
+If we let 
+\begin{eqnarray}
+ R_2 =\left \lceil \frac{\sum_{i \in I }D_i}{L^F_{[1]}} \right \rceil \nonumber 
+\end{eqnarray}   
+then, by rounding up the coefficients of inequality (\ref{nonhomo-sum2}), we get:
+\begin{eqnarray}
+\label{lb-open-fac2}
+ \sum_{j \in J}t_j \geq R_2 
+\end{eqnarray}  
+
+The value of $R_2$ is calculated based on the assumption that all facilities have the 
+same capacity, which is the largest capacity value. However, in the calculation procedure 
+of $R$ for problems that have different capacity values (case 2), it is considered that the 
+second facility might not have a capacity as large as the first facility, the third facility 
+might not have a capacity as large as the second facility and so on.  Therefore, 
+$R \geq R_2$ and the constraint (\ref{lb-open-fac}) dominates constraint 
+(\ref{lb-open-fac2}). If $\left(\frac{\sum_{i \in I }D_i}{L^F_{[1]}}\right)$ is fractional or 
+$R_2<R$, then the CG rank of constraint (\ref{lb-open-fac}) is 1. \qed
+\end{proof}
+
+Due to the similarity in structure between the SPP-LRSP and the CFLP, we might consider 
+adding the set of constraints 
+\begin{eqnarray}
+z_{p} \leq & t_{j}  & \forall j \in J, \forall p \in P_{j} \label{relation-Z-T}
+\end{eqnarray}
+In the CFLP, constraints similar to inequality (\ref{relation-Z-T}) are facets of the 
+CFL polytope if the demands of the customers in the constraints are less than the capacity 
+of the facilities (\citet{Leung}). In addition, \citet{Daskin} remarks that constraints 
+in the CFLP similar to (\ref{relation-Z-T}) considerably improve the LP bound. 
+
+Constraints (\ref{relation-Z-T})  ensure that a pairing of a facility can be selected 
+only if that facility is selected. Although constraints (\ref{relation-Z-T}) are implied 
+by constraints (\ref{spp_con2}), constraints (\ref{relation-Z-T}) may improve the 
+LP relaxation of the model as in the case of CFLP. However, since there is potentially 
+an exponential number of such constraints, we would like to find a smaller set of 
+constraints to add. 
+\begin {prop} 
+  To strengthen the LP relaxation bound, we can replace constraints (\ref{relation-Z-T}) with 
+  \begin{eqnarray}
+    \label{relation}
+    \sum_{p \in P_{j}}a_{ip}z_{p}\ \leq \ t_{j} \mbox{\ \ $\forall j \in J$ and $i \in I$} 
+  \end{eqnarray}
+and constraints (\ref{relation}) have a CG rank of 1.
+\end{prop}
+ 
+\begin{proof} 
+Constraints (\ref{relation}) are valid for the integer program. In any feasible solution,
+each demand node $i \in I$ is assigned to exactly one facility, so 
+$\sum_{p \in P_j} a_{ip} z_{p}$ is $1$ for one facility and $0$ for all others. 
+For any $j \in J$ such that $\sum_{p \in P_j} a_{ip} z_{p}$ is $1$, $t_j$ will be $1$, 
+which corresponds to pairings being selected only for open facilities. 
+
+%In any feasible integer solution, a demand node 
+%$i \in N$ can be assigned to only one facility, so 
+%$\sum_{p \in P_j} a_{ip} Z_{p}$ can only be 1 or 0 for any facility $j \in M$. Also 
+%constraints (\ref{spp_con2}) guarantee that if any demand node is assigned to facility j,
+%then $T_j$ must be greater than zero. Since $T_j$ is binary variable, if $T_j>0$, $T_j$ must be 1.
+%Therefore, the inequality (\ref{relation}) is valid for any feasible integer solution. 
+
+Also, when the coefficients of the variables in inequality (\ref{relation}) and constraint 
+(\ref{relation-Z-T}) are compared, it is easy to see that inequality (\ref{relation}) 
+dominates constraint (\ref{relation-Z-T}). For example, if we take $z_{p'} \leq t_{j'}$
+from constraint set (\ref{relation-Z-T}) for $j=j'$ and $p=p'$, we can compare it with a
+constraint in set (\ref{relation}) for which $j=j'$ and $i=i'$ such that $a_{i'p'}=1$. 
+That is $z_{p'}+\sum_{p \in P_{j'}\setminus\{p'\}}a_{i'p}z_{p}\ \leq \ t_{j'}$. Because 
+of the $z_{p}$ terms other than  $z_{p'}$ on the left side of the constraint,   
+$\sum_{p \in P_{j'}}a_{i'p}z_{p}\ \leq \ t_{j'}$ dominates $z_{p'} \leq t_{j'}$. 
+
+Now we show the rank of the inequality $\sum_{p \in P_j} a_{ip} z_{p} \leq T_j$ 
+for an arbitrary $i$ and $j$. For notational convenience, suppose $i=1$ and $j=1$.  
+
+Let $D(k)=\sum_{i \in I}a_{ik}D_i$ be the total demand of a pairing $ k\in P_1$ . 
+From constraint sets (\ref{spp_con1}) ($\leq$ part of the constraints) and (\ref{spp_con2}), 
+we can write:
+\begin{eqnarray}
+ \sum_{\{p \in P_1 | a_{1p}=1\}} z_{p} + \sum_{\{j \in J \setminus \{1\}\}}\sum_{\{p \in P_{j}|a_{1p}=1\}}z_{p}  &\leq & 1 \label{prop2-a} \\
+ \sum_{\{p \in P_1 | a_{1p}=1\}} D(p) z_{p} + \sum_{\{p \in P_1 | a_{1p}=0\}} D(p) z_{p} - L^F_1 t_1 & \leq & 0 \label{prop2-b} 
+\end{eqnarray} 
+
+Let $D_{min} = min_{\{p \in P_1 | a_{1p}=1\}} \{ D(p) \}$. Multiply inequality (\ref{prop2-a}) 
+with $(L^F_1-D_{min})$ and add the resulting inequality to the inequality (\ref{prop2-b}). 
+Then after dividing the obtained inequality by $L^F_1$ round it to floor: 
+
+\begin{eqnarray}
+ \sum_{\{p \in P_1 | a_{1p}=1\}}  \left \lfloor \frac{L^F_1-D_{min}+D(p)}{L^F_1} \right \rfloor z_{p} &+&
+    \sum_{\{j \in J / \{1\}\}}\sum_{\{p \in P_{j}|a_{1p}=1\}}\left \lfloor \frac{L^F_1-D_{min}}{L^F_1}\right \rfloor z_{p}\nonumber \\
+     &+&\sum_{\{p \in P_1 | a_{1p}=0\}}\left \lfloor \frac{D(p)}{L^F_1}\right \rfloor z_{p} - t_1\nonumber \\
+&\leq&  \left \lfloor \frac {L^F_1-D_{min}}{L^F_1}\right \rfloor  \label{prop2-c}
+\end{eqnarray} 
+
+
+Also, we simply assume that $D(p) \leq L^F_1 \ \ \forall p \in P_1$ since otherwise we can set
+$z_{p}=0$ and remove the variable from the constraint. This is true, because if the
+total demand of the pairing is greater than the capacity of the facility, this pairing
+cannot be chosen in a feasible solution for this facility. In inequality (\ref{prop2-c}), 
+the coefficients in the first summation are in the range $[1,2)$, the coefficients in the second 
+summation are in $[0,1)$, and the coefficients in the third summation are in the range $[0,1)$ if 
+$D(p)<L^F_1$ for all $p \in P_1$. The right hand side is in the range $[0,1)$. 
+Thus when we round down the coefficients, we get $\sum_{p \in P_1} a_{1p} z_{p} \leq t_1$. 
+Since we have obtained inequality (\ref{relation}) by using the original constraints and the 
+CG inequality procedure, the CG rank of the inequality is 1. Also,  this inequality is not 
+dominated by any linear combination of the original constraints, thus its CG rank cannot be 0. 
+If $D(p)=L^F_1$ for some $p \in P_1$ in the third summation, when we round down, 
+the coefficient for this variable in (\ref{prop2-c}) is 1. Thus, we can add the variables $z_p$ 
+for all $p \in P_1$ and satisfying $D(p)=L^F_1$ and  $a_{1p}=0$ to inequality (\ref{relation}) 
+to get a stronger constraint. But if we do not add these variables, the constraint (\ref{relation}) 
+will still be valid. 
+\qed
+\end{proof}
+

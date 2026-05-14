@@ -1,0 +1,16 @@
+File name: ../DATA/Data15a1_11
+OPTIMAL SOLUTION VALUE: 7783.500000
+Number of Customers: 15, Number of Facilities: 5
+Customers are numbered from (0..14) and Facilities are (15, ..19)
+ T_0 = 1.000000
+
+ T_4 = 1.000000
+
+ Y_4_90 = 1.000000
+
+ V_4 = 1.000000
+
+ Y_0_309 = 1.000000
+
+ Y_4_328 = 1.000000
+

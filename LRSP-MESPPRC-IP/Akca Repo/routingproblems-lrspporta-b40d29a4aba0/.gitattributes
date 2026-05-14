@@ -1,0 +1,13 @@
+* text=auto !eol
+/lrsp5.ieq -text
+/lrsp5.init -text
+/lrsp5.poi -text
+/lrsp5.poi.ieq -text
+/p01-f4.txt.ieq -text
+/p01-f4.txt.init -text
+/p01-f4.txt.poi -text
+/p01-f4.txt.poi.ieq -text
+/p03-f4.txt.ieq -text
+/p03-f4.txt.init -text
+/p03-f4.txt.poi -text
+/p03-f4.txt.poi.ieq -text

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\CMakeFiles\10fb8986e7575c8244833fd759012a60\PACKAGE_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{034A1522-99E0-35CC-AB3F-F14E5C151230}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

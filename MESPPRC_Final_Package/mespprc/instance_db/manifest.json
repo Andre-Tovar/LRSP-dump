@@ -1,0 +1,3215 @@
+{
+  "acceptance_policy": {
+    "dp_compare_max_customers": 8,
+    "max_route_count": 75000,
+    "objective_tolerance": 1e-06,
+    "require_phase1_route_pool": true,
+    "require_phase2_ip_feasible": true,
+    "validate_generated_instance": true,
+    "validate_json_round_trip": true
+  },
+  "description": "Validated MESPPRC benchmark instances stored as full graph JSON snapshots. Generator config is recorded for provenance only.",
+  "instance_count": 72,
+  "instances": [
+    {
+      "checksum_sha256": "3be6635d8cf22cecb2eaded7a3cbab70a21ef7a4bbd598e3fd20074b07d56001",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 4,
+        "rho_capacity": 2.0,
+        "seed": 165869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n004_easy_s165869",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.0001247000036528334,
+        "phase1_route_count": 8,
+        "phase1_seconds": 0.0006565999938175082,
+        "phase2_dp_objective": 263.36082015898614,
+        "phase2_dp_seconds": 0.0024443000002065673,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 263.36082015898614,
+        "phase2_ip_seconds": 0.06636700000672136,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 20,
+      "num_customers": 4,
+      "path": "instances/mespprc_n004_easy_s165869.json",
+      "route_count": 8,
+      "tags": [
+        "easy",
+        "n004",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "c6624b909ad2b257de8e9c6dff3da9f14f1a5533906b494d469920ac40fbbaee",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 4,
+        "rho_capacity": 2.0,
+        "seed": 165870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n004_easy_s165870",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 9.509999654255807e-05,
+        "phase1_route_count": 6,
+        "phase1_seconds": 0.0003792000061366707,
+        "phase2_dp_objective": 309.0720838972305,
+        "phase2_dp_seconds": 0.001669200006290339,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 309.0720838972305,
+        "phase2_ip_seconds": 0.06150820000038948,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 20,
+      "num_customers": 4,
+      "path": "instances/mespprc_n004_easy_s165870.json",
+      "route_count": 6,
+      "tags": [
+        "easy",
+        "n004",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "28981529fc374f7bfcdba869e0ef918bf58e3dc32b6ef0cd2eba7dd469c58f83",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 4,
+        "rho_capacity": 3.5,
+        "seed": 436852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n004_moderate_s436852",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 8.260000322479755e-05,
+        "phase1_route_count": 19,
+        "phase1_seconds": 0.0017042999970726669,
+        "phase2_dp_objective": 170.71916734180905,
+        "phase2_dp_seconds": 0.006508499995106831,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 170.71916734180905,
+        "phase2_ip_seconds": 0.06765700000687502,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 20,
+      "num_customers": 4,
+      "path": "instances/mespprc_n004_moderate_s436852.json",
+      "route_count": 19,
+      "tags": [
+        "moderate",
+        "n004",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "2f099bc846252998892295e2e6598fff1c8320805a3bdaf64597a19698de40e8",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 4,
+        "rho_capacity": 3.5,
+        "seed": 436853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n004_moderate_s436853",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 9.089999366551638e-05,
+        "phase1_route_count": 14,
+        "phase1_seconds": 0.0012701999949058518,
+        "phase2_dp_objective": 169.37521272604857,
+        "phase2_dp_seconds": 0.005133900005603209,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 169.37521272604857,
+        "phase2_ip_seconds": 0.06569759998819791,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 20,
+      "num_customers": 4,
+      "path": "instances/mespprc_n004_moderate_s436853.json",
+      "route_count": 14,
+      "tags": [
+        "moderate",
+        "n004",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "10a725f790507ce43b3bac7fb54ce77be3a1435f6019e66b123d11d5cdcc240f",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 4,
+        "rho_capacity": 4.5,
+        "seed": 217076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n004_tight_s217076",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 8.720000914763659e-05,
+        "phase1_route_count": 13,
+        "phase1_seconds": 0.001642799994442612,
+        "phase2_dp_objective": 215.27563256557002,
+        "phase2_dp_seconds": 0.004432800007634796,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 215.27563256557002,
+        "phase2_ip_seconds": 0.06708290000096895,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 20,
+      "num_customers": 4,
+      "path": "instances/mespprc_n004_tight_s217076.json",
+      "route_count": 13,
+      "tags": [
+        "tight",
+        "n004",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "847454391823228c67fb7671896ced273909cc629d0fb6c48df9e55f70f1189f",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 4,
+        "rho_capacity": 4.5,
+        "seed": 217077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n004_tight_s217077",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 8.47999908728525e-05,
+        "phase1_route_count": 18,
+        "phase1_seconds": 0.0015219000051729381,
+        "phase2_dp_objective": 260.61119726956633,
+        "phase2_dp_seconds": 0.004910000003292225,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 260.61119726956633,
+        "phase2_ip_seconds": 0.06749680000939406,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 20,
+      "num_customers": 4,
+      "path": "instances/mespprc_n004_tight_s217077.json",
+      "route_count": 18,
+      "tags": [
+        "tight",
+        "n004",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "74d6e15c1c1e0a7d8ac275176c06129066f16f23cfe39e1489835e2dfb0778d9",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 5,
+        "rho_capacity": 2.0,
+        "seed": 175869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n005_easy_s175869",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 9.760000102687627e-05,
+        "phase1_route_count": 13,
+        "phase1_seconds": 0.0008746000094106421,
+        "phase2_dp_objective": 224.67388966336904,
+        "phase2_dp_seconds": 0.0088675000006333,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 224.67388966336907,
+        "phase2_ip_seconds": 0.06338910000340547,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 30,
+      "num_customers": 5,
+      "path": "instances/mespprc_n005_easy_s175869.json",
+      "route_count": 13,
+      "tags": [
+        "easy",
+        "n005",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "1c87453dce064c89bbb744fd4d18a386deef4136f83e8b3f63681717e1826c22",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 5,
+        "rho_capacity": 2.0,
+        "seed": 175870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n005_easy_s175870",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.0001049999991664663,
+        "phase1_route_count": 9,
+        "phase1_seconds": 0.0009445000032428652,
+        "phase2_dp_objective": 217.83652797425674,
+        "phase2_dp_seconds": 0.006653399992501363,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 217.83652797425674,
+        "phase2_ip_seconds": 0.061414800002239645,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 30,
+      "num_customers": 5,
+      "path": "instances/mespprc_n005_easy_s175870.json",
+      "route_count": 9,
+      "tags": [
+        "easy",
+        "n005",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "e1a57daa9656d5f988d3f018f8db35d085b5aeedeecc42f3990a894f334f423d",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 5,
+        "rho_capacity": 3.5,
+        "seed": 446852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n005_moderate_s446852",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 9.99000039882958e-05,
+        "phase1_route_count": 30,
+        "phase1_seconds": 0.004102699997019954,
+        "phase2_dp_objective": 249.69059332650923,
+        "phase2_dp_seconds": 0.04356420000840444,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 249.69059332650923,
+        "phase2_ip_seconds": 0.06815580000693444,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 30,
+      "num_customers": 5,
+      "path": "instances/mespprc_n005_moderate_s446852.json",
+      "route_count": 30,
+      "tags": [
+        "moderate",
+        "n005",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "7dc420a29cc4036a0be679b7087275666b64a4e12c84bc34829511d570abcd25",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 5,
+        "rho_capacity": 3.5,
+        "seed": 446853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n005_moderate_s446853",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00010659999679774046,
+        "phase1_route_count": 22,
+        "phase1_seconds": 0.0025166999985231087,
+        "phase2_dp_objective": 297.08858527142513,
+        "phase2_dp_seconds": 0.018602399999508634,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 297.08858527142513,
+        "phase2_ip_seconds": 0.0615556000120705,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 30,
+      "num_customers": 5,
+      "path": "instances/mespprc_n005_moderate_s446853.json",
+      "route_count": 22,
+      "tags": [
+        "moderate",
+        "n005",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "461a2327bb3aa6d6b964b4b788cda84f5dcb5250e03967c12977fcbef3643e98",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 5,
+        "rho_capacity": 4.5,
+        "seed": 227076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n005_tight_s227076",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 9.240000508725643e-05,
+        "phase1_route_count": 28,
+        "phase1_seconds": 0.0044729000073857605,
+        "phase2_dp_objective": 230.39674772447057,
+        "phase2_dp_seconds": 0.027906600007554516,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 230.39674772447057,
+        "phase2_ip_seconds": 0.06478100000822451,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 30,
+      "num_customers": 5,
+      "path": "instances/mespprc_n005_tight_s227076.json",
+      "route_count": 28,
+      "tags": [
+        "tight",
+        "n005",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "a00d42a969a9b0f245da02f0eb3ebf1ac502b027615d2b70b50c88722eb3e475",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 5,
+        "rho_capacity": 4.5,
+        "seed": 227077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n005_tight_s227077",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 9.509999654255807e-05,
+        "phase1_route_count": 27,
+        "phase1_seconds": 0.0033571999956620857,
+        "phase2_dp_objective": 389.7233041570434,
+        "phase2_dp_seconds": 0.0339557999977842,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 389.7233041570434,
+        "phase2_ip_seconds": 0.0640138000017032,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 30,
+      "num_customers": 5,
+      "path": "instances/mespprc_n005_tight_s227077.json",
+      "route_count": 27,
+      "tags": [
+        "tight",
+        "n005",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "cbdb8bca5fd5c0fa9dd2f2abc424a1f552c6d8a30725206d0455aacbb10ffbf7",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 6,
+        "rho_capacity": 2.0,
+        "seed": 185869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n006_easy_s185869",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00011999999696854502,
+        "phase1_route_count": 13,
+        "phase1_seconds": 0.0010089999996125698,
+        "phase2_dp_objective": 382.0190045134711,
+        "phase2_dp_seconds": 0.028147200006060302,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 382.0190045134711,
+        "phase2_ip_seconds": 0.06357940001180395,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 42,
+      "num_customers": 6,
+      "path": "instances/mespprc_n006_easy_s185869.json",
+      "route_count": 13,
+      "tags": [
+        "easy",
+        "n006",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "e9449c4bdce4c0a8de1da31ce5a6e0d2e9aa164fe9ba066bd03846687f0cd1f3",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 6,
+        "rho_capacity": 2.0,
+        "seed": 185870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n006_easy_s185870",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00011690000246744603,
+        "phase1_route_count": 11,
+        "phase1_seconds": 0.0009516999998595566,
+        "phase2_dp_objective": 360.4698812648484,
+        "phase2_dp_seconds": 0.022386299999197945,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 360.4698812648484,
+        "phase2_ip_seconds": 0.06413999998767395,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 42,
+      "num_customers": 6,
+      "path": "instances/mespprc_n006_easy_s185870.json",
+      "route_count": 11,
+      "tags": [
+        "easy",
+        "n006",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "80b080e0575bb80ec4de8f78a22175c5667e1706c9ed91c3b4519a83dfa6b509",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 6,
+        "rho_capacity": 3.5,
+        "seed": 456852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n006_moderate_s456852",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00012760001118294895,
+        "phase1_route_count": 36,
+        "phase1_seconds": 0.0062710999918635935,
+        "phase2_dp_objective": 220.60468132781455,
+        "phase2_dp_seconds": 0.3609417000116082,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 220.60468132781455,
+        "phase2_ip_seconds": 0.06638930000190157,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 42,
+      "num_customers": 6,
+      "path": "instances/mespprc_n006_moderate_s456852.json",
+      "route_count": 36,
+      "tags": [
+        "moderate",
+        "n006",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "f8405686dfc14fbceeb344d6e059f87cffb03bd01d6db55b43da3be3dbd619aa",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 6,
+        "rho_capacity": 3.5,
+        "seed": 456853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n006_moderate_s456853",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00012119999155402184,
+        "phase1_route_count": 29,
+        "phase1_seconds": 0.0040148000116460025,
+        "phase2_dp_objective": 391.3920464450656,
+        "phase2_dp_seconds": 0.20308789999398869,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 391.3920464450656,
+        "phase2_ip_seconds": 0.06672210000397172,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 42,
+      "num_customers": 6,
+      "path": "instances/mespprc_n006_moderate_s456853.json",
+      "route_count": 29,
+      "tags": [
+        "moderate",
+        "n006",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "fd1fbc67773fa36ed31d8fe1f6efeeec09b6d198bca84cb944edf543eabdcbed",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 6,
+        "rho_capacity": 4.5,
+        "seed": 237076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n006_tight_s237076",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00012850000348407775,
+        "phase1_route_count": 38,
+        "phase1_seconds": 0.00963719999708701,
+        "phase2_dp_objective": 372.93531026356436,
+        "phase2_dp_seconds": 0.3205298999964725,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 372.93531026356436,
+        "phase2_ip_seconds": 0.06388790000346489,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 42,
+      "num_customers": 6,
+      "path": "instances/mespprc_n006_tight_s237076.json",
+      "route_count": 38,
+      "tags": [
+        "tight",
+        "n006",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "7c40b3daa9395b9f09590b5666b6ab772eaf2f247ffc664896a27c838fa1e674",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 6,
+        "rho_capacity": 4.5,
+        "seed": 237077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n006_tight_s237077",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00011149999045301229,
+        "phase1_route_count": 36,
+        "phase1_seconds": 0.009193200006848201,
+        "phase2_dp_objective": 311.9670232237597,
+        "phase2_dp_seconds": 0.2960043999919435,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 311.9670232237597,
+        "phase2_ip_seconds": 0.06861999999091495,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 42,
+      "num_customers": 6,
+      "path": "instances/mespprc_n006_tight_s237077.json",
+      "route_count": 36,
+      "tags": [
+        "tight",
+        "n006",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "c6d09a7410caf8a325c93cc80c5e09c17b30b8216bd9df2473f6347088b9d63a",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 7,
+        "rho_capacity": 2.0,
+        "seed": 195869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n007_easy_s195869",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00014150000060908496,
+        "phase1_route_count": 16,
+        "phase1_seconds": 0.0014042999973753467,
+        "phase2_dp_objective": 398.2300651501795,
+        "phase2_dp_seconds": 0.16172410000581294,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 398.2300651501795,
+        "phase2_ip_seconds": 0.06748979999974836,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 56,
+      "num_customers": 7,
+      "path": "instances/mespprc_n007_easy_s195869.json",
+      "route_count": 16,
+      "tags": [
+        "easy",
+        "n007",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "52409d18a9c5afa92e5246e247a9f6d66ebf1bf7724a48dcbc59a71efe80715d",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 7,
+        "rho_capacity": 2.0,
+        "seed": 195870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n007_easy_s195870",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00016729999333620071,
+        "phase1_route_count": 10,
+        "phase1_seconds": 0.0012027000047964975,
+        "phase2_dp_objective": 513.4661973778889,
+        "phase2_dp_seconds": 0.06846009999571834,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 513.4661973778889,
+        "phase2_ip_seconds": 0.07183019998774398,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 56,
+      "num_customers": 7,
+      "path": "instances/mespprc_n007_easy_s195870.json",
+      "route_count": 10,
+      "tags": [
+        "easy",
+        "n007",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "f9659a33442d4f2b0cf877d2813430108ac4257e85097a1190893ba807cf754d",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 7,
+        "rho_capacity": 3.5,
+        "seed": 466852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n007_moderate_s466852",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00017160001152660698,
+        "phase1_route_count": 58,
+        "phase1_seconds": 0.02440109998860862,
+        "phase2_dp_objective": 247.53763076360312,
+        "phase2_dp_seconds": 8.351199999990058,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 247.53763076360312,
+        "phase2_ip_seconds": 0.0883627000002889,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 56,
+      "num_customers": 7,
+      "path": "instances/mespprc_n007_moderate_s466852.json",
+      "route_count": 58,
+      "tags": [
+        "moderate",
+        "n007",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "58ddb09651419accda091d4137ad235222c60675a5e41a44fdb64923402351df",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 7,
+        "rho_capacity": 3.5,
+        "seed": 466853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n007_moderate_s466853",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00017020000086631626,
+        "phase1_route_count": 44,
+        "phase1_seconds": 0.009976899993489496,
+        "phase2_dp_objective": 388.80940844980285,
+        "phase2_dp_seconds": 2.708984500000952,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 388.8094084498029,
+        "phase2_ip_seconds": 0.07360329999937676,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 56,
+      "num_customers": 7,
+      "path": "instances/mespprc_n007_moderate_s466853.json",
+      "route_count": 44,
+      "tags": [
+        "moderate",
+        "n007",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "b0ba87acdc877e4817239ec0a71a26e64ff9267e7163c4e9ddf103d91fed5246",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 7,
+        "rho_capacity": 4.5,
+        "seed": 247076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n007_tight_s247076",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00017740001203492284,
+        "phase1_route_count": 51,
+        "phase1_seconds": 0.02297909998742398,
+        "phase2_dp_objective": 427.3732161085767,
+        "phase2_dp_seconds": 6.538778899994213,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 427.3732161085767,
+        "phase2_ip_seconds": 0.06558049999875948,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 56,
+      "num_customers": 7,
+      "path": "instances/mespprc_n007_tight_s247076.json",
+      "route_count": 51,
+      "tags": [
+        "tight",
+        "n007",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "aa9d6688feaf0eea78950a48d483a47f3752ff4fb5d2cf07c0b2203f367542e5",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 7,
+        "rho_capacity": 4.5,
+        "seed": 247077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n007_tight_s247077",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00012850000348407775,
+        "phase1_route_count": 58,
+        "phase1_seconds": 0.01960549999785144,
+        "phase2_dp_objective": 333.52092534841245,
+        "phase2_dp_seconds": 4.749349500008975,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 333.52092534841245,
+        "phase2_ip_seconds": 0.06755140000313986,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 56,
+      "num_customers": 7,
+      "path": "instances/mespprc_n007_tight_s247077.json",
+      "route_count": 58,
+      "tags": [
+        "tight",
+        "n007",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "1f2e9eae7e586d947e725f3bf38349229b2b60ab7b3879d1ea3fc4193a281aef",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 8,
+        "rho_capacity": 2.0,
+        "seed": 205869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n008_easy_s205869",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00020429999858606607,
+        "phase1_route_count": 34,
+        "phase1_seconds": 0.007024699996691197,
+        "phase2_dp_objective": 387.60746699214985,
+        "phase2_dp_seconds": 10.260711900002207,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 387.60746699214985,
+        "phase2_ip_seconds": 0.06413139999494888,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 72,
+      "num_customers": 8,
+      "path": "instances/mespprc_n008_easy_s205869.json",
+      "route_count": 34,
+      "tags": [
+        "easy",
+        "n008",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "584090b602c804d356d8f82774a0889c5bc30f96027d55343f208c92735aeab8",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 8,
+        "rho_capacity": 2.0,
+        "seed": 205870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n008_easy_s205870",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00037959999463055283,
+        "phase1_route_count": 20,
+        "phase1_seconds": 0.0028257000085432082,
+        "phase2_dp_objective": 442.00336325738357,
+        "phase2_dp_seconds": 1.7182778999995207,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 442.00336325738357,
+        "phase2_ip_seconds": 0.06510570000682492,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 72,
+      "num_customers": 8,
+      "path": "instances/mespprc_n008_easy_s205870.json",
+      "route_count": 20,
+      "tags": [
+        "easy",
+        "n008",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "4893abe32bf90cd9caea75b40172b006cc09feb998108c8f8ac8a8f2b0eae0f8",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 8,
+        "rho_capacity": 3.5,
+        "seed": 476852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n008_moderate_s476852",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.0001542999962111935,
+        "phase1_route_count": 72,
+        "phase1_seconds": 0.03323640000598971,
+        "phase2_dp_objective": 343.98334654208634,
+        "phase2_dp_seconds": 102.35398359999817,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 343.98334654208634,
+        "phase2_ip_seconds": 0.06532280000101309,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 72,
+      "num_customers": 8,
+      "path": "instances/mespprc_n008_moderate_s476852.json",
+      "route_count": 72,
+      "tags": [
+        "moderate",
+        "n008",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "8826b5ab6087699eba4407d11b4bf6497455d27d01f83ad5ccd827ed48656bf8",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 8,
+        "rho_capacity": 3.5,
+        "seed": 476853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n008_moderate_s476853",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00021569999807979912,
+        "phase1_route_count": 63,
+        "phase1_seconds": 0.016257399998721667,
+        "phase2_dp_objective": 432.30154880084166,
+        "phase2_dp_seconds": 80.6247885000048,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 432.3015488008416,
+        "phase2_ip_seconds": 0.08537039998918772,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 72,
+      "num_customers": 8,
+      "path": "instances/mespprc_n008_moderate_s476853.json",
+      "route_count": 63,
+      "tags": [
+        "moderate",
+        "n008",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "6d9a05ebf427db8504c5f2731f007e1822ca9e3bee26420aa46837ae13d3633f",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 8,
+        "rho_capacity": 4.5,
+        "seed": 257076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n008_tight_s257076",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00017379999917466193,
+        "phase1_route_count": 78,
+        "phase1_seconds": 0.041170800002873875,
+        "phase2_dp_objective": 352.2317027374542,
+        "phase2_dp_seconds": 133.83605589999934,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 352.2317027374542,
+        "phase2_ip_seconds": 0.08449710000422783,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 72,
+      "num_customers": 8,
+      "path": "instances/mespprc_n008_tight_s257076.json",
+      "route_count": 78,
+      "tags": [
+        "tight",
+        "n008",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "087eb0973ceaf5c2b796a2eea7b12d87f0522b93ee5d6dc14f90958d6e4d9e66",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 8,
+        "rho_capacity": 4.5,
+        "seed": 257077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n008_tight_s257077",
+      "metrics": {
+        "dp_ip_objective_match": true,
+        "generation_seconds": 0.00020020001102238894,
+        "phase1_route_count": 65,
+        "phase1_seconds": 0.04119649999483954,
+        "phase2_dp_objective": 421.79931913411446,
+        "phase2_dp_seconds": 93.16199240001151,
+        "phase2_dp_status": "optimal",
+        "phase2_ip_objective": 421.79931913411446,
+        "phase2_ip_seconds": 0.07572439999785274,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 72,
+      "num_customers": 8,
+      "path": "instances/mespprc_n008_tight_s257077.json",
+      "route_count": 65,
+      "tags": [
+        "tight",
+        "n008",
+        "dp_checked",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "141025ee368fa6a2e8ec722f3e1738e5bd18d821589423cb9587392be3ae3692",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 9,
+        "rho_capacity": 2.0,
+        "seed": 215869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n009_easy_s215869",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00018930000078398734,
+        "phase1_route_count": 15,
+        "phase1_seconds": 0.0015591999981552362,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 698.154894468657,
+        "phase2_ip_seconds": 0.06783900001028087,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 90,
+      "num_customers": 9,
+      "path": "instances/mespprc_n009_easy_s215869.json",
+      "route_count": 15,
+      "tags": [
+        "easy",
+        "n009",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "9af4d0df6f1413c0d45b956ce4943d8fe9b14cd0ebbc964ee72a4f516752cb14",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 9,
+        "rho_capacity": 2.0,
+        "seed": 215870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n009_easy_s215870",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00021610000112559646,
+        "phase1_route_count": 55,
+        "phase1_seconds": 0.011006399989128113,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 410.69440722356563,
+        "phase2_ip_seconds": 0.07381370000075549,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 90,
+      "num_customers": 9,
+      "path": "instances/mespprc_n009_easy_s215870.json",
+      "route_count": 55,
+      "tags": [
+        "easy",
+        "n009",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "274b724c1de281a25b1b0cd8ef7e78be25b11c5a793839f489b9cc8a8f3d82bc",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 9,
+        "rho_capacity": 3.5,
+        "seed": 486852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n009_moderate_s486852",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00018770000315271318,
+        "phase1_route_count": 119,
+        "phase1_seconds": 0.06553979999443982,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 410.64279848587813,
+        "phase2_ip_seconds": 0.07746250000491273,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 90,
+      "num_customers": 9,
+      "path": "instances/mespprc_n009_moderate_s486852.json",
+      "route_count": 119,
+      "tags": [
+        "moderate",
+        "n009",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "f0e380d514c94189bd04c7df93867e267fa9bfb3a751f7d31269130f31f03b5a",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 9,
+        "rho_capacity": 3.5,
+        "seed": 486853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n009_moderate_s486853",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00018519999866839498,
+        "phase1_route_count": 85,
+        "phase1_seconds": 0.02934340000501834,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 401.8294887235231,
+        "phase2_ip_seconds": 0.06425450000097044,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 90,
+      "num_customers": 9,
+      "path": "instances/mespprc_n009_moderate_s486853.json",
+      "route_count": 85,
+      "tags": [
+        "moderate",
+        "n009",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "a912370d334e2ce7559ddb04462bcdd45e31269e43bd940b30ebdb088977d0d9",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 9,
+        "rho_capacity": 4.5,
+        "seed": 267076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n009_tight_s267076",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00018889999773819,
+        "phase1_route_count": 74,
+        "phase1_seconds": 0.0719777000049362,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 508.3951781726465,
+        "phase2_ip_seconds": 0.07198769999376964,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 90,
+      "num_customers": 9,
+      "path": "instances/mespprc_n009_tight_s267076.json",
+      "route_count": 74,
+      "tags": [
+        "tight",
+        "n009",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "cdf25f03bb81ae5006c36aaee6037783d7d2176964fa5e4b0525c717a09c607b",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 9,
+        "rho_capacity": 4.5,
+        "seed": 267077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n009_tight_s267077",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00024249999842140824,
+        "phase1_route_count": 124,
+        "phase1_seconds": 0.07358379999641329,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 526.7197104012115,
+        "phase2_ip_seconds": 0.08255079999798909,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 90,
+      "num_customers": 9,
+      "path": "instances/mespprc_n009_tight_s267077.json",
+      "route_count": 124,
+      "tags": [
+        "tight",
+        "n009",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "3ebda03a2b4974f78f9594132fd7b3a04ae842780341e4c8b5ced16561cce8a5",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 10,
+        "rho_capacity": 2.0,
+        "seed": 225869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n010_easy_s225869",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0003029999934369698,
+        "phase1_route_count": 24,
+        "phase1_seconds": 0.003271499997936189,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 633.2166107610699,
+        "phase2_ip_seconds": 0.06138650000502821,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 110,
+      "num_customers": 10,
+      "path": "instances/mespprc_n010_easy_s225869.json",
+      "route_count": 24,
+      "tags": [
+        "easy",
+        "n010",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "17932d475f375f3ffe93cf76e9874b8df195199b7a6e14ba86b1612d2c45a315",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 10,
+        "rho_capacity": 2.0,
+        "seed": 225870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n010_easy_s225870",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00024170000688172877,
+        "phase1_route_count": 26,
+        "phase1_seconds": 0.003720900000189431,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 558.3762113373049,
+        "phase2_ip_seconds": 0.06214429999818094,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 110,
+      "num_customers": 10,
+      "path": "instances/mespprc_n010_easy_s225870.json",
+      "route_count": 26,
+      "tags": [
+        "easy",
+        "n010",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "8268c6782d6f9bdb11edea99e6787d94b102029e6cb9cead51c33ed461912e5f",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 10,
+        "rho_capacity": 3.5,
+        "seed": 496852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n010_moderate_s496852",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00021410000044852495,
+        "phase1_route_count": 109,
+        "phase1_seconds": 0.06236299999000039,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 549.3079577603836,
+        "phase2_ip_seconds": 0.08858559999498539,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 110,
+      "num_customers": 10,
+      "path": "instances/mespprc_n010_moderate_s496852.json",
+      "route_count": 109,
+      "tags": [
+        "moderate",
+        "n010",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "72e9166f4a97e75839d794cc00d18c2d33afce078fbf55964313c80c334c22db",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 10,
+        "rho_capacity": 3.5,
+        "seed": 496853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n010_moderate_s496853",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00021180001203902066,
+        "phase1_route_count": 121,
+        "phase1_seconds": 0.07104249999974854,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 513.2954204562457,
+        "phase2_ip_seconds": 0.07457689999137074,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 110,
+      "num_customers": 10,
+      "path": "instances/mespprc_n010_moderate_s496853.json",
+      "route_count": 121,
+      "tags": [
+        "moderate",
+        "n010",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "ca27a8e3b36a3edc1b58a157d6fb1c78b8a759dc11b194ed1f90d7fee0a6de66",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 10,
+        "rho_capacity": 4.5,
+        "seed": 277076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n010_tight_s277076",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00025179999647662044,
+        "phase1_route_count": 165,
+        "phase1_seconds": 0.13890180000453256,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 513.451007955039,
+        "phase2_ip_seconds": 0.06965130000025965,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 110,
+      "num_customers": 10,
+      "path": "instances/mespprc_n010_tight_s277076.json",
+      "route_count": 165,
+      "tags": [
+        "tight",
+        "n010",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "f5aa3b186ed76e5a04b32a2f61aef80dc37b8f921018eadb315038f677d4db3f",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 10,
+        "rho_capacity": 4.5,
+        "seed": 277077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n010_tight_s277077",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0002201000024797395,
+        "phase1_route_count": 116,
+        "phase1_seconds": 0.12889010000799317,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 547.2333344825482,
+        "phase2_ip_seconds": 0.08594980000634678,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 110,
+      "num_customers": 10,
+      "path": "instances/mespprc_n010_tight_s277077.json",
+      "route_count": 116,
+      "tags": [
+        "tight",
+        "n010",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "47597c525eb02f03de8a20d78cc97a23db50717b3ca186b092269e7f6b9a0687",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 11,
+        "rho_capacity": 2.0,
+        "seed": 235869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n011_easy_s235869",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00025009999808389693,
+        "phase1_route_count": 54,
+        "phase1_seconds": 0.0126105999952415,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 703.5526163791117,
+        "phase2_ip_seconds": 0.06285050000587944,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 132,
+      "num_customers": 11,
+      "path": "instances/mespprc_n011_easy_s235869.json",
+      "route_count": 54,
+      "tags": [
+        "easy",
+        "n011",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "a5b1ee4a68fa26977215569821bd9f7de74a11e1ef3642a624079137347935fc",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 11,
+        "rho_capacity": 2.0,
+        "seed": 235870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n011_easy_s235870",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00024530000519007444,
+        "phase1_route_count": 32,
+        "phase1_seconds": 0.0048507000028621405,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 690.5480973347549,
+        "phase2_ip_seconds": 0.061797000002115965,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 132,
+      "num_customers": 11,
+      "path": "instances/mespprc_n011_easy_s235870.json",
+      "route_count": 32,
+      "tags": [
+        "easy",
+        "n011",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "dbffe7c8f55590ea20a8e00f3eaa1933c0b8bd6680cd1e9c645f3ddf94733c73",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 11,
+        "rho_capacity": 3.5,
+        "seed": 506852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n011_moderate_s506852",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0002511000056983903,
+        "phase1_route_count": 186,
+        "phase1_seconds": 0.14898209999955725,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 454.15648269319456,
+        "phase2_ip_seconds": 0.08425569999963045,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 132,
+      "num_customers": 11,
+      "path": "instances/mespprc_n011_moderate_s506852.json",
+      "route_count": 186,
+      "tags": [
+        "moderate",
+        "n011",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "96d6aa60047d07f84af963f67302ce1333757e0b04ac5ab1f002a66fada8bb96",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 11,
+        "rho_capacity": 3.5,
+        "seed": 506853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n011_moderate_s506853",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00029290000384207815,
+        "phase1_route_count": 138,
+        "phase1_seconds": 0.1273842000082368,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 511.4449820312443,
+        "phase2_ip_seconds": 0.0762782999954652,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 132,
+      "num_customers": 11,
+      "path": "instances/mespprc_n011_moderate_s506853.json",
+      "route_count": 138,
+      "tags": [
+        "moderate",
+        "n011",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "4a1f3248eff09f7f38d40a0feb65e0b96582a7a7823fe238d73100a12d63eb9b",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 11,
+        "rho_capacity": 4.5,
+        "seed": 287076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n011_tight_s287076",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00033850000181701034,
+        "phase1_route_count": 158,
+        "phase1_seconds": 0.1713348000048427,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 576.7869826578872,
+        "phase2_ip_seconds": 0.07891640000161715,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 132,
+      "num_customers": 11,
+      "path": "instances/mespprc_n011_tight_s287076.json",
+      "route_count": 158,
+      "tags": [
+        "tight",
+        "n011",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "bbf4e4fe4cf0c51068d768101c6e1c62ce5ac10f96473a8a7b12c7f68a609030",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 11,
+        "rho_capacity": 4.5,
+        "seed": 287077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n011_tight_s287077",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00030849999166093767,
+        "phase1_route_count": 165,
+        "phase1_seconds": 0.17367340000055265,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 542.3445342117847,
+        "phase2_ip_seconds": 0.08983989999978803,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 132,
+      "num_customers": 11,
+      "path": "instances/mespprc_n011_tight_s287077.json",
+      "route_count": 165,
+      "tags": [
+        "tight",
+        "n011",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "1eda2f86c56c8c81184c327987e76f603c4d80472939fd73dda248693fc98b0a",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 12,
+        "rho_capacity": 2.0,
+        "seed": 245869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n012_easy_s245869",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00029370000993367285,
+        "phase1_route_count": 48,
+        "phase1_seconds": 0.008993900002678856,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 709.8659196877195,
+        "phase2_ip_seconds": 0.06782140000723302,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 156,
+      "num_customers": 12,
+      "path": "instances/mespprc_n012_easy_s245869.json",
+      "route_count": 48,
+      "tags": [
+        "easy",
+        "n012",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "78e869bbc4527873797c0ac41a5a8cf5f9fb899b8a97d36040ef3a9f8f88acae",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 12,
+        "rho_capacity": 2.0,
+        "seed": 245870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n012_easy_s245870",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00028049999673385173,
+        "phase1_route_count": 70,
+        "phase1_seconds": 0.018707600000198,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 559.6688912135897,
+        "phase2_ip_seconds": 0.06312229999457486,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 156,
+      "num_customers": 12,
+      "path": "instances/mespprc_n012_easy_s245870.json",
+      "route_count": 70,
+      "tags": [
+        "easy",
+        "n012",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "d5ee86904b5adc0a12bab816005fa7b5e0b8ee2aa7bfc850131c276032f77408",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 12,
+        "rho_capacity": 3.5,
+        "seed": 516852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n012_moderate_s516852",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0002906000008806586,
+        "phase1_route_count": 225,
+        "phase1_seconds": 0.15659759999834932,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 651.0413254357896,
+        "phase2_ip_seconds": 0.09362139999575447,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 156,
+      "num_customers": 12,
+      "path": "instances/mespprc_n012_moderate_s516852.json",
+      "route_count": 225,
+      "tags": [
+        "moderate",
+        "n012",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "c0fe1d704d66585992b8d780bd497bbea018815ccc4b01eee5b7c57c5c520648",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 12,
+        "rho_capacity": 3.5,
+        "seed": 516853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n012_moderate_s516853",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0002832000027410686,
+        "phase1_route_count": 250,
+        "phase1_seconds": 0.1481840999913402,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 641.449176092602,
+        "phase2_ip_seconds": 0.09804190001159441,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 156,
+      "num_customers": 12,
+      "path": "instances/mespprc_n012_moderate_s516853.json",
+      "route_count": 250,
+      "tags": [
+        "moderate",
+        "n012",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "4a3ee58a1931e0b1ae1e4cc5bd47ff7ac45591a9ca12880220ac25e5b66103fe",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 12,
+        "rho_capacity": 4.5,
+        "seed": 297076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n012_tight_s297076",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0003254000039305538,
+        "phase1_route_count": 290,
+        "phase1_seconds": 0.46612669999012724,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 593.961171564594,
+        "phase2_ip_seconds": 0.07888400000229012,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 156,
+      "num_customers": 12,
+      "path": "instances/mespprc_n012_tight_s297076.json",
+      "route_count": 290,
+      "tags": [
+        "tight",
+        "n012",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "7fac81e8b0e4aab05bce46078262d49c1d4ef937c03f51465acc35723a4a2e03",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 12,
+        "rho_capacity": 4.5,
+        "seed": 297077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n012_tight_s297077",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00029909999284427613,
+        "phase1_route_count": 203,
+        "phase1_seconds": 0.3201076999976067,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 628.289460599771,
+        "phase2_ip_seconds": 0.09481520000554156,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 156,
+      "num_customers": 12,
+      "path": "instances/mespprc_n012_tight_s297077.json",
+      "route_count": 203,
+      "tags": [
+        "tight",
+        "n012",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "97fcd3c29db60e0d5ab2fe8ac97d3ad4804510429f90fbeb4f0579a84037ec57",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 13,
+        "rho_capacity": 2.0,
+        "seed": 255869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n013_easy_s255869",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00031630000739824027,
+        "phase1_route_count": 37,
+        "phase1_seconds": 0.009854700008872896,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 763.6929136171034,
+        "phase2_ip_seconds": 0.07545560000289697,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 182,
+      "num_customers": 13,
+      "path": "instances/mespprc_n013_easy_s255869.json",
+      "route_count": 37,
+      "tags": [
+        "easy",
+        "n013",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "e53cc62a1fad34b4bf8126811fc4be404fb2950c15674bdc5c2edac1e9da9202",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 13,
+        "rho_capacity": 2.0,
+        "seed": 255870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n013_easy_s255870",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0003546000079950318,
+        "phase1_route_count": 55,
+        "phase1_seconds": 0.014620199988712557,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 703.6722226189842,
+        "phase2_ip_seconds": 0.07370709998940583,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 182,
+      "num_customers": 13,
+      "path": "instances/mespprc_n013_easy_s255870.json",
+      "route_count": 55,
+      "tags": [
+        "easy",
+        "n013",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "f24e28c8b5b0a472589758e2c79d290779c9349942da8acf7df834629575f787",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 13,
+        "rho_capacity": 3.5,
+        "seed": 526852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n013_moderate_s526852",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0003107999946223572,
+        "phase1_route_count": 225,
+        "phase1_seconds": 0.2875812999991467,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 563.3366187472543,
+        "phase2_ip_seconds": 0.09372550000261981,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 182,
+      "num_customers": 13,
+      "path": "instances/mespprc_n013_moderate_s526852.json",
+      "route_count": 225,
+      "tags": [
+        "moderate",
+        "n013",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "b4bb9c1cab79833afdbcd3b93184c058878ab6ea76ecc2704a9c0e1c5b4592bb",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 13,
+        "rho_capacity": 3.5,
+        "seed": 526853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n013_moderate_s526853",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00033120000443886966,
+        "phase1_route_count": 231,
+        "phase1_seconds": 0.17205579999426845,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 623.6108136003253,
+        "phase2_ip_seconds": 0.09748720000789035,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 182,
+      "num_customers": 13,
+      "path": "instances/mespprc_n013_moderate_s526853.json",
+      "route_count": 231,
+      "tags": [
+        "moderate",
+        "n013",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "f869561c5867b4746d3740851c685fe10c749b284d981dbf9fbb47bdc910cc32",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 13,
+        "rho_capacity": 4.5,
+        "seed": 307076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n013_tight_s307076",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.000417199989897199,
+        "phase1_route_count": 207,
+        "phase1_seconds": 0.42241630000353325,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 676.104196214081,
+        "phase2_ip_seconds": 0.10206839999591466,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 182,
+      "num_customers": 13,
+      "path": "instances/mespprc_n013_tight_s307076.json",
+      "route_count": 207,
+      "tags": [
+        "tight",
+        "n013",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "2bbd320a7eb549eaa92ecc7960d2a0ef08d6317e3d37cc6af677964682a16c50",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 13,
+        "rho_capacity": 4.5,
+        "seed": 307077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n013_tight_s307077",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00035489999572746456,
+        "phase1_route_count": 335,
+        "phase1_seconds": 0.5298054000013508,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 625.6052975953893,
+        "phase2_ip_seconds": 0.08606300000974443,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 182,
+      "num_customers": 13,
+      "path": "instances/mespprc_n013_tight_s307077.json",
+      "route_count": 335,
+      "tags": [
+        "tight",
+        "n013",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "a05e079e5fe7b652faacc7fd1f87b4b98d0d8532d31eaa7ee1fac04c3c5dae6c",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 14,
+        "rho_capacity": 2.0,
+        "seed": 265869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n014_easy_s265869",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0004326999915065244,
+        "phase1_route_count": 84,
+        "phase1_seconds": 0.022242899998673238,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 752.7178981742005,
+        "phase2_ip_seconds": 0.07244200000423007,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 210,
+      "num_customers": 14,
+      "path": "instances/mespprc_n014_easy_s265869.json",
+      "route_count": 84,
+      "tags": [
+        "easy",
+        "n014",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "8607c7cf645bc81590b6e7cda04aac112c5f6ac0f19e01493bf3289c3bcffa23",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 14,
+        "rho_capacity": 2.0,
+        "seed": 265870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n014_easy_s265870",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00041120000241789967,
+        "phase1_route_count": 60,
+        "phase1_seconds": 0.014864400000078604,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 833.5360419460454,
+        "phase2_ip_seconds": 0.06353639998997096,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 210,
+      "num_customers": 14,
+      "path": "instances/mespprc_n014_easy_s265870.json",
+      "route_count": 60,
+      "tags": [
+        "easy",
+        "n014",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "ebcf394f493595fc4ba3636f7524ff4c468c2a8655a14a13c245e0bcd52edf92",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 14,
+        "rho_capacity": 3.5,
+        "seed": 536852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n014_moderate_s536852",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00041009999404195696,
+        "phase1_route_count": 300,
+        "phase1_seconds": 0.44158640000387095,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 508.83990578384703,
+        "phase2_ip_seconds": 0.09155369999643881,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 210,
+      "num_customers": 14,
+      "path": "instances/mespprc_n014_moderate_s536852.json",
+      "route_count": 300,
+      "tags": [
+        "moderate",
+        "n014",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "30cba522e58ad42991e95b7f8e3cdc327aa5a7cfec7cfd0902f9633be0cad298",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 14,
+        "rho_capacity": 3.5,
+        "seed": 536853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n014_moderate_s536853",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0003711000026669353,
+        "phase1_route_count": 310,
+        "phase1_seconds": 0.3854293000040343,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 625.379393093777,
+        "phase2_ip_seconds": 0.09530290000839159,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 210,
+      "num_customers": 14,
+      "path": "instances/mespprc_n014_moderate_s536853.json",
+      "route_count": 310,
+      "tags": [
+        "moderate",
+        "n014",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "16b6dcc4dfda44b27880a4a70e35571b3e59abf3b8e56a822fbcb6cf84ade2a1",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 14,
+        "rho_capacity": 4.5,
+        "seed": 317076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n014_tight_s317076",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0003519000019878149,
+        "phase1_route_count": 425,
+        "phase1_seconds": 0.6897785000037402,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 667.6324087020276,
+        "phase2_ip_seconds": 0.07725800000480376,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 210,
+      "num_customers": 14,
+      "path": "instances/mespprc_n014_tight_s317076.json",
+      "route_count": 425,
+      "tags": [
+        "tight",
+        "n014",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "758e59d4eea2c684fb2027625e3db37eaaa4ba2e234c465bfde64adb777731a2",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 14,
+        "rho_capacity": 4.5,
+        "seed": 317077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n014_tight_s317077",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0003724999987753108,
+        "phase1_route_count": 382,
+        "phase1_seconds": 0.6071395999897504,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 626.1883669180942,
+        "phase2_ip_seconds": 0.07593450001149904,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 210,
+      "num_customers": 14,
+      "path": "instances/mespprc_n014_tight_s317077.json",
+      "route_count": 382,
+      "tags": [
+        "tight",
+        "n014",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "f4dc3f3da45c7b0e9e6c866f2862dd1e14ddeac02833025492a700dea78b9780",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 15,
+        "rho_capacity": 2.0,
+        "seed": 275869,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n015_easy_s275869",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0004042999935336411,
+        "phase1_route_count": 86,
+        "phase1_seconds": 0.027021799993235618,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 766.3866523175138,
+        "phase2_ip_seconds": 0.07625460000417661,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 240,
+      "num_customers": 15,
+      "path": "instances/mespprc_n015_easy_s275869.json",
+      "route_count": 86,
+      "tags": [
+        "easy",
+        "n015",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "c349dc56364e54532d9d0e2f7c1f14d84aa3029a83816750d779191abcb5b8a3",
+      "difficulty": "easy",
+      "generator_config": {
+        "beta_route": 1.15,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 1.0,
+        "num_customers": 15,
+        "rho_capacity": 2.0,
+        "seed": 275870,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n015_easy_s275870",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00045769999269396067,
+        "phase1_route_count": 68,
+        "phase1_seconds": 0.019350200003827922,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 919.5371683690344,
+        "phase2_ip_seconds": 0.07523570000194013,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 240,
+      "num_customers": 15,
+      "path": "instances/mespprc_n015_easy_s275870.json",
+      "route_count": 68,
+      "tags": [
+        "easy",
+        "n015",
+        "small_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "0645ab4a2edb3fc341ed76bb82b226a5ee2892ce54127aaf50e4032cef953187",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 15,
+        "rho_capacity": 3.5,
+        "seed": 546852,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n015_moderate_s546852",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00040269999590236694,
+        "phase1_route_count": 400,
+        "phase1_seconds": 0.5528898000047775,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 592.2198270368208,
+        "phase2_ip_seconds": 0.09126200000173412,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 240,
+      "num_customers": 15,
+      "path": "instances/mespprc_n015_moderate_s546852.json",
+      "route_count": 400,
+      "tags": [
+        "moderate",
+        "n015",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "4bfc0fa3d13f94f76fa6d11e03946ce4564b5e59e0d91448cfcaf097d8adf3ed",
+      "difficulty": "moderate",
+      "generator_config": {
+        "beta_route": 1.65,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.92,
+        "num_customers": 15,
+        "rho_capacity": 3.5,
+        "seed": 546853,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n015_moderate_s546853",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.00042969999776687473,
+        "phase1_route_count": 398,
+        "phase1_seconds": 0.4823576999915531,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 590.7442187369063,
+        "phase2_ip_seconds": 0.13132329999643844,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 240,
+      "num_customers": 15,
+      "path": "instances/mespprc_n015_moderate_s546853.json",
+      "route_count": 398,
+      "tags": [
+        "moderate",
+        "n015",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "36c409c20ec3c3f94e744aafb61bdc3fbb9d329fc34918fd1542d499cdd559eb",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 15,
+        "rho_capacity": 4.5,
+        "seed": 327076,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n015_tight_s327076",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0004241999995429069,
+        "phase1_route_count": 300,
+        "phase1_seconds": 1.0790606000082335,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 689.7771405867826,
+        "phase2_ip_seconds": 0.09269639999547508,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 240,
+      "num_customers": 15,
+      "path": "instances/mespprc_n015_tight_s327076.json",
+      "route_count": 300,
+      "tags": [
+        "tight",
+        "n015",
+        "medium_route_pool"
+      ]
+    },
+    {
+      "checksum_sha256": "809538beb03b39025970b6325b37ec06f803f63460086adca39f525eabbe172f",
+      "difficulty": "tight",
+      "generator_config": {
+        "beta_route": 2.05,
+        "coordinate_max": 100.0,
+        "coordinate_min": 0.0,
+        "demand_max": 10,
+        "demand_min": 1,
+        "depot_coordinate": [
+          50.0,
+          50.0
+        ],
+        "gamma_duty": 0.82,
+        "num_customers": 15,
+        "rho_capacity": 4.5,
+        "seed": 327077,
+        "service_time_base": 0.0,
+        "service_time_slope_per_customer": 0.1,
+        "vehicle_speed": 1.0
+      },
+      "id": "mespprc_n015_tight_s327077",
+      "metrics": {
+        "dp_ip_objective_match": null,
+        "generation_seconds": 0.0004465000092750415,
+        "phase1_route_count": 296,
+        "phase1_seconds": 1.0641185999993468,
+        "phase2_dp_objective": null,
+        "phase2_dp_seconds": null,
+        "phase2_dp_status": null,
+        "phase2_ip_objective": 634.2621287807452,
+        "phase2_ip_seconds": 0.08313790000102017,
+        "phase2_ip_status": "optimal"
+      },
+      "num_arcs": 240,
+      "num_customers": 15,
+      "path": "instances/mespprc_n015_tight_s327077.json",
+      "route_count": 296,
+      "tags": [
+        "tight",
+        "n015",
+        "medium_route_pool"
+      ]
+    }
+  ],
+  "schema": "mespprc.instance_database.v1",
+  "schema_version": 1
+}

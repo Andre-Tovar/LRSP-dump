@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# initial latex
+latex dissert6.tex
+
+# make bibliography
+bibtex dissert6
+
+# twice more
+latex dissert6.tex
+latex dissert6.tex
+
+dvipdf dissert6.dvi

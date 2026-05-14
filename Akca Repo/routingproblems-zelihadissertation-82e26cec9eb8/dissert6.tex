@@ -1,0 +1,250 @@
+% October 31 2008
+
+%updated on February 6, 2006 by Zeliha Akca
+%proposal report
+% written on July 15, 2005 by Zeliha Akca and Dr.Berger
+
+
+%old doc. class
+%\documentclass[12pt, fleqn, astron]{article}
+
+%new doc. class from menal
+
+ \documentclass[11pt]{report}
+
+%=====================================================================================
+%new packages
+\usepackage{luthesis-2e2}
+\usepackage{theorem}
+\usepackage[chapter]{algorithm}
+\usepackage{algorithmic}
+\usepackage{times} %greatly improves the on-screen readability
+
+%old packages
+\usepackage {color}
+\usepackage{graphicx}
+\usepackage{optprog}
+\usepackage{amssymb,amsmath}
+\usepackage{rotating}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{verbatim}
+%\usepackage{sublabel}
+%====================================================================================
+%MARGINS:
+
+%previous format
+%\marginparwidth 0pt\marginparsep 0pt \topskip 0pt\headsep
+%0pt\headheight 0pt \oddsidemargin 0pt\evensidemargin 0pt
+%\textwidth 6.5in \topmargin 0pt\textheight 9.0in
+%======================================================================================
+
+%my old version
+\newtheorem{prop}{Proposition}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{conjecture}{Conjecture}[chapter]
+\newtheorem{observ}{Observation}[chapter]
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{defn}{Definition}[chapter]
+%\newtheorem{exp}{Example}[chapter]
+
+
+%from menal
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%\newenvironment{definition}[1][Definition]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\mysquare}{\smash{\raise8pt\hbox{\leavevmode\hbox{\vrule\vtop{\vbox{\hrule
+width9pt}\kern9pt\hrule width9pt}\vrule}}}}
+
+%qed0
+\newcommand{\qed}{\hfill\mysquare}
+
+%\newcommand{\singlespace}{\renewcommand{\baselinestretch}{1}\small\normalsize}
+
+%qed1 frm menal
+%\newcommand{\qed}{\nobreak \ifvmode \relax \else
+%     \ifdim\lastskip<1.5em \hskip-\lastskip
+%     \hskip1.5em plus0em minus0.5em \fi \nobreak
+%     \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\zaupdate}[1]{\noindent \textcolor{blue}{\bf ZE: #1 } }
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Tr}{\rightleftharpoons}
+
+\newcommand{\fvarj}{t_j}
+\newcommand{\colq}{q = ({\mbox{x}^q}^T, {\mbox{y}^q}^T, {\mbox{t}^q}^T )^T}
+\newcommand{\zq}{q' = ({\mbox{x}^{q'}}^T, {\mbox{y}^{q'}}^T, {\mbox{t}^{q'}}^T )^T}
+
+\newcommand{\polyS}{\mathcal{P}_{\mbox{SPP}}}
+\newcommand{\polyKn}{\mathcal{P}^j_{\mbox{KNP}}}
+\newcommand{\polyPr}{\mathcal{P}^p_{\mbox{SPP}}}
+\newcommand{\polyGAP}{\mathcal{P}_{\mbox{GAP}}}
+\newcommand{\polyFL}{\mathcal{P}_{\mbox{CFL}}}
+\newcommand{\polyMKn}{\mathcal{P}_{\mbox{MKN}}}
+\newcommand{\ta}{$t_0$}
+\newcommand{\tb}{$t_1$}
+\newcommand{\tc}{$t_2$}
+\newcommand{\td}{$t_3$}
+\newcommand{\te}{$t_4$}
+
+
+%\doublespacing
+\onehalfspacing
+%\singlespacing
+\bibpunct{(}{)}{;}{a}{,}{,}
+
+%from menal
+\usepackage{epsfig, html}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\include{format}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%=====================================================================================
+%Title page
+\title {Integrated Location-Routing-and-Scheduling Problems: Models and Algorithms}
+\author {Zeliha Ak\c ca}
+
+\submitdate{ 2009}
+
+\dept{Industrial and Systems Engineering} \copyrightfalse
+%\principaladviser{Prof. Rosemary Berger}
+\principaladviser{Prof.Theodore K. Ralphs }
+
+\firstreader{Prof. Theodore K. Ralphs}
+\secondreader{Prof. Rosemary Berger}
+\thirdreader{Prof. Jeffrey T. Linderoth}
+\fourthreader{Prof. Karen Smilowitz}
+
+%\figurespagefalse
+%\tablespagefalse
+
+
+\beforepreface
+
+%\prefacesection{Acknowledgments}
+%Thank you....
+
+
+\newpage
+
+\addcontentsline{toc}{chapter}{Contents} \afterpreface
+
+
+%\prefacesection{Abstract}
+
+
+%old my version
+%\addcontentsline{toc}{section}{}\tableofcontents
+\newpage
+
+\chapter{Integrated Location Routing and Scheduling Problems (LRSP)}
+
+\include {sections/intro}
+\pagebreak
+\include {sections/LitSurvey}
+\pagebreak
+\include{sections/problemdefn}
+\include{sections/dwd}
+\pagebreak
+
+%\part {Branch and Price Algorithm for the LRSP}
+\chapter{Branch and Price Algorithm for the LRSP}
+
+\include{sections/ch2-soln}
+%\include{sections/solutionMet}
+%\pagebreak
+
+%\include{sections/implementation}
+%\pagebreak
+
+%\include{sections/computationexp}
+%\pagebreak
+
+
+
+\chapter{Cut Generation In Branch and Price Algorithm }
+
+
+%\section{Cutting Planes Based on SPP-LRSP}
+%\subsection{Relaxations of the SPP-LRSP}
+%\subsection{Projection of the SPP-LRSP}
+%\subsection{Capacitated Facility Location Polytope}
+%\subsection{Generalized Assignment Polytope}
+%\section{Disjunctive Cuts}
+%\section{Cutting Planes Based on G-LRSP}
+
+
+\include{sections/cutgenintro}
+
+
+
+\chapter{Computational Experiments}
+\include{sections/ch4-compexp}
+
+  %\section{Description of the Instances}
+  %   \subsection{Test Problems from Lin}
+  %   \subsection{Test Problems Using Cordeau Instances}
+
+  %\section {Comparing the LP Relaxations of SPP-LRSP and EB-LRSP}
+  %\section {Comparison of Alternative Set Partitioning Formulations}
+  %\section {Comparing Solution Algorithms for Pricing Problem}
+  %\section {Branch and Price Algorithm}
+
+
+
+%\section {Experiments with Cutting Planes}
+%\zaupdate{GAP cut experiments Dec20/}
+
+
+%\include{sections/comp-lrpdc-lrsp}
+            %\section {Effect of Scheduling Constraint in the LRSP}
+
+\chapter{Case Study: LRP}
+%\include{sections/lrp}
+
+\chapter{Case Study: Effect of Scheduling Constraint: LRSP vs LRP-DC}
+%\subsection{Effect of Scheduling Constraint: LRSP vs LRP-DC}
+%\begin{figure}[h]
+      %\centering
+ %     \includegraphics[scale=0.5]{./figs/lrp_lrsp_cost1b.eps}
+ %  \end{figure}
+  One of the open facilities is different in 3 of the instances.
+ %\begin{figure}[h]
+      %\centering
+  %    \includegraphics[scale=0.5]{./figs/lrp_lrsp_cost2b.eps}
+  %  \end{figure}
+\include{sections/comp-lrpdc-lrsp}
+
+
+%\include{sections/proposed}
+
+
+\pagebreak
+\appendix
+\input sections/appendix.tex
+
+
+
+
+\pagebreak
+\bibliography{proposal-ref.bib}
+
+
+
+%\bibliographystyle{plain}
+%\bibliographystyle{astron}
+\bibliographystyle{plainnat}
+\end{document}

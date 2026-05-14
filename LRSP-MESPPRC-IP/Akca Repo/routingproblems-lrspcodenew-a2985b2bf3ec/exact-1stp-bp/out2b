@@ -1,0 +1,2141 @@
+inside minto.c
+
+MINTO, a Mixed integer Optimizer
+Copyright (C) 1992-2007  --  M.W.P. Savelsbergh, J.T. Linderoth
+
+ILOG CPLEX 9.100, licensed to "lehigh university-bethlehem, pa", options: e m b q use=20 
+num_REQ=2 
+# of columns=305, # of customers=747 
+PairNum[0]=48 
+PairNum[1]=59 
+PairNum[2]=64 
+PairNum[3]=76 
+PairNum[4]=58 
+NumNZ=2319 ,NumCol=341 ,NumRow=186 
+Initial upper bound is 4795.000000 
+MINTO: Solving problem p01-f25-v1t1.txt
+MINTO: Problem statistics:
+
+    Number of constraints: 186
+    Number of variables:   341 (0)
+    Number of nonzero's:   2319
+
+    Number of continuous variables: 0
+    Number of binary variables:     336
+    Number of integer variables:    5
+
+MINTO: Initialization ... done
+APPL_INIT ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Row structure analysis (after preprocessing):
+    Number of constraints of type MIXEQ:        5
+    Number of constraints of type ALLBINUB:     1
+    Number of constraints of type BINSUMVARUB:  5
+    Number of constraints of type BINSUM1UB:    150
+    Number of constraints of type BINSUM1EQ:    25
+
+MINTO control parameters:
+    Objective sense     : minimization
+    Output level        : 2
+    Maximum cpu time    : 0
+    Maximum #nodes      : 1
+
+MINTO system function activity levels:
+    Bound improvement   : not active
+    Branching type      : 0
+    Node selection type : 0
+    Preprocessing level : 0
+    Primal heuristic    : active
+    Clique cuts         : not active
+    Implication cuts    : not active
+    Knapsack covers     : not active
+    GUB covers          : not active
+    Flow covers         : not active
+    Row management      : active
+    Restarts            : active
+    Force branching     : 1
+    Advanced basis      : active
+    Names mode level    : 3
+
+APPL_INITLP ... entering a_initlp.c
+DONE
+MINTO: Initialization of root node ... done
+MINTO: Selected node (0,1)
+APPL_NODE ... integrality gap=9999999999999999635896294965248.000000, UB= -9999999999999999635896294965248.000000 
+Lower bound =999999999999999949387135297074018866963645011013410073083904.000000 
+DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-4795.000000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_48: [5:7, 11:3, 16:2, 17:5, 18:1, 22:8, 24:10, ], C=-585.692308, T=139.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_59: [1:2, 10:1, 15:5, 16:7, 17:8, 19:4, ], C=-511.846154, T=138.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_64: [4:5, 11:4, 16:7, 17:8, 18:2, 24:1, ], C=-587.038462, T=140.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_76: [0:3, 4:9, 5:1, 7:2, 11:8, 16:5, 17:6, ], C=-516.576923, T=132.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_58: [0:6, 1:1, 5:4, 7:5, 16:3, 19:8, ], C=-562.423077, T=140.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4795.000000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 1, numsubsetpri = 1
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 38.200000;
+v[3] = 21.700000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_49: [0:1, 6:3, 16:7, 17:6, 21:2, 22:4, 24:9, ], C=-581.450000, T=139.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_60: [2:3, 11:8, 14:6, 15:1, 16:7, 20:2, 21:4, ], C=-536.375000, T=133.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_65: [0:3, 10:5, 12:1, 14:6, 16:7, 21:4, ], C=-463.475000, T=136.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_77: [0:8, 2:6, 11:1, 14:2, 15:5, 16:3, 21:7, ], C=-426.175000, T=131.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_59: [2:1, 10:4, 14:6, 15:7, 16:5, 21:2, ], C=-529.450000, T=130.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4795.000000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 2, numsubsetpri = 2
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 69.905941;
+v[3] = 43.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_50: [0:5, 3:1, 5:6, 9:3, 16:2, 20:4, 24:8, ], C=-434.767327, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_61: [0:7, 6:5, 7:6, 9:3, 15:1, 20:2, ], C=-522.444307, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_66: [0:1, 1:2, 3:6, 9:4, 16:7, 20:3, ], C=-441.889851, T=140.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_78: [0:6, 5:8, 7:7, 9:1, 10:4, 15:3, 20:2, ], C=-398.659653, T=139.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_60: [0:6, 2:1, 7:7, 9:5, 19:2, 20:4, ], C=-534.740099, T=138.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4795.000000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 3, numsubsetpri = 3
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 41.228346;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_51: [5:4, 6:5, 11:1, 18:2, 23:6, 24:8, ], C=-664.204724, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_62: [0:7, 1:1, 8:5, 9:4, 11:3, 19:9, 21:8, ], C=-412.566929, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_67: [3:7, 11:2, 14:1, 16:3, 23:6, 24:5, ], C=-422.881890, T=122.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_79: [0:3, 19:1, 21:2, 23:6, 24:5, ], C=-441.937008, T=130.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_61: [6:1, 7:2, 8:6, 15:7, 19:9, 20:5, 21:3, ], C=-525.149606, T=138.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4795.000000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 4, numsubsetpri = 4
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 34.804524;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_52: [3:1, 4:4, 13:6, 14:3, 18:2, 23:9, 24:8, ], C=-422.848028, T=139.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_63: [1:2, 3:5, 10:1, 13:4, 14:7, 18:6, ], C=-302.150232, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_68: [4:4, 9:3, 13:7, 14:2, 18:1, 24:6, ], C=-279.150232, T=136.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_80: [0:3, 1:1, 4:5, 14:6, 18:7, 21:2, ], C=-315.919374, T=137.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_62: [0:2, 1:6, 2:4, 4:9, 10:1, 15:10, 20:8, 21:3, ], C=-366.065545, T=134.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4795.000000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 5, numsubsetpri = 5
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 14.243902;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_53: [3:9, 11:8, 12:4, 13:2, 22:6, 23:5, 24:1, ], C=-533.006751, T=135.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_64: [1:5, 4:1, 9:3, 12:2, 15:6, ], C=-348.354530, T=138.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_69: [3:4, 4:8, 11:7, 12:5, 13:2, 24:1, ], C=-477.086237, T=135.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_81: [1:5, 12:3, 21:6, 22:1, 23:2, ], C=-458.270035, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_63: [2:3, 8:5, 9:6, 11:7, 15:1, 21:2, ], C=-398.949260, T=136.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4795.000000)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 6, numsubsetpri = 6
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_54: [4:8, 5:4, 11:9, 12:6, 13:1, 17:11, 24:2, ], C=-403.468865, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_65: [1:8, 3:5, 9:1, 10:7, 12:4, 14:2, 16:3, ], C=-197.568887, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_70: [1:6, 8:5, 9:4, 12:1, 16:3, ], C=-263.980378, T=133.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_82: [1:7, 3:3, 10:8, 11:5, 23:1, 24:2, ], C=-278.146372, T=134.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_64: [1:7, 2:10, 4:1, 8:5, 9:4, 14:3, 16:2, 19:9, ], C=-334.578966, T=138.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4761.181735)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 7, numsubsetpri = 7
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_55: [0:5, 8:7, 10:6, 14:8, 16:9, 17:1, 24:3, ], C=-549.787724, T=135.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_66: [0:3, 2:5, 4:7, 7:4, 8:9, 10:1, 14:8, ], C=-332.754471, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_71: [0:2, 7:1, 10:3, 12:6, 18:5, ], C=-271.139009, T=137.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_83: [0:7, 7:6, 8:3, 10:8, 14:2, 15:4, 16:1, ], C=-362.087063, T=139.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_65: [0:1, 6:2, 7:3, 8:6, 10:5, 15:7, ], C=-471.171365, T=128.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4701.803568)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 8, numsubsetpri = 8
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_56: [5:1, 7:8, 10:7, 22:2, 23:3, 24:5, ], C=-496.758707, T=137.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_67: [4:8, 5:4, 7:5, 10:7, 15:1, 19:2, ], C=-305.711380, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_72: [3:1, 7:6, 10:4, 12:2, 21:5, ], C=-272.213691, T=138.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_84: [4:1, 5:7, 7:3, 10:5, 21:4, 24:8, ], C=-355.774620, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_66: [4:4, 7:7, 9:5, 10:3, 19:1, 21:8, ], C=-419.098935, T=140.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4689.490299)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 9, numsubsetpri = 9
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_57: [0:3, 5:5, 15:1, 19:2, 23:6, ], C=-340.514526, T=137.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_68: [0:8, 4:3, 5:5, 9:2, 15:1, 22:7, 23:6, ], C=-200.587106, T=136.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_73: [0:1, 15:3, 17:5, 19:2, ], C=-185.811108, T=138.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_85: [0:5, 5:8, 9:1, 11:3, 14:2, 22:6, 23:7, ], C=-265.890771, T=139.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_67: [0:1, 8:6, 9:8, 14:7, 15:5, 19:3, 20:9, 21:2, ], C=-299.985628, T=139.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4681.959848)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 10, numsubsetpri = 10
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 9.610928;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_58: [8:6, 9:7, 10:4, 13:2, 16:8, 20:5, 24:1, ], C=-305.301398, T=135.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_69: [1:9, 5:1, 10:6, 12:2, 15:8, 16:4, 18:3, ], C=-242.652605, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_74: [5:3, 10:2, 13:6, 16:1, 24:5, ], C=-150.619568, T=131.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_86: [5:1, 8:4, 9:5, 10:3, 16:7, 18:6, ], C=-322.142313, T=132.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_68: [9:4, 10:1, 16:2, 18:3, 20:5, ], C=-288.535959, T=130.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4673.060438)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 11, numsubsetpri = 11
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 1.256022;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_59: [9:7, 12:4, 13:2, 14:6, 16:8, 18:5, 24:1, ], C=-221.718440, T=134.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_70: [0:3, 2:7, 5:5, 7:4, 15:1, 19:8, ], C=-149.622232, T=138.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_75: [3:6, 9:4, 12:7, 14:3, 16:5, 24:1, ], C=-110.497661, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_87: [0:6, 6:8, 7:7, 9:4, 11:1, 14:3, 16:2, ], C=-122.625294, T=139.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_69: [1:10, 2:1, 7:2, 8:7, 9:6, 15:8, 20:5, 21:3, ], C=-221.720871, T=138.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4657.516713)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 12, numsubsetpri = 12
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 47.238502;
+v[3] = 21.937061;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_60: [0:7, 3:10, 7:5, 13:2, 17:9, 21:6, 23:4, 24:1, ], C=-122.589657, T=131.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_71: [0:3, 4:11, 7:2, 10:5, 11:10, 15:8, 20:7, 21:1, ], C=-151.590242, T=131.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_76: [9:3, 10:6, 11:1, 15:5, 16:7, 20:4, ], C=-86.523480, T=138.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_88: [0:9, 1:3, 7:8, 10:4, 11:6, 17:1, ], C=-129.887783, T=138.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_70: [0:10, 1:3, 7:9, 8:6, 10:11, 15:7, 19:1, 20:5, ], C=-167.392041, T=136.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4646.007580)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 13, numsubsetpri = 13
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 30.950161;
+v[3] = 20.004067;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_61: [2:5, 10:3, 13:7, 15:4, 17:1, 24:8, ], C=-199.738551, T=136.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_72: [2:2, 4:6, 9:5, 10:9, 11:8, 15:4, 19:1, ], C=-157.797224, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_77: [3:4, 4:8, 10:9, 12:2, 14:7, 17:5, 18:1, ], C=-158.861563, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_89: [2:7, 3:3, 10:1, 11:5, 16:4, 19:8, ], C=-232.647728, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_71: [2:9, 4:5, 9:6, 10:4, 15:1, 19:8, 20:2, ], C=-171.267544, T=130.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4628.601153)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 14, numsubsetpri = 14
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 28.138777;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_62: [3:8, 5:1, 6:2, 11:10, 13:5, 14:9, 22:3, 24:6, ], C=-194.738884, T=135.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_73: [1:1, 2:9, 4:6, 8:3, 11:5, 19:8, 20:2, ], C=-166.784656, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_78: [5:3, 6:2, 11:6, 14:5, 16:7, 22:1, ], C=-171.493065, T=137.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_90: [2:6, 5:3, 11:1, 19:7, 24:4, ], C=-196.896886, T=139.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_72: [0:2, 7:3, 10:6, 11:7, 20:1, 21:4, ], C=-153.941146, T=137.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4624.427383)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 15, numsubsetpri = 15
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 36.504815;
+v[3] = 41.650809;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_63: [3:1, 6:7, 11:4, 16:3, 17:10, 18:2, 22:6, 23:8, ], C=-177.955955, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_74: [1:9, 9:1, 11:4, 14:2, 15:6, 16:3, 19:7, ], C=-76.178038, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_79: [3:6, 9:3, 11:2, 12:7, 14:4, 16:1, 18:8, ], C=-163.699734, T=118.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_91: [2:2, 4:6, 8:4, 9:5, 19:1, ], C=-149.672625, T=136.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_73: [0:2, 1:6, 4:11, 8:9, 9:10, 10:3, 15:4, 20:8, 21:1, ], C=-121.606203, T=140.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4609.390750)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 16, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 2.669668;
+v[2] = 34.558057;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_64: [0:1, 2:3, 5:6, 10:4, 13:8, 21:2, 23:7, ], C=-208.196674, T=134.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_75: [0:6, 1:2, 2:1, 5:9, 10:4, 22:7, 23:8, ], C=-151.516151, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_80: [0:1, 2:2, 8:4, 9:5, 16:6, 20:3, ], C=-177.417403, T=136.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_92: [0:1, 2:3, 3:7, 8:5, 17:8, 20:4, 21:2, ], C=-289.939943, T=133.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_74: [0:8, 2:2, 7:9, 8:5, 10:4, 19:1, 20:6, 21:10, ], C=-161.744728, T=140.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4603.668003)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 17, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 6.950873;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_65: [3:7, 5:1, 6:2, 12:8, 14:6, 16:5, 23:3, ], C=-190.582348, T=137.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_76: [0:7, 6:5, 7:6, 11:3, 14:1, 16:2, ], C=-109.071452, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_81: [9:2, 11:3, 12:8, 14:1, 16:4, 17:6, ], C=-175.248672, T=131.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_93: [3:3, 5:8, 11:1, 12:6, 17:4, 23:7, ], C=-175.050896, T=137.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_75: [0:6, 1:1, 7:8, 15:2, 19:4, 21:9, 23:7, ], C=-104.112130, T=139.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4591.858043)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 18, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 31.152099;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_66: [12:1, 14:3, 17:5, 18:2, 23:8, 24:7, ], C=-246.297851, T=137.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_77: [5:6, 7:7, 10:1, 11:3, 14:4, 21:8, ], C=-143.408335, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_82: [3:1, 4:6, 9:5, 12:8, 14:4, 17:2, 18:9, ], C=-161.041588, T=135.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_94: [0:5, 1:7, 5:1, 10:8, 19:3, 21:4, ], C=-244.536727, T=134.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_76: [1:9, 2:7, 9:2, 10:4, 14:3, 15:1, 19:6, ], C=-152.055812, T=129.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4582.425142)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 19, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 74.534267;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_67: [0:5, 1:6, 5:3, 8:7, 22:2, 23:1, ], C=-156.317871, T=134.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_78: [0:3, 1:5, 7:2, 8:8, 9:9, 10:1, 11:10, 15:6, ], C=-131.688041, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_83: [0:1, 3:7, 8:3, 9:4, 14:5, 15:2, 18:8, ], C=-118.904990, T=138.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_95: [0:1, 1:9, 4:5, 5:3, 7:2, 11:6, 15:8, ], C=-209.075605, T=138.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_77: [0:7, 2:5, 4:1, 7:6, 8:2, 15:3, 19:9, ], C=-135.365836, T=135.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4575.212319)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 20, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 84.375791;
+v[3] = 28.447793;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_68: [5:10, 12:3, 13:1, 14:5, 16:6, 18:4, 22:9, 23:8, ], C=-192.237664, T=138.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_79: [8:1, 10:10, 11:3, 14:2, 15:5, 19:7, 21:8, ], C=-164.085632, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_84: [5:7, 11:1, 16:2, 18:4, 22:6, 23:5, ], C=-146.209575, T=130.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_96: [4:7, 5:4, 10:6, 11:9, 12:3, 16:1, 18:2, ], C=-166.847746, T=139.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_78: [1:9, 5:4, 15:8, 19:6, 21:1, 22:2, 23:3, ], C=-85.982720, T=138.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4569.261863)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 21, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 7.687411;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_69: [0:3, 5:1, 6:6, 7:2, 13:10, 22:5, 23:7, 24:9, ], C=-85.768175, T=133.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_80: [1:5, 7:2, 8:4, 15:7, 19:8, 21:1, ], C=-124.287100, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_85: [4:8, 8:7, 12:4, 14:6, 16:9, 17:1, 18:3, ], C=-127.924481, T=140.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_97: [0:4, 4:1, 5:9, 7:5, 10:2, 13:8, 22:6, ], C=-110.434681, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_79: [0:3, 1:5, 2:9, 6:2, 7:1, 15:6, 19:8, ], C=-60.779403, T=136.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4563.501375)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 22, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 65.031652;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_70: [3:7, 5:1, 12:10, 16:8, 18:9, 22:2, 23:3, 24:5, ], C=-112.442255, T=131.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_81: [0:3, 4:5, 8:9, 9:8, 14:7, 16:6, 19:1, 21:2, ], C=-100.312446, T=133.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_86: [3:3, 8:6, 9:5, 10:8, 12:2, 15:7, 18:1, ], C=-117.057161, T=136.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_98: [0:8, 3:4, 4:1, 14:2, 15:6, 16:3, 19:7, ], C=-82.467991, T=139.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_80: [0:7, 1:11, 2:4, 7:8, 10:1, 15:2, 19:5, 21:9, ], C=-63.620671, T=134.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4552.621351)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 23, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 58.392422;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_71: [3:7, 5:1, 6:2, 12:5, 13:9, 18:6, 23:3, 24:10, ], C=-57.330288, T=133.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_82: [0:3, 7:2, 8:5, 19:7, 20:6, 22:1, ], C=-165.317012, T=138.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_87: [3:1, 4:7, 12:2, 15:6, 18:3, 20:5, ], C=-88.641543, T=140.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_99: [0:5, 5:3, 6:1, 15:7, 19:6, 22:2, ], C=-132.598782, T=128.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_81: [0:3, 1:5, 2:8, 7:1, 15:6, 19:9, 22:2, ], C=-50.463697, T=137.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4551.772200)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 24, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 69.418422;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_72: [8:3, 16:4, 17:6, 19:1, 20:2, ], C=-86.361008, T=138.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_83: [4:3, 5:6, 8:8, 10:1, 14:4, 15:10, 16:5, 20:9, ], C=-94.929401, T=133.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_88: [3:7, 4:2, 5:6, 7:5, 11:1, 16:4, ], C=-114.896287, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_100: [3:1, 4:4, 5:8, 7:6, 14:3, 16:2, 23:7, ], C=-88.753119, T=137.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_82: [4:2, 5:5, 7:6, 15:3, 20:1, 21:7, ], C=-67.509410, T=140.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4551.772200)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 25, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 69.380295;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_73: [0:3, 12:6, 13:5, 15:1, 19:2, ], C=-70.393684, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_84: [10:1, 13:8, 15:4, 19:3, 22:6, 23:7, ], C=-100.681824, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_89: [3:8, 11:7, 13:1, 14:6, 16:4, 22:3, 23:2, ], C=-97.368639, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_101: [10:7, 11:5, 13:1, 15:9, 20:8, 22:3, 23:2, ], C=-95.688621, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_83: [2:9, 4:4, 7:8, 15:5, 19:1, 20:3, 21:7, ], C=-63.490744, T=139.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4550.395948)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 26, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 79.933207;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_74: [3:9, 7:5, 12:10, 13:3, 17:1, 22:6, 23:7, ], C=-69.557036, T=136.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_85: [0:12, 4:7, 8:3, 10:1, 11:8, 15:5, 19:10, 20:4, 21:11, ], C=-100.045172, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_90: [3:7, 8:3, 9:2, 11:8, 14:1, 15:5, 20:4, ], C=-46.868715, T=140.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_102: [0:3, 2:2, 4:6, 7:1, 10:5, 14:7, ], C=-117.808131, T=139.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_84: [0:1, 2:3, 4:7, 7:2, 9:6, 15:8, 20:5, ], C=-53.799657, T=139.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4545.837023)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 27, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 83.678173;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_75: [3:5, 4:1, 5:8, 9:2, 14:3, 16:4, 17:10, 24:7, ], C=-58.767552, T=138.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_86: [1:2, 8:4, 9:11, 10:1, 11:8, 14:10, 15:6, 16:9, 20:5, ], C=-88.973376, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_91: [3:7, 7:1, 11:6, 16:5, 22:2, 23:3, ], C=-46.856871, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_103: [0:10, 4:6, 5:1, 6:3, 7:8, 11:5, 21:9, 22:2, ], C=-59.612026, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_85: [1:1, 4:9, 9:7, 10:2, 14:8, 19:4, 20:6, ], C=-66.885359, T=140.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4544.197445)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 28, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 59.355509;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_76: [3:9, 5:5, 6:6, 12:11, 17:3, 18:10, 22:7, 24:1, ], C=-44.050783, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_87: [0:6, 2:4, 4:9, 7:5, 8:2, 11:8, 15:1, ], C=-59.149425, T=133.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_92: [3:7, 4:1, 11:2, 12:8, 16:4, 17:5, 18:9, ], C=-59.730404, T=127.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_104: [0:6, 5:8, 7:7, 10:3, 11:1, 19:4, ], C=-58.735753, T=138.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_86: [0:6, 7:7, 8:2, 9:3, 10:4, 15:1, 19:10, 21:8, ], C=-42.983165, T=140.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4538.977667)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 29, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 65.094725;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_77: [6:8, 11:3, 13:11, 14:2, 16:1, 17:5, 22:9, 23:7, ], C=-63.667095, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_88: [0:3, 4:7, 7:4, 8:11, 9:10, 10:1, 14:9, 16:8, 21:5, ], C=-35.637333, T=136.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_93: [10:7, 12:1, 15:6, 16:4, 18:2, 20:5, ], C=-80.123466, T=138.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_105: [4:2, 5:7, 6:9, 10:4, 11:1, 15:5, 23:8, ], C=-49.826420, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_87: [0:4, 2:2, 7:5, 10:10, 15:9, 19:1, 20:8, 21:6, ], C=-29.189077, T=134.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4532.547945)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 30, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 52.953893;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_78: [4:5, 7:9, 11:4, 13:1, 22:8, 23:7, 24:2, ], C=-71.295143, T=138.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_89: [4:2, 7:8, 8:4, 11:1, 15:5, 21:7, 22:9, ], C=-141.665622, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_94: [3:6, 4:2, 8:4, 12:9, 15:3, 16:1, 17:7, ], C=-106.241168, T=140.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_106: [4:2, 7:4, 11:1, 17:8, 22:5, 23:6, ], C=-99.653297, T=133.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_88: [1:1, 2:3, 4:8, 7:4, 10:7, 20:9, 21:5, ], C=-43.343296, T=137.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4529.911832)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 31, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 6.774402;
+v[2] = 65.795542;
+v[3] = 16.090050;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_79: [3:3, 5:7, 11:1, 12:5, 14:2, 23:6, ], C=-51.392265, T=137.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_90: [4:1, 5:7, 8:4, 9:3, 11:6, 14:2, 15:9, ], C=-94.160800, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_95: [3:5, 5:2, 12:9, 16:1, 17:6, 18:8, 24:3, ], C=-88.198729, T=138.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_107: [0:1, 2:6, 5:3, 7:2, 19:5, ], C=-138.310901, T=128.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_89: [1:6, 2:9, 9:4, 11:1, 14:3, 16:2, 19:8, ], C=-24.816931, T=138.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4527.930510)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 32, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 55.957384;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_80: [3:5, 8:2, 9:3, 13:8, 14:4, 15:1, 17:10, 24:7, ], C=-67.315444, T=139.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_91: [1:11, 4:2, 5:6, 7:7, 10:4, 11:1, 15:10, 21:8, ], C=-45.623406, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_96: [3:3, 8:7, 11:8, 14:6, 17:4, 18:1, ], C=-93.586265, T=123.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_108: [3:1, 4:5, 5:9, 6:7, 9:4, 14:3, 16:2, 22:8, ], C=-75.179920, T=134.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_90: [1:7, 2:10, 4:4, 8:1, 9:2, 14:3, 15:6, 19:9, ], C=-22.352064, T=139.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4525.501764)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 33, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 60.610706;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_81: [0:2, 3:7, 7:3, 10:1, 12:5, 18:6, ], C=-55.609871, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_92: [7:6, 9:1, 11:4, 14:2, 15:8, 16:3, 21:7, ], C=-42.693035, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_97: [3:8, 11:5, 12:2, 14:4, 16:6, 17:9, 18:1, ], C=-51.118080, T=118.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_109: [0:6, 3:8, 6:4, 7:5, 10:1, 11:2, 17:9, ], C=-67.027440, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_91: [0:5, 1:9, 2:2, 7:6, 10:10, 19:1, 20:4, 21:7, ], C=-13.769033, T=140.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4524.565190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 34, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 75.402852;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_82: [5:3, 8:6, 9:7, 10:5, 13:1, 14:8, 16:9, 23:2, ], C=-32.346541, T=138.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_93: [2:8, 10:10, 11:1, 14:3, 15:5, 16:2, 19:7, ], C=-67.211338, T=138.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_98: [3:4, 4:7, 8:8, 9:9, 12:1, 14:10, 16:6, 17:3, ], C=-63.673202, T=138.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_110: [0:8, 6:6, 7:7, 8:2, 9:1, 10:4, 15:3, ], C=-76.589231, T=136.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_92: [0:6, 1:2, 2:4, 7:5, 8:9, 10:1, 15:8, 20:10, ], C=-22.175812, T=139.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4523.615365)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 35, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 80.868849;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_83: [5:8, 6:7, 12:1, 14:3, 16:4, 18:2, 23:6, ], C=-47.913787, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_94: [2:7, 9:1, 11:3, 14:2, 15:5, 20:6, 21:8, ], C=-66.989981, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_99: [10:2, 12:5, 16:1, 19:3, ], C=-39.411523, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_111: [0:7, 5:3, 6:9, 7:8, 11:1, 13:5, 23:4, ], C=-84.728784, T=136.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_93: [1:5, 6:7, 7:8, 10:1, 15:2, 20:3, 21:9, ], C=-13.536337, T=140.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4523.362009)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 36, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 59.781971;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_84: [3:8, 5:10, 11:11, 12:6, 13:3, 17:1, 18:7, 24:4, ], C=-32.964895, T=139.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_95: [4:6, 5:4, 8:10, 9:9, 10:1, 11:3, 14:8, 16:7, ], C=-47.210252, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_100: [4:7, 10:8, 11:2, 12:4, 14:6, 16:1, ], C=-30.276557, T=138.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_112: [0:10, 4:2, 5:8, 7:9, 8:4, 10:6, 11:1, 15:5, ], C=-62.775904, T=139.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_94: [1:1, 2:5, 4:10, 8:8, 9:9, 10:2, 19:4, 20:7, ], C=-9.456909, T=138.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4514.823065)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 37, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 64.836155;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_85: [3:6, 6:9, 11:4, 13:1, 14:5, 22:8, 23:10, 24:2, ], C=-28.171159, T=138.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_96: [8:5, 9:9, 10:1, 11:7, 14:8, 19:3, 20:4, ], C=-35.318890, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_101: [5:5, 6:6, 12:1, 16:4, 18:2, 23:7, ], C=-29.872561, T=137.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_113: [0:3, 4:9, 5:1, 7:2, 9:8, 11:5, 14:7, ], C=-33.234255, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_95: [0:8, 1:12, 2:1, 7:9, 8:5, 15:4, 19:2, 20:6, 21:10, ], C=-8.028045, T=140.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4512.838447)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 38, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 64.736959;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_86: [3:9, 4:5, 5:3, 6:2, 9:6, 14:7, 16:8, 22:1, ], C=-30.639856, T=139.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_97: [2:1, 9:6, 10:4, 11:9, 14:7, 16:8, 19:2, ], C=-38.433389, T=134.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_102: [3:3, 8:7, 9:6, 10:8, 12:2, 14:5, 16:9, 18:1, ], C=-26.132635, T=133.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_114: [0:1, 4:6, 5:3, 7:2, 10:8, 11:5, 15:9, ], C=-55.883013, T=130.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_96: [0:4, 1:1, 2:10, 7:3, 10:5, 15:8, 19:11, 20:7, ], C=-13.175926, T=139.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4511.201606)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 39, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 77.168675;
+v[3] = 4.765060;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_87: [3:5, 6:11, 11:3, 13:8, 16:4, 17:1, 22:10, 23:12, 24:7, ], C=-19.645783, T=134.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_98: [4:2, 6:6, 7:5, 8:8, 11:1, 15:9, 21:4, ], C=-30.297574, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_103: [3:3, 7:5, 10:7, 11:2, 16:1, 21:6, ], C=-27.661289, T=138.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_115: [3:5, 4:8, 5:3, 6:1, 11:10, 14:7, 16:6, 22:2, ], C=-55.154217, T=135.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_97: [0:1, 2:3, 7:2, 8:6, 9:7, 10:8, 15:5, ], C=-6.481928, T=132.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4510.279152)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 40, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 74.994162;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_88: [5:4, 10:1, 19:2, 22:5, 23:6, ], C=-25.763789, T=139.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_99: [0:12, 4:4, 7:11, 8:6, 10:1, 11:3, 15:8, 20:7, 21:10, ], C=-19.296064, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_104: [2:5, 16:3, 18:1, 19:4, ], C=-29.656706, T=136.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_116: [0:2, 4:5, 5:7, 6:9, 7:1, 11:4, 22:8, ], C=-59.134276, T=133.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_98: [0:8, 2:6, 7:7, 8:2, 9:3, 10:4, 20:1, ], C=-8.286219, T=139.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4510.215003)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 41, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 55.979683;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_89: [3:1, 7:6, 12:4, 16:2, 18:3, 22:7, 23:8, ], C=-20.112525, T=138.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_100: [0:7, 4:1, 7:8, 11:2, 15:4, 19:5, 21:9, ], C=-31.832349, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_105: [10:3, 11:5, 16:1, 19:2, ], C=-29.920741, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_117: [0:3, 3:7, 5:1, 11:9, 15:5, 16:8, 19:4, ], C=-44.465952, T=139.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_99: [1:10, 2:7, 8:5, 9:4, 10:1, 14:3, 16:2, 19:8, ], C=-3.664434, T=137.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4508.081761)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 42, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 60.237028;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_90: [9:7, 11:8, 12:3, 14:6, 16:5, 17:1, ], C=-25.679245, T=139.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_101: [3:5, 4:1, 5:4, 9:8, 11:2, 14:7, 16:6, ], C=-39.483884, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_106: [9:2, 11:3, 12:7, 14:1, 16:4, 17:9, 18:6, ], C=-25.719340, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_118: [2:1, 5:7, 7:6, 11:4, 19:2, ], C=-56.556604, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_100: [0:7, 4:4, 8:1, 9:2, 10:8, 14:3, 15:9, 21:6, ], C=-3.000000, T=138.0
+Number of columns added for facility 4 is 1
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-4507.930818)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 43, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 70.249285;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_91: [0:5, 13:8, 15:3, 17:1, 19:4, 24:7, ], C=-17.522013, T=132.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_102: [0:1, 2:3, 4:8, 7:2, 8:5, 9:6, 14:7, ], C=-36.408805, T=136.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_107: [0:4, 6:6, 7:5, 11:2, 16:1, ], C=-20.082333, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_119: [0:6, 4:2, 5:9, 6:4, 7:5, 10:1, 11:8, ], C=-24.433962, T=140.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4507.930818)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 44, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 51.821512;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_92: [3:10, 5:3, 12:12, 13:7, 17:1, 18:11, 22:4, 23:5, 24:8, ], C=-14.283019, T=137.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_103: [0:9, 1:6, 2:11, 4:1, 7:10, 10:4, 11:2, 15:7, ], C=-32.009434, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_108: [3:8, 5:3, 11:4, 12:1, 16:5, 17:7, ], C=-29.637666, T=122.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_120: [0:5, 2:7, 3:3, 5:1, 10:8, 12:2, 21:6, ], C=-47.476939, T=140.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4507.757935)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 45, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 62.996762;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_93: [6:2, 9:7, 11:8, 14:6, 16:5, 22:1, 23:3, ], C=-8.130019, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_104: [0:2, 2:7, 4:10, 10:1, 11:9, 15:4, 19:6, 21:3, ], C=-20.200306, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_109: [3:1, 4:5, 9:6, 11:2, 12:9, 14:7, 16:4, ], C=-14.535186, T=136.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_121: [0:1, 4:5, 5:10, 6:8, 10:3, 11:6, 15:2, 22:9, ], C=-14.966042, T=140.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4507.452174)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 46, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 0.976232;
+v[2] = 65.773913;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_94: [3:5, 6:8, 7:7, 12:3, 17:1, 18:4, ], C=-9.139130, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_105: [2:5, 4:2, 7:4, 11:1, 15:8, 20:6, ], C=-15.432464, T=138.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_110: [4:2, 8:6, 9:5, 10:7, 11:1, 14:4, 16:8, ], C=-6.060870, T=135.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_122: [0:7, 3:3, 4:10, 5:5, 7:6, 10:9, 11:1, 16:2, ], C=-25.824348, T=135.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4507.154639)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 47, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 60.618423;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_95: [3:8, 5:6, 6:5, 12:11, 13:2, 16:9, 18:10, 22:4, 24:1, ], C=-19.645361, T=138.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_106: [0:9, 2:7, 9:1, 11:4, 14:2, 15:6, 16:3, 21:8, ], C=-12.570325, T=136.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_111: [5:1, 11:6, 12:3, 14:5, 16:7, 23:2, ], C=-32.483013, T=135.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_123: [0:10, 2:8, 5:3, 6:5, 10:7, 11:1, 21:9, 22:4, ], C=-22.578057, T=140.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4506.905556)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 48, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 60.082222;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_96: [3:1, 4:9, 11:8, 12:4, 16:2, 17:6, 18:3, ], C=-7.514444, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_107: [0:5, 4:1, 7:4, 11:9, 14:7, 16:8, 21:3, ], C=-10.850702, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_112: [3:1, 5:6, 11:2, 12:8, 16:3, 24:5, ], C=-26.087778, T=134.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_124: [3:7, 4:3, 9:4, 10:10, 11:1, 14:5, 15:9, 16:6, ], C=-31.376702, T=140.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4506.801477)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 49, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 60.021918;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_97: [4:10, 6:4, 11:11, 13:7, 17:1, 22:3, 23:5, 24:8, ], C=-7.089104, T=137.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_108: [0:8, 4:4, 6:6, 7:7, 10:1, 11:3, 15:10, ], C=-11.730113, T=132.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_113: [3:6, 9:3, 10:1, 11:7, 14:4, 15:2, 16:8, ], C=-20.071488, T=129.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_125: [0:1, 5:3, 7:2, 9:6, 10:8, 14:5, 15:7, ], C=-21.140788, T=138.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4505.902124)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 50, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 47.764435;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_98: [3:10, 12:4, 13:2, 14:6, 16:7, 17:9, 18:5, 24:1, ], C=-6.543860, T=135.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_109: [2:7, 4:1, 11:3, 14:5, 16:4, 19:8, ], C=-10.342815, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_114: [8:3, 9:2, 11:7, 14:1, 15:5, 16:8, 20:4, ], C=-14.910270, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_126: [0:3, 2:6, 6:1, 7:2, 19:5, ], C=-13.605833, T=139.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4505.564199)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 51, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 52.966182;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_99: [5:3, 11:7, 14:8, 16:9, 17:11, 22:4, 23:5, 24:1, ], C=-4.282099, T=140.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_110: [0:4, 2:6, 4:2, 7:5, 8:9, 10:11, 11:1, 15:8, ], C=-10.526398, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_115: [3:1, 5:9, 11:8, 12:4, 16:7, 17:2, 18:5, ], C=-12.310840, T=130.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_127: [3:5, 5:1, 6:3, 12:6, 16:8, 18:7, 22:2, ], C=-28.576617, T=134.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4505.471570)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 52, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 47.097560;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_100: [6:2, 12:5, 14:7, 16:8, 18:6, 22:1, 23:3, ], C=-2.889988, T=138.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_111: [0:3, 7:2, 9:10, 10:1, 11:7, 14:9, 15:5, 16:8, ], C=-9.006627, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_116: [4:4, 5:8, 8:3, 9:2, 11:7, 14:1, 16:5, ], C=-0.336312, T=140.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_128: [5:3, 6:1, 8:6, 9:5, 10:8, 11:10, 15:7, 22:2, ], C=-17.287815, T=140.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4505.188565)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 53, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 47.288944;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_101: [5:6, 12:4, 13:8, 14:2, 16:1, 17:10, 18:3, 23:7, ], C=-3.444200, T=139.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_112: [0:3, 4:9, 5:1, 7:2, 11:8, 15:5, 20:6, ], C=-15.034117, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_117: [3:6, 9:3, 11:2, 12:10, 14:4, 16:1, 17:7, 18:9, ], C=-3.298548, T=140.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_129: [0:8, 5:5, 6:3, 7:7, 10:9, 11:1, 22:4, ], C=-18.085761, T=128.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4505.118609)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 54, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 53.806470;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_102: [3:3, 5:8, 7:9, 11:1, 13:5, 16:2, 23:10, 24:6, ], C=-2.000000, T=135.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_113: [0:1, 3:3, 4:8, 5:2, 10:10, 11:7, 14:5, 16:4, ], C=-9.221138, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_118: [3:3, 5:2, 7:1, 11:6, 14:5, 16:7, ], C=-1.701989, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_130: [0:5, 5:1, 6:3, 15:7, 19:6, 23:2, ], C=-8.858803, T=139.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-4505.035556)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 55, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 57.562508;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_114: [2:4, 4:8, 7:6, 10:1, 11:9, 15:2, 21:5, ], C=-13.380682, T=131.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_119: [0:3, 3:7, 5:1, 7:2, 11:6, 16:5, ], C=-0.539119, T=130.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_131: [0:3, 3:9, 4:5, 5:1, 7:2, 9:6, 14:7, 16:8, ], C=-5.703389, T=135.0
+Number of columns added for facility 3 is 1
+Number of columns found: 3
+DONE: SUCCESS (3)
+MINTO: Solving LP ... done (-4505.035556)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 56, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 55.065898;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_115: [4:4, 6:9, 7:8, 10:1, 11:5, 15:2, 21:7, ], C=-6.558667, T=135.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Y_2_120: [5:4, 11:7, 12:2, 16:8, 18:1, 24:5, ], C=-3.526282, T=139.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_132: [0:6, 3:1, 5:8, 7:7, 12:2, 16:4, 18:3, ], C=-8.934018, T=135.0
+Number of columns added for facility 3 is 1
+Number of columns found: 3
+DONE: SUCCESS (3)
+MINTO: Solving LP ... done (-4505.035556)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 57, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 54.238679;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_116: [1:5, 2:1, 4:9, 7:2, 11:8, 15:6, 21:3, ], C=-5.245586, T=137.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_133: [0:4, 3:2, 5:6, 7:5, 10:9, 15:8, 17:1, ], C=-5.005586, T=139.0
+Number of columns added for facility 3 is 1
+Number of columns found: 2
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-4505.035556)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 58, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 52.236444;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_117: [0:8, 7:9, 9:6, 10:1, 11:3, 14:5, 16:4, 21:10, ], C=-2.533797, T=134.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_134: [0:8, 3:6, 5:1, 6:3, 7:9, 11:5, 22:2, ], C=-4.561333, T=140.0
+Number of columns added for facility 3 is 1
+Number of columns found: 2
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-4505.035556)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 59, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 50.935827;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_118: [2:9, 10:5, 11:3, 14:1, 15:7, 16:2, 20:8, 21:10, ], C=-2.835339, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_135: [0:2, 5:7, 6:5, 7:1, 10:3, 11:9, 23:6, ], C=-3.037832, T=139.0
+Number of columns added for facility 3 is 1
+Number of columns found: 2
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-4505.035556)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 60, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 53.034286;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_119: [0:3, 1:9, 4:5, 6:1, 7:2, 11:6, 15:8, ], C=-11.478307, T=138.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_136: [0:4, 3:1, 5:6, 7:5, 10:9, 11:2, 15:8, ], C=-0.387302, T=137.0
+Number of columns added for facility 3 is 1
+Number of columns found: 2
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-4505.035556)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 61, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 50.417284;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_120: [3:6, 4:4, 9:9, 10:1, 11:3, 14:8, 15:10, 16:7, ], C=-2.000000, T=133.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_137: [3:5, 5:3, 6:1, 9:8, 10:9, 14:7, 16:6, 22:2, ], C=-2.773333, T=140.0
+Number of columns added for facility 3 is 1
+Number of columns found: 2
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-4505.035556)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 62, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 51.483951;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_121: [0:9, 7:8, 10:5, 11:1, 14:3, 15:11, 16:2, 21:7, ], C=-3.000000, T=138.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-4505.035556)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 63, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 48.013333;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_138: [0:7, 3:5, 5:1, 6:9, 7:8, 11:3, 16:4, ], C=-4.143704, T=131.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_101: [1:5, 2:1, 7:2, 10:9, 15:8, 19:11, 20:7, 21:3, ], C=-2.000000, T=137.0
+Number of columns added for facility 4 is 1
+Number of columns found: 2
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-4504.800322)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 64, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 48.587762;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_103: [3:3, 5:10, 6:9, 12:6, 16:4, 17:1, 18:5, 23:8, ], C=-0.053140, T=139.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Y_1_122: [3:2, 4:8, 9:7, 11:1, 14:3, 15:5, 20:6, ], C=-1.731273, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_102: [0:1, 1:5, 7:2, 8:9, 9:8, 10:7, 15:10, 21:3, ], C=-3.106280, T=136.0
+Number of columns added for facility 4 is 1
+Number of columns found: 3
+DONE: SUCCESS (3)
+MINTO: Solving LP ... done (-4504.612903)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 65, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 50.855138;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Y_0_104: [6:5, 11:8, 13:2, 14:9, 16:10, 22:6, 23:4, 24:1, ], C=-0.013825, T=136.0
+Number of columns added for facility 0 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_139: [2:2, 3:8, 5:4, 11:6, 16:7, 19:1, ], C=-0.959676, T=138.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_103: [0:2, 2:5, 7:3, 8:9, 10:1, 15:8, 19:6, 20:10, ], C=-1.000000, T=138.0
+Number of columns added for facility 4 is 1
+Number of columns found: 3
+DONE: SUCCESS (3)
+MINTO: Solving LP ... done (-4504.483871)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 66, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 52.519986;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Y_3_140: [0:3, 3:7, 5:5, 6:1, 7:2, 12:6, ], C=-0.028076, T=136.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Y_4_104: [2:6, 4:1, 7:7, 8:3, 9:2, 20:4, 21:8, ], C=-2.504608, T=137.0
+Number of columns added for facility 4 is 1
+Number of columns found: 2
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-4504.402715)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 67, numsubsetpri = 16
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = 53.931766;
+v[3] = 2.652633;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+Final LP objective: -4504.402715
+No new column is generated
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:1 
+newnode=1 
+DONE: SUCCESS (-4795.000000)
+MINTO: Updating primal (APPL heuristic)
+       Value:     -4795.00  Elapsed time:   191.75  Node:       1
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Primal heuristic ... done
+APPL_FEASIBLE ... DONE: YES
+MINTO: Updating primal (MINTO heuristic)
+       Value:     -4734.00  Elapsed time:   191.77  Node:       1
+APPL_EXIT ... Y_0_11 :  67.0 : 5 1 6 3 13 5 22 2 24 6  99
+Y_0_10 : 123.0 : 3 7 12 2 16 4 17 6 18 3 23 1  95
+Y_4_90 : 139.0 : 1 7 2 10 4 4 8 1 9 2 14 3 15 6 19 9  136
+Y_4_72 : 137.0 : 0 2 7 3 10 6 11 7 20 1 21 4  94
+My Integrality gap=0.000000 
+My Best integer solution=-4734.000000
+My Best LOWER Bnd=-4734.000000
+stepcount = 68 
+DONE
+
+MINTO: Value of solution: 4734.000000
+MINTO: Non-zero variables in solution:
+    xopt[0] = 1.000000 (T_0)
+    xopt[4] = 1.000000 (T_4)
+    xopt[5] = 2.000000 (V_0)
+    xopt[9] = 2.000000 (V_4)
+    xopt[46] = 1.000000 (Y_0_10)
+    xopt[47] = 1.000000 (Y_0_11)
+    xopt[415] = 1.000000
+    xopt[505] = 1.000000
+    zopt = 4734.000000
+
+MINTO: Value of LP-solution: 4504.402715
+MINTO: Non-zero variables in the LP-solution:
+    xlp[0] = 1.000000 (T_0)
+    xlp[4] = 1.000000 (T_4)
+    xlp[5] = 1.719457 (V_0)
+    xlp[9] = 1.407240 (V_4)
+    xlp[375] = 0.167421
+    xlp[420] = 0.167421
+    xlp[485] = 0.063348
+    xlp[510] = 0.176471
+    xlp[516] = 0.176471
+    xlp[521] = 0.425339
+    xlp[526] = 0.031674
+    xlp[530] = 0.176471
+    xlp[531] = 0.199095
+    xlp[535] = 0.054299
+    xlp[536] = 0.049774
+    xlp[555] = 0.095023
+    xlp[560] = 0.176471
+    xlp[564] = 0.162896
+    xlp[576] = 0.054299
+    xlp[580] = 0.253394
+    xlp[584] = 0.040724
+    xlp[592] = 0.126697
+    xlp[600] = 0.022624
+    xlp[622] = 0.176471
+    xlp[625] = 0.081448
+    xlp[628] = 0.185520
+    xlp[630] = 0.063348
+    zroot = 4504.402715
+    zinit = 4795.000000
+
+MINTO: Branch and bound statistics
+
+    Maximum number of unevaluated nodes           =     1
+    Number of evaluated nodes                     =     1
+    Depth of the tree                             =     0
+    Number of linear programs solved              =    68
+    Maximum number of rows in active LP           =   186 (186)
+
+MINTO: Cut generation statistics
+
+    Number of generated clique inequalities       =     0
+    Number of generated implication inequalities  =     0
+    Number of generated lifted knapsack covers    =     0
+        Knapsack covers            =     0
+        Knapsack covers with GUBs  =     0
+        Surrogate knapsack covers  =     0
+    Number of generated generalized flow covers   =     0
+
+APPL: Timing statistics (in seconds)
+
+    appl_bounds:                                     0.00
+    appl_constraints:                                0.00
+    appl_delconstraints:                             0.00
+    appl_divide:                                     0.00
+    appl_exit:                                       0.00
+    appl_fathom:                                     0.00
+    appl_feasible:                                   0.00
+    appl_init:                                       0.00
+    appl_initlp:                                     0.00
+    appl_mps:                                        0.00
+    appl_node:                                       0.00
+    appl_preprocessing:                              0.00
+    appl_primal:                                     0.00
+    appl_rank:                                       0.00
+    appl_terminatelp:                                0.00
+    appl_terminatenode:                              0.00
+    appl_variables:                                191.51
+
+MINTO: Timing statistics (in seconds)
+
+    Reading MPS file:                                0.00
+    Restart:                                         0.00
+    Preprocessing and probing:                       0.00
+    Primal heuristic:                                0.02
+    Bound improvement:                               0.00
+    Clique cut generation:                           0.00
+    Implication cut generation:                      0.00
+    Knapsack cover generation:                       0.00
+    GUB cover generation:                            0.00
+    Surrogate knapsack cover generation:             0.00
+    Flow cover generation:                           0.00
+    Cut pool search:                                 0.00
+    Cut Management:                                  0.00
+    Branching:                                       0.00
+    Time LP solving:                                 0.15
+
+    Total elapsed time:                            191.77
+

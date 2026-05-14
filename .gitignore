@@ -1,0 +1,12 @@
+# The original HiGHS static libraries (192 MB each) exceed GitHub's
+# 100 MB per-file hard limit. They are split into 90 MB chunks named
+# `highs.lib.part-aa`, `highs.lib.part-ab`, etc., committed alongside.
+# Reassemble with:
+#   cat highs.lib.part-* > highs.lib
+lrsp_native/build/bin/highs.lib
+mespprc_native/build/bin/highs.lib
+
+# Likewise, the original Git pack file inside .git.bak/objects/pack/
+# is split into .pack.part-* chunks.
+.git.bak/objects/pack/pack-*.pack
+LRSP-MESPPRC-IP/.git.bak/objects/pack/pack-*.pack

@@ -1,0 +1,279 @@
+May 6 2008
+
+-distances are multiplied by 100 and rounded to the nearest int, then divided by 100
+
+Feb 22 2008
+
+
+Location routing problem is solved. e_shortestpath.c is changed to find just routes!.
+
+
+************************************************************************
+
+
+
+Jan 28 2008
+
+In e_shortestpath.c:
+If there is Ryan foster branching then the algorithm should change when compairing the time with timelimit. The distances no longer satisfy triangular inequality, therefore
+d[sink][i]+d[i][sink] is not the shortest distance.
+unreachability condisitions changes depending on the ryan and foster rule.
+
+
+
+************************************************************************
+
+
+
+
+
+June 7 2007
+-Last form of e_shortestpath.c (debugged step by 
+step and compared with exact-BP3/e_shortestpath.c
+The most negative columns are same if given the same set of duals. 
+
+
+-In this heuristic BP: we generate initial columns and initial 
+upper bound. 
+
+-there is cplex at root node
+
+- pricing problem with label limit for non processed labels is used.
+
+Options:
+1. a) After 2nd espprc, call domination b)do not call domination algorithm. 
+2. a) After 1st espprc, before 2nd espprc, do threshold in domination 
+   b) do not use domination
+3. a)In 2nd espprc, in intermediate steps domination algorithm wiht NO 
+   LL
+   b) Have label limit
+4. a) In 2nd espprc, in intermediate steps, do not do domination, add
+  F to LabelList[j]
+   b) do domination 
+
+Experiments with p01-f25-v1t1.txt, p03-l25-v1t1.txt, p01-l25-v1t1.txt
+1a and 1 b exact pricing all the time, later in 2,3,4 label limit 30 then 
+60 is used.
+CPU times: 
+        1a        1b       2a      2b      3a      3b    4a       4b
+p01-f   73.11     67       78.89   83.35   78.68   =2a   164.77   =3a
+p03-l   30.72     22.07    35.07   34.88   35.05   =2a   32.49    =3a
+p01-l   27.61     27.87    34.94   45.57   34.84   =2a   56.20    =3a
+
+1b --> do not call domination after 2nd espprc
+2a --> After 1st espprc, before 2nd espprc, do threshold in domination
+3a --> In 2nd espprc, in intermediate steps domination algorithm wiht NO LL
+4b --> In 2nd espprc, in intermediate steps do domination
+
+************************************************************************
+
+March 19 2007
+New pricing problem. Solve source to sink then combine!
+
+In a_primal call cplex directly.
+
+
+************************************************************************
+ 
+
+October 30 2006
+copied from heur-lrsp-4initcolgen-3. Add the   
+time improvement in a_bounds and a_cons
+************************************************************************
+ 
+
+October 26
+-e_shortest.c copied from comb_pricing_prob-6-3-upddom
+-copied from heur-lrsp-4initcolgen-2
+-InitColumnGenerator function +	
+-Update Domination algorithm, delete +red cost cols at sink, apply eliminationg symmetry between paths in pairing
+
+
+************************************************************************
+ 
+
+Oct 16 2006
+-copied from heur-lrsp-4initcolgen
+-InitColumnGenerator function +
+-Domination algorithm: for sink delete +reduced cost columns!
+
+
+************************************************************************
+
+
+
+Sep 15 2006
+
+Solving heuristically to the end of the tree and get an upper bound..
+-Just use CW column generation + ESPPRC with limit 200
+-Do not skip facilities 
+
+
+
+-Base case initial solutions
+-in a_bounds do not mark  variables to zero for Tj=0
+-change the order of 4th branching decision and 3rd branching decision
+shift the Ryan and foster to the end.  
+
+-default primal heuristic +myupperbound
+
+
+
+
+
+************************************************************************
+
+September 7 2006
+Copied from comb_pricing_prob-3
+-Read initial columns from a file, do colbined column generation 
+-best first
+-in a_bounds do not mark  variables to zero for Tj=0
+-in instead of setting variables to zero for CONNECTED and NOT_CONNECTED
+in a_node, set them to zero in a_bounds.
+-change the order of 4th branching decision and 3rd branching decision
+shift the Ryan and foster to the end.  
+
+
+************************************************************************
+
+
+Aug.21 2006
+Add: initial column evaluation. Read initial columns from a file for now!
+use previously  created .num and .init files 
+
+************************************************************************
+
+aug. 17 2006
+Use Clark and Wright and knapsack algorithm to find columns for the pricing problem.
++
+the heuristic applied on August 3, with changing LM values
++
+skipping the facilities if necessary.
+
+************************************************************************
+
+August 3 2006
+
+Sort the labels of the nodes (non decreasing based on reduced cost).
+Then only keep "LM" of them. LM is the predefined upper bound for the number of 
+labels at each node. 
+
+*******************************************************************8
+
+July 7 2006
+
+-Delete the constraints every time before adding new constraints and 
+readd them. 
+
+*************************************************************************
+July 7 2006
+Branching rule 4 is tried. 
+-Constraints <=0 and >=1 are added. But there is a problem. We
+have to delete and add the constraint every time. since new variables are generated
+globally. 
+
+
+************************************************************************
+April 18
+Only branch on customer nodes!!!
+See what happens
+
+
+**************************************************************************
+
+Feb 11 2006
+
+In a_primal, recursive minto is called to solve the root node IP. 
+
+
+*****************************************************
+January 20 2006
+In a node if there is not any branching rule, we assume the node solution
+is equal to the integer solution. We update the a_primal and a_divide, and header.h
+
+**********************************************************8
+January 16 2006
+Columns are sorted in increasing order of reduced cost. We pick the best 
+n columns to add to the RMP.
+
+
+*************************************************************
+November 19 2005: Copy of RFartificial
+-More columns are added in a_vars.c
+
+
+
+***********************************************************************************************8
+
+October 21 2005:
+-b option closes reduced cost fixing. Thus, adding artificials in the begining works. Just check wheather the artificials are in the solution or not..
+
+October 21 2005:
+
+*Artificial variables are added to the model in a_mps.c But
+because of reduced cost fixing, these variables are fixed to zero. 
+Therefore they have never been used to eliminate infeasibility. 
+
+*we will try adding artificial variables when necessary. In foldee Rartificial2
+
+
+*********************************************************
+************COPY of BRANCHMINTO5 *************************
+***********update to do modified RYAN AND FOSTER type of branching***********
+
+
+
+November,17,2004
+
+Branching on T variables are applied..
+appl_vars-uses ESPRC 
+         -additional initial solution
+         -more than one columns generated in each step..
+ 
+January, 10 2005
+
+Branching on T variables are applied..
+appl_vars-uses ESPRC 
+         -initial solution with 1, 2 and 3 customers
+         -new constraint is added:
+              Total number of facility>=total required number of facility
+
+January 11 2005
+
+Add constraint total number of pairings for facility j= v_j
+
+then branch on v_j
+
+**********************************************
+different from BranchMinto3:
+  
+February 2, 2005
+
+Instead of adding constraints, add bounds on vj variables like Tj variable branching..
+
+***********************************************
+June 10,2005
+
+-Add feasiblity check in a_vars.c. If the current node is infeasible, do not do column generation. fathom node.
+
+-Add infeasibility check by summing all facilities not forbidden, 
+also check Vi<=0 constraints. if number of required facilities cannot be 
+open, then do not do column generation. 
+
+******************************************************
+
+Sep 27 2005
+
+Does branching on t and V. if no fractional T or V continue with modified
+ryan and foster.
+
+There is memory keeping column information..We will use this structure
+to reach sequence in the column.  
+
+***********************************************************************
+October 10 2005
+
+Add artifial variables.
+Add an artificial facility and artificial columns for each customer. 
+
+***********************************************************************

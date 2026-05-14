@@ -1,0 +1,904 @@
+
+\section{Solution Methodology for LRSP}
+\label{SolnMethod}
+
+** different espprc: one is an espprc algorithm, 1 label for 
+each facility. Instead of solving pricing problems for each facility, solve 
+1 pricing!
+
+The set partitioning formulation AUG-SPP-LRS contains one variable for each possible
+pairing. For practical size problems, the number of pairing will be very
+large, and, as a result, it is unlikely that we can solve instances that 
+explicitly include all feasible pairings. Instead, we have developed a branch-and-price
+algorithm, in which we use column generation to solve the linear programming 
+relaxations at the nodes of the tree. 
+
+In sections \ref{ColGenAlg}-\ref{Solve-pricing}, we describe the details of the column generation
+algorithm, including the solution methods for the pricing problem. In section \ref{BPAlg}, 
+we describe the details of the branch-and-price algorithm, including the branching 
+rules used. In section \ref{BPAlg-Opt}, we discuss the conditions under which the
+nodes of the branch-and-price tree can be fathomed.   
+
+\subsection {Column Generation}
+\label{ColGenAlg}
+Column generation algorithms have been applied to a wide variety of large scale 
+optimization problems, such as vehicle routing (\citet{Agarwal}, \citet{Desrochers2}), 
+airline crew scheduling (\citet{Anbil}, \citet{Vance}), location and routing (\citet{Berger05}), 
+cutting stock (\citet{Vance2}), lot sizing and machine scheduling (\citet{Vanderbeck}). 
+\citet{Lubbecke} list other problems to which column generation has been applied.
+
+Column generation algorithms are applied to models that contain too many columns
+to be handled explicitly.
+By solving a sequence of linear programs and using dual information, the algorithm 
+explicitly considers all of the columns but generates only those that may improve 
+the objective function. We use column generation (CG) to solve appropriate relaxations
+of the AUG-SPP-LRS formulation at all nodes of the branch-and-price tree. In this section,
+we describe details of the column generation algorithm for the root node of the tree.
+
+To begin a CG procedure, we need an initial set of columns that contains a feasible 
+solution. We call the problem that contains only a subset of the columns of the original 
+problem the {\bf restricted master problem (RMP)}. From the solution of the RMP, we use 
+the associated dual variable information to identify new columns to add to the RMP. We 
+solve an optimization problem called the {\bf pricing problem} to identify new columns.
+
+A {\bf column generation algorithm} for solving the LP relaxation of AUG-SPP-LRS 
+includes the following four steps: 
+
+\begin{enumerate}
+\item[0.] Generate an initial set of columns that contains a feasile solution.
+\item[1.] Solve the RMP and obtain dual variable information.
+\item[2.] Using the dual variables, form a pricing problem that seeks to identify 
+new pairings (columns) and their associated reduced costs. 
+\item[3.] Solve the pricing problem. If the solution specifies a column with negative
+reduced cost, add the new column to the RMP and go to step 1. Otherwise, the 
+solution found in step 1 is an optimal solution for the LP relaxation of AUG-SPP-LRS.
+\end {enumerate}
+
+The challenge in applying this algorithm to solve the LP relaxation of AUG-SPP-LRS 
+is in steps two and three. We need to define a pricing problem that identifies
+feasible pairings with negative reduced cost and construct an algorithm for
+solving the problem efficiently.
+  
+\subsection {Formulating the Pricing Problem}
+\label{form-pricing-prob}
+The objective of the pricing problem is to generate columns with 
+negative reduced cost to add to the RMP. We know that, in an
+LP that is a minimization problem, the reduced costs of the variables
+are zero or positive in an optimal solution. Therefore, if the pricing problem does not
+identify any columns with negative reduced cost, then the current  
+solution of the RMP is optimal. For the LRS formulation, columns represent feasible 
+pairings.
+
+To formulate the pricing problem, we first must associate dual variables  
+with the constraints. Let $\pi_{i}$ be the dual variable associated with the
+partitioning constraint (\ref{spp_con1}) for customer i, $\mu_{j}$ be 
+the dual variable associated with the capacity constraint (\ref{spp_con2}) 
+for facility j and $\sigma_{ji}$ be the dual variable for the linking 
+constraint (\ref{relation}) for facility j and customer i. Then, for the 
+variable $Z_{jp}$ for $j \in M$ and $p \in P_{j}$, the reduced cost $\hat{C}_{jp}$
+can be written as:   
+\begin{eqnarray}
+\label{red-cost}
+\hat{C}_{jp}=C_{jp}-\sum_{i\in N}a_{ipj}\cdot \pi_{i}+\sum_{i \in N}a_{ipj} \cdot d_{i} \cdot \mu_{j}+\sum_{i \in N}a_{ipj} \cdot \sigma_{ji}
+\end{eqnarray} 
+
+Note that the reduced cost of a pairing (\ref{red-cost}) does not include a dual 
+variable associated with the constraint (\ref{lb-open-fac}), since the coefficients of 
+the $Z_{jp}$ variables in constraint (\ref{lb-open-fac}) are zero.
+
+The objective of the pricing problem is to identify a column (pairing) 
+that has the minimum $\hat{C}_{jp}$ value. Remember that a pairing is a set 
+of vehicle routes that satisfy the following constraints:
+
+\begin{description}
+\item [C1.] Total demand of each route must not exceed the vehicle capacity.
+\item [C2.] Total travel time of the routes in the pairing  must not exceed the 
+time limit.
+\item [C3.] All of the routes in the pairing must start and end at the same facility.
+\item [C4.] Each customer node can be visited at most once.
+\end{description}
+
+Since every route in a pairing must start and end at the same facility, 
+each facility has its own set of feasible pairings, which allows us to decompose
+the pricing problem into $|M|$ independent pricing problems. Therefore, we solve one 
+pricing problem for each facility to search for columns with negative reduced costs. 
+
+Recall that in equation (\ref{red-cost}), $C_{jp}$ is the cost of pairing $p$ associated with 
+facility $j$. The cost $C_{jp}$ is the sum of the fixed cost of the vehicle and the variable 
+costs of the routes that are included in the pairing. The variable cost of a route is equal to 
+the sum of the costs of arcs in the route. If we can assign the components of expression  
+$-\sum_{i\in N}a_{ipj} \cdot \pi_{i}+\sum_{i \in N}a_{ipj}\cdot d_{i}\cdot \mu_{j}+\sum_{i \in N}a_{ipj} \cdot \sigma_{ji}$ to arcs, then the reduced cost of a pairing, $\hat{C}_{jp}$, can be expressed as the 
+sum of the costs of the arcs included in the pairing plus the fixed cost of the vehicle. 
+Although each dual variable is associated with a customer node $i$ and/or a facility node $j$ 
+instead of an arc, later  we will show how to transfer these node related dual variables 
+to the arcs. In this way, the reduced cost of a pairing can be computed as the sum of the 
+reduced cost of the arcs in the pairing.     
+
+\subsubsection{Modified ESPPRC}
+The pricing problem, which seeks to find a pairing of minimum reduced cost $\hat{C}_{jp}$ 
+subject to constraints (C1), (C2), (C3) and (C4) can be defined as an elementary shortest 
+path problem with resource constraints (ESPPRC) on a modified network. In an {\bf ESPPRC}, 
+the objective is to find a shortest path between the source and the sink such that each node 
+is visited at most once and the resource constraints are not violated. To properly represent
+our pricing problem as an ESPPRC, we need to make one adjustment; while in an ordinary 
+elementary shortest path problem, each node can be visited at most once, in our case, 
+because we are looking for a set of routes, we allow the sink node to be visited more than 
+once. In our modified ESPPRC, the sink node represents the end of one route and maybe the 
+beginning of another. In an ordinary ESPPRC, a path from the source to the sink corresponds 
+to one route, however, a solution of our modified ESPPRC may correspond to multiple routes. 
+Another reason for multiple visits to the sink is to reset the remaining capacity of the vehicle 
+before the new route. In a pairing, the vehicle starts a route with a full truck 
+load and delivers the required demand to all of the customers on the route. The vehicle returns 
+to the depot after the last customer in the route and resets its capacity to full truck load for 
+the next route. In the pricing problem, the truck capacity is one of the resources. Whenever the 
+path visits the sink in the modified network, the vehicle capacity resource consumption is updated and 
+set to full truck load. 
+
+\subsubsection{Constructing Network for Modified ESPPRC}
+%The definition of a pairing allows us to define the pricing problem as a 
+%network problem in which we determine a minimum cost path from a 
+%source to a sink. 
+To define the pricing problem for facility j, we construct a network with $|N|+2$ nodes, 
+$|N|$ nodes for the customers, one for facility $j$ as a source node and a copy of facility 
+$j$ as a sink node. Each customer node has a demand equal to its demand in the original problem. 
+Let $A^j$ be the arc set of the network for facility j. Then $A^j$ consists of four sets of arcs: 
+\begin{eqnarray*}
+A^{j}_{s,c} & = &\mbox{set of arcs from the source to customer nodes} \\ 
+A^{j}_{c,si} & = &\mbox{set of arcs from customer nodes to the sink} \\
+A^{j}_{si,c} & = &\mbox{set of arcs from the sink to customer nodes} \\
+A^{j}_{c,c}  & = &\mbox{set of arcs between pairs of customer nodes}
+\end{eqnarray*}
+
+Note that there are no arcs from customer nodes back to the source but there are arcs from the sink
+to customer nodes. The arcs from the sink to customer nodes represent the beginning of a 
+new route whereas the arcs from the customer nodes to the sink represent the end of a route.
+Figure \ref{fig:exp_network} shows an example network and a path on the network. 
+The solution of the  pricing problem is a path from the source to the sink on the constructed 
+network. If the solution visits the sink  more than once, then the solution corresponds to 
+a pairing that includes more than one route. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.8]{./figs/NetworkexpG.eps}
+  \caption{Example of a network and a path from source to sink (dashed line)} \label{fig:exp_network}
+\end{figure}
+
+
+%A visit to the sink resets the remaining capacity of the vehicle to a full truckload. 
+
+%In a pairing, the vehicle starts a route with a full truck 
+%load and delivers the required demand to all of the customers on the route. The vehicle returns 
+%to the depot after the last customer in the route and resets its capacity to full truck load for 
+%the next route. In the pricing problem, the truck capacity is one of the resources. Whenever the 
+%path visits the sink in the modified network, the vehicle capacity resource consumption is updated and 
+%set to full truck load. 
+       
+%$A^{j}_{si,c}$, arcs from sink to customers and 
+%$A^{j}_{c,c}$, arcs between any two customers. There are no arcs from customer 
+%nodes to the source. 
+
+To find a pairing of minimum reduced cost using the constructed network, we need to find an 
+appropriate way to incorporate the dual variables into the costs of the arcs in  $A^j$. 
+Remember that $t_{ik}$ is the travel time from location $i$ to location $k$ and $d_i$ is the 
+demand of customer $i$ and let $c_{ik}$ be the operating cost of traveling from location 
+$i$ to location $k$ in the LRS problem. To define the length and the cost of arcs on the 
+constructed network, let $t^{'}_{ik}$ be the travel time on arc $(i,k)$ and $c^{'}_{ik}$ 
+be the reduced cost of traveling arc $(i,k)$. Then, for the network associated with 
+facility j:  
+
+%Since in the pricing problem, we aim to minimize the reduced cost of the variable 
+%$Z_{jp}$ (\ref{red-cost}), if we want to solve the pricing problem as a network problem
+
+\begin {itemize}
+\item {\em Case 1:} If $(i,k)$ is an arc from source or sink to a customer node, 
+
+  e.g., $(i,k) \in (A^{j}_{s,c} \cup A^{j}_{si,c})$, then 
+  $t^{'}_{ik}=t_{jk}$, $c^{'}_{ik}=c_{jk}-\pi_{k}+d_k \cdot \mu_j+\sigma_{jk}$ 
+\item {\em Case 2:} If $(i,k)$ is an arc between two customer nodes, 
+
+  e.g., $(i,k) \in A^{j}_{c,c}$, 
+  then   $t^{'}_{ik}=t_{ik}$, $c^{'}_{ik}=c_{ik}-\pi_{k}+d_k \cdot \mu_j+\sigma_{jk}$ 
+\item {\em Case 3:} If $(i,k)$ is an arc from a customer node to sink, 
+
+  e.g., $(i,k) \in A^{j}_{c,si}$, then $t^{'}_{ik}=t_{ij}$, $c^{'}_{ik}=c_{ij}$
+\end{itemize} 
+
+We transfer the dual variables $\pi_i$ and $\sigma_{ji}$ associated with customer 
+$i$ to the incoming arcs of customer node $i$. As in the reduced cost calculation
+in (\ref{red-cost}), the dual variable for facility $j$, $\mu_j$, is multiplied with
+demand value $d_i$ for customer $i$ that is in the pairing. Therefore, the cost 
+$d_i \cdot \mu_j$ is also carried on to the incoming arcs of customer node $i$. Since facility
+$j$ does not have demand, the dual variable $\mu_j$ does not affect the arcs 
+into the sink node.  
+
+To illustrate why a path through the modified network is equivalent to a pairing, we consider
+the following example. Let $N=\{1,2,3,4,5,6,7,8,9,10\}$ be the set of demand nodes.  Then the 
+set of all nodes in the network is $I=\{source,1,2,3,4,5,6,7,8,9,10,sink\}$. Consider the path
+(source-2-4-sink-5-6-7-sink-9-10-sink) in the modified network. This path in the modified network
+is equivalent to a pairing with three routes in our pricing problem. The component routes are 
+($facility_j$-2-4-$facility_j$), ($facility_j$-5-6-7-$facility_j$) and ($facility_j$-9-10-$facility_j$). 
+The pairing is feasible if each route's total demand does not exceed the vehicle capacity and if the 
+sum of the travel times of the paths does not exceed the time limit. From the arc costs  specified 
+in Cases 1 through 3, the reduced cost of the path in the modified network is:
+\begin{eqnarray*}
+\mbox{Total cost of the path} &=& VF+(c^{'}_{j,2}+c^{'}_{2,4}+c^{'}_{4,j}+c^{'}_{j,5}+c^{'}_{5,6}+c^{'}_{6,7}+ c^{'}_{7,j}+c^{'}_{j,9}+c^{'}_{9,10}+c^{'}_{10,j})\\
+                              &= &VF+(c_{j,2}-\pi_2+d_2\mu_j+\sigma_{j,2})+(c_{2,4}-\pi_4+d_4\mu_j+\sigma_{j,4}) \\
+                              &+ &(c_{4,j})+(c_{j,5}-\pi_5+d_5\mu_j+\sigma_{j,5})+(c_{5,6}-\pi_6+d_6\mu_j+\sigma_{j,6})\\
+                              &+ &(c_{6,7}-\pi_7+d_7\mu_j+\sigma_{j,7})+(c_{7,j})+(c_{j,9}-\pi_9+d_9\mu_j+\sigma_{j,9})\\
+                              &+ &(c_{9,10}-\pi_{10}+d_{10}\mu_j+\sigma_{j,10})+(c_{10,j})
+\end{eqnarray*} 
+Grouping terms differently and noting that the column vector representing this pairing is 
+$a_{jp}=[0 1 0 1 1 1 1 0 1 1]$ and the cost of a pairing is the sum of the arc costs plus the vehicle 
+fixed cost, we obtain the following expression, which is just the reduced cost of $Z_{jp}$ as calculated
+via equation (\ref{red-cost}).
+\begin{eqnarray*}
+\hat{C}_{jp} &=& VF + (c_{j,2}+c_{2,4}+c_{4,j}+c_{j,5}+c_{5,6}+c_{6,7}+ c_{7,j}+c_{j,9}+c_{9,10}+c_{10,j})\\
+             &-& (\pi_2+\pi_4+\pi_5+\pi_6+\pi_7+\pi_9+\pi_{10})+\mu_j \cdot (d_2+d_4+d_5+d_6+d_7+d_9+d_{10})\\
+             &+& (\sigma_{j,2}+\sigma_{j,4}+\sigma_{j,5}+\sigma_{j,6}+\sigma_{j,7}+\sigma_{j,9}+\sigma_{j,10})\\
+             &=& C_{jp}-\sum_{i\in N}a_{ipj} \cdot \pi_{i}+\sum_{i \in N}a_{ipj} \cdot d_{i}.\mu_{j}+\sum_{i \in N}a_{ipj} \cdot \sigma_{ji}
+\end{eqnarray*} 
+Therefore, the reduced cost of a pairing (sequence of paths) in the original network is equal to the cost
+of a path in the modified network.
+
+
+\subsection{Solving the Pricing Problem}
+\label{Solve-pricing}
+In this section, we describe approaches for solving two versions of the pricing problem, a relaxation 
+and the original. There are both positive and negative aspects associated with each version. 
+
+{\bf Solving the Relaxation of ESPPRC}
+
+One approach to find negative reduced cost pairings is to solve a relaxation of the pricing problem in which we 
+allow customer nodes to be visited more than once. To incorporate this change into the AUG-SPP-LRS formulation, we change the 
+definition of the parameter $a_{ijp}$ to represent the number of visits to customer node $i$ in the pairing $p$ 
+associated with the facility $j$. The advantage of the relaxed version is that it can be solved using a dynamic 
+programming algorithm. The complexity of the algorithm 
+is pseudopolynomial depending on the number of resource constraints (\cite{Beasley}). In our 
+case, we have two resources: the vehicle capacity ($VCap$) and the time limit ($TL$). Therefore, the algorithm
+has $O(|TL| |VCap| |N|^2)$ complexity. A disadvantage of this approach is that, because one  set of constraints 
+is relaxed, the LP relaxation bound may be weakened. That is,  when the CG algorithm
+terminates, the LP relaxation solution may contain walk columns, in which case the objective function is only 
+a lower bound on the optimal LP relaxation bound. In section \ref{comp-espprc-dp}, we demonstrate empirically
+how the bound of this relaxation compares to the optimal LP relaxation bound. 
+
+To solve the relaxed version, we have developed a standard forward dynamic programming algorithm, which finds 
+minimum cost walks from the source 
+to the sink considering the vehicle capacity and the time limit constraints. \citet{Beasley} give a formal 
+description of such a dynamic programming algorithm.  
+We have three state variables: the current node, the accumulated time and the current vehicle load.
+The state variable representing the accumulated time increases  whenever we move
+from one node to another. However, the current vehicle load may increase or decrease
+depending on the node to which we arrive. Since we assume that the problem is a delivery problem,  
+the vehicle load decreases when we arrive to a customer node.  The vehicle load increases and
+is set to the full truckload when we arrive to the sink node. To reset the vehicle load to the full truck 
+load, we set the demand of the sink to $-VCap$. If we let $(i, T^t, T^v)$ be the state variables where 
+$i$ represent the current node, $T^t$ represents
+the accumulated time from the source to the node $i$ and  $T^v$ represents the current vehicle load, then
+$c(i, T^t, T^v)$ is defined as the state cost. The forward recursive function is:
+\begin{eqnarray*}
+&c (source,0,0)    =   0 \hspace{3.02cm} & \\
+&c (j, T^t, T^v)   =   \min_{i} \{ c'_{ij}+c(i,T_i^t,T_i^v)| &T_i^t+t'_{ij}= T^t \land T^t+t'_{j,sink}\leq TL \land \\
+                        & &\min(VCap,T_i^v-d_j)=T^v \land T^v \geq 0\}
+\end{eqnarray*}
+The first and the third constraints in the definition of the recursive function update the state variables. 
+The third constraint guarantees that the vehicle load is reduced when $j$ is a customer node, and
+the vehicle load is set to vehicle capacity if $j$ is the sink. The second and 
+the last constraints are used to check the feasibility of the state. 
+
+
+{\bf Solving the Exact ESPPRC }
+
+Solving the original pricing problem in which a customer may be visited at most once is more difficult
+than solving the relaxation because we must keep track of whether a node has been visited
+or not. \citet{Beasley} describe how to 
+find elementary paths in a graph by adding an extra binary resource for each node showing 
+whether the node is visited or not.
+For  shortest path problems with resource constraints (SPPRC), \citet{Desrochers}  
+developed a label correcting algorithm that is based on dynamic programming and that has  
+pseudopolynomial complexity. The algorithm has been shown to be  successful when there 
+are tight resource constraints, but it becomes more time consuming as the number of resources increases. 
+As the algorithm builds partial paths, it assigns a label to each 
+indicating the resource consumption. To eliminate the problem of an exponentially 
+increasing number of labels, the algorithm applies dominance rules to delete dominated labels. 
+\citet{Feillet} adapt \citeauthor{Desrochers}'s label correcting 
+algorithm to find elementary paths and strengthen the algorithm by developing additional domination 
+rules for the labels. 
+
+We have adapted \citet{Feillet}'s label correcting algorithm to our pricing problem to solve the  
+ESPPRC described in section \ref{form-pricing-prob}. In the algorithm, each path from the source to any node 
+in the network is assigned a 
+label. Let $X_{so,i}$ be a path from the source node to node $i$. The label $L^{X_{so,i}}$ 
+that corresponds to path $X_{so,i}$, is associated with a state $(T_i^{v},T_i^{t},s_i,V_i^1,..,V_i^N)$  
+that keeps the information about the path. In the state,  $T_i^{v}$ is the current vehicle load,
+$T_i^{t}$ is the time consumption of the path and the vector $(V_i^1,..,V_i^N)$ gives
+the sequence of nodes in the path as well as the unreachable nodes for the path. 
+The elements of the vector, $(V_i^1,..,V_i^N)$ are defined as:
+\begin{eqnarray*}
+V_i^k & = & \left\{ \begin{array}{llll}
+                 -1 & \mbox{if node $k$ is {\bf unreachable} from node $i$ for the path because of the}\\
+                    & \mbox{ resource limits, }\\
+                  0 & \mbox{if node $k$ is not in the path and it is {\bf reachable} from node $i$ with the }\\
+                    & \mbox{current resources,}\\
+                 n>0 & \mbox{if node $k$ is {\bf unreachable} from node $i$ since it is in the path and it is} \\
+		     & \mbox{the $n^{th}$ node.} 
+                \end{array} 
+              \right. 
+\end{eqnarray*}
+The state variable $s_i$ keeps the number of unreachable nodes. In the label $L^{X_{so,i}}$,  node $k \in N$ is 
+{\em unreachable} from node $i$ if it is already in the path or if there is not 
+enough of a resource to extend the path (label) from node $i$ to node $k$. For example, $k$ is unreachable
+if the vehicle load is not enough to serve the demand of customer $k$ ($T_i^v-d_k<0$) and it is not possible to 
+travel to node $k$ and then to the sink (to finish the path) within the time limit ($T_i^{t}+t'_{ik}+t'_{k,sink}>TL$).   
+
+Note that the dimension of the vector $(V_i^1,..,V_i^N)$ is $|N|$, which means that we have an element for each
+customer node in the network. We do not need an element for the source, because every path starts from the source 
+and can never return to it. Similarly, we do not need an element for the sink, because the sink is always reachable 
+for a path by construction. Extending a path to the sink is always resource feasible: (1) at the sink, the vehicle 
+load is reset to the capacity of the vehicle and (2) when constructing a path, the time constraint  
+is checked to ensure that the path is extendable to the sink; otherwise it is not created.    
+The label $L^{X_{so,i}}$ for the path $X_{so,i}$ also has an associated cost parameter $C_{X_{so,i}}$ that keeps
+the reduced cost of the path.   
+
+The label correcting algorithm for solving the ESPPRC includes three main parts: 
+\begin{enumerate}
+\item {\bf Initialization step} To begin the algorithm, a list of labels is created 
+  for each node to keep the created labels for the node. The list of  labels for all of the 
+  nodes except the source node is initially empty. The source has one label with 
+  all of the state variables and the reduced cost set to zero.
+\item {\bf Extension step} For each node $i$, the algorithm examines its list of labels
+  and tries to extend them to all of the successors of node $i$. A label for node $i$ can be
+  extended to node $k$ if one of the following is true: (i) the node $k$ is the sink or (ii) 
+  the node $k$ is reachable from node $i$ ($V_i^k=0$) and the extended label is resource 
+  feasible ($T_i^v-d_k\geq 0$ and $T_i^{t}+t'_{ik}+t'_{k,sink}\leq TL$). A new label is
+  created for node $k$ by extending the label of node $i$, that is, by updating the resource 
+  consumptions, the vector $(V_i^1,..,V_i^N)$ and the reduced cost. 
+\item {\bf Elimination step } After extending all possible labels of all nodes to 
+  construct new labels for their successors, we combine these new labels  
+  with their previously created label lists. Let node $k$ be a node with new labels. 
+  %After constructing new labels for node $ k$ in the network 
+  %from the extendable labels of all nodes for which the node $k$ is a successor, 
+  %we combine these new labels of node $k$ with the label list of $k$ that includes previously 
+  %created labels. 
+  We combine the label list of $k$ with the list of new labels created for $k$. By comparing each 
+  label with the others in the list, we determine the {\em non-dominated labels}. 
+  Let $L_k^1$ and $L_k^{2}$ be two labels in the list.  Let 
+  $(T_k^{1v},T_k^{1t},s_k^1,V_k^{11},..,V_k^{1N})$ and 
+  $(T_k^{2v},T_k^{2t},s_k^2,V_k^{21},..,V_k^{2N})$  be the corresponding state variables 
+  and $C^1$ and $C^{2}$ be the reduced costs of the labels. Label $L_k^1$ {\em  dominates} label
+  $L_k^{2}$, if all of the following conditions are satisfied:
+  \begin{itemize}
+  \item The current resource consumptions of $L_k^1$ are less than or equal to the resource consumptions
+    of $L_k^{2}$, i.e., $T_k^{1v}\leq T_k^{2v}$ and $T_k^{1t}\leq T_k^{2t}$.
+  \item The number of unreachable nodes in $L_k^1$ is less than or equal to the number in $L_k^{2}$, i.e.,
+    $s_k^1\leq s_k^2$.
+  \item $V_k^{1p}\preccurlyeq V_k^{2p} \ \ \forall p=1..N$, where the relation
+    $V_k^{1p}\preccurlyeq V_k^{2p}$ is true if $V_k^{1p}=0$ (p is reachable from k) in $L_k^{1}$ 
+    or $p$ is unreachable from $k$ in both labels.
+  \item The reduced cost of $L_k^1$ is less than or equal to the reduced cost of $L_k^{2}$, i.e.,
+    $C^1 \leq C^{2}$.
+  \item The labels are not equal, i.e.,
+
+    $(C^1,T_k^{1v},T_k^{1t},s_k^1,V_k^{11},..,V_k^{1N})$ $\neq$ 
+    $(C^2,T_k^{2v},T_k^{2t},s_k^2,V_k^{21},..,V_k^{2N})$.
+  \end{itemize}
+   All dominated labels are deleted from the label lists of the nodes. If any label list is changed
+   after the elimination step, i.e., new labels are added, then the algorithm returns to the extension 
+   step. When all the labels are extended and no new labels are added to the lists of nodes, the 
+   algorithm terminates. 
+\end{enumerate}
+When the algorithm terminates, the labels in the list for the sink node corresponds to feasible pairings.
+The labels with negative reduced cost are candidate pairings to be added to the RMP. If the algorithm 
+concludes with no negative reduced cost labels on the sink node, then we can 
+conclude that the current RMP is optimal. 
+
+{\bf Additional Domination Rule}
+
+In addition to \citet{Feillet}'s domination rules, we have developed
+a domination rule which reduces the symmetry. Since in the pricing problem we are 
+looking for a set routes instead of one route  - the algorithm is
+not elementary with respect to the sink node - the state space of the problem is
+larger than an ordinary ESPPRC. Although the ordering of the routes within a pairing
+is arbitrary, a path from source to sink in the constructed network corresponds to 
+a pairing including an ordered set of vehicle routes. To eliminate generation of all 
+possible ordered sets, we introduce a new domination rule in which we force a specific 
+order for routes in the pairing, which decreases the state space of the algorithm 
+significantly. The following rule is added to the step 3 of the label correcting 
+algorithm.
+\begin{itemize}
+\item [{\bf Rule}] The index of the first customer node of each route should be less 
+than the index of the first customer node in the following route.
+\end{itemize}
+The modified algorithm only generates paths 
+from source to sink in which the first node of each route is less than the first node 
+of the following route. 
+For example, let (source-1-2-sink-3-9-4-sink-5-7-sink) be a 
+feasible path visiting customer nodes in the set \{1,2,3,4,5,7,9\}. We can view this 
+pairing also as a combination of the following three routes: facility-1-2-facility, 
+facility-3-9-4-facility and facility-5-7-facility. The modified algorithm does not 
+generate any of the following paths: (source-1-2-sink-5-7-sink-3-9-4-sink), 
+(source-5-7-sink-1-2-sink-3-9-4-sink), (source-5-7-sink-3-9-4-sink-1-2-sink),
+ (source-3-9-4-sink-1-2-sink-5-7-sink),  (source-3-9-4-sink-5-7-sink-1-2-sink)
+since the first nodes of the routes in these pairings are not in increasing order. 
+
+\zaupdate{ {\bf 1. TWO -STEP ESPPRC ALGORITHM} \\
+**************************}
+
+
+\zaupdate{ {\bf 2. PRICING PROBLEM WITH LABEL LIMIT }\\
+*****************************}
+
+
+\zaupdate{ {\bf 3. BIDIRECTIONAL PRICING PROBLEMS} \\
+*********************************}
+
+
+
+{\bf Solving the Pricing Problem in Column Generation Algorithm}
+ 
+We use two approaches to find a column with negative reduced cost in our branch-and-price 
+algorithm:  an {\em exact approach} and a {\em heuristic approach}. In the 
+exact approach, we solve the modified ESPPRC label correcting algorithm and the algorithm 
+gives us a column with most negative reduced cost as well as some other columns with negative 
+reduced cost. In the heuristic approach, we solve the modified ESPPRC label correcting algorithm
+with a label limit  at each node. We set a label limit ($LL$), the maximum number of
+labels will be kept at each node during the algorithm. When we update the label list for 
+a node, we order the labels in the list in increasing order of reduced cost. We keep at most
+the $LL$ number of labels of the ordered label list at each node. If the heuristic ESPPRC algorithm results
+columns with negative reduced cost, they are feasible for the original problem and they can
+improve the LP relaxation solution, but they are not necessarily the columns with most negative 
+reduced cost. 
+
+
+
+\subsection{Branch-and-Price Algorithm}
+\label{BPAlg}
+In this section, we describe our branch-and-price algorithm for the LRS problem.
+Branch-and-price algorithms, which combine column generation with branch-and-bound 
+algorithms, have been applied to many different problems in recent years, such as 
+assignment problems (\citet{Savelsbergh}), airline crew scheduling problems (\citet{Vance}) 
+and location routing problems (\citet{Berger05}).
+
+%\citet{Savelsbergh} applies a branch-and-price algorithm to a generalized 
+%assignment problem which is a structure that appear in many models, such as vehicle routing, 
+%facility location and scheduling. He showed that the algorithm outperforms many of the other 
+%optimization algorithms used before. \citet{Vance} formulate an airline crew scheduling 
+%problem and describe many details of their implementation of the branch and price algorithm. 
+%Although the LP relaxation of their formulation gives a stronger bound than traditional 
+%formulations, their LP relaxation is more difficult to solve than the traditional ones. 
+%Closely related to our work is the work of \citet{Berger}, in which the authors 
+%develop a branch and price algorithm for an uncapacitated location and routing problem.  
+
+%[Although branch-and-price has been applied successfully to some of the 
+%large scale optimization problems such as crew scheduling, machine
+%scheduling, facility location and routing, since the mid-1990s, there are 
+%many difficulties associated with the algorithm and the success of the 
+%algorithm highly depends on the structure of the problem. \citet{Barnhart}
+%provide an overview of the general methodology and many of the challenges.]
+
+\citet{Barnhart} present a discussion of the general methodology and many of the challenges
+of developing a branch-and-price algorithm. The basic idea of a branch-and-price algorithm is to 
+solve an appropriate LP at each node of the branch-and-bound tree using column generation. Columns must be 
+generated throughout the tree because we might not have all possible columns in the current 
+node and branching rules and fixing of variables may change the values of the dual variables. 
+Therefore, the reduced costs of the columns may change and there may exist new columns with negative 
+reduced costs that are not in the current problem. The main challenge in developing a 
+branch-and-price algorithm is developing effective branching rules that do not destroy the 
+structure of the pricing problem. Figure \ref{fig:bp_tree}  shows a schematic representation 
+of a branch-and-price algorithm.
+
+ 
+%There are some remarks about branch-and-price algorithm that we have to state.
+%In every node of the branch and bound tree, column generation should be used to find the 
+%optimal LP solution at the corressponding node. While  pricing new columns in column generation
+%algorithm, fixed variables and branching rules must also be considered, which means that the 
+%pricing problem must be modified. {\bf Figure 2} shows the schematic representation of the 
+%branch-and-price algorithm.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.5]{figs/figure2.eps}
+  %\fbox{ \includegraphics[scale=0.5]{figure2.eps}}
+  \caption{Branch-and-Price Tree}\label{fig:bp_tree}
+\end{figure}
+
+Our branch-and-price algorithm includes the following steps, which are described in
+general terms. %We will provide details of each step later.       
+
+\begin {enumerate}
+\item {\bf Solving the Root Node of the Branch-and-Price Tree} 
+  \begin {enumerate}
+  \item [{\bf Step 1.}] Starting with an initial set of columns, solve the LP relaxation 
+    of the AUG-SPP-LRS using a column generation algorithm.
+  \item [{\bf Step 2.}] The LP relaxation solution is a lower bound for the problem.  
+    If the LP relaxation solution satisfies the integrality constraints, 
+    then it is an optimal solution of the original problem and the algorithm stops.  
+    Otherwise, go to Step 3. 
+  \item [{\bf Step 3.}] Find an integer feasible solution of the RMP with the current set of 
+    columns using a branch-and-bound algorithm. Set this solution as the upper bound for the problem. 
+    Go to step 4. 
+  \end{enumerate}
+\item {\bf Branching} 
+  \begin{enumerate}
+  \item [{\bf Step 4.}] Select one or more fractional variables on which to branch. 
+    Create new nodes in the branch-and-price tree. 
+  \item [{\bf Step 5.}] Do one of the following: 
+    \begin {itemize}
+    \item If there is an unprocessed leaf node in the tree, select one to process. Fix the 
+      variables  according to the branching 
+      rules applied along the path in the tree from the root node to the selected node. Modify the 
+      pricing problem to incorporate the branching rules. Go to Step 6.
+    \item If all nodes in the tree are marked as processed, then STOP. The current best integer
+      feasible solution is an optimal integer solution.
+    \end{itemize}
+  \item [{\bf Step 6.}] Solve the linear program associated with the current node using 
+      a column generation algorithm with the modified pricing problem. 
+      \begin {itemize}
+      \item If the linear program at the current node is infeasible, then fathom the node,
+	mark it as processed and return to Step 5. 
+      \item If the LP solution at the current node satisfies the integrality constraints, 
+        then it is a feasible solution for the original problem. If the current solution
+        is better than the best integer feasible solution, then update the upper bound. 
+	Return to Step 5. 
+      \item If the LP solution contains fractional variables, go to Step 4. 
+    \end{itemize}
+  \end {enumerate}
+\end{enumerate}
+
+%In the previous sections we have showed that how we formulate our initial 
+%pricing problem and how we solve the root node using column generation algorithm. 
+%Next, we will show our branching rules and updates in pricing problem. 
+
+\subsubsection {Branching Rules} 
+\label{branchingRule}
+Devising good branching rules is an important step in developing a branch-and-price algorithm.
+The branching rules may affect the structure of the pricing problem, which may cause the problem 
+to become more difficult to solve than the original pricing problem. Therefore, the main 
+objective is to find branching rules that eliminate as much of the integer infeasible region 
+as possible but that do not increase the difficulty of the pricing problem too much. We apply 
+the following branching rules in our algorithm.
+\begin {itemize}
+\item [{\bf Rule 1}]
+
+{\bf Branching on the facility location variables:} At any node of the branch-and-price tree, 
+if the corresponding LP solution has at least one fractional facility location variable, then
+we select one of the fractional facility location variables, say $T_j$, as our branching
+variable. 
+\begin {itemize}
+\item On the left branch, we set $T_j=1$, meaning that the corresponding facility is forced 
+  to be open. The pricing problem for the corresponding node does not change.
+\item On the right branch, we set $T_j=0$, which forces facility j to be closed. 
+  If facility j is closed, then no pairings associated with facility j are allowed in the 
+  solution. Thus, we fix the variables corresponding to pairings of facility j to zero. The structure 
+  of the pricing problem does not change. In fact, we do not solve the pricing problem for facility j, 
+  since it is fixed closed.
+\end{itemize}
+
+\item [{\bf Rule 2}]
+
+  {\bf Branching on the total number of vehicles:} By definition, each pairing 
+  corresponds to one vehicle. Also, vehicles (pairings) belong to a single facility. Thus, in 
+  any integer solution, the number of vehicles (pairings) used for any facility must be integer. 
+  If we define $nV_j$ to be the number of vehicles used at facility j, then we have the following 
+  set of equalities: 
+  \begin{eqnarray}
+    \label{n-equal}
+   nV_j =\sum_{p \in P_j} Z_{jp} \qquad \forall j \in M 
+  \end{eqnarray}      
+  
+%add how we branch on the new variables
+
+  At any node of the branch-and-price tree, if any of the $nV_j$ variables have fractional values, then 
+  we select   one as our branching variable. If the selected variable $nV_j$ has the fractional value 
+  $a$, then  we create two new branches:
+  \begin{eqnarray*}
+   nV_j & \leq & \lfloor a \rfloor \qquad  \mbox {(on the left branch)}\\
+   nV_j & \geq & \lceil a \rceil    \qquad \mbox {(on the right branch)}
+  \end{eqnarray*}    
+  
+  To do this branching, we introduce the variables $nV_j$, $\forall j\in M$, and add the equations 
+  (\ref{n-equal}) to our formulation. Branching on the $nV_j$ variables instead of implicitly  branching
+  on $\sum_{p \in P_j}Z_{jp}$ is an example of explicit constraint branching, an idea developed by 
+  \citet{Appleget} to improve the performance of the branch-and-bound algorithms for mixed integer
+  linear problems. One benefit of these new variables is that it is easier to see the necessary 
+  updates to the pricing problem. Let $v_j$ be the dual variable associated with constraint 
+  (\ref{n-equal}). Then, the reduced cost of the variable $Z_{jp}$  changes to the following:
+  \begin{eqnarray}
+    \label{new-red-cost}
+    \hat{C}_{jp}=C_{jp}-\sum_{i\in N}a_{ipj}.\pi_{i}+\sum_{i \in N}a_{ipj}.d_{i}.\mu_{j}+\sum_{i \in N}a_{ipj}.\sigma_{ji}-v_j
+  \end{eqnarray} 
+  In equation (\ref{new-red-cost}), $v_j$ can be considered as a fixed cost for facility j that is 
+  shared with every customer node in the pairing p. We do not need to change our network structure or the pricing 
+  problem structure to incorporate $v_j$. We calculate the cost of a path in the modified network in same way as 
+  before the branching rule and then add the fixed cost $-v_j$ to the cost of the shortest path 
+  to find the true reduced cost of the column with the branching rule.    
+
+\item[{\bf Rule 3}]
+  {\bf Branching on assignment of a customer to a facility} 
+At any node of the branch-and-price tree, if the solution is fractional and Rules 1 and 2 are not 
+applicable, then we use rule 3 that is assignment of a customer to a specific facility. 
+In a fractional solution, 
+if a customer node is served by more than one facility, we select a customer node  $i$ and a facility 
+$j$ such that 
+ \begin{eqnarray}
+\label{branchingrule3-cond}
+\sum_{p \in P_j }a_{ipj} Z_{jp}
+\end{eqnarray}  
+ is fractional. We create two new branches:
+  \begin{eqnarray*}
+  \sum_{p \in P_j }a_{ipj} Z_{jp} & \geq & 1 \qquad  \mbox {(on the left branch)}\\
+   \sum_{p \in P_j }a_{ipj} Z_{jp} & \leq & 0   \qquad \mbox {(on the right branch)}
+  \end{eqnarray*}    
+
+In one branch, we force the customer node $i$ to be served by facility $j$. To incorporate this 
+assignment, we add the following inequality to the 
+RMP as a constraint:
+\begin{eqnarray}
+  \label{con-rul3}
+  \sum_{p \in P_j}a_{ijp}Z_{jp} \geq  1  \ \ (\gamma_{ji})
+\end{eqnarray}       
+In the pricing problem of facilities other than facility $j$, we simply delete the customer $i$ from the 
+network not to generate any pairings including customer $i$. For the pricing problem of facility $j$, 
+let $\gamma_{ji}$ be the dual variable assigned to constraint (\ref{con-rul3}). Then, update 
+the reduced cost of variables (including customer $i$) for facility $j$ with $\gamma_{ji}$. In
+the pricing problem for facility $j$, the cost of an arc into node $i$ is changed to 
+  \begin{eqnarray}
+\label{redcost-r3}
+c_{ki}-\pi_{i}+d_i \cdot \mu_j +\sigma_{ji}-\gamma_{ji}
+\end{eqnarray} 
+  
+In the other branch, we forbid assignment of customer node $i$ to facility $j$. 
+To apply the rule, we add the following inequality to the RMP of the current node as a constraint: 
+\begin{eqnarray}
+  \sum_{p \in P_j }a_{ijp}Z_{jp} \leq  0 \nonumber 
+\end{eqnarray}  
+In the pricing problem of facility $j$, to create feasible pairings for the branch, 
+we remove the node $i$ from the network. The other pricing problems do not change. 
+
+\item[{\bf Rule 4}]
+  {\bf Branching on pairs of nodes in the pairing} At any node of the branch-and-price tree,
+  if the solution is fractional and Rules 1, 2  and 3 are not applicable, then we use the modified
+  \citet*{Ryan} branching rule developed by \citet{Desrochers4}. 
+
+  In the original \citet*{Ryan} branching rule, a pair of set partitioning constraints is 
+  selected. In one branch, the rule is to branch on the sum of the variables that satisfy both 
+  constraints and, in the other branch, the rule is to branch on the sum of the variables that do 
+  not satisfy both constraints simultaneously. In the LRS context, the rule is to select 
+  a pair of customer nodes and to branch on the sum of pairings such that the pair of customer  
+  nodes appear in the same pairing simultaneously or not. \citet{Desrochers4} modify the 
+  Ryan and Foster branching rule by looking only at the variables in which the selected pair of 
+  nodes are in consecutive order or not. 
+  
+  To apply the modified Ryan and Foster branching rule in the LRS context, we select a pair 
+  of nodes $(n_1,n_2)$ such that  
+  \begin{eqnarray}
+    \label{branchingrule4-con}
+    0 < \sum_{j \in M}\sum_{\{p \in P_j | (n_1\to n_2) \in p\}} Z_{jp} <1
+  \end{eqnarray}       
+  where $\{p \in P_j | (n_1\to n_2) \in p\}$ is the set of pairings (of facility $j$)
+  in which $n_1$ is followed directly by $n_2$. Based on the structure of the pairings in the LRS 
+  problem, if $n_1$ is a customer node, then $n_2$ can be another customer node or it can be the sink; if
+  $n_1$ is the source, then $n_2$ can only be a customer node and if $n_1$ is the sink, then $n_2$ can 
+  only be a customer
+  node.  For example, if we let $i$ and $k$ be two customer nodes, then the $(n_1,n_2)$ pair 
+  can be one of the following, $(source,i)$, $(i,k)$, $(i,sink)$ and $(sink,i)$. In one branch, we 
+  force the two nodes to be   in consecutive order in any selected pairing and, in the other branch, 
+  we forbid any pairings such that the two nodes are in consecutive order. We create two new nodes: 
+  \begin{eqnarray}
+    & \mbox{Left branch:} & \sum_{j \in M}\sum_{\{p \in P_j | (n_1\to n_2) \in p\}} Z_{jp} \leq  0 \nonumber \\
+    & \mbox{Right branch:} & \sum_{j \in M}\sum_{\{p \in P_j | (n_1\to n_2) \in p\}} Z_{jp} \geq  1 \nonumber 
+  \end{eqnarray}       
+
+  The left branch specifies that $n_2$ cannot follow $n_1$ in a feasible pairing. The feasible pairings 
+  may include $n_1$ or $n_2$ only or may include both of them as long as $n_2$ does not follow $n_1$ directly. 
+  In the RMP for the left branch, we fix to zero the previously created pairings in which $n_1$ is 
+  followed by $n_2$. In the pricing problem, to create feasible pairings for the left branch, we delete
+  the arc connecting node $n_1$ to node $n_2$, so that  no pairing is created in which $n_1$ is followed by $n_2$.
+ 
+  The right branch specifies that either node $n_1$ is followed by node $n_2$ in a pairing or that neither 
+  node appears. Pairings that include only one of the nodes, $n_1$ or $n_2$, or that include both nodes
+  but $n_2$ does not immediately follow $n_1$ are not feasible in the right branch. Therefore, in the RMP, the 
+  variables for previously created infeasible pairings are set to zero. In the pricing problem, to create feasible
+  pairings for the right branch, we delete all arcs going into $n_2$ except the arc $(n_1,n_2)$ and
+  we delete all arcs going out of $n_1$ except the arc $(n_1,n_2)$. Therefore, if the path visits $n_1$,
+  it must visit $n_2$ to be able to reach the sink. To delete an arc in the modified network, we set the cost of 
+  the arc to infinity. Other than that, for this branching rule, we do not need to adjust the arc costs. 
+\end{itemize}
+
+\subsection {Terminating The Branch-and-Price Tree}
+\label{BPAlg-Opt}
+After applying the three branching rules to the problem, the  
+branch-and-price algorithm terminates with leaf nodes satisfying one of the 
+following conditions:
+\begin{enumerate}
+\item The LP for the node was proved to be infeasible and the node was fathomed.
+\item The lower bound of the LP for the node was larger than the best integer feasible 
+  solution, so the node was fathomed. 
+\item The solution of the LP for the node is integer. Therefore, either the solution is a candidate 
+  solution or the node was fathomed because its objective function value was larger than 
+  the best integer feasible solution.  
+\item The solution of the LP for the node is not integer, but the node is not fathomed 
+  because of its objective function value and none of the branching rules can be 
+  applied, i.e., all the location variables are integer, the number of vehicles
+  for each facility is integer, each customer is served by one facility and there 
+are no pairs of nodes that   satisfy condition (\ref{branchingrule4-con}).
+\end{enumerate}
+
+In a general branch and bound the algorithm terminates with the leaf nodes all 
+satisfying conditions 1, 2 or 3. But in our branch and price tree, 
+it is possible to  have leaf nodes satisfying condition 4. 
+In this case, we can easily see that the LP solution of the node is equal to
+the IP solution of the node. We can find an IP solution by updating the LP solution. 
+
+We can represent a pairing in terms of the nodes or the individual paths included in the 
+pairing. Let $(source-1-2-sink-5-7-sink-3-9-4-sink)$ be a feasible pairing visiting 
+customer nodes in the set $\{1,2,3,4,5,7,9\}$. We can view this pairing also as a 
+combination of the following three paths: $P_1=source-1-2-sink$, $P_2=sink-5-7-sink$ and 
+$P_3=sink-3-9-4-sink$. We say that two paths $P_i$ and $P_j$ are {\em node disjoint} if they do not have a 
+common customer node, e.g., $P_i\cap P_j =\emptyset$. All of the paths included in a 
+feasible pairing must be disjoint from the other because a customer may be visited
+at most once. However, in a fractional solution, one or more customer nodes may 
+be included in more than one pairing. And, in fact, at least two fractional pairings 
+must include either the same path or different but non-disjoint paths. 
+Since at the leaf node, we cannot use branching rule 3, we can use 1 facility
+in our examples. In an instance with 9 customers and 1 facility, the following solutions might
+appear as a fractional solution. Solution 1 includes node disjoint  paths and solution 2 includes
+non-disjoint paths.   
+
+\noindent \underline{Solution 1: Same paths:}
+\begin{eqnarray*}
+0.5 &: & facility_1-1-2-facility_1 \\ 
+0.5 &: & facility_1-1-2-facility_1-3-4-5-6-facility_1 \\
+0.5 &: & facility_1-7-8-9-facility_1-3-4-5-6-facility_1 \\
+0.5 &: & facility_1-7-8-9-facility_1 
+\end{eqnarray*}
+\underline{Solution 2: Non-disjoint paths:}
+\begin{eqnarray*}
+0.5 &: & facility_1-1-2-facility_1-3-4-5-6-facility_1 \\
+0.5 &: & facility_1-4-6-7-facility_1-8-9-facility_1 \\
+0.5 &: & facility_1-5-8-facility_1-7-1-2-3-facility_1-9-facility_1 
+\end{eqnarray*}
+
+\begin{lemma} If a leaf node satisfies condition 4, then the fractional 
+solution at the node includes 
+%pairings that have disjoint paths. Since the solution is fractional, 
+at least two pairings that have at least one identical path. And all the paths in 
+the pairings are node disjoint from each other (similar to solution 1).
+\end{lemma} 
+\begin{proof} 
+Assume that we have a leaf node satisfying condition 4 and
+%and a non-integer solution. 
+the fractional solution includes pairings 
+that have non-disjoint paths. (The paths, $P_1$ and $P_2$, are non-disjoint
+if $(P_1\cap P_2)\neq \emptyset$ and $P_1\neq P_2$). Therefore, there is at least one
+arc $(k,i)$ and two paths $P_1$ and $P_2$ such that $i,k \in N$, 
+$\{i\} \subseteq (P_1\cap P_2)$ and $(k,i) \in P_1$ but $(k,i) \notin P_2$
+and, there is a $k^{'}$ such that $(k^{'},i) \in P_2$.
+%Since $P_1$ and $P_2$ are non-disjoint, there should be a $k^{'}$ such that 
+%$(k^{'},i) \in P_2$. 
+In addition to that, 
+$\sum_{j \in M}\sum_{p \in P_j}a_{ijp} Z_{jp}$ must be $1$. Therefore, 
+because of the $(k^{'},i)$ link, $0 < \sum_{j \in M}\sum_{\{p \in P_j | (k\to i) \in p\}} Z_{jp} <1$
+must be satisfied. This contradicts the assumption that the node satisfies
+condition 4. \qed
+\end{proof}
+%Let $Z_{j1}$ and $Z_{j2}$ be two of the fractional pairings that have at least 
+%one non-disjoint pair of paths. Let $P_1 \in Z_{j1}$ and $P_2 \in Z_{j2}$ be 
+%the non-disjoint paths, e.g., $(P_1\cap P_2)\neq \emptyset$ and $P_1\neq P_2$.  
+
+% there exists a customer node $i$ that is . Let $P_1 \in Z_{j1}$
+%and $P_2 \in Z_{j2}$ such that $\{i\} \subseteq (P_1\cap P_2)$ and
+%$P_1\neq P_2$.  
+
+If we have a fractional solution satisfying condition 4, it has a solution similar
+to Solution 1 for each open facility. Since each pairing is feasible with respect to
+time limit and vehicle capacity, we can delete paths which appear multiple times and
+obtain a solution which includes each path (that is in LP solution) exactly once
+which is integer.  
+
+
+%%%%%%%move all these toimplementation details????
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+%To implement this branching rule, we created a column pool and path pool. The column pool includes
+%every column created with CG algorithm. The path pool includes every path that is included in at 
+%least one of the pairings in the column pool. First we branch on the location variables. When 
+%there are no fractional location variables, we branch on paths. We construct a network in which 
+%each path in the path pool is represented by a node. We add a source node and a sink node to 
+%the network. We carry the cost and the total travel time of each path on to the incoming arcs of 
+%the node representing that path. Also, each node has a demand that is equal to the total demand 
+%of the path corresponding to that node. An adjacency matrix is constructed according to the customers 
+%in each path. Suppose that P1=(source-1-2-sink) and P2=(source-2-3-4-sink). There is no arc 
+%between P1 and P2 in the constructed network since both paths include the customer node 2. Otherwis,
+%if we were to form a pairing with P1 and P2, it would not be integer feasible because of the set 
+%partitioning constraint (\ref{spp_con1}). We include arcs from the source to all nodes (paths), 
+%arcs from all nodes (paths) to the sink and all arcs between two path nodes that are adjacent according 
+%to the adjacency matrix.
+
+%The ESPPRC algorithm is used over this network to find an elementary shortest path from the source to 
+%the sink and new columns are created according to the branching rules. Branching rules for the paths 
+%are applied with some modifications on the network. For the left branch, we set the travel time 
+%between path1 and path2 to infinity. For right branch, we set the travel time on all the arcs going out 
+%of path1 and all the arcs going into path2 to infinity except the arc between path1 and path2. 
+%With this modification, the structure of the pricing problem does not change but the new pairings 
+%satisfy the branching rules. Also, before we process the left or the right branch, we must fix 
+%the values of some variables. For example, for the left branch, the pairings in which path2 follows path1
+%are set to zero. For the right branch, the pairings in which there is only one of path1 or path2 or 
+%both path1 and path2 but in incorrect order (not like $path1\to path2$) are fixed to zero.
+     
+%In some of our solutions a fractional pairing may include only one path. If this is the case, we may 
+%apply our branching strategy to the arc between source and path1 similar to the arc between path1 and path2.
+
+\subsection {2-Step Branch and Price Algorithm}    
+\label{sec:2SBPAlgorithm}
+In this section, we describe a 2-step branch and price algorithm. Each
+step includes solving a branch and price tree. The purpose of the first step is to 
+obtain a good upper bound and good columns. The second step is used either to
+prove the optimality of the solution or to evaluate the quality of the upper bound. 
+
+
+\zaupdate{{\bf Create a section for heuristic solutions to LRSP then put the following section} \\
+**********************************************8\\
+*************************************************
+}
+  
+\subsubsection{Initial Columns and Upper Bound}
+
+To be able to start the first step of the algorithm, we generate some initial columns 
+and an upper bound for the LRSP. To do that, we develop a heuristic algorithm 
+%called COMBHEUR 
+which is a combination of a facility location heuristic, VRP heuristics 
+and a bin packing heuristic. We use DROP heuristic to determine a set of facilities 
+to be open. Basically, the DROP heuristic starts with all facilities are being open. 
+At each iteration, one facility which results the most cost saving is closed until
+the problem becomes infeasible. Total cost which includes the facility fixed 
+costs, vehicle routing costs and vehicle fixed costs is calculated at every 
+iteration of DROP heuristic for a given set of open facilities. 
+
+In the total cost calculation procedure (TCOST), the first step is for any open set of facilities 
+to determine an assignment of customers based on the distance and facility capacity. 
+For each open facility and given customer assignment, using a VRP 
+heuristic vehicle routes are constructed to serve the demands of customers assigned to
+the facility. After designing the routes, a bin packing heuristic (best fit decreasing)
+is used to combine the routes considering the time limit for the vehicles. This
+decides the assignment of vehicles to routes as well as the number of vehicles, 
+therefore the fixed cost of vehicles. The total cost calculation is repeated for each 
+of the following VRP heuristics: Clark and Wright, nearest neighbor, nearest insertion 
+and sweep heuristic. The minimum total cost obtained from the total cost calculation
+procedure using one of the VRP heuristics is returned to the DROP heuristic to 
+determine the facility to be closed. 
+
+When the DROP heuristic terminates, it
+returns a set of open facilities and the total cost of the solution which includes 
+the routing and scheduling information as well as the facility fixed costs.
+We add the columns which represent the solution from the combined heuristic
+to the RMP and update the upper bound. To balance the number of columns added 
+for each facility, for the facilities that are fixed to be closed in the heuristic 
+solution, we determine a set of customers that can be served from the facility within 
+the time limit and use VRP heuristics and the bin packing heuristic in combination to 
+determine feasible pairings. 
+
+
+\subsubsection {Step 1}
+Step 1 starts with the upper bound and the RMP that includes the columns generated 
+using the heuristic described above. Using the heuristic ESPPRC algorithm (with label 
+limit at each node) as a pricing problem and the branching rules described in the 
+section \ref{branchingRule}, branch and price algorithm is run for a limited time. When
+the algorithm terminates or the time limit is exceeded, the algorithm results
+a feasible solution which is an upper bound for the LRSP and a set of feasible pairings.  
+ 
+\subsubsection{Step 2}    
+%Step 2 uses the upper bound and the pairings obtained at step 2 as an input. 
+Step 2 starts with the upper bound and the RMP that includes the pairings obtained
+at step 1. Using the combination of heuristic and exact ESPPRC algorithm as a 
+pricing problem the branch and price algorithm is run. Pricing problem, first
+uses the heuristic ESPPRC, if the heuristic algorithm cannot find any columns with 
+negative reduced cost, the label limit is increased. After some point, if the 
+heuristic ESPPRC cannot find a column, exact pricing problem is solved. Together
+with the branching rules exact pricing problem guarantees that the solution 
+found at the end of the algorithm is optimal solution for the LRSP. Figure \ref{2StepBP}
+shows the flow of 2-Step Branch and Price Algorithm. 
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.7]{figs/bpalgorithm.eps}
+  %\fbox{ \includegraphics[scale=0.5]{figure/pair2.eps}}
+  \caption{2-Step Branch and Price Algorithm} \label{2StepBP}
+\end{figure}

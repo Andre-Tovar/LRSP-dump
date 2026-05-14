@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -f lrp_paper.aux lrp_paper.dvi lrp_paper.log 
+
+

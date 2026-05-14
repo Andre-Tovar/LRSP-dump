@@ -1,0 +1,736 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4E5055FD-7B0F-3709-8EEB-257CB6993088}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>highs</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">highs.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">highs</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">highs.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">highs</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\bin\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">highs.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">highs</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\bin\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">highs.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">highs</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <DisableSpecificWarnings>4005;4018;4065;4068;4101;4146;4200;4244;4251;4267;4305;4307;4309;4334;4355;4477;4506;4715;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN=1;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN=1;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <DisableSpecificWarnings>4005;4018;4065;4068;4101;4146;4200;4244;4251;4267;4305;4307;4309;4334;4355;4477;4506;4715;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN=1;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN=1;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <DisableSpecificWarnings>4005;4018;4065;4068;4101;4146;4200;4244;4251;4267;4305;4307;4309;4334;4355;4477;4506;4715;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN=1;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN=1;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <DisableSpecificWarnings>4005;4018;4065;4068;4101;4146;4200;4244;4251;4267;4305;4307;4309;4334;4355;4477;4506;4715;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN=1;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN=1;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\filereader;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\pdqsort;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\extern\zstr;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\interfaces;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\io;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\ipx;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\ipm\basiclu;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\lp_data;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\mip;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\model;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\parallel;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\pdlp\cupdlp;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\presolve;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\qpsolver;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\simplex;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\test;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/mespprc_native/third_party/HiGHS/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/mespprc_native -BC:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build --check-stamp-file C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\cmake\CheckAtomic.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\cmake\sources.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\highs-config.cmake.in;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\highs.pc.in;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\version.rc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/mespprc_native/third_party/HiGHS/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/mespprc_native -BC:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build --check-stamp-file C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\cmake\CheckAtomic.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\cmake\sources.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\highs-config.cmake.in;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\highs.pc.in;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\version.rc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/mespprc_native/third_party/HiGHS/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/mespprc_native -BC:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build --check-stamp-file C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\cmake\CheckAtomic.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\cmake\sources.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\highs-config.cmake.in;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\highs.pc.in;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\version.rc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/mespprc_native/third_party/HiGHS/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/mespprc_native -BC:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build --check-stamp-file C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\cmake\CheckAtomic.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\cmake\sources.cmake;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\highs-config.cmake.in;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\highs.pc.in;C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\version.rc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\extern\filereaderlp\reader.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\interfaces\highs_c_api.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\Filereader.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\FilereaderEms.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\FilereaderLp.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\FilereaderMps.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\HighsIO.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\HMpsFF.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\HMPSIO.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\LoadOptions.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\IpxWrapper.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\Highs.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsCallback.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsDebug.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsInfo.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsInfoDebug.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsDeprecated.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsInterface.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsLp.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsLpUtils.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsModelUtils.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsOptions.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsRanging.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsSolution.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsSolutionDebug.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsSolve.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsStatus.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsCliqueTable.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsConflictPool.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsCutGeneration.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsCutPool.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsDebugSol.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsDomain.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsDynamicRowMatrix.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsGFkSolve.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsImplications.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsLpAggregator.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsLpRelaxation.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsMipSolver.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsMipSolverData.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsModkSeparator.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsNodeQueue.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsObjectiveFunction.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsPathSeparator.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsPrimalHeuristics.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsPseudocost.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsRedcostFixing.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsSearch.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsSeparation.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsSeparator.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsTableauSeparator.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsTransformedLp.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\model\HighsHessian.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\model\HighsHessianUtils.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\model\HighsModel.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsTaskExecutor.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\CupdlpWrapper.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\HighsPostsolveStack.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\HighsSymmetry.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\HPresolve.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\HPresolveAnalysis.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\ICrash.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\ICrashUtil.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\ICrashX.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\PresolveComponent.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\a_asm.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\a_quass.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\basis.cpp">
+      <ObjectFileName>$(IntDir)/qpsolver/basis.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\perturbation.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\quass.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\ratiotest.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\scaling.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkk.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkControl.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkDebug.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkDual.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkDualMulti.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkDualRHS.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkDualRow.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkInterface.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkPrimal.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HighsSimplexAnalysis.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplex.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplexDebug.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplexNla.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplexNlaDebug.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplexNlaFreeze.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplexNlaProductForm.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplexReport.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\test\KktCh2.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\test\DevKkt.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HFactor.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HFactorDebug.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HFactorExtend.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HFactorRefactor.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HFactorUtils.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsHash.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsLinearSumBounds.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsMatrixPic.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsMatrixUtils.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsSort.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsSparseMatrix.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsUtils.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HSet.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HVectorBase.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\stringutil.cpp" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_cs.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_linalg.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_proj.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_restart.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_scaling_cuda.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_solver.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_step.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_utils.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\basiclu_kernel.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\basiclu_wrapper.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\basis.cc">
+      <ObjectFileName>$(IntDir)/ipm/ipx/basis.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\conjugate_residuals.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\control.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\crossover.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\diagonal_precond.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\forrest_tomlin.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\guess_basis.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\indexed_vector.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\info.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\ipm.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\ipx_c.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\iterate.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\kkt_solver_basis.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\kkt_solver_diag.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\kkt_solver.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\linear_operator.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\lp_solver.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\lu_factorization.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\lu_update.cc">
+      <ObjectFileName>$(IntDir)/ipm/ipx/lu_update.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\maxvolume.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\model.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\normal_matrix.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\sparse_matrix.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\sparse_utils.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\splitted_normal_matrix.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\starting_basis.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\symbolic_invert.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\timer.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\utils.cc" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_factorize.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_get_factors.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_initialize.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_object.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_solve_dense.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_solve_for_update.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_solve_sparse.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_update.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_build_factors.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_condest.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_dfs.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_factorize_bump.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_file.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_garbage_perm.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_initialize.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_internal.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_markowitz.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_matrix_norm.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_pivot.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_residual_test.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_setup_bump.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_singletons.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_solve_dense.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_solve_for_update.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_solve_sparse.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_solve_symbolic.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_solve_triangular.c" />
+    <ClCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_update.c">
+      <ObjectFileName>$(IntDir)/ipm/basiclu/lu_update.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\extern\filereaderlp\builder.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\extern\filereaderlp\def.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\extern\filereaderlp\model.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\extern\filereaderlp\reader.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\extern\pdqsort\pdqsort.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\extern\zstr\strict_fstream.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\extern\zstr\zstr.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\interfaces\highs_c_api.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\Filereader.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\FilereaderEms.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\FilereaderLp.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\FilereaderMps.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\HighsIO.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\HMpsFF.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\HMPSIO.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\io\LoadOptions.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\IpxSolution.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\IpxWrapper.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HConst.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsAnalysis.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsCallback.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsCallbackStruct.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsDebug.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsInfo.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsInfoDebug.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsLp.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsLpSolverObject.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsLpUtils.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsModelUtils.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsOptions.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsRanging.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsRuntimeOptions.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsSolution.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsSolutionDebug.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsSolve.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HighsStatus.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\lp_data\HStruct.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsCliqueTable.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsConflictPool.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsCutGeneration.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsCutPool.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsDebugSol.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsDomain.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsDomainChange.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsDynamicRowMatrix.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsGFkSolve.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsImplications.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsLpAggregator.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsLpRelaxation.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsMipSolver.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsMipSolverData.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsModkSeparator.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsNodeQueue.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsObjectiveFunction.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsPathSeparator.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsPrimalHeuristics.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsPseudocost.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsRedcostFixing.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsSearch.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsSeparation.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsSeparator.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsTableauSeparator.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\mip\HighsTransformedLp.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\model\HighsHessian.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\model\HighsHessianUtils.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\model\HighsModel.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsBinarySemaphore.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsCacheAlign.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsCombinable.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsMutex.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsParallel.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsRaceTimer.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsSchedulerConstants.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsSpinMutex.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsSplitDeque.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsTask.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\parallel\HighsTaskExecutor.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\CupdlpWrapper.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\HighsPostsolveStack.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\HighsSymmetry.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\HPresolve.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\HPresolveAnalysis.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\ICrash.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\ICrashUtil.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\ICrashX.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\presolve\PresolveComponent.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\a_asm.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\a_quass.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\basis.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\crashsolution.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\dantzigpricing.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\devexpricing.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\eventhandler.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\factor.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\feasibility_bounded.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\feasibility_highs.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\gradient.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\instance.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\matrix.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\perturbation.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\pricing.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\qpconst.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\qpvector.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\quass.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\ratiotest.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\runtime.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\scaling.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\settings.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\snippets.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\statistics.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\qpsolver\steepestedgepricing.hpp" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HApp.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkk.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkDual.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkDualRHS.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkDualRow.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HEkkPrimal.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HighsSimplexAnalysis.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplex.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplexDebug.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplexNla.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\HSimplexReport.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\SimplexConst.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\SimplexStruct.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\simplex\SimplexTimer.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\test\DevKkt.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\test\KktCh2.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\FactorTimer.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HFactor.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HFactorConst.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HFactorDebug.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsCDouble.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsComponent.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsDataStack.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsDisjointSets.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsHash.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsHashTree.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsInt.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsIntegers.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsLinearSumBounds.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsMatrixPic.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsMatrixSlice.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsMatrixUtils.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsMemoryAllocation.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsRandom.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsRbTree.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsSort.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsSparseMatrix.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsSparseVectorSum.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsSplay.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsTimer.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HighsUtils.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HSet.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HVector.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\HVectorBase.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\util\stringutil.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\Highs.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_cs.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_defs.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_linalg.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_proj.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_restart.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_scaling_cuda.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_solver.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\pdlp\cupdlp\cupdlp_step.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\basiclu_kernel.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\basiclu_wrapper.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\basis.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\conjugate_residuals.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\control.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\crossover.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\diagonal_precond.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\forrest_tomlin.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\guess_basis.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\indexed_vector.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\info.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\ipm.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\ipx_c.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\ipx_config.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\ipx_info.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\ipx_internal.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\ipx_parameters.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\ipx_status.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\iterate.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\kkt_solver_basis.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\kkt_solver_diag.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\kkt_solver.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\linear_operator.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\lp_solver.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\lu_factorization.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\lu_update.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\maxvolume.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\model.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\multistream.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\normal_matrix.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\power_method.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\sparse_matrix.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\sparse_utils.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\splitted_normal_matrix.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\starting_basis.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\symbolic_invert.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\timer.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\ipx\utils.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_factorize.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_get_factors.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_initialize.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_obj_factorize.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_obj_free.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_obj_get_factors.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_obj_initialize.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_obj_solve_dense.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_obj_solve_for_update.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_obj_solve_sparse.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_obj_update.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_object.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_solve_dense.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_solve_for_update.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_solve_sparse.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu_update.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\basiclu.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_def.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_file.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_internal.h" />
+    <ClInclude Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\mespprc_native\third_party\HiGHS\src\ipm\basiclu\lu_list.h" />
+    <ResourceCompile Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS\version.rc" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\ZERO_CHECK.vcxproj">
+      <Project>{23CDCF6F-D75A-33E8-9C39-BFC0A6AFAA04}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

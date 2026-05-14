@@ -1,0 +1,91 @@
+# 
+# Makefile for building a MINTO application with Osi
+
+#
+# To create a MINTO executable, you must adjust the following two macros in 
+#  this Makefile
+# 
+# 1) Ensure that COIN_RELEASEDIR is set to the location of the root directory
+#    of a COIN installation containing the modules, Coin and Osi
+#    (and potentially CLP, if that is your LP Solver of Choice)
+#
+# 2) Ensure that MINTOLIBDIR is pointing to the directory containing libminto.a
+#    that came with this distribution
+# 
+# 3) type 'make' in the APPL directory.  You may adjust CFLAGS and LDFLAGS as 
+#    necessary for your purposes.
+
+COIN_RELEASEDIR=${HOME}/svn-mods/coin-Cbc-devel/Release/debug
+MINTOLIBDIR= ..
+
+DEFINES  = -DLPSOLVER_CLP
+INCLUDES = -I$(COIN_RELEASEDIR)/include
+
+CXX		= g++
+CXXFLAGS	= -Wall -g
+LD		= g++
+LDFLAGS		= -g
+
+
+#
+# BASIC MACRO DEFINITIONS
+#
+
+APPLNAME =   minto
+
+APPLINCLS =  minto.h
+
+APPLSRCS =   a_bounds.cpp\
+             a_cons.cpp\
+             a_delcon.cpp\
+             a_divide.cpp\
+             a_exit.cpp\
+             a_fathom.cpp\
+             a_feas.cpp\
+             a_init.cpp\
+             a_initlp.cpp\
+             a_mps.cpp\
+             a_node.cpp\
+             a_prep.cpp\
+             a_primal.cpp\
+             a_quit.cpp\
+             a_rank.cpp\
+             a_termlp.cpp\
+             a_termnd.cpp\
+	a_vars.cpp\
+	minto.cpp\
+	initosi.cpp\
+
+
+APPLOBJS =   $(APPLSRCS:.cpp=.o)
+
+#
+# MAKE SURE THAT THE FIRST TARGET IS THE RIGHT ONE
+#
+
+first : $(APPLNAME)
+
+#
+# META RULE FOR MAKING .o's FROM .cpp's, I.E., COMPILATION
+#
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) $(DEFINES) $(INCLUDES) -c $< -o $@;
+
+
+#
+# Note: Libs must (seemingly) be in this order.
+#
+
+$(APPLNAME): $(APPLOBJS)
+	$(LD) $(LDFLAGS) -o $@ $(APPLOBJS) -L$(MINTOLIBDIR) -lminto -lminto-osi -L$(COIN_RELEASEDIR)/lib -lOsi -lOsiClp -lClp -lCoinUtils -lOsi
+
+
+clean:
+	rm -f $(APPLOBJS) $(APPLNAME)
+
+#
+# DEPENDENCIES
+#
+
+$(APPLOBJS) :  $(APPLINCLS)

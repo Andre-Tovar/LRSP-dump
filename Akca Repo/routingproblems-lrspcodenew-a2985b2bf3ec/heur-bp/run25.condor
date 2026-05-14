@@ -1,0 +1,14 @@
+executable = minto
+universe = vanilla
+notify_user = zea2@lehigh.edu
+getenv = True
+rank = kflops
+
+
+
+arguments = -p0 -o2 -n3 -e0 -E0 -c -g -k -i -f -b -r -t7200 rnd20.txt
+output = out
+queue
+
+
+

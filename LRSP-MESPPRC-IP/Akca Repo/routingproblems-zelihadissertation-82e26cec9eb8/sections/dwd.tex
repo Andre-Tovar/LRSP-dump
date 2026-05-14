@@ -1,0 +1,1636 @@
+\section {Dantzig Wolfe Decomposition (DWD) of G-LRSP} 
+\label{part1:dantzigW}
+In this section, we prove that the SPP-LRSP 
+can be obtained by applying Dantzig Wolfe decomposition (DWD) to the graph-based 
+formulation of the LRSP (G-LRSP). 
+
+\subsection{DWD in General}
+
+The DWD method is used in integer programming to improve  the LP relaxation bound. 
+The method reformulates the original problem in such a way that the reformulation 
+yields a tighter bound for the optimal objective function value. To explain the 
+steps of the DWD method in generality, suppose we have an integer program, P that 
+can be partitioned into two sets of constraints. 
+\begin{optprog}
+   Minimize & \objective{c^Tx} \nonumber\\
+(P) \ \  subject to & A^1x & \geq & d^1, \label{sys1}\\
+           & A^2x & \geq & d^2, \label{sys2} \\
+           & x & \geq & 0,\mbox{ and integer}  \label{sys3}     
+\end{optprog} 
+where $A^1 \in \mathbb{Q}^{m\times n}$, and $A^2 \in \mathbb{Q}^{l \times n}$ are
+constraint matrices and $c \in \mathbb{Q}^{n}$, $d^1 \in \mathbb{Q}^{m}$
+and $d^2 \in \mathbb{Q}^{l}$ are rational vectors. 
+By relaxing the integrality constraint on $x$, an LP relaxation bound is obtained.
+The idea of DWD method is to get possibly a better LP relaxation bound by 
+optimizing the intersection of constraints (\ref{sys1}) with the 
+convex hull of (\ref{sys2}) and (\ref{sys3}). 
+%$U \in \mathbb{R}_+^n$ is the variable vector and the integrality restrictions 
+%for $U$ are included in constraints (\ref{sys2}). 
+Let $X^2=\{x \in \mathbb{Z}^n:A^2x \geq d^2, x \geq 0\}$ be the set of integer points 
+defined by systems (\ref{sys2}) and (\ref{sys3}), and $Conv(X^2)$ be the convex hull of $X^2$. 
+Assuming that the $Conv(X^2)$ is bounded, we can express $Conv(X^2)$ using the convex 
+combination of the extreme points of $X^2$:
+\begin{optprog} 
+& Conv(X^2)=\{x \in \mathbb{R}^n | x = \sum_{q \in E}\mbox{x}^q\theta_q, \sum_{q \in E}\theta_q=1, 
+\theta \in \mathbb{R}^{|E|}_+\} \label{convhull}
+\end{optprog} 
+where $\{\mbox{x}^q\}_{q \in E}$ is the set of extreme points of $X^2$. Here, we assume 
+that $Conv(X^2)$ is bounded and pursue the review of DWD method under this assumption since 
+this is the case in LRSP.  For unbounded case, the definition of $Conv(X^2)$ in (\ref{convhull}) 
+can be updated by considering the extreme rays of $X^2$.  
+
+\zaupdate{We can use decomposable subproblem as an example, like LRSP?}
+
+%To find a bound for the optimal objective function value of P, the method 
+%optimizes the objective function over the intersection of system (\ref{sys1}) and 
+%$Conv(X)$. 
+Then, LP relaxation of P can be reformulated using (\ref{convhull}):
+\begin{optprog}
+ Minimize & \objective{c(\sum_{q \in E}\mbox{x}^q\theta_q)} \nonumber\\
+(P$_{\mbox{M}}$) \ \ subject to & A^1(\sum_{q \in E}\mbox{x}^q\theta_q ) & \geq & d^1,  \nonumber \\
+           & \sum_{q \in E}\theta_q & = & 1,  \nonumber\\
+           & \theta & \in & \mathbb{R}^{|E|}_+.\nonumber
+          % & \theta & \in & \mathbb{I}^{|R|}_+ \label{integerlambda}
+\end{optprog} 
+If we rearrange,
+\begin{optprog}
+ Minimize & \objective{\sum_{q \in E}(c\mbox{x}^q)\theta_q} \nonumber\\
+(P$_{\mbox{M}}$) \ \ subject to & \sum_{q \in E}(A^1\mbox{x}^q)\theta_q  & \geq & d^1, & (\pi)\label{master-con1}\\
+           & \sum_{q \in E}\theta_q & = & 1, & (\mu) \label{master-con2}\\
+           & \theta & \in & \mathbb{R}^{|E|}_+.  \label{binarylambda}
+          % & \theta & \in & \mathbb{I}^{|R|}_+ \label{integerlambda}
+\end{optprog} 
+%Since P is an integer linear program we have to force the integrality of variables.
+%To do that, we only consider the feasible integer points of $Conv(X)$
+%using constraints (\ref{binarylambda}) and (\ref{integerlambda}). 
+P$_{\mbox{M}}$ is called {\em master} problem. 
+The bound obtained by solving P$_{\mbox{M}}$ is typically tighter than the bound
+obtained by solving the LP relaxation of P. If system (\ref{sys2}) has integrality  
+property, i.e., all extreme points of system (\ref{sys2}) are integer, then the LP
+relaxation value of P is equal to the objective function value of P$_{\mbox{M}}$. 
+Otherwise, solution of P$_{\mbox{M}}$ yields a better lower bound to the
+optimal solution value of P. 
+
+%There is one variable corresponds to an extreme point in P$_{\mbox{M}}$. 
+To find the solution of  P$_{\mbox{M}}$, we have to explore the set of extreme points, 
+$\{\mbox{x}^q\}_{q \in E}$. One way of doing that is to enumerate the whole set.
+However, in most cases enumeration of the whole set is not possible because of the 
+size of set $E$. Other way of finding the solution of P$_{\mbox{M}}$ is 
+to use {\em column generation algorithm}. Column generation is an approach for 
+solving LPs for which we want to avoid explicitly enumerating all columns. 
+By solving a sequence of linear programs and dynamically generating columns eligible to
+enter the basis, such an algorithm implicitly considers all columns but generates
+only those that may improve the objective function.
+The basic idea is to determine a subset of the variables that includes those 
+that are nonzero in some optimal solution. By solving the LP including only 
+this subset of columns rather than all possible columns, we can obtain the 
+optimal LP solution.
+
+In each iteration of the column generation algorithm, a restricted version of 
+P$_{\mbox{M}}$ (RMP) that includes only a subset of columns is solved.
+The column generation algorithm feeds the dual information from the solution of the 
+RMP to an optimization model called {\em pricing} problem (or {\em subproblem}). 
+The pricing problem searches columns in set $X^2$ with an objective function 
+equal to the reduced cost of a variable in P$_{\mbox{M}}$. 
+The pricing problem can be formulated as follows:
+\begin{optprog}
+Minimize & \objective{z_{rc} = (c-\pi A^1)x - \mu} \nonumber \\
+subject to &  A^2x & \geq & d^2 \nonumber\\
+            & x & \geq & 0,\mbox{ and integer}  \nonumber
+\end{optprog}
+where $\pi$ is the dual vector corresponds to system (\ref{master-con1})
+and $\mu$ is the dual variable for constraint (\ref{master-con2}). 
+%and $rc$ is the reduced cost of a variable in RMP.
+The objective of the pricing problem is to either identify new columns to add to 
+the RMP or prove optimality of the current solution. From the theory of linear 
+programming, we know that if every variable has a non-negative reduced cost, 
+then the solution is optimal. If $z_{rc}<0$ for a given $(\pi, \mu)$, then a column 
+in $\{\mbox{x}^q\}_{q \in E}$ is found and can be added to the RMP. Then, the RMP is 
+reoptimized. The algorithm continues until $z_{rc}\geq 0$ for a given dual vector. 
+
+%If the pricing problem identifies at least one pairing with negative reduced cost, then we add
+%one or more columns to the RMP and reoptimize. Otherwise, the current solution is optimal for
+%the full problem.
+
+With column generation algorithm, we can find a lower bound for the optimal integer 
+solution value for P. To find the optimal integer solution using model P$_{\mbox{M}}$, 
+we have to force the integrality of variables. This can be done by adding integrality 
+restriction to variable $\theta$ in  P$_{\mbox{M}}$. 
+
+\zaupdate{Mention branch and price and say will be explained how to solve 
+integer master problem?}
+
+
+\subsection{DWD of G-LRSP}
+
+Back to the G-LRSP, to find the DWD of the problem, 
+we decompose the problem into two subsystems: master problem and subproblem.
+The {\em master problem} is defined by constraints (\ref{set-part}) and (\ref{FacCap}),
+while the {\em subproblem} is defined by constraints (\ref{enterleave}), (\ref{VehCap}), 
+(\ref{flow-conv}), (\ref{timeLim}), (\ref{fix-0}), (\ref{x-var}), (\ref{y-var}), 
+(\ref{t-var}), and (\ref{dri-var}).
+Remember that the vehicle index set, $H$ is 
+equal to the union of the vehicle indices located at each facility, i.e., 
+$H = \cup_{j \in J}H_j$. Thus, all constraints of the subproblem are 
+indexed by the set J and it is therefore immediate
+that the subproblem decomposes by facility. 
+
+For each candidate facility $j \in J$, the set of integer solutions of the 
+decomposed subproblem can be represented by the set of vectors defined as
+\begin{eqnarray}
+& & \{ \ \  (x, t, v)^j \in \Z^{(|N|\times |N| \times |H_j|) \times \{0, 1\} \times(|H_j|)}, 
+ (y)^j \in \R^{(|N|\times |N| \times |H_j|)}  \mid  \ \  (x, y, t, v)^j \mbox{ satisfies } \nonumber\\
+& &  \ \ (\ref{enterleave})_j, 
+ (\ref{VehCap})_j, (\ref{flow-conv})_j, (\ref{timeLim})_j, (\ref{fix-0})_j, 
+(\ref{x-var})_j, (\ref{y-var})_j, (\ref{t-var})_j, (\ref{dri-var})_j \}, \label{subsys} 
+\end{eqnarray}
+
+which is described only by those constraints associated with facility
+$j$ and specifies values only for those variables associated with
+vehicles assigned to facility $j$. Hence, the index $j$ for the
+constraints represents the set of constraints associated with facility
+$j$. System (\ref{subsys}) is bounded for all facilities.
+We let $E$ be a set indexing the extreme points %members 
+of all of the above sets,
+with $E_j$ the indices for vectors associated with facility $j$ only,
+so that $E = \cup_{j \in J} E_j$. For a facility $j$ and an index $q
+\in E_j$, the corresponding member $(\mbox{x}^q, \mbox{y}^q,
+\mbox{t}^q,\mbox{v}^q)$ of the above set is then a vector with the following
+interpretation: 
+\begin{eqnarray*}
+\mbox{x}_{ikh}^q & = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if vehicle $h$ travels on arc $(i,k)$ in solution 
+		   $q$, $\forall (i, k) \in A$, and $h \in H_j$}\\
+                 0  & \mbox{otherwise}                                                  
+                \end{array}
+       \right. \\
+\mbox{y}_{ikh}^q & = & \mbox{Load of vehicle $h$ on arc $(i,k)$ in solution 
+		   $q$, $\forall (i, k) \in A$, and $h \in H_j$ }\\ 
+\mbox{t}^q & = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if facility $j$ is open in solution $q$ }\\
+                 0  & \mbox{otherwise}                                                  
+                \end{array}
+       \right.\\
+\mbox{v}_{h}^q & = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if vehicle $h$ is used in solution $q$, $\forall h \in H_j$}\\
+                 0  & \mbox{otherwise}                                                  
+                \end{array}
+       \right. 
+\end{eqnarray*}
+%ALTERNATE TO THE PREVIOUS FORMAT%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%for each pair $(i, k) \in A$ and $h \in H_j$, the parameter 
+%$\mbox{x}_{ikh}^q = 1$ if vehicle $h$ travels on arc $(i,k)$ in solution 
+%$q$ and is 0 otherwise; $\mbox{y}_{ikh}^q$ is equal to the amount of 
+%demand carried by vehicle $h$ on arc $(i,k)$; $\mbox{t}^q =1$ if facility 
+%$j$ is open in solution $q$ and is 0 otherwise; and for each $h \in H_j$, 
+%$\mbox{v}_{h}^q = 1$ if vehicle $h$ is used in solution $q$ and is 0 otherwise. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Note that the variable $t$ indicating whether the facility is open does not appear in any 
+of the linear constraints of the subproblem and can hence be set to either 0
+or 1 without affecting feasibility. 
+
+Following the DWD methodology, we can reformulate master problem using the convex 
+combination of the extreme points of the subproblem. 
+Because the subproblem decomposes as described above, solutions to the
+original problem can be seen as vectors obtained by ``recomposing'' convex
+combinations of the members of $E_j$ for each $j \in J$. In other words, any
+solution $(x, y, t, v)$ to the master problem can be
+written as:
+\begin{optprog}
+& x_{ikh} & = & \sum_{q \in E}\mbox{x}_{ikh}^q \theta_q &  \forall  (i,k) \in A, h \in H,  \label{XintermsTeta1}\\
+& y_{ikh} & = &  \sum_{q \in E}\mbox{y}_{ikh}^q \theta_q & \forall  (i,k) \in A, h \in H, \label{TotalYintermsTeta1}\\
+& t_j  & = & \sum_{q \in E_j}\mbox{t}^q\theta_q   &  \forall  j \in J, \label{Tvartrans1}\\
+& v_h  & = & \sum_{q \in E}v_{h}^q\theta_q &  \forall h \in H, \label{VintermsTeta1}\\
+& \sum_{q \in E_j}\theta_q & = & 1 & \forall  j \in J, \label{eq11}\\
+& \theta_q  & \geq & 0 &  \forall q \in E. \label {conv1}
+\end{optprog}  
+
+\zaupdate{change it to $E_j$?}
+
+Using (\ref{XintermsTeta1}) - (\ref {conv1}), we can then formulate the
+master problem as:
+\begin{optprog}
+{\bf (MDW)} Minimize & \objective{\sum_{q \in E} \tilde{C_{q}} \theta_q} \nonumber\\
+s.t. & \sum_{q \in E} b_{iq} \theta_q & = & 1 & \forall i \in I, \label{spar1} \\
+           & -\sum_{q \in E_j} \sum_{i \in I} b_{iq} D_i \theta_q  +
+L^F_j \sum_ {q \in E_j}\mbox{t}^q \theta_q & \geq & 0 & \forall j \in J, \label{rel-2a}  \\
+           & \sum_{q \in E_j} \theta_q  & = & 1 & \forall j \in J,\label{conv2a} \\
+           & \theta_q  & \geq & 0 &  \forall q \in E, \label {conv3a}
+\end{optprog} 
+where 
+%\begin{eqnarray*}
+\begin{optprog}
+& b_{iq} & = & \sum_{h \in H}\sum_{k \in N}\mbox{x}_{kih}^q, & \forall i \in I, q \in E, \nonumber\\
+& \tilde{C_{q}} & = & C^F_q {\mbox{t}}^q+ C^V\sum_{h \in H}\mbox{v}_{h}^q + C^O\sum_{i \in N} \sum_{k \in N}\sum_{h \in H}T_{ik}\mbox{x}_{ikh}^q, 
+& \forall  q \in E, \nonumber 
+%\end{eqnarray*}
+\end{optprog}
+where $C^F_q = C^F_j$ when $q \in E_j$ for $j \in J$. Here, $ b_{iq}$ can be
+interpreted as the number of times customer $i$ is visited in solution
+$q$, and $\tilde{C_{q}}$ is the cost of solution $q$ (including
+facility fixed cost and vehicle fixed costs) for all $q\in E$. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COMMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+System (\ref{sys2}) is bounded, therefore set of extreme rays is empty and we can reformulate (EB-LRS) using
+the extreme points of system (\ref{sys2}). Let $E$ be the extreme points of system (\ref{sys2}).
+%$S=\{X'|BX' & \leq & D_2\}$
+Define following parameters to represent a solution $q = (x_q^T, y_q^T, v_q^T, t_q^T )^T \in E$.
+\begin{eqnarray*}
+x_{ikhq} & = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if vehicle $h$ visits arc $(i,k)$ (i.e., $X_{ikh}=1$) in $q\in E$, $\forall i, k \in I, h \in H$ }\\
+                 0  & \mbox{otherwise}                                                  
+                \end{array}
+       \right. \\
+y_{ikhq} & = & \mbox{Load of vehicle $h$ on arc $(i,k)$ in $q\in E$, $\forall i, k \in I, h \in H$ }\\ 
+v_{hq} & = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if vehicle $h \in H$ is used (i.e., $V_h=1$) in solution $q\in E$, $\forall h \in H$}\\
+                 0  & \mbox{otherwise}                                                  
+                \end{array}
+       \right. \\ 
+t_{jq} & = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if facility $j$ is open in solution $q\in E$, i.e., $T_j=1$, $\forall j \in J$ }\\
+                 0  & \mbox{otherwise}                                                  
+                \end{array}
+       \right.
+\end{eqnarray*}
+To be able to simplify the formulation of master problem, we define following parameters.
+\begin{eqnarray*}
+g_{ijq} & = & \sum_{h \in H_j}\sum_{k \in I}x_{ikhq}, \hspace{0.2in} \forall i \in I, j \in J, q \in E \label{transform-capcon} \\
+\mbox{}  & = & \mbox{number of times customer $i$ is served from facility $j$ in solution $q \in E$} \\
+ b_{iq} & = & \sum_{h \in H}\sum_{k \in I}x_{ikhq} =  \sum_{j \in J}g_{ijq}, \hspace{0.2in} \forall i \in I, q \in E \label{transform-xa}\\
+\mbox{} & = & \mbox{number of times customer $i$ is visited in solution $q \in E$} \\
+\tilde{C_{q}} & = & \sum_{j \in J}C^F_j t_{jq}+ VF\sum_{h \in H}v_{hq}+OC \sum_{i \in I} \sum_{k \in I}\sum_{h \in H} TD_{ik}x_{ikhq}, \hspace{0.2in} \forall  q \in E \label{transform-cost} \\
+\mbox{} & = & \mbox{cost of solution $q \in E$ including facility and vehicle fixed costs and the operating cost of vehicles.} 
+\end{eqnarray*}
+
+Using these parameters, master problem (Master-DW-1) is formulated as follows:
+\begin{optprog}
+{\bf (Master-DW-1)} \nonumber\\
+Minimize & \objective{\sum_{q \in E} \tilde{C_{q}} \theta_q} \nonumber\\
+s.t. & \sum_{q \in E} b_{iq} \theta_q & = & 1 & \forall i \in I \label{spar} \\
+           & \sum_{q \in E} \sum_{i \in I} g_{ijq} D_i \theta_q  - CapF_{j} \sum_ {q \in E}t_{jq}\theta_q & \leq & 0 & \forall j \in J \label{rel-2}  \\
+           & \sum_{q \in E} \theta_q  & = & 1 \label{conv2} \\
+           & \theta_q  & \in & \{0,1\} &  \forall q \in E \label {conv3}
+\end{optprog} 
+where
+\begin{eqnarray*}
+\theta_q & = & \left \{ \begin{array}{ll}
+                 1  & \mbox{if solution $q$ is selected, $\forall q \in E$}\\
+                 0  & \mbox{otherwise}                                                  
+                \end{array}
+       \right. 
+\end{eqnarray*}
+We can retrieve original variables using the following relations:
+\begin{optprog}
+& X_{ikh} & = & \sum_{q \in E}x_{ikhq} \theta_q &  \forall  i,k \in I,  j \in J, h \in H \label{XintermsTeta}\\
+& Y_{ikh} & = &  \sum_{q \in E}y_{ikhq} \theta_q & \forall  i,k \in I,  j \in J, h \in H \label{TotalYintermsTeta}\\
+& T_j & =& \sum_{q \in E}t_{jq}\theta_q &  \forall  j \in J \label{Tvartrans}\\
+& V_h & = & \sum_{q \in E}v_{hq}\theta_q &  \forall h \in H 
+\end{optprog}  
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+To solve MDW, we can use column generation algorithm. 
+Let $(\pi ^ T, \mu ^T, \alpha^T)^T$ be a dual vector such that
+$\pi$ is the dual variable associated with constraint (\ref{spar1}), 
+$\mu$ is the dual variable associated with (\ref{rel-2a}), 
+and $\alpha$ is the dual variable associated with (\ref{conv2a}). 
+The reduced cost of a column $q \in E_j$ for some $j \in J$ 
+corresponds to variable $\theta_q$ is 
+\begin{equation}
+\label{dw-red-cost}
+\hat{C}_{q} = \tilde{C_{q}} - \sum_{i\in I}b_{iq}\pi_{i} + 
+\left(\sum_{i \in I}b_{iq}D_{i} - L^F_j \mbox{t}^{q}\right)\mu_{j} - \alpha_j
+\end{equation}
+Using the definitions of $\tilde{C}$,  we can rewrite (\ref{dw-red-cost}).
+\begin{eqnarray}
+\label{dw-red-cost-open}
+\hat{C}_q & = &(C^F_j-L^F_j \mu_j)\mbox{t}^q + C^V \sum_{h \in H_j}\mbox{v}_h^q - \nonumber\\
+              & & \sum_{h \in H_j}\sum_{k \in N} (\sum_{i \in I} (C^O T_{ki} - \pi_{i} 
+              + \mu_{j}D_{i})\mbox{x}_{kih}^q + C^OT_{kj}\mbox{x}_{kjh}^q)- \alpha_j
+\end{eqnarray} 
+The column generation algorithm searches for the columns with most negative 
+reduced cost defined by (\ref{dw-red-cost-open}) over the set of extreme points
+for facility $j$ defined in (\ref{subsys}). This problem is called subproblem  
+for facility $j \in J$, and can be formulated explicitly as follows:
+
+\begin{optprog}
+{\bf (SP$_j$)} Minimize & \objective{\hat{f}_jt_j + C^V \sum_{h \in H_j}v_h - \sum_{h \in H_j}\sum_{k \in M}\sum_{i \in M} \hat{c}_{ki} x_{kjh}- \alpha_j} \nonumber\\
+           & \sum_{k\in M} x_{ikh}-\sum_{k \in M} x_{kih} & = & 0 & \forall i \in M, h \in H_j, \label{sp-c-1}\\
+           & y_{ikh} - L^V x_{ikh} & \leq & 0 & \forall i \in M, k \in M, h \in H_j, \label{sp-c-2}\\
+           & \sum_{k \in M} y_{ikh} - \sum_{k \in M} y_{kih} + D_i\sum_{k \in M}x_{ikh} & = & 0 & \forall i \in I, h \in H_j, \label{sp-c-3}\\
+           & \sum_{i \in M}\sum_{k \in M} T_{ik} x_{ikh} - L^T v_h & \leq & 0 & \forall h \in H_j, \label{sp-c-4}\\
+           & x_{ikh} & \in & \{0,1\} & \forall i \in M, k \in M, h \in H_j, \label{sp-c-5}\\
+           & y_{ikh} & \geq &  0 & \forall i \in M, k \in M, h \in H_j, \label{sp-c-6}\\           
+           & t_{j}  & \in & \{0,1\}, & \mbox{and} \label{sp-c-7}\\
+           & v_{h} & \in & \{0,1\} &  \forall h \in H_j, \label{sp-c-8}
+\end{optprog}
+where $M = I \cup \{j\}$ and 
+\begin{eqnarray*}
+\hat{f}_j & = & C^F_j-L^F_j \mu_j, \\
+\hat{c}_{ki} & = & \left \{  \begin{array}{ll}
+                 C^O T_{ki} - \pi_{i} + \mu_{j}D_{i} & \mbox{if $k \in M$, and $i \in I$}, \\
+                 C^OT_{kj} & \mbox{if $k \in I$}.
+                 \end{array}
+              \right. \\
+\end{eqnarray*}
+The objective of each of the resulting single-facility
+subproblems SP$_j$ is to generate sets of paths with least-cost assigned to 
+{\em all vehicles} located at the facility, though without the constraint that 
+customers appear exactly once. Because of this condition, we avoid calling
+paths as routes for now.
+
+% \begin{optprog}
+%{\bf(SP_j)} Minimize & \objective{z=\hat{C}(\pi,\mu)U - \alpha} \label{obj-fullsp}\\
+%subject to & \sum_{k\in I} X_{ikh}-\sum_{k \in I} X_{kih} & = & 0 & \forall i \in I, h \in H \nonumber\\
+%           & Y_{ikh} - CapV \cdot X_{ikh} & \leq & 0 & \forall i,k \in I, h \in H\nonumber \\
+%           & \sum_{k \in I} Y_{ikh} - \sum_{k \in I} Y_{kih} + D_i \sum_{k \in I}X_{ikh} & = & 0 & \forall i \in I, h \in H \nonumber\\
+%           & \sum_{i \in I}\sum_{k \in I}TD_{ik}X_{ikh} - TL\cdot V_h  & \leq & 0 & h \in H \nonumber\\
+%           & X_{ikh} & \in & \{0,1\} & \forall i,k \in I, h \in H\nonumber\\
+%           & Y_{ikh} & \geq &  0 & \forall i,k \in I,  h \in H \nonumber \\
+%           & V_h  & \in & \{0,1\} & \forall h \in H\nonumber\\
+%           & T_j  & \in & \{0,1\} & \forall j \in J\nonumber
+%\end{optprog}
+%where $\hat{C}(\pi,\mu)$ is a vector of objective function coefficients 
+%(constructed using (\ref{dw-red-cost-open})) for variable
+%vector $U$ for given dual vectors $\pi$ and $\mu)$. For a
+%given solution $\bar{U}=(\bar{X}^T,\bar{Y}^T, \bar{T}^T, \bar{V}^T)^T$, the objective function value is:
+%\begin{eqnarray}
+%z& = &\sum_{j \in J}(FC_j-CapF_j \mu_j) \bar{T}_{j}+ VF \sum_{h \in H}\bar{V}_h-\nonumber\\
+%              & & \sum_{h \in H}\sum_{k \in I} (\sum_{i \in I} (OC TD_{ki} - \pi_{i} + \mu_{j}D_{i})\bar{X}_{kih} + OC\sum_{j \in J}TD_{ij}\bar{X}_{kjh}) - \alpha \nonumber
+%\end{eqnarray}
+
+To obtain integer feasible solutions to LRSP using MDW, we have to force
+integrality restriction for the variable $\theta$. Thus, we add  
+$\theta_q \in \{0, 1\}$ for all $q \in E$ to MDW. 
+
+Now we prove that solving integer MDW is equal to solving SPP-LRSP. 
+The similar forms of SPP-LRSP and integer MDW should now be evident, but to
+rigorously show their equivalence, we need to dissect the relationship
+between set $E_j$ (used to define MDW) and $P_j$ (used to define SPP-LRSP)
+for a given facility $j \in J$.
+
+%$P_j$ is the set of pairings (set of routes that include each customer
+%at most once and can be served by one vehicle within the time limit) for 
+%facility $j$, is defined in section \ref{set-part-form} for SPP-LRSP.
+
+A member of set $E_j$, a feasible solution to SP$_j$, 
+consists of a {\em collection} of sets of paths (starting at facility $j$
+and ending at facility $j$) assigned to all vehicles located at 
+facility $j$. It may be possible that some customers are visited 
+multiple times by a single vehicle as well as different vehicles. 
+
+As explained in Section \ref{set-part-form}, a member of set $P_j$, 
+on the other hand, is a single set of routes (pairing) that can be 
+assigned to any vehicle at facility $j$. A customer can only appear 
+at most once in a pairing assigned to a vehicle.  
+
+Some members of $E_j$ can be constructed by associating at most
+$|H_j|$ members of set $P_{j}$ and some number of empty pairings (zero
+vectors representing vehicles that are not used) to the vehicles
+assigned to facility $j$. The members of $E_j$ that  include sets of 
+paths assigned to a single vehicle and visiting some customers multiple times
+can not be constructed using members of $P_{j}$. 
+
+Now, by utilizing the integrality requirements from the original
+problem and carefully eliminating the indices of symmetric solutions
+from $E$, we get a much smaller set that we will show is in one-to-one
+correspondence with collections of members of $P_j$ of cardinality at
+most $|H_j|$. We proceed as follows:
+
+% same customers are visited in a single route, or by vehicle..
+
+\begin{enumerate}
+\item First, to prove the necessity of adding 
+  $\theta_q \in \{0, 1\}$ for all $q \in E$ to MDW, we 
+  let $\hat{\theta}$ represent a solution to MDW for which the
+  corresponding solution in the original space obtained by applying
+  equations (\ref{XintermsTeta1})-(\ref{VintermsTeta1}) is feasible for the
+  original problem G-LRSP. From (\ref{XintermsTeta1}) and
+  (\ref{x-var}), along with the fact that $\mbox{x}^q_{ikh}$ is binary
+  for $q \in E$, we get that $\mbox{x}^{q_1}= \mbox{x}^{q_2}$ 
+  for all $q_1$ and $q_2$ such that $\hat{\theta}_{q_1} > 0$ 
+  and  $\hat{\theta}_{q_2} > 0$ in the solution to MDW. 
+  In other words, all  members $q$ of $E_j$ with $\hat{\theta}_q > 0$ 
+  must correspond to set of paths visiting exactly the same customers in exactly 
+  the same order. Similar results follow for $\mbox{t}^q$ and
+  $\mbox{v}^q$ from (\ref{Tvartrans1}), (\ref{VintermsTeta1}), 
+  and (\ref{t-var}), (\ref{dri-var}).
+  Hence, we must in fact have $\hat{\theta}_q = 1$ for exactly
+  one $q \in E_j$ for each $j \in J$ and so $\theta_q \in \{0, 1\}$
+  for all $q \in E$.
+\item Let $q \in E$ a member in which a vehicle visits at least one
+  customer multiple times. Thus, $\mbox{x}_{ik_1h_1}^q = 1$ and
+  $\mbox{x}_{ik_2h_1}^q = 1$ for some customer $i \in I$, 
+  vehicle $h_1 \in H$ and nodes $k_1$, $k_2$ $\in N$ such that
+  $k_1 \neq k_2$. This means that  $\sum_{k \in N}\mbox{x}_{ikh_1}^q > 1$
+  and therefore  $b_{iq}> 1$. Because of constraint (\ref{spar1}) and  
+  the binary restriction for $\theta_q$, a solution to integer MDW for which 
+  the corresponding solution in the G-LRSP is feasible, $\theta_q$ must
+  be 0. Therefore, we can remove such members from $E$. In order not 
+  to generate these members, we can add the following constraint
+  to SP$_j$.
+  \begin{optprog}
+    & \sum_{k \in M}x_{ikh} & \leq & 1 & \forall i \in N, h \in H_j \label{relax_sp1}
+  \end{optprog}
+  When we add constraint (\ref{relax_sp1}) to SP$_j$, the feasible solutions
+  are restricted to sets of routes each of which assigned to a vehicle and 
+  includes any customer at most once. Therefore, based on the definition 
+  of a pairing in Section \ref{set-part-form},  we can say that the feasible
+  solutions to augmented SP$_j$ are sets of pairings.
+\item As the vehicles associated with a given facility $j$ are
+  identical, a set of pairings can be assigned to vehicles in
+  any arbitrary order. Hence, we obtain different members of $E_j$ that are 
+  all equivalent from the standpoint of both feasibility and cost. 
+  To eliminate superfluous equivalent members of $E_j$, we divide the 
+  members of set $E_j$ into equivalence classes, where two members of $E_j$ 
+  are considered equivalent if the set of customers assigned to the facility 
+  and the partition of that set of customers defined by the pairings 
+  (set of routes assigned to a vehicle) are identical. 
+  It is clear that any two members of $E_j$ that are equivalent by this 
+  definition will have exactly the same impact on both cost and feasibility. 
+  
+  In each equivalence class of $E_j$ there can be up to $|H_j|!$ members depending
+  on the number of vehicles serving to non zero pairings in the solutions. 
+  For example, let $q_1$ and $q_2$ be two members of $E_j$ and be in
+  the same equivalence class. Then there exists a pair of vehicles $h_1$ and
+  $h_2$ such that $\mbox{x}^{q_1}_{ikh_1} =\mbox{x}^{q_2}_{ikh_2}$, 
+  $\mbox{x}^{q_1}_{ikh_2} =\mbox{x}^{q_2}_{ikh_1}$ $\forall i, k \in M$ and 
+  at least one of $h_1$ and $h_2$ is serving a non zero pairing.
+  
+  %$q=(x_q^T, y_q^T, t_q^T, v_q^T)^T$
+  %be a member of set $E$, and $h_1$ and $h_2$ $\in H_j$ be two vehicles located at facility $j$ for
+  %some $j \in J$.
+  %Assume that $v_{h_1q}=v_{h_2q}=1$ and $h_1$ and $h_2$ serve different non zero pairings.
+  %Let $q'=(x^T_{q'}, y^T_{q'}, t^T_{q'}, v^T_{q'})^T$ be another solution
+  %which is exactly same with $q$ except $x_{ikh_1q}=x_{ikh_2q'}$, $x_{ikh_2q}=x_{ikh_1q'}$
+  %and $y_{ikh_1q}=y_{ikh_2q'}$, $y_{ikh_2q}=y_{ikh_1q'}$ $\forall i, k \in I$.
+  %%and $\bar{x}_{ikh_1q}>0$ and $\bar{x}_{sth_2q}>0$ for some $i, k, s, t \in I$.
+  %It is clear that $q$ and $q'$ are in same symmetry group. 
+  %Under the assumption of identical vehicles, it is indifferent to choose solution $q$ 
+  %or solution $q'$. Therefore, we keep only one member of a symmetry group and eliminate
+  %the others from set $E$. This process  reduces the degeneracy in
+  %master problem.       
+
+  We form equivalence classes from which all but one member may safely be 
+  eliminated from $E_j$.
+  %%%%%%%%%%%% from lrp paper %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %\item First, as the vehicles associated with a given facility $j$ are
+  %  identical, a set of pairings from $P_j$ can be assigned to vehicles in
+  %  any arbitrary order and each route can also visit the customers in
+  %  either clockwise or counterclockwise order. Hence, we obtain
+  %  different members of $E_j$ that are all equivalent from the standpoint
+  %  of both feasibility and cost. To eliminate superfluous equivalent 
+  %  members of $E_j$, we divide the members of set $E_j$ into equivalence 
+  %  classes, where two members of $E_j$ are considered equivalent if 
+  %  the set of customers assigned to the facility and the partition of that 
+  %  set of customers defined by the pairings (set of routes assigned to
+  %  a vehicle) are identical. It is clear that any two members of $E_j$ that
+  %  are equivalent by this definition will have exactly the same impact on
+  %  both cost and feasibility. We then form equivalence classes from which
+  %  all but one member may safely be eliminated from $E_j$.
+\item 
+  %It then follows easily that 
+  Index $q$ can be removed from $E_j$
+  if there exist vehicles $h_1, h_2 \in H_j$ such that
+  $\mbox{x}_{ikh_1}^q = \mbox{x}_{ikh_2}^q$ $\forall i, k \in M$, where
+  $\mbox{x}_{ikh_1}^q>0$ for some $i, k \in M$ (i.e., this is not an
+  empty route). In this case, vehicles $h_1$ and $h_2$ define exactly
+  the same sets of routes, which means that $b_{iq}> 1$ for some $i \in
+  I$. Because of constraint (\ref{spar1}), such a solution must have
+  $\hat{\theta}_q=0$.
+\item From (\ref{Tvartrans1}) and (\ref{rel-2a}), we can
+  conclude that if $\hat{\theta}_q =1$ and we have $\mbox{x}_{ikh}^q>0$
+  for some $i, k \in M$ and $h \in H$, then $\mbox{t}^q$ must be $1$.
+  Hence, we can eliminate any solution for which $\mbox{t}^q = 0$
+  that does not correspond to a zero solution (i.e., closed facility).
+  All of this allows us to rewrite (\ref{rel-2a}) in the form
+  \begin{equation}
+     -\sum_{q \in E_j} \sum_{i \in I} b_{iq} D_i \theta_q  
+     + L^F_j \sum_{q \in E_j} \theta_q \geq 0 \ \ \forall j \in J. \label{rel-2-new-a}
+  \end{equation}
+\item A member $q \in E_j$ %$=(x_q^T, y_q^T, t_q^T, v_q^T)^T$ 
+  can be removed if there exists a vehicle $h \in H_j$
+  such that  $\mbox{v}^q_{h} = 1$ and  $\mbox{x}^q_{ikh} = 0$ 
+  for all $i,k \in M$ (meaning that zero vector is assigned to vehicle $h$
+  even though we pay the fixed cost of that vehicle).
+  In an optimal solution to integer MDW, $\theta_{q'} \geq \theta_q = 0$
+  where $q, q' \in E_j$, $\mbox{x}^q = \mbox{x}^{q'}$, $\mbox{y}^q = \mbox{y}^{q'}$,
+  $\mbox{t}^q = \mbox{t}^{q'}$, and $\mbox{v}^q = \mbox{v}^{q'}$
+  except that $\mbox{v}^{q'}_{h} = 0$ since $\tilde{C_{q}} \geq \tilde{C_{q'}} $.
+  %from set $E$ if there exists some set 
+  %$\mathcal{F_H}=\{h \in H| v_{hq}=1, x_{ikhq}=0 \ \  \forall i,k \in I\}$. 
+  %This means that we do not assign vehicles in set  $\mathcal{F_H}$ to any
+  %pairings (i.e., zero vector is assigned), but we pay the fixed cost of vehicles. A member similar to $q$
+  %except $v_{hq}=0$ $\forall h \in \mathcal{F_H}$ is always preferred by the master problem to $q$
+  %because of the cost, therefore we can remove members satisfying this condition. 
+\item Finally, we can remove index $q$ corresponding zero column (i.e., 
+  $\mbox{x}^q = 0$, $\mbox{y}^q = 0$, $\mbox{v}^q = 0$, and $\mbox{t}^q = 0$)
+  from $E_j$. Thus, we can update constraint (\ref{conv2a}):
+  \begin{optprog}
+    & \sum_{q \in E_j} \theta_q  & \leq & 1 & \forall j \in J,\label{conv2b} 
+  \end{optprog}
+\end{enumerate}  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COMMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+It is clear that (Sub-Prob) decomposes into $|H|$ independent subproblems, 
+one for each vehicle.
+Based on our assumption that the vehicles are identical, the subproblem for 
+each vehicle located at the same facility 
+is identical. Therefore, by solving $|J|$ smaller subproblems, one for each facility, 
+we can enumerate the integer feasible points for (Sub-Prob). The decomposed subproblem
+(Dec-Sub-Prob) for each facility $j \in J$ is formulated as follows: 
+ \begin{optprog}
+{\bf(Dec-Sub-Prob)} Minimize & \objective{\sum_{i \in I} \sum_{k \in I} \hat{c}_{ik} X_{ik}+K }\label{de-subprob-obj}\\
+subject to & \sum_{k\in I} X_{ik}-\sum_{k \in I} X_{ki} & = & 0 & \forall i \in I\nonumber\\
+           & Y_{ik} - CapV \cdot X_{ik} & \leq & 0 & \forall i,k \in I\nonumber \\
+           & \sum_{k \in I} Y_{ik} - \sum_{k \in I} Y_{ki} + D_i \sum_{k \in I}X_{ik} & = & 0 & \forall i \in N \nonumber\\
+           & \sum_{i \in I}\sum_{k \in I}t_{ik}X_{ik}  & \leq & TL \nonumber\\
+           & X_{ik} & \in & \{0,1\} & \forall i,k \in I \nonumber\\
+           & Y_{ik} & \geq &  0 & \forall i,k \in I\nonumber 
+\end{optprog}
+where $\hat{c}$ is a vector for the reduced cost coefficients of variable $X$, $K$ is a constant, 
+including costs corresponds to one vehicle and facility $j$
+and $I=N\cup \{j\}$. $\hat{c}$ and $K$ are defined using (\ref{dw-red-cost-open}):
+\begin{eqnarray*}
+\hat{c}_{ki} & = & \left \{  \begin{array}{ll}
+                 (OC t_{ki} - \pi_{i} + \mu_{j}D_{i})  & \mbox{if $k \in I$, and $i \in N$} \\
+                 (OC t_{ki}) & \mbox{if $k \in I$ and $i=j$}
+                         \end{array}
+              \right. \\
+K & = & (FC_j-CapF_j\mu_j)+ VF - \alpha 
+\end{eqnarray*}
+ 
+(Dec-Sub-Prob) for facility $j \in J$ generates feasible pairings 
+%(set of vehicle routes that can be seved by one vehicle within the time limit) 
+that is represented with notation $P_j$ $\forall j \in J$ in section (\ref{set-part-form}). 
+(Dec-Sub-Prob) is an elementary shortest path problem with time and capacity constraints.
+Since (Dec-Sub-Prob) is 
+obtained by decomposing (Sub-Prob) into independent problems, there is a relationship between
+sets  $E$ and $P_j$  $\forall j \in J$. 
+%We can construct members of set $E$ using the members of sets $P_j$ $\forall j \in J$.
+A member of set $E$ is a feasible solution to (Sub-Prob) 
+that  presents sets of open and closed facilities, 
+sets of vehicles used and a set of routes (pairings) for each vehicle  
+in that solution. A member of set $P_j$ is a feasible solution to (Dec-Sub-Prob) that presents a pairing,
+a set of routes.  
+Therefore, in a member of $E$, pairings assigned to vehicles located at facility $j$ are members of set 
+$P_{j}$ $\forall j \in J$.  In addition to this relationship, 
+picking a member of set $P_j$ implies that vehicle $h \in H_j$ that is 
+assigned to the pairing is used, $\forall j \in J$. 
+The zero vector is feasible for (Dec-Sub-Prob), but we assume that sets $P_{j}$
+$\forall j \in J$ do not include zero vector. We consider assignment of zero
+vector to vehicles separately.
+%We simply say that if a vehicle is not used in a solution, 
+%then the  pairing corresponds to zero vector is assigned to that vehicle. 
+
+Same subsets of pairings $P_j$, $\forall j \in J$ can be used in many members of set $E$. 
+To make this relationship one to one, we can do preprocessing and restrict set $E$.
+We remove some members of $E$ whose corresponding variables must be set to zero 
+in an optimal solution of (Master-DW-1). We can state following preprocessing 
+rules to restrict set $E$:
+
+\begin{enumerate}
+\item A member $q=(x_q^T, y_q^T, t_q^T, v_q^T)^T$ that is a solution to (Sub-Prob) 
+can be removed from set $E$ if there exists $h \in H_j$ and $j \in J$ such that $v_{hq}=1$ and 
+$t_{jq}=0$. This
+ means that we use vehicle $h$ located at facility $j$, but the facility is closed. The relationship between
+variables $X$, $Y$ and $V$ is forced in (Sub-Prob). If $v_{hq}=1$ then there exists some $i \in N$ such that 
+$x_{jihq}=1$ and $y_{jihq}>0$. Based on master problem constraints (\ref{rel-2}),
+if $y_{jihq}>0$ for some $i \in N$ and $t_{jq}=0$, then the master problem variable $\theta_q$
+corresponds to member $q=(x_q^T, y_q^T, t_q^T, v_q^T)^T$ must be zero. 
+Therefore, we can remove members of $E$ satisfying this condition.
+
+%\item A member $q=(\bar{x}_q^T, \bar{y}_q^T, \bar{t}_q^T, \bar{v}_q^T)^T$ can be removed 
+%from set $E$ if there exists some set 
+%$\mathcal{F_M}=\{j \in M| \bar{t}_{jq}=1, \bar{v}_{hq}=0 \ \ \forall h \in H_j\}$. 
+%This means that we do not use any vehicle located at facility $j \in \mathcal{F_M}$, but the facility is open. 
+%There exists a member $q'=(\bar{x}^T_{q'}, \bar{y}^T_{q'}, \bar{t}^T_{q'}, \bar{v}^T_{q'})^T$
+%in $E$ such that $\bar{x}_q=\bar{x}_{q'}$, $\bar{y}_q=\bar{y}_{q'}$, $\bar{v}_q=\bar{v}_{q'}$, and 
+%$\bar{t}_{jq}=\bar{t}_{jq'}$ $\forall j \in M \backslash \mathcal{F_M}$ and $\bar{t}_{jq'}=0$ 
+%$\forall j \in \mathcal{F_M}$. 
+%Let $\bar{c}_q$ and $\bar{c}_{q'}$ be the costs of these solutions. We know that 
+%$\bar{c}_{q'}=\bar{c}_{q}-\sum_{j \in \mathcal{F_M}}FC_j$. 
+%Since we want to find a solution with minimum cost, the master problem 
+%prefers solution $q$ to $q'$. Therefore, variable $\theta_q$ 
+%corresponds to member $q=(\bar{x}_q^T, \bar{y}_q^T, \bar{t}_q^T, \bar{v}_q^T)^T$ can be set to zero. 
+%We can remove members of $E$ satisfying this condition.
+
+\item A member $q=(x_q^T, y_q^T, t_q^T, v_q^T)^T$ can be removed 
+from set $E$ if there exists some set 
+$\mathcal{F_H}=\{h \in H| v_{hq}=1, x_{ikhq}=0 \ \  \forall i,k \in I\}$. 
+This means that we do not assign vehicles in set  $\mathcal{F_H}$ to any
+pairings (i.e., zero vector is assigned), but we pay the fixed cost of vehicles. A member similar to $q$
+except $v_{hq}=0$ $\forall h \in \mathcal{F_H}$ is always preferred by the master problem to $q$
+because of the cost, therefore we can remove members satisfying this condition. 
+\item A member $q=(x_q^T, y_q^T, t_q^T, v_q^T)^T$ can be removed 
+from set $E$ if there exists two vehicles located at the same facility
+$h_1, h_2 \in H_j$, for some $j \in J$ such that $x_{ikh_1q}=x_{ikh_2q}$ 
+$\forall i, k \in I$ and  $x_{ikh_1q}>0$ for some $i, k \in I$. This means that 
+vehicles $h_1$ and $h_2$ serve exactly the
+same set of routes which leads to $\sum_{h \in H_j}\sum_{k \in I}x_{ikhq}=g_{jiq}>1$.
+Because of constraint (\ref{spar}), such a solution can not be selected by master problem,
+i.e., $\theta_q=0$.
+%a customer $i \in N$ and a facility $j \in J$ such that 
+%$\sum_{h \in H_j}\sum_{k \in I}\bar{x}_{ikh}=g_{jiq}>1$. This means that customer
+%$i$ is served more than one times from facility $j$. Such a solution cannot be selected
+%by master problem, i.e., $\theta_q=0$.
+\item Since vehicles located at the same facility are identical, assignment of same set
+of pairings to different set of vehicles leads to different solutions that are symmetric
+and have same cost. We can divide the members of set $E$ into symmetry groups. 
+In each symmetry group there can be up to $|H_j|!$ members depending
+on the number of vehicles serving to non zero pairings in the solutions. Let 
+$q=(x_q^T, y_q^T, t_q^T, v_q^T)^T$
+be a member of set $E$, and $h_1$ and $h_2$ $\in H_j$ be two vehicles located at facility $j$ for
+some $j \in J$.
+Assume that $v_{h_1q}=v_{h_2q}=1$ and $h_1$ and $h_2$ serve different non zero pairings.
+Let $q'=(x^T_{q'}, y^T_{q'}, t^T_{q'}, v^T_{q'})^T$ be another solution
+which is exactly same with $q$ except $x_{ikh_1q}=x_{ikh_2q'}$, $x_{ikh_2q}=x_{ikh_1q'}$
+and $y_{ikh_1q}=y_{ikh_2q'}$, $y_{ikh_2q}=y_{ikh_1q'}$ $\forall i, k \in I$.
+%and $\bar{x}_{ikh_1q}>0$ and $\bar{x}_{sth_2q}>0$ for some $i, k, s, t \in I$.
+It is clear that $q$ and $q'$ are in same symmetry group. 
+Under the assumption of identical vehicles, it is indifferent to choose solution $q$ 
+or solution $q'$. Therefore, we keep only one member of a symmetry group and eliminate
+the others from set $E$. This process  reduces the degeneracy in
+master problem.       
+\end{enumerate}   
+\end{comment} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If we restrict set $E_j$ according to the rules described above and call the
+restricted set $\bar{E}_j$ for each $j \in J$, then we can finally
+conclude the following.
+\begin{prop}
+\label{dw-prop-p1}
+There is a one-to-one correspondence between nonempty subsets of $P_j$ with
+cardinality less than $|H_j|$ and members of $\bar{E}_j$.
+\end{prop}
+\begin{proof}
+  The proof follows easily from the definition of sets $P_j$ and $\bar{E}_j$,
+  and the restriction rules. 
+
+%  \zaupdate{Do I need to include the longer proof}
+  \begin{comment}
+    Members of set $\bar{E}_j$ are obtained using SP$_j$ augmented with
+    constraint set (\ref{relax_sp1}). All constraints 
+    of this system except (\ref{sp-c-7}) (binary restriction for facility
+    location variable) are indexed by the set $H_j$ and it is therefore 
+    immediate that this system decomposes by vehicle. Based on the assumption
+    that all vehicles are identical, we can drop the index h
+    For each vehicle  $h \ in H_j$,
+    %  candidate facility $j \in J$, the set of integer solutions of the 
+    %  decomposed subproblem can be represented by the set of vectors defined as
+    %  \begin{eqnarray}
+    %    & & \{ \ \  (x, t, v)^j \in \Z^{(|N|\times |N| \times |H_j|) \times \{0, 1\} \times(|H_j|)}, 
+    %    (y)^j \in \R^{(|N|\times |N| \times |H_j|)}  \mid  \ \  (x, y, t, v)^j \mbox{ satisfies } \nonumber\\
+    %    & &  \ \ (\ref{enterleave})_j, 
+    %    (\ref{VehCap})_j, (\ref{flow-conv})_j, (\ref{timeLim})_j, (\ref{fix-0})_j, 
+    %    (\ref{x-var})_j, (\ref{y-var})_j, (\ref{t-var})_j, (\ref{dri-var})_j \}, \label{subsys} 
+    %  \end{eqnarray}
+    %which is described only by those constraints associated with facility
+    %$j$ and specifies values only for those variables associated with
+    %vehicles assigned to facility $j$. Hence, the index $j$ for the
+    %constraints represents the set of constraints associated with facility
+    %$j$. 
+  \end{comment}
+  \qed 
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\begin{prop}
+\label{dw-prop-p1}
+Let $\bar{P}_j$ be a subset of $P_j$ such that $n_j=|\bar{P}_j|\leq |H_j|$ $\forall j \in J$
+and let $\mathcal{P}=\cup_{j \in J}\bar{P}_j$.
+Let $q=(x_{q}^T, y_{q}^T, t_{q}^T, v_{q}^T)^T$ be a member of set $E_r$. 
+There is a one to one correspondence
+between every possible $\mathcal{P}$ and vector  $(x_{q}^T, y_{q}^T, v_{q}^T)^T$ 
+$\forall q \in E_r$.
+\end{prop}
+\begin{proof}
+Based on the preprocessing rule 4, $E_r$ has one member representing each symmetry group
+in $E$. We can set a specific rule to determine such a representative member for $E_r$. 
+We can assume that pairings in sets $P_j$ $\forall j \in J$, and vehicles in sets 
+$H_j$ $\forall j \in J$ are ordered. We only keep $q \in E_r$ that has the following structure. 
+For a given $\bar{P}_j$, let $p_{i_1}, p_{i_2}, .., p_{i_{n_j}} \in \bar{P}_j$ and 
+$h_1, h_2, h_3, .., h_{n_j} \in H_j$
+such that the indices of pairings satisfy the relation $i_1 < i_2 < .. < i_{n_j}$
+$\forall j \in J$.
+We can simply construct one member of symmetry group corresponds to $\mathcal{P}$ by assigning
+$p_{i_1}$ to $h_1$, $p_{i_2}$ to $h_1$, .., $p_{i_{n_j}}$ to $h_{n_j}$ $\forall j \in J$
+and assigning zero vector to the remaining vehicles. 
+
+Let $p$ be a pairing in set $P_j$. $p$ includes a set of arcs that form a set of routes.
+Let $\mathcal{I}_p$ be the set of arcs included in pairing $p$.
+In a solution $q \in E_r$, assigning $p \in P_j$ to a vehicle $h \in H_j$ for $j \in J$
+means that $x_{ikhq}=1$ $\forall (i,k) \in \mathcal{I}_p$ and $x_{ikhq}=0$ 
+$\forall (i,k) \in I \backslash \mathcal{I}_p$. We can easily construct $y_q$ vector
+using $x_q$ vector and demand information. $y_q$ vector keeps the vehicle load necessary 
+to serve the remaining customers on a route. Therefore, based on preprocessing
+rule 4, set  $\mathcal{P}$ corresponds to a unique vector  
+$(x_{q}^T, y_{q}^T)^T$.
+
+From preprocessing rule 2, $v_{hq}=1$ $\Leftrightarrow$  $x_{ikhq}=1$ 
+for some $(i,k) \in I$, $\forall h \in H$ and $\forall q \in E_r$. Therefore, set 
+$\mathcal{P}$ leads to vector $v$ such that $v_{h_iq}=1$ for 
+$i=1,..,n_j$ and $v_{h_iq}=0$ for $i=n_j+1, ..,|H_j|$ $\forall j \in J$. 
+
+Similarly, we can construct members of set $\mathcal{P}$ from a given
+vector $(x_{q}^T, y_{q}^T)^T$ for some $q \in E_r$ by identifying pairings
+corresponds to set of arcs visited by each vehicle. Preprocessing rules
+3 and 4 guarantee that there is not any other vector $(x_{q'}^T, y_{q'}^T)^T$
+for some $q' \in E_r$ corresponds to same set $\mathcal{P}$.
+ \qed 
+\end{proof}
+%\begin{enumerate}
+%\item [C1] $\bar{t}_{jq}=1$ $\Leftrightarrow$  $\bar{v}_{hq}=1$ for some $h \in H_j$, $\forall j \in M$. 
+%\item [C2] $\bar{t}_{jq}=0$ $\Leftrightarrow$  $\bar{v}_{hq}=0$ for all  $h \in H_j$, $\forall j \in M$. 
+%\item [C3] $\bar{v}_{hq}=1$ $\Leftrightarrow$  $\bar{x}_{ikhq}=1$ for some $(i,k) \in I$.
+%\item [C4] $p \in P_j$ $\forall j \in M$ can be assigned to at most one vehicle.
+%\item [C5] $q$ is the only member in $E_r$ from the symmetry group that $q$ belongs in $E$. 
+%We can assume that pairings in sets $P_j$ $\forall j \in M$, and vehicles in sets 
+%$H_j$ $\forall j \in M$ are ordered. We use this assumption to delete members in a same symmetry 
+%group in $E$. We only keep $q \in E_r$ that has the following structure. 
+%Let $p_{i_1}, p_{i_2}, .., p_{i_n} \in P_j$ and $h_1, h_2, h_3, .., h_n \in H_j$ for some
+%$n \leq |H_j|$ and $j \in M$ such that the indices of pairings satisfy the relation $i_1 < i_2 < .. < i_n$.
+%We can simply construct one member of symmetry group by assigning
+%$p_{i_1}$ to $h_1$, $p_{i_2}$ to $h_1$, .., $p_{i_n}$ to $h_n$ and assigning zero vector to the 
+%remaining vehicles which means that vehicles $h_{n+1}, .., h_{|H_j|}$ are not used.  
+%\end{enumerate}   
+We form master problem (Master-DW-1') which has the same set of constraints with (Master-DW-1)
+and uses set $E_r$ instead of set $E$. Now we can state the following relationship between
+model (Master-DW-1') and (SPP-LRS) defined in section \ref{part1:sp_form}.
+%It is true that we can add this trivial upper bound for the number of vehicles for
+%each facility to our SPP-LRS formulation defined in section \ref{part1:sp_form}. 
+%Therefore, Master-DW-2 is equal to our SPP-LRS formulation plus the upper bound for
+%the total number of vehicles used for each facility.  
+\begin{prop}
+\label{dw-prop-p2}
+Every integer feasible point for (SPP-LRS)  can be one to one mapped to an 
+integer feasible point for (Master-DW-1') with same objective function value. 
+\end{prop}
+\end{comment} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+By replacing set $E_j$ with $\bar{E}_j$
+for all $j \in J$ in MDW, as well as replacing (\ref{rel-2a}) with
+(\ref{rel-2-new-a}) and (\ref{conv2a}) with (\ref{conv2b}),
+and adding the constraint $\theta_q \in \{0, 1\}$ for
+all $q \in E$, we obtain a new (equivalent) formulation MDW'. Then,
+we finally have the equivalence of SPP-LRSP and integer MDW as follows.
+\begin{prop}
+\label{dw-prop-p2}
+There is a one-to-one correspondence between solutions to SPP-LRSP
+and solutions to MDW' such that corresponding solutions also have the
+same objective function value. Thus, SPP-LRSP, MDW', and integer MDW 
+are all equivalent.
+\end{prop}
+\begin{proof}
+  First, we construct a one-to-one  mapping to establish the 
+  correspondence between solution sets of SPP-LRSP and MDW'.
+  We define mapping $\Psi:(t, z) \rightarrow \theta$.
+  Let $(\bar{t}, \bar{z})$ be a feasible solution to SPP-LRSP
+  where $\bar{t}_j = 1$ if facility $j$ is open, $\bar{z}_p = 1$ 
+  if pairing $p$ is selected and assigned to a vehicle 
+  for all $p \in P_j$ and $j \in J$, 
+  then $\bar{\theta}=\Psi(\bar{t}, \bar{z})$ be the corresponding
+  solution in MDW' where $\bar{\theta}_q = 1$ if 
+  solution $q$  is selected for all $q \in \bar{E}_j$, $j \in J$.
+  
+  Since we can decompose variables in both formulations by facility,
+  we can decompose mapping $\Psi$ by facility and define
+  mapping $\Psi_j$ indexed by facility. 
+  $\Psi = (\Psi_j)_{j \in J}$ and 
+  $\bar{\theta}_{\bar{E}_j} = \Psi_j (\bar{t}_j, \bar{z}_{P_j})$
+  where notation $x_S$ represents a vector composed of
+  the components of vector $x$ indexed with set $S$. 
+  %construct a mapping indexed by facility $j$ $\forall j \in J$.
+  Let $\bar{J}=\{j \in J | \bar{t}_j=1\}$, 
+  $\bar{P}_j=\{p \in P_j | \bar{z_p}=1\}$ 
+  $\forall j \in \bar{J}$ and 
+  $\bar{P}_j=\emptyset$ $\forall j \in J \backslash \bar{J}$ (because
+  of constraint (\ref{spp_con2})). 
+  For some facility $j \in J$, we have three types of solutions, which
+  changes the definition of 
+  $\bar{\theta}_{\bar{E}_j} = \Psi_j(\bar{t}_j, \bar{z}_{P_j})$. %conditions:
+  \begin{itemize}
+  \item [i.] Zero solution, $\bar{t}_j = 0$ and $\bar{P}_j=\emptyset$, thus
+    $\bar{z}_p = 0$ for all $p \in P_j$. Then, 
+    $\Psi_j(\bar{t}, \bar{z}_{P_j}) =$ $\bar{\theta}_{\bar{E}_j} = 0$,
+    i.e., $\bar{\theta}_q = 0$ for all $q \in \bar{E}_j$ 
+    (since we removed zero solution from $\bar{E}_j$ in reduction
+    rule 7).
+  \item [ii.] Nonzero but empty solution, $\bar{t}_j = 1$ and 
+    $\bar{P}_j=\emptyset$. Then, $\bar{\theta}_1 = 1$ such that
+    $\mbox{x}^1 = 0$, $\mbox{y}^1 = 0$, $\mbox{v}^1 = 0$
+    and $\mbox{t}^1 = \bar{t}_j = 1$, and $\bar{\theta}_q = 0$
+    for all $q \in \bar{E}_j$ and $q \neq 1$.
+  \item [iii.] $\bar{t}_j = 1$ and  $\bar{P}_j \neq \emptyset$.
+    For each facility we can choose at most $|I| = |H_j|$ pairings,
+    i.e., $\sum_{p \in P_j}\bar{z}_p = |\bar{P}_j| \leq |H_j|$.
+    Based on Proposition \ref{dw-prop-p1}, there is one member 
+    $k \in \bar{E}_j$ 
+    (in which $|\bar{P}_j|$ vehicles assigned one pairing
+    from set $\bar{P}_j$, $|H_j|-|\bar{P}_j|$ vehicles
+    assigned zero solution, and $\mbox{t}^k_j = 1$) corresponds to 
+    subset $\bar{P}_j$. Thus, the corresponding solution in MDW' is 
+    $\bar{\theta}_k = 1$ and $\bar{\theta}_q = 0$ for all 
+    $q \in \bar{E}_j$ and $q \neq k$. We use notation $k \Tr \bar{P}_j$
+    to define this one-to-one correspondence between member $k$ and
+    pairing set $\bar{P}_j$ defined in Proposition \ref{dw-prop-p1}.
+  \end{itemize} 
+  It follows that  $\Psi_j$ is one-to-one from construction, therefore
+  $\Psi$ is also  one-to-one. It is clear that we can easily construct 
+  the one-to-one reverse mapping,  
+  $(\bar{t}_j, \bar{z}_{P_j})=\Psi_j^{-1} (\bar{\theta}_{\bar{E}_j})$ in 
+  a similar way. 
+
+  From the construction of $\Psi_j$ for each solution type, we can 
+  write the following relations between two formulations' variables 
+  and parameters.
+  \begin{optprog}
+  %\begin{eqnarray*}
+    & t_j & = & \sum_{q \in \bar{E}_j}\theta_q  & \forall j \in J, \label{rel-a-b1}\\
+    & b_{iq} & = & \sum_{p \in S: q \Tr S} a_{ip} & \forall i \in I, \forall q \in \bar{E}_j, \label{rel-a-b2}\\
+    & \tilde{C_{q}} & = & C^F_j + \sum_{p \in S:q \Tr S } C_p & \forall q \in \bar{E}_j, \forall j \in J  \label{rel-a-b3}                           
+    \end{optprog} 
+  %\end{eqnarray*}
+
+  If $(\bar{t}, \bar{z})$ is feasible, then 
+  $\bar{\theta}=\Psi(\bar{t}, \bar{z})$ is also feasible. This can be seen 
+  from the similarity between the structures of SPP-LRSP and MDW' and
+  from (\ref{rel-a-b1}) and (\ref{rel-a-b2}). Finally, the
+  equivalence of objective function values follows from
+  (\ref{rel-a-b3}).
+
+  %Let $z_{SPP}$ be the objective function
+  %value of SPP-LRS for solution  $(\bar{t}, \bar{z})$ and $z_{DW}$ be the objective function
+  %value of MDW' for solution  $\bar{\theta}=\Psi(\bar{t}, \bar{z})$. 
+  %Let $J_i$, $J_{ii}, J_{iii}$ be a partition of facility
+  %set including facilities in solution types (i), (ii), and (iii). 
+  %The objective function coefficients of facilities in set $J_i$
+  %are zero in   
+  %solution types (i) and (ii), it is obvious that the contributions of 
+  %objective function values for facility $j$ are equal.    
+  %\begin{optprog}
+  % & z_{SPP} & = & \sum_{j \in J} C^F_j \bar{t}_{j} + \sum_{j \in J} \sum_{p\in P_j} C_p \bar{z}_p \nonumber \\
+  %  &        & = & \sum_{j \in J} (C^F_j \bar{t}_{j} + \sum_{p\in \bar{P}_j} C_p)  \nonumber %\\
+  %\end{optprog}
+\qed
+  \end{proof}
+
+Proposition \ref{dw-prop-p2} proved that applying Dantzig Wolfe decomposition
+to G-LRSP,  is equal to solving SPP-LRSP.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\begin{proof}
+We represent this mapping using notation $\Psi:(T,Z) \rightarrow \theta$. 
+Let $(\bar{T}, \bar{Z})$ be a feasible solution to (SPP-LRS) 
+and $\bar{\theta}=\Psi(\bar{T}, \bar{Z})$.
+Based on constraint (\ref{conv2}) in (Master-DW-1)), a feasible solution
+$\bar{\theta}$ must satisfy the following condition: there is one
+$\bar{q}\in E_r$ such that $\bar{\theta}_{\bar{q}}=1$ and $\bar{\theta}_q=0$ 
+$\forall q \in E_r \backslash \{\bar{q}\}$. Therefore,  to prove the 
+proposition, it is enough to prove that 
+$(\bar{T}, \bar{Z})$ can be one to one mapped to a member $\bar{q} \in E_r$.
+
+In (SPP-LRS), $Z_p$ is a binary variable showing that pairing $p \in P_j$ $\forall j \in M$ 
+is selected or not. A feasible solution $\bar{Z}$ defines a set of pairings selected from
+each set $P_j$ $\forall j \in J$.   A pairing can only be selected
+at most once, and at most $|H_j|$ pairings are selected from each facility $j \in J$
+(constraint (\ref{vehicle-bound})).
+Let $\bar{J}=\{j \in J | \bar{T}_j=1\}$, $\bar{P}_j=\{p \in P_j | \bar{Z_p}=1\}$ 
+$\forall j \in \bar{J}$ and $\bar{P}_j=\emptyset$ $\forall j \in J \backslash \bar{J}$.
+Let $\mathcal{P}=\cup_{j \in J}\bar{P}_j$ and  
+$\bar{q}=(x_{\bar{q}}^T, y_{\bar{q}}^T, t_{\bar{q}}^T, v_{\bar{q}}^T)^T$.
+
+From proposition \ref{dw-prop-p1}, $\mathcal{P}$ can be one to one mapped to
+vector $(x_{\bar{q}}^T, y_{\bar{q}}^T, v_{\bar{q}}^T)^T$ that is included in 
+some $\bar{q} \in E_r$. Then, map $\bar{T}$ to $t_{\bar{q}}$ using one to one
+mapping: 
+$t_{j\bar{q}}=\bar{T}_j$, i.e., $t_{j\bar{q}}=1$ $\forall j \in \bar{J}$ and  
+$t_{j\bar{q}}=0$ $\forall j \in J \backslash \bar{J}$. This proves that the mapping
+$\Psi$ is one to one. 
+%\begin{itemize}
+%\item [S1] 
+%$\bar{t}_{j\bar{q}}=\bar{T}_j$, i.e., $\bar{t}_{jq}=1$ $\forall j \in \bar{M}$ and  
+%$\bar{t}_{jq}=0$ $\forall j \in M \backslash \bar{M}$.
+%\item [S2] Let $1, 2, .., |H_j|$ be the indices of vehicles located at facility $j$,
+%$\forall j \in M$. $\bar{v}_{i}=1$ $\forall i=1,..,|\bar{P}_j|$ and $\bar{v}_{i}=0$ $\forall i=|\bar{P}_j|+1, .., |H_j|$ 
+%$\forall j \in M$.  
+%\item [S3] Let $p_{i_1}, p_{i_2}, .., p_{i_{|\bar{P}_j|}} $ be the ordering of
+%pairings in $\bar{P}_j$ $\forall j \in \bar{M}$.  
+%We assign $p_{i_1}$ to vehicle 1, $p_{i_2}$ to 
+%vehicle 2, .., $p_{i_{|\bar{P}_j|}}$ to vehicle $|\bar{P}_j|$ located at facility $j$, 
+%$\forall j \in \bar{M}$ and we assign zero vector to the remaining vehicles.
+%\end{itemize} 
+
+Now, we show that constructed $\bar{q}$ is a member of $E_r$. 
+A feasible solution $(\bar{T}, \bar{Z})$ satisfy that  if $\bar{Z}_p=1$ for some $p \in P_j$,
+then $\bar{T}_j$ must be 1 $\forall j \in J$. $\bar{T}_j$ can be 0 or 1 if   $\bar{Z}_p=0$   
+$\forall p \in P_j$ (i.e.,$\bar{P}_j=\emptyset$). There cannot be a case where $\bar{Z}_p=1$ 
+for some $p \in P_j$ and $\bar{T}_j=0$ for some $j \in J$. 
+If $\bar{Z}_p=1$ for some $p \in P_j$,
+then $|\bar{P}_j|\geq 1$, therefore mapping in  proposition \ref{dw-prop-p1} sets 
+$v_{h\bar{q}}=1$ for some $h \in H_j$, $j \in J$. Preprocessing
+rule 1 guarantees that there is not any member of $E_r$ satisfying 
+$t_{j\bar{q}}=0$ when $v_{h\bar{q}}=1$ for some $h \in H_j$, $j \in J$.
+Therefore, mapping from  solution $(\bar{T}, \bar{Z})$ leads
+to a member of $E_r$. 
+
+%and  $\forall j \in J$. Construction rules S1 and S2 define vectors $t_q$ and $v_q$, and any
+%relation between these vectors is feasible with respect to (Sub-Prob) and preprocessing
+%rule 1 eliminates solutions satisfying $t_{qj}=0$ and $v_{qh}=1$ for some $h \in H_j$ and $j \in J$
+%(which would be created if  $T_j=0$ and $Z_p=1$ for some $p \in P_j$, $j \in J$). Therefore, 
+%$q$ constructed using rules S1 and S2 is in set $E_r$ and there is not any member of
+%$E_r$ including vectors $t$ and $v$ that cannot be constructed using  $(\bar{T}, \bar{Z})$.
+
+%Every pairing (set of routes) $p \in P_j$ $\forall j \in J$ (generated using (Dec-Sub-Prob)) 
+%is also feasible 
+%for system (Sub-Prob) because of the relationship between models (Sub-Prob) and (Dec-Sub-Prob).
+%Therefore, rule S3 leads $q$ which is a member of $E$. In addition, preprocessing
+%rule 4 only keeps one specific member from each symmetry group, rule S3 lead $q$ which is a member 
+%of $E_r$.  
+
+%$\bar{q}$ is a member of set $E_r$ and we let $\bar{\theta}_{\bar{q}}=1$ and $\bar{\theta}_q=0$ 
+%$\forall q \in E_r \backslash \{\bar{q}\}$.  
+%(based on constraint (\ref{conv2}) in (Jaster-DW-1)).
+
+A solution to (Master-DW-1') can easily be mapped to a solution to (SPP-LRS) in a similar way.
+For a given  solution $\bar{\theta}$, we can construct $(\bar{T}, \bar{Z})$. Let 
+$\bar{q}=(x_{\bar{q}}^T, y_{\bar{q}}^T, t_{\bar{q}}^T, v_{\bar{q}}^T)^T$ be the member 
+of $E_r$ such that $\bar{\theta}_{\bar{q}}=1$ and $\bar{\theta}_q=0$ 
+$\forall q \in E_r \backslash \{\bar{q}\}$.  
+\begin{itemize}
+\item $\bar{T}_j=t_{j\bar{q}}$, $\forall j \in J$. %Let $\bar{M}=\{j \in M | \bar{t}_{jq}=1\}$. 
+\item Let $\bar{P}_j=\{p_{i_1}, p_{i_2}, .., p_{i_{|\bar{P}_j|}}\} $, $\forall j \in \bar{J}$
+be the set of pairings corresponds to vector $x_{\bar{q}}$. 
+From proposition \ref{dw-prop-p1} we know that this correspondence is one to one. 
+Set $\bar{Z}_p=1$ $\forall p \in \bar{P}_j,j \in \bar{J}$, and 
+$\bar{Z}_p=0$ $\forall p \in (\cup_{j \in J \backslash \bar{J}}P_j) \cup (\cup_{j \in \bar{J}} (P_j \backslash \bar{P}_j))$
+%$\forall j \in \bar{M}$ and  $\bar{Z}_p=0$ $\forall p \in P_j$ $forall j \in M \backslash \bar{M}$.
+\end{itemize} 
+
+Now we show that if $(\bar{T}, \bar{Z})$ is feasible, then $\bar{\theta}=\Psi(\bar{T}, \bar{Z})$
+is also feasible. If $(\bar{T}, \bar{Z})$ is feasible, then 
+\begin{optprog}
+& \sum_{j \in J} \sum_{p \in P_{j}} a_{ip} \bar{Z}_{p} & = &  \sum_{j \in J} \sum_{p \in \bar{P}_{j}} a_{ip}  & = & 1 & \forall i \in N \label{sp_feas} \\
+& \sum_{p \in P_j} \sum_{i \in N} a_{ip} D_i \bar{Z}_{p} & = & \sum_{p \in \bar{P}_{j}}\sum_{i \in N} a_{ip} D_i  & \leq & CapF_{j}\bar{T}_j & \forall j \in J \label{fcap_feas} \\
+& \sum_{p \in P_j}\bar{Z}_{p} & = & \sum_{p \in \bar{P}_j}\bar{Z}_{p} & \leq &  |H_j| & \forall j \in J \label{numofvec_feas} 
+\end{optprog} 
+
+%{\bf(SPP-LRS)} Minimize & \objective{\sum_{j \in M} FC_j T_{j} + \sum_{j \in M} \sum_{p\in P_{j}} C_{p} Z_{p}} \label{spp-obj}\\
+
+The following equations prove that $\bar{\theta}$ is feasible with respect to constraint (\ref{spar}).
+\begin{eqnarray}
+\sum_{q \in E_r} b_{iq} \bar{\theta}_q  =  b_{i \bar{q}}\bar{\theta}_{\bar{q}}  =  b_{i \bar{q}} =  \sum_{j \in J}g_{ij \bar{q}} =   \sum_{j \in J}\sum_{p \in \bar{P}_j}a_{ip}   =  1  \ \ \forall i \in N  \label{feas-check1} \\
+\end{eqnarray} 
+Where  $\bar{\theta}_{\bar{q}}=1$ and $\bar{\theta}_q=0$ $\forall q \in E_r \backslash \{\bar{q}\}$.  
+
+The relationship between parameters $g$ and $a$ is from their definition. $g_{ijq}$
+is equal to the number of times customer $i$ is served from facility $j$ in solution $q \in E_r$, and $a_{ip}$ 
+is equal to 1 if customer $i$ is in pairing $p$ of facility $j$, $\forall i \in N,  p \in P_{j}, j \in J$. Therefore,
+to find $g_{ijq}$, we have to sum $a_{ip}$ for all $p \in P_j$ such that $p$ is used to construct solution $q$
+$\forall j \in J$, $\forall q \in E_r$. Based
+on our notation, $\bar{P}_j$ is the set of pairings used to construct solution $\bar{q}\in E_r$.
+
+We can show that $\bar{\theta}$ is also feasible with respect to constraint (\ref{rel-2}).
+\begin{eqnarray}
+\sum_{q \in E_r} \sum_{i \in N} g_{ijq} D_i \bar{\theta}_q   & = &   \sum_{i \in N} g_{ij\bar{q}} D_i \bar{\theta}_{\bar{q}}  =   \sum_{i \in N} g_{ij\bar{q}} D_i \nonumber\\
+& = & \sum_{i \in N}\sum_{p \in \bar{P}_j}a_{ip}D_i \leq  CapF_{j}\sum_{q \in E_r}t_{jq}\bar{\theta}_q =  CapF_j \bar{T}_j \ \ \forall j \in J \label{feas-check2} 
+\end{eqnarray} 
+
+Equations (\ref{feas-check1}) and (\ref{feas-check2}) also
+show that the mapped solution  $(\bar{T}, \bar{Z})$ is
+feasible when $\bar{\theta}$ is feasible. 
+  
+
+Let $z_{SPP}$ be the objective function
+value of (SPP-LRS) for solution  $(\bar{T}, \bar{Z})$ and $z_{DW}$ be the objective function
+value of (Master-DW-1') for solution  $\bar{\theta}=\Psi(\bar{T}, \bar{Z})$.   
+To show that $z_{SPP}= z_{DW}$, we use the definitions of $C$ in (SPP-LRS) and $\tilde{C}$ in (Master-DW-1'). $C_p$ 
+is cost of pairing $p$ associated with facility $j$ $\forall p \in P_{j}, j \in J$. This cost includes
+travel cost plus the fixed cost of one vehicle. Therefore, for $\bar{\theta}$, if we sum cost of pairings used to 
+construct solution $\bar{q} \in E_r$, we can find the total vehicle fixed cost and travel cost  
+for variable $\bar{\theta}$
+which is $ \sum_{q \in E_r}(VF\sum_{h \in H}v_{hq}+OC \sum_{i \in I} \sum_{k \in I}\sum_{h \in H} TD_{ik}x_{ikhq})\bar{\theta}_q$.
+\begin{eqnarray}
+z_{DW} = \sum_{q \in E_q}\tilde{C_{q}}\bar{\theta}_q = \tilde{C_{\bar{q}}} & = & \sum_{j \in J}C^F_j t_{j\bar{q}} + \sum_{j \in \bar{J}}\sum_{p \in \bar{P}_j}C_p \nonumber\\
+      & = &  \sum_{j \in J}C^F_j \bar{T}_{j} + \sum_{j \in J}\sum_{p \in P_j}C_p Z_p = z_{SPP} \nonumber                       
+\end{eqnarray} 
+\qed
+\end{proof}
+\end{comment} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COMMENT BLOCK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+The set of feasible solutions for the system of constraints in $BX'  \leq  D_2$ 
+(system (\ref{sys2})) is equal to the set of solutions of the LRS problem, which are 
+feasible with respect to the vehicle capacity constraints and the vehicle time 
+limit constraints. The system  $AX'  \leq  D_1$ (system (\ref{sys1})) selects
+the solution that is feasible with respect to the facility capacity constraints
+and set partitioning constraints (\ref{set-part}) among the solutions provided by  
+system (\ref{sys2}). 
+
+Instead of system (\ref{sys2}), we can define system $B'X'  \leq  D_2'$, which
+generates a set of feasible pairings (with respect to the vehicle capacity constraints 
+and the vehicle time limit constraints) for each facility and each vehicle.
+
+ 
+VERSION 2 : Vehicle index is included to the summation
+\begin{optprog}
+ $B'X' \leq D_2'= \{$  & \sum_{h \in H_j} \sum_{k \in I} X_{ikh} & \leq & 1 &  \forall  i \in N , j \in J \label{rel-spp}\\
+           & \sum_{k\in I} X_{ikh}-\sum_{k \in I} X_{kih} & = & 0 & \forall i \in I, j \in J, h \in H_j \nonumber\\
+           & Y_{ikh} - CapV \cdot X_{ikh} & \leq & 0 & \forall i,k \in I, j \in J, h \in H_j\nonumber \\
+           & \sum_{k \in I} Y_{ikh} - \sum_{k \in I} Y_{kih} + D_i \sum_{h \in H_j} \sum_{k \in I}X_{ikh} & = & 0 & \forall i \in N, j \in J \label{flowvar} \\
+           & \sum_{i \in I}\sum_{k \in I}\left(t_{ik}+s_{k}\right)X_{ikh} - TL\cdot V_h  & \leq & 0 & \forall j \in J, h \in H_j\nonumber\\
+           & X_{ikh} & \in & \{0,1\} & \forall i,k \in I, j \in J, h \in H_j\nonumber\\
+           & Y_{ikh} & \geq &  0 & \forall i,k \in I, j \in J, h \in H_j \nonumber \\
+           & V_h  & \in & \{0,1\} & \forall j \in J, h \in H_j\nonumber\\
+\} \nonumber
+\end{optprog}
+
+\begin{optprog}
+ $B'X' \leq D_2'= \{$  & \sum_{k \in I} X_{ikh} & \leq & 1 &  \forall  i \in N , j \in J, h \in H_j \label{rel-spp}\\
+           & \sum_{k\in I} X_{ikh}-\sum_{k \in I} X_{kih} & = & 0 & \forall i \in I, j \in J, h \in H_j \nonumber\\
+           & Y_{ikh} - CapV \cdot X_{ikh} & \leq & 0 & \forall i,k \in I, j \in J, h \in H_j\nonumber \\
+           & \sum_{k \in I} Y_{ikh} - \sum_{k \in I} Y_{kih} + D_i \sum_{k \in I}X_{ikh} & = & 0 & \forall i \in N, j \in J, h \in H_j \label{flowvar} \\
+           & \sum_{i \in I}\sum_{k \in I}\left(t_{ik}+s_{k}\right)X_{ikh} - TL\cdot V_h  & \leq & 0 & \forall j \in J, h \in H_j\nonumber\\
+           & X_{ikh} & \in & \{0,1\} & \forall i,k \in I, j \in J, h \in H_j\nonumber\\
+           & Y_{ikh} & \geq &  0 & \forall i,k \in I, j \in J, h \in H_j \nonumber \\
+           & V_h  & \in & \{0,1\} & \forall j \in J, h \in H_j\nonumber\\
+\} \nonumber
+\end{optprog}
+Where $H_j$ is the set of vehicles located at facility $j$. 
+%The constraints  in the system $B'X'  \leq  D_2'$ define the feasible pairings for each facility
+%with respect to the vehicle capacity constraints and the vehicle time limit constraints. 
+The constraints (\ref{rel-spp}) are relaxed forms of  
+constraints (\ref{set-part}). We need the relaxed form because a feasible 
+pairing does not need to visit all of the customer nodes but it may not visit a 
+customer node more than once. Because of the same reason, in constraint 
+(\ref{flowvar}), we multiply $D_i$ with  $\sum_{k \in I}X_{ikh}$.  If the 
+pairing does not visit the customer node $i$, then  the flow into the node $i$ 
+minus the flow out of the node $i$ must be zero. Otherwise, the summation 
+$\sum_{k \in I}X_{ikh}$ is one and the difference between 
+the flow into the customer and out of the customer must equal to the demand of 
+the customer for pairing assigned to vehicle $h \in H_j$.
+
+Integer feasible points of system (\ref{sys2}) are also integer feasible in 
+system $B'X'  \leq  D_2'$ 
+(e.g. $\{X' \ \ \mbox{integer}|BX'  \leq  D_2\}\subseteq \{X' \ \ \mbox{integer}|B'X'  \leq  D_2'\}$).
+Even the equalities (\ref{flow-conv}) in system (\ref{sys2}) are less strict than 
+the equalities (\ref{flowvar}) in system $B'X'  \leq  D_2'$, because of the fact 
+that a customer can only be visited by one vehicle, every
+integer feasible solution for system  (\ref{sys2}) is also feasible 
+for set of inequalities included in system (\ref{sys2}) except
+the  equalities (\ref{flow-conv}) are replaced with the equalities (\ref{flowvar}).
+Since inequalities (\ref{rel-spp}) are less strict than the less than equal to 
+part of equalities (\ref{set-part}) in system (\ref{sys2}), 
+$\{X' \ \ \mbox{integer}|BX'  \leq  D_2\}\subseteq \{X' \ \ \mbox{integer}|B'X'  \leq  D_2'\}$
+is follows.  
+
+Since each constraint in $B'X'  \leq  D_2'$ is defined for each vehicle 
+$h \in H_j$ and facility $j \in J$, we can decompose 
+the system $B'X'  \leq  D_2'$ into $|H|$ (where $|H|=\sum_{j \in J}|H_j|$) independent 
+subproblems $B'_{h_j}X_{h_j}' \leq D_{2_{h_j}}'$,  one for each vehicle in
+each facility. Each subproblem 
+generates feasible pairings for a vehicle located at a facility. We define  
+$P_{h_j}$ as the set of feasible pairings for vehicle $h$ at facility $j$.
+However, since the vehicles in facility $j$ are identical, we know that
+the sets $P_{h_j}$ are identical $\forall h \in H_j$. Therefore, instead of sets 
+$P_{h_j}$ $\forall h \in H_j$, we can use the set $P_j$, the set of feasible pairings 
+for facility $j$. If we define  $x_{ikp}^{j}$ as the number of times arc $(i,k)$ used in pairing $p$
+(resource constrained path that originates from facility $j$, visits some set of 
+customers and facility $j$ and returns to facility $j$), then we can represent the vector $X$ in  
+master problem as a nonnegative linear combination of a finite number of pairings:
+
+\begin{optprog}
+& X_{ikh_j} & = & \sum_{p \in P_{j}}x_{ikp}^{j} \cdot \theta_p^{h_j} &  \forall  i,k \in I , j \in J, h_j \in H_j \label{XintermsTeta}\\
+& \sum_{p \in P_{j}}\theta_p^{h_j} & \leq & 1 & \forall j \in J, h_j \in H_j \\
+&  \theta_p^{h_j}  & \in & \{0,1\} & \forall j \in J, h_j \in H_j, p \in P_{j}
+\end{optprog}  
+where 
+\begin{eqnarray} 
+\theta_p^{h_j} = \mbox{number of times pairing $p$ of vehicle $h_j$ is selected. }
+\end{eqnarray}
+If we sum flow conservation constraints (\ref{flowvar}) over all $i \in N$, simplify appropriate
+parts, use the information that the vehicle turns back to the depot with zero load because of the characteristics 
+of equations (\ref{flowvar}) and substitute equality (\ref{XintermsTeta}),  we get
+\begin{eqnarray} 
+\sum_{i \in N} Y_{jih_j} =  \sum_{i \in N}D_i \sum_{k \in I} \sum_{p \in P_{j}}x_{ikp}^{j} \cdot \theta_p^{h_j} \ \ \forall j \in J, h_j \in H_j \label{YintermsofTeta}
+\end{eqnarray} 
+To transform variable $V_h$ in master problem, we use the following equality:
+\begin{eqnarray}
+V_{h_j}= \sum_{p \in P_j} \theta_p^{h_j} \ \ \forall h_j \in H_j, j \in J  \label{driintermsTeta}
+\end{eqnarray} 
+Subproblems for $h_j \in H_j$ and facility $j$ are independent and  identical. Therefore, 
+%instead of $P_{h_j}$, we can define $P_j$ as the set of pairings for facility $j$ and 
+we can introduce variable $\theta_p^{j}$ satisfying following system of constraints.
+\begin{optprog}
+& \theta_p^{j} & = & \sum_{h_j \in H_j} \theta_p^{h_j} & \forall p \in P_j \label{aggteta}\\ 
+& \sum_{p \in P_j} \theta_p^{j} & \leq & |H_j|  & \forall j \in J \\
+& \theta_p^{j}  & \in & \{0,1\} & \forall j \in J, p \in P_j  \label{teta_jbinary}
+\end{optprog}  
+
+
+Constraints (\ref{rel-1}) are used to represent the constraints 
+(\ref{Rel-X-T-1}). We obtain constraints (\ref{rel-1}) 
+using the following relations.
+\begin{optprog}
+& X_{ijh_j} & = & \sum_{h_j \in H_j} X_{ijh_j} &  \forall  i \in N , j \in J, h_j \in H_j \label{first-rel}\\
+&\sum_{h_j \in H_j} X_{ijh_j} & = & \sum_{p \in P_j} x_{ijp}^{j} \cdot \theta_p^{j} &  \forall  i \in N , j \in J \\
+& \sum_{p \in P_j} x_{ijp}^{j} \cdot \theta_p^{j} & \leq & \sum_{p \in P_j}a_{ip}\theta^j_p  \leq 1  &  \forall  i \in N , j \in J  \\
+& \sum_{p \in P_j}a_{ip} \theta^j_p & \leq & T_{j}  & \forall j \in J,  \forall i\in N \label{relation_teta}  
+\end{optprog} 
+The last relations (\ref{relation_teta}) are the result of constraints (\ref{rel-2}). Relations
+from (\ref{first-rel}) to (\ref{relation_teta})  give  inequalities (\ref{Rel-X-T-1}), which are 
+$X_{ijh_j}\leq T_j$ $\forall  i \in N , j \in J, h_j \in H_j$. 
+
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COMMENT BLOCK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% rewrite this part    
+%Constraints (\ref{rel-1}) are implied by Constraints (\ref{rel-2}). However, constraints (\ref{rel-1})
+%are valid inequalities, thus we can add these constraints that are representing the relationship 
+%between variable $T_j$ and $\theta^j_{p}$ to our set partitioning-based formulation SPP-LRS. 
+%In SPP-LRS, those constraints will be 
+%$\sum_{p \in P_j}a_{ip}Z_{p} \leq  T_{j}\ \ \forall j \in M, \forall i \in N$. 
+%$Z_{p}  \leq  T_{j}\ \ \forall j \in M, \forall p \in P_{j}$. 
+
+
+
+% and $a_{pj}$ as the column 
+%vector such that  
+%\begin{eqnarray*}
+%a_{ip} & = & \left \{  \begin{array}{ll}
+%                 1 & \mbox{if node $i$ is in pairing $p$ of facility $j$, $\forall i \in N, j \in M, p \in P_{j}$ } \\
+%                 0 & \mbox{otherwise}
+%                         \end{array}
+%              \right. \\
+%C_{p} &=&\mbox{cost of the pairing pairing $p$  of facility $j$ (column $a_{pj}$), $\forall j \in M, p \in P_{j}$} 
+%\end{eqnarray*} 
+%Since we are solving one subproblem for each facility, we define our node set 
+%as $I^j=N \cup \{j\}$. We will create one feasible pairing, so we can drop the 
+%index h from the original variable definition and define variables 
+%$(X_{ik},Y_{ik})^{N+1,N+1}$:
+%\begin{eqnarray*}
+%X_{ik} & = & \left\{ \begin{array}{ll}
+%                 1  & \mbox{if arc (i,k) is selected $\forall i \in I^j, k \in I^j$}\\
+%                 0  & \mbox{otherwise}                                                  
+%                \end{array} 
+%              \right. \\
+%Y_{ik} & = & \mbox{flow from location $i$ to location $k$, $\forall i \in I^j, k \in I^j$}
+%\end{eqnarray*}
+%Each $(X_{ik},Y_{ik})^{N+1,N+1}$ vector represents one feasible pairing for facility $j$.
+%We can define the set $P_j$ by using the system $B'_jX_j' \leq D_{2j}'$:
+
+%\begin{optprog}
+%$P_j= \{(X_{ik},Y_{ik})^{N+1,N+1}:$  & \sum_{k \in I^j} X_{ik} & \leq & 1 &  \forall  i \in N \nonumber \\
+%           & \sum_{k\in I^j} X_{ik}-\sum_{k \in I^j} X_{ki} & = & 0 & \forall i \in I^j \nonumber\\
+%           & Y_{ik} - CapV \cdot X_{ik} & \leq & 0 & \forall i,k \in I^j \nonumber \\
+%           & \sum_{k \in I^j} Y_{ik} - \sum_{k \in I^j} Y_{ki} + D_i \sum_{k \in I^j}X_{ik} & = & 0 & \forall i \in N \label{f:con} \\
+%           & \sum_{i,k \in I^j}\left(t_{ik}+s_{k}\right)X_{ik} - TL  & \leq & 0 \nonumber\\
+%           & X_{ik} & \in & \{0,1\} & \forall i,k \in I^j \nonumber\\
+%           & Y_{ik} & \geq &  0 & \forall i,k \in I^j \nonumber
+%\}
+%\end{optprog}
+
+%The first constraint in the definition of $P_j$ is the relaxed form of our set 
+%partititoning constraint (\ref{set-part}). We have to use the relaxed form because in a 
+%feasible pairing it is not necessary to visit all customer nodes, but still a 
+%customer node can be visited at most once. 
+ 
+%Define 
+%\begin{eqnarray*}
+% \lambda^j_p & = & \mbox{the number of times pairing $p$ associated with facility $j$ (column $a_{pj}$) is}\\ 
+%             & & \mbox{selected in the solution of (EB-LRS'),} \ \ \forall j \in M, p \in P_j
+%\end{eqnarray*}
+
+%To construct the Dantzig Wolfe Decomposition of the problem (EB-LRS'), we write $(X,Y)^{pj}$, 
+%the vector of variables defining pairing $p$ for facility $j$, in terms of column $a_{pj}$ and
+%variable $\lambda^j_p$. Let $X^{B'X'\leq D_2'}$ define all feasible points satisfying 
+%the system $B'X'\leq D_2'$. Then we have the following relations: 
+
+%Old version
+%\begin{optprog}
+%$X^{BX\leq D_2}$ &= \{(X,Y)^j_{j \in M} : (X,Y)^j &\in & P_j \ \ \forall j \in M \} \nonumber\\
+%                 &= \{(X,Y)^j_{j \in M} : X^j_{ik} &\leq & a_{ip}\lambda^j_p \leq \lambda^j_p & \forall  i,k \in I^j, j\in M, p \in P_j \nonumber \\
+%                 & \sum_{k \in I^j} X^j_{ik} &=& a_{ip}\lambda^j_p  & \forall  i \in I^j, j\in M, p \in P_j \nonumber \\
+%                  & -\sum_{k \in I^j} Y^j_{ki} &=& -\sum_{i \in N}D_i a_{ip}\lambda^j_p  & \forall j\in M, p \in P_j  \label{f:con:tran}\\ 
+%                 & \sum_{p \in P_j}\lambda^j_p &\leq & |H^j|  & \forall j \in M \label{conv}\\
+%                 & \lambda^j_p &\in & \{0,1\} & \forall j \in M, p \in P_j \}\nonumber  
+%\end{optprog}
+
+%\begin{optprog}
+%$X^{B'X\leq D_2'}$ &= \{(X,Y)^j_{j \in M} : (X,Y)^j &\in & P_j \ \ \forall j \in M \} \nonumber\\
+%                 &= \{(X,Y)^j_{j \in M} : X^j_{jk} &\leq & \sum_{p \in P_j}a_{kpj}\lambda^j_p  & \forall  k \in N, j\in M \label{forXTrel1}\\
+%                 & X^j_{kj} &\leq & \sum_{p \in P_j}a_{kpj}\lambda^j_p  & \forall  k \in N, j\in M \label{forXTrel2}\\
+%                 & \sum_{k \in I^j} X^j_{ik} &=& \sum_{p \in P_j}a_{ip}\lambda^j_p  & \forall  i \in N, j\in M  \label{forsetpart} \\
+%                  & -\sum_{i \in N} Y^j_{ji} &=& -\sum_{i \in N}\sum_{p \in P_j}D_i a_{ip}\lambda^j_p  & \forall j\in M  \label{f:con:tran}\\ 
+%                 & \sum_{p \in P_j}\lambda^j_p &\leq & |H^j|  & \forall j \in M \label{conv}\\
+%                 & \lambda^j_p &\in & \{0,1\} & \forall j \in M, p \in P_j \}\nonumber  
+%\end{optprog}
+
+%[{\bf Explanation:}
+%-We could not give the equivalence of variables $X^j_{ik}$ and $Y^j_{ik}$ (e.g., $X^j_{ik}=?$ and $Y^j_{ik}=?$). But to represent 
+%system (\ref{sys1}) in terms of variables $\lambda$, we need relations (\ref{forXTrel1}), (\ref{forXTrel2}), (\ref{forsetpart})
+%and (\ref{f:con:tran}). 
+
+%-Relations (\ref{forXTrel1}) and (\ref{forXTrel2}): We need them to represent Const.(\ref{Rel-X-T-1}), Const.(\ref{Rel-X-T-2}). 
+%They are true, since if $X^j_{jk}=0$ then $\sum_{p \in P_j}a_{kpj}\lambda^j_p$ may be 0 or 1
+%and if $X^j_{jk}=1$ then $\sum_{p \in P_j}a_{kpj}\lambda^j_p$ will be 1. Also, to write constraints (\ref{Rel-X-T-1}) and (\ref{Rel-X-T-2}), 
+%we need $\sum_{p \in P_j}a_{kpj}\lambda^j_p \leq T_j$.          
+%Based on this new relation, the constraint (\ref{rel-1}) should be updated to
+%$\sum_{p \in P_j}a_{ipj}\lambda^j_p  \leq  T_{j} \forall j \in M, \forall i\in N $
+%-Relations (\ref{forsetpart}): We need them to represent Const.(\ref{set-part}). 
+%-Relations (\ref{f:con:tran}): We need them to represent Const.(\ref{FacCap}).
+
+%\begin{figure}[h]
+%  \centering
+%  \includegraphics[scale=1]{figs/danzigfig.eps}
+%\end{figure} 
+
+%For example based on the figure above, we can write flow conservation equation (\ref{f:con}) for all $i \in N$:
+%\begin{eqnarray*}
+%(Y_{13}+Y_{14}+Y_{12}+Y_{15}+Y_{10})-(Y_{01}+Y_{31}+Y_{21}+Y_{51}+Y_{41})+D_1\sum{k \in I^j}X_{1k}=0 \\
+%(Y_{31}+Y_{34}+Y_{32}+Y_{35}+Y_{30})-(Y_{03}+Y_{13}+Y_{23}+Y_{53}+Y_{43})+D_3\sum{k \in I^j}X_{3k}=0 \\
+%(Y_{43}+Y_{41}+Y_{42}+Y_{45}+Y_{40})-(Y_{04}+Y_{34}+Y_{24}+Y_{54}+Y_{14})+D_4\sum{k \in I^j}X_{4k}=0 \\
+%(Y_{23}+Y_{24}+Y_{21}+Y_{25}+Y_{20})-(Y_{02}+Y_{32}+Y_{12}+Y_{52}+Y_{42})+D_2\sum{k \in I^j}X_{2k}=0 \\
+%(Y_{53}+Y_{54}+Y_{52}+Y_{51}+Y_{50})-(Y_{05}+Y_{35}+Y_{25}+Y_{15}+Y_{45})+D_5\sum{k \in I^j}X_{5k}=0 
+%\end{eqnarray*}
+%When we sum equation (\ref{f:con}) for all $i \in N$, we get $\sum_{i \in N}Y_{i0}-\sum_{i \in N}Y_{0i}+\sum_{i \in N}D_i \sum_{k \in I^j}X_{ik}=0$.
+%We know that $\sum_{i \in N}Y_{i0}=0$. 
+%]
+
+ 
+%Equality (\ref{f:con:tran}) is obtained by adding the flow conservation equation (\ref{f:con}) for all $i \in N$ and
+%using the information that the vehicle turns back to depot with zero load because of the characteristics 
+%of equations (\ref{f:con}) in system (\ref{sys2}).    
+
+%By using the transformation of $(X,Y)^{pj}$ to columns $a_{pj}$ and variable $\lambda^j_p$, we can write the
+%master problem, which is the system (\ref{sys1}), $AX'\leq D_1$, with the objective function. To write the objective 
+%function, we use the cost definition of the pairing, that is $C_{p}=VF+OC \sum_{i,k \in I^j}(t_{ik}+s_k)X_{ik} $. 
+
+%\begin{optprog}
+%{\bf (Master-DW)} \nonumber\\
+%Minimize & \objective{\sum_{j \in M} FC_j T_{j} + \sum_{j \in M} \sum_{p\in P_{j}} C_{p} \lambda^j_p} \nonumber\\
+%subject to & \sum_{j \in M} \sum_{p \in P_{j}} a_{ipj} \lambda^j_p & = & 1 & \forall i \in N \label{spar} \\
+%           & \sum_{p \in P_j} \sum_{i \in N} a_{ipj} D_i \lambda^j_p  & \leq & CapF_{j} T_{j} & \forall j \in M \label{rel-2}  \\
+%           & \sum_{p \in P_j}a_{ipj}\lambda^j_p & \leq & T_{j}  & \forall j \in M,  \forall i\in N \label{rel-1} \\
+%           & \sum_{p \in P_j} \lambda^j_p  & \leq & H_j & \forall j \in M \label{conv2} \\
+%           & \lambda^j_p  & \in & \{0,1\} & \forall  j \in M, \forall p \in P_{j} \label {conv3}\\
+%           & T_{j}  & \in & \{0,1\} & \forall  j \in M \nonumber
+%\end{optprog} 
+
+%To write Master-DW in terms of new variables, along with the definition of $X^{B'X'\leq D_2'}$, we
+%have used some logical equalities. For example, in constraint (\ref{spar}) we have used the 
+%transformation $\sum_{h \in H} \to \sum_{j \in M} \sum_{p \in P_{j}}$ along with the equality 
+%$\sum_{k \in I^j} X^j_{ik} = a_{ipj}\lambda^j_p $. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Comparing G-LRSP and SPP-LRSP}
+\label{sec:comp-form}
+% Number of variables and constraints
+G-LRSP is a three-index commodity flow formulation.
+For the related problems of LRP and VRP, the literature contains 
+two main types of graph-based models, vehicle flow and 
+commodity flow. In both formulations, integer variables 
+represent the number of times a vehicle traverses a 
+given arc or edge in an underlying graph. In commodity
+flow formulations, an additional variable representing the 
+number of units of a given commodity transported along the 
+arc is present. In general, vehicle flow models contain an 
+exponential number of subtour elimination constraints, 
+whereas commodity flow models, with the help of additional 
+flow variables, use a polynomial number of constraints to 
+eliminate subtours. For the LRP and the VRP, two-index 
+vehicle flow formulations are preferred in solution algorithms 
+based on branch-and-cut since these formulations include 
+a smaller number of variables and their LP relaxations 
+yield better bounds. However, it is not possible to formulate 
+the LRSP using variables with only two indices because of 
+the time constraint for the vehicles. In this context, 
+we require a three-index commodity flow model.
+%G-LRSP is a three-index commodity flow formulation. 
+Because of the facility and vehicle capacity restrictions, 
+we do not know a priori the number of vehicles required at 
+each facility, though the number is clearly at most $|I|$. 
+Thus, this formulation can require up to O($|I|^4$) binary 
+variables and O($|I|^4$) constraints, which can be as many as 
+6 million for an instance with 50 customers. 
+
+On the other hand, SPP-LRSP includes O($|I|$) number of constraints
+while the number of variables depends on the size of the pairing 
+sets (i.e., $|\bigcup_{j \in J}P_j|$), which can be exponentially 
+large. However, most of these columns are equal to zero in an 
+optimal solution. Therefore, intelligent enumeration techniques 
+which may use some logical conditions, information from good 
+solutions, and information from experiences can be developed to 
+avoid generating all possible columns. In addition, the 
+disadvantage of having extremely large number of variables can 
+be overcome by using column generation algorithm that explores
+all columns implicitly and generates only those that may improve 
+the objective function. 
+%By solving a 
+%sequence of linear programs and dynamically generating columns 
+%eligible to enter the basis, such an algorithm implicitly 
+%considers all columns but generates only those that may improve 
+%the objective function. 
+  
+
+%Symmetry
+Observe that the three-index formulation G-LRSP exhibits a high 
+degree of symmetry under the assumption that the vehicle 
+fleet assigned to each facility is homogeneous. This is due to the 
+fact that the assignment of pairings to a specific vehicle is
+essentially arbitrary, i.e., the cost of a given solution to 
+G-LRSP is invariant under permutation of the indices assigned to 
+specific vehicles. In addition, from the definition of the variables
+in formulation G-LRSP, symmetric distance matrix results in solutions
+with same cost but including routes constructed in different 
+directions. A solution algorithm such as a branch-and-bound
+or a branch-and-cut based on G-LRSP may perform poorly
+because of the inherent symmetry in the formulation. 
+
+The SPP-LRSP formulation eliminates the symmetry 
+that arises in G-LRSP because of the identical vehicles. In SPP-LRSP,
+we enumerate one set of feasible pairings that can be assigned to any 
+vehicle located at a facility instead of duplicating this set for 
+each vehicle located at a facility. Furthermore, while generating
+the pairings using a subproblem, depending on the solution procedure, 
+we can use undirected links between nodes in case of symmetric distance
+matrix. Therefore, we can remove direction in the routes.  
+
+The lower bound obtained by solving the  LP relaxation of
+the SPP-LRSP is stronger than the bound obtained by solving the  
+LP relaxation of the G-LRSP. This can be demonstrated both theoretically
+and empirically. Let $z_{LP}^{G}$ be the LP relaxation of formulation
+G-LRSP and $z_{LP}^{SPP}$ be the LP relaxation of formulation
+SPP-LRSP. In Proposition \ref{dw-prop-p2} we proved that 
+MDW' obtained by applying Dantzig Wolfe Decomposition to G-LRSP
+is equivalent to SPP-LRSP. Therefore using DWD methodology we 
+can theoretically compare the LP relaxation bounds of G-LRSP 
+and SPP-LRSP. Let $z_{LP}^{MDW'}$ be the LP relaxation of
+formulation MDW'. Then, we have the following result. 
+\begin{prop}
+\label{ch1-comp-bnds}
+$z_{LP}^{G}\leq z_{LP}^{MDW'} = z_{LP}^{SPP}$.
+\end{prop}
+\begin{proof}
+$z_{LP}^{G}$ is obtained by optimizing the objective function
+(\ref{obj-eb}) on the polyhedron defined by constraints 
+(\ref{set-part}) - (\ref{fix-0}) (G-LRSP without the integrality 
+constraints). 
+
+On the other hand, $z_{LP}^{MDW'}$
+is obtained by optimizing the objective function (\ref{obj-eb})
+on the polyhedron defined by the intersection of constraints 
+(\ref{set-part}) and (\ref{FacCap}) with the convex hull of
+of the solutions that are constructed with composing the points 
+generated by solving subproblem (\ref{subsys}) for all facilities,
+which is the convex hull defined by (\ref{enterleave}), 
+ (\ref{VehCap}), (\ref{flow-conv}), (\ref{timeLim}), (\ref{fix-0}), 
+(\ref{x-var}), (\ref{y-var}), (\ref{t-var}), and (\ref{dri-var}).
+
+The proof follows from the fact that the subproblems do not have 
+the integrality property, i.e., the solution is unchanged when the 
+integrality restriction is removed. The polyhedron defined by the 
+constraints (\ref{enterleave}), (\ref{VehCap}), (\ref{flow-conv}), 
+(\ref{timeLim}), (\ref{fix-0}) is greater or equal to the 
+convex hull of the same set of constraints.  
+\qed
+\end{proof} 
+
+The relation in Proposition  \ref{ch1-comp-bnds} can also
+be demonstrated emprically. In Section \zaupdate{REFER COMPUTATIONAL
+RES. FOR LP RELAX.}, 
+we present computational results that compare the LP relaxation bounds 
+obtained by solving SPP-LRSP and G-LRSP.  
+ 
+
+Finally, while we are searching for cutting planes valid for the model, 
+we can see some differences between formulation G-LRSP and formulation 
+SPP-LRSP. In formulation G-LRSP, the variables indexed with vehicle 
+$h$ which enables us to search cutting planes associated with either a single 
+vehicle or a set of vehicles. We can multiply a cut generated for 
+a single vehicle $h$ for all vehicles in set $H$. This can prevent jumps between 
+the symmetrical solutions because of the homogeneous vehicle fleet. 
+However, in formulation SPP-LRSP, a pairing variable for a facility
+is associated with any vehicle located at the facility, thus we can
+not differentiate the vehicles. We can only use cutting planes 
+associated with all vehicles located at a facility. These cutting
+planes have the same coefficient for all pairings (representing
+a single vehicle) located at a facility. 
+Solution process for SPP-LRSP becomes more complicated if cutting
+planes only including a subset of pairings, and possibly with 
+different coefficients for the variables representing pairings
+are added. Therefore, the structure of the cutting planes searched 
+is more restrictive for SPP-LRSP. However, one advantage
+of SPP-LRSP is that some cutting planes valid for formulation G-LRSP
+are already implied by formulation  SPP-LRSP. This is evident from
+the Proposition  \ref{ch1-comp-bnds} and the definition 
+of the columns of SPP-LRSP. This will further be investigated in 
+Section \zaupdate{REFER CUTS SECTION}.
+
+
+
+%Look at Barnhart's paper, why need models with large number of variables..
+%BP 
+   
+
+%1st paragraph: LP relaxation bound differences
+%2nd paragraph: EB is very symmetric. Symmetric wrt routes, e.g. 
+%forward and backward is same. Symmetric wrt to vehicles. Any vehicle 
+%can be assigned to any route. With this symmetry branch and cut is almost 
+%hopeless in EB-LRS.
+%In SP-LRS, this symmetry is eliminated. Symmetry wrt to edges is eliminated. 
+%Also a column represent a group of vehicles so eliminates the symmetry because 
+%of identical vehicles. Which is a good thing. 
+
+%A cut in edge based can be multiplied for the other vehicles. 
+%But a cut for two vehicles cannot be written in sp model. 
+
+
+
+
+
+
+
+
+
+
+\section{Complexity of the LRSP}
+The LRSP is NP-hard. To show this, we consider an instance of the LRSP 
+in which there is at most one vehicle at each facility, there are 
+no facility and vehicle fixed costs, and the vehicle time limit is 
+unrestricted. Such a special case is equivalent to an instance of 
+the MDVRP, which was shown to be NP-hard by  \citet{Lenstra},
+and \citet{Bodin2}.
+%To show that the LRSP is NP-hard, we start from the fact that the
+%multi-depot vehicle routing problem (MDVRP) is NP-hard 
+%(\citet{Bodin2,Lenstra}). 
+The MDVRP aims to find a minimum-cost set of vehicle routes, each 
+one starting from a depot and terminating at the same depot. Each 
+customer must be served exactly once and there are specified lower and 
+upper bounds for the number of capacitated vehicles at each depot. 
+%To show that the LRSP is NP-hard, we show that the 
+%MDVRP is a special case of LRSP.  
+%We will consider an instance of the LRS 
+%problem with $N$ customer nodes and $J$ facilities and at most $I$ vehicles at 
+%each depot. 
+In the created LRSP instance, location decision and facility costs are 
+eliminated by setting the fixed cost of facilities to zero, and scheduling
+part is eliminated by setting the time limit to infinity. Solution of this
+instance results a set of routes with minimum total operating 
+cost.
+%Since the MDVRP considers only the operating costs of vehicles, the 
+%fixed cost of a vehicle (in the LRS problem) is assumed 
+%to be zero for the instance. 
+%The total working hour limit of a vehicle is 
+%eliminated, or equivalently the total working hour limit of the vehicle is set to infinity.
+%The created instance of the  LRS problem is equivalent to an instance of the MDVRP 
+%with $I$ customer nodes and $J$ facilities, each of which has $0$ to $I$ vehicles.
+This solution can easily be translated to a solution for the MDVRP. 
+In the solution of the MDVRP, the allocation of the customers to the facilities, 
+the vehicle routes and the total cost are the same as in the solution of the LRSP. 
+%The only difference is the number of vehicles used in the solution. 
+%In the MDVRP, each route is assigned to one vehicle, therefore
+%the number of vehicles used is equal to the number of routes. 
+%However, in the created instance of the LRS problem, there is one vehicle at each facility and 
+%all the routes originated from a facility are assigned to the vehicle located at 
+%the facility. 
+Since we have shown that the MDVRP is a special case of the LRSP and the 
+MDVRP is NP-hard, we can conclude that the LRSP is also NP-hard. 
+ 
+
+
+
+%If both problems have the same distance matrix and same operating cost, then solving the LRS 
+%problem yields a solution for the MDVRP.
+ 
+%Each facility has a capacity of value $FCap$ and has 1 vehicle with capacity $VCap$ and no total working hour 
+%limit, which means that we set the 
+%total working hour limit of each vehicle to infinity.  This instance for 
+%LRS problem can be converted to an instance of MDVRP with M facilities 
+%and N customer nodes in which each facility has 0 to 
+%N vehicles with capacity $VCap$. If both problems have the same 
+%distance matrix and same operating cost, then solving the LRS problem 
+%is equavalent to solving the MDVRP. 
+
+%We define a special case of LRS problem,
+%solution of which is equivalent to solution of MDVRP.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%[Dr. Berger deleted this part] ??
+%The allocation of customers
+%to facilities, vehicle routes and the total costs are same. 
+%The only difference is in MDVRP at most one route is assigned to
+%each vehicle although in LRS problem it is possible to assign
+%multiple routes to a vehicle. Thus, if multiple vehicles are used to
+%serve customers in any depot, while converting the 
+%solution of MDVRP to the solution of LRS, 1 vehicle is assigned to these 
+%multiple routes in that depot. This assignment is possible since there is no working hour 
+%limit for the vehicles. Since a special case of LRS problem is equivalent to
+%a MDVRP, LRS problem is NP-Hard.           
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+{\bf LP Relaxation of Master Problem:} In this part, we use (Master-DW-2)
+as our master problem obtained by applying Dantzig Wolfe Decomposition 
+method to the EB-LRS. The subproblem, the resource constrained
+elementary shortest path problem does not have integrality property. Therefore, 
+the bound obtained from Dantzig Wolfe Decomposition of LRSP is expected to be equal or
+stronger than the LP relaxation of EB-LRS. Let $z_{LP}^{EB-LRS}$ be the LP
+relaxation of model EB-LRS and $z_{LP}^{Master-DW}$ be the bound obtained from the Dantzig 
+Wolfe Decomposition of EB-LRS. Then,
+\begin{prop}
+$z_{LP}^{EB-LRS}\leq z_{LP}^{Master-DW}$.
+\end{prop}
+\begin{proof}
+Let $Q^A$ be the polyhedron defined by $AX' \leq D_1$, i.e 
+$Q^A=\{X'\in \mathbb{R}^{|D|}_+|AX' \leq D_1\}$. Let $Q^B$ be the polyhedron 
+defined by $BX' \leq D_2$, i.e.,, $Q^B=\{X'\in \mathbb{R}^{|D|}_+|BX' \leq D_2\}$.
+The LP relaxation of the edge based formulation (EB-LRS) is
+\begin{eqnarray}
+\label{lpbound-eb}
+z_{LP}^{EB}=min \{CX' | X' \in (Q^A \cap Q^B),X'\in \mathbb{R}^{|D|}_+\} \nonumber
+\end{eqnarray}
+
+We decompose the subproblem into $|M|$ subproblems, one for each facility. 
+Let $B_jX' \leq D_{2j}$ be the system of inequalities for subproblem $j$.
+Let $S^{B}$ be the set of integer points satisfying $BX' \leq D_2$.
+\begin{eqnarray}
+S^{B} & = & \{X'\in \mathbb{Z}^{|D|}_+|BX' \leq D_2\} \nonumber\\
+      & = & \bigcup_{j \in J} (\{X'\in \mathbb{Z}^{|D^j|}_+|B_jX' \leq D_{2j}\} \nonumber 
+\end{eqnarray}
+Let $P^{B}$ be the convex hull of the points in set $S^{B}$. 
+We know that $Q^{B}\supseteq P^{B}$. Therefore, 
+$(Q^A \cap Q^B) \supseteq (Q^A \cap P^{B})$, which proves the proposition.
+\qed
+\end{proof}
+
+Dantzig Wolfe Decomposition bound $z_{LP}^{Jaster-DW}$ can be calculated using 
+a column generation algorithm. The details of the column generation algorithm is
+explained in part II, section (\ref{ColGenAlg}). The process starts with initializing the
+(Master-DW) with some set of columns. The LP relaxation of (Master-DW) with the
+current set of columns is optimized, then using the dual variable information
+the subproblem is solved to find minimum reduced cost columns. 
+
+Let $\pi_{i}$ be the dual variable 
+associated with the partitioning constraint (\ref{spar2}) for customer $i$, $\mu_{j}$ be 
+the dual variable associated with the capacity constraint (\ref{rel-2-2}) for 
+facility $j$, $v_j$ be the dual variable associated with the convexification
+constraint  (\ref{up-bound-lambda}) for facility $j$. Based on this information, we
+can write the reduced cost of a column which will lead to the objective function
+coefficients of the subproblem (Dec-Sub-Prob-2). Let $\hat{C}_{p}$ be the reduced
+cost of column $p$ such that $p \in P_j$.
+\begin{eqnarray}
+\label{dw-red-cost}
+\hat{C}_{p}=C_{p}-\sum_{i\in N}a_{ip}\pi_{i}+\sum_{i \in N}a_{ip}D_{i}\mu_{j}+v_{j}
+\end{eqnarray}
+$C_{p}$ is the cost of a column which is the sum of the fixed cost of the vehicle and 
+the variable costs of the routes that are included in the pairing.
+Let $x_{ikp}$ be the binary parameter which is equal to 1 if pairing $p$ 
+visits link $(i,k)$ and 0 otherwise.
+Using parameter $x$ we can rewrite (\ref{dw-red-cost}).
+%To drive the objective function coefficients in subproblem (Dec-Sub-Prob-2) for
+%facility $j$, we substitute equalities (\ref{transform-xa}) and (\ref{transform-cost}):
+\begin{eqnarray}
+\hat{C}_{p} & = & VF+OC \sum_{i \in I} \sum_{k \in I} t_{ik}x_{ikp}-\sum_{i\in N} \pi_{i} \sum_{k \in I}x_{kip}+ \mu_{j}\sum_{i \in N}D_{i}\sum_{k \in I}x_{kip}+v_{j} \\
+            & = & (VF + v_j)+ \sum_{k \in I}\sum_{i \in N}(OC t_{ki} - \pi_{i} + \mu_{j}D_{i})x_{kip} + OC\sum_{i \in N}t_{ij}x_{ijp} \label{openform-rc}
+\end{eqnarray} 
+Note that in subproblem for facility $j$, set of all nodes $I$ is equal to customer 
+nodes plus the facility $j$, i.e., $I=N\cup\{j\}$. Based on equation (\ref{openform-rc}), 
+for objective function (\ref{de-subprob-obj}), we can define:
+\begin{eqnarray*}
+\hat{c}_{ki} & = & \left \{  \begin{array}{ll}
+                 (OC t_{ki} - \pi_{i} + \mu_{j}D_{i})  & \mbox{if $k \in I$, and $i \in N$} \\
+                 (OC t_{ki}) & \mbox{if $k \in N$ and $i=j$}
+                         \end{array}
+              \right. \\
+K & = & VF + v_j
+\end{eqnarray*}
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+

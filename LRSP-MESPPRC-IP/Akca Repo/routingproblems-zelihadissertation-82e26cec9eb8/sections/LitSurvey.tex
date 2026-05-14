@@ -1,0 +1,697 @@
+
+%\chapter{Literature Review}
+
+\section{Literature Review}
+\label{literature}
+
+The LRSP integrates three sets of decisions, facility location, 
+vehicle routing and vehicle scheduling. In this chapter, we briefly 
+review the literature for each component problem as well as the 
+literature for related integrated problems. 
+
+\subsection{Facility Location}
+
+The first component of the LRS problem is where to locate the facilities 
+and how to allocate the customers to these facilities. Determining where 
+to locate facilities is an important problem that arises in the design of 
+distribution networks. \citet{ReVelle} and \citet{Klose} provide recent 
+surveys of the various types of location problems, formulations and solution 
+algorithms. The facility location literature encompasses a wide variety of 
+problems, which can be categorized in a variety of ways. \citet{Daskin} 
+provides a taxonomy of facility location problems and describes methods 
+categorizing location problems. Location problems can be grouped as planar 
+problems, network problems or discrete problems based on the allowable 
+location of the facilities and the customers. Problems in which customers 
+and facilities can be located anywhere in the plane are planar location 
+problems. Problems in which the customers and the candidate locations are 
+restricted to a discrete set  are discrete location problems. Network 
+location problems are a special case of discrete location problems in which 
+the candidate facilities and the demand locations are restricted to the nodes 
+of a network and travel is only possible via the arcs of network.
+%[alternative to the previous]Problems in which the candidate facilities and the demand locations are 
+%restricted to the nodes of a network and travel is only possible via the arcs of network are network 
+%location problems. 
+
+Most relevant to our study of the LRS problem are discrete location problems. 
+\citet{Labbe} provide a survey of the literature related to discrete facility 
+location problems including application areas, solution methods and model 
+extensions. Early work on discrete location problems started with 
+\citet{Hakimi64, Hakimi65} who introduced the $p$-median problem on a network, 
+which is known to be NP-hard (\citet{Kariv}). The objective is to locate $p$ 
+facilities on a network with demand nodes so as to minimize the total weighted 
+distance between the customers and the closest facilities to them.
+%Although unable to develop a method to solve the p-median problem, Hakimi 
+%developed the 
+%well known ``Hakimi theorem'' that states there exists at least one set of 
+%k-medians (one optimal solution) 
+%on the nodes of the network (\citet{ReVelle}). 
+\citet{ReVelle2} were the first to formulate the $p$-median problem as a 0-1 integer 
+program. Since then researchers have developed both exact methods 
+(e.g., \citet{Galvao}, \citet{Bilde}) and heuristic methods 
+(e.g., \citet{Maranzana}, \citet{Teitz}, \citet{Rosing}) for the $p$-median problem. 
+Depending on the difficulty of the instances, optimal or near optimal solutions 
+for $p$-median problems are reported for instances up to 3000 customer nodes. 
+
+By removing the constraint that $p$ locations must be selected and by adding a 
+fixed cost for each candidate location, we obtain a simple plant location 
+problem from the $p$-median problem. Also called the uncapacitated facility 
+location problem (UFLP), the problem has been well-studied in the literature 
+(\citet{Cornuejols2}). The objective of the problem is to select a subset 
+of the candidate facilities and to assign customers to the selected facilities 
+so as to minimize the sum of fixed and operating costs. The operating cost in 
+the UFLP is the transportation cost calculated assuming individual customer 
+routes that originate at a facility, serve one customer and return to the 
+same facility. The problem is NP-hard (\citet{Cornuejols2}). A number of 
+researchers have focused on polyhedral analysis of the UFLP. Although a 
+complete description of the UFLP polytope is not known, \citet{Guignard}, 
+\citet{Cornuejols} and \citet {Cho83a,Cho83b} provide partial descriptions. 
+Others have focused on developing algorithms for the UFLP, for example, 
+branch-and-bound based algorithms by \citet{Erlenkotter} and \citet{Korkel}, 
+a Lagrangian relaxation algorithm by \citet{Cornuejols77} and a dual 
+simplex algorithm by \citet{Simao}. The best results for the problem are
+reported by \citet{Korkel} using an approach that extends the dual-ascent 
+heuristic procedure developed by \citet{Erlenkotter} (\citet{ReVelle}). 
+
+%\citet{Morris} and 
+%%\citet{ReVelle2} show that linear relaxations of UFLP and p-median problem result 
+%integer or near-integer solutions that means, a few branching 
+%in a branch and bound algorithm is enough to reach optimal integer solution. 
+
+By adding capacity constraints on the facilities, we obtain the capacitated 
+facility location problem (CFLP) from the UFLP.   \citet{Leung} and \citet{Aardal}  
+investigate the polyhedral structure of the CFLP and introduce facet defining 
+inequalities for the problem, which lead to cutting plane algorithms 
+(\citet{Aardal2}) for solving the problem. By using an extended formulation 
+(with other valid inequalities) of the CFLP, \citet{Cornuejols} find and compare 
+lower bounds for the CFLP by relaxing different constraints within a Lagrangian 
+relaxation and decomposition algorithm. Other papers presenting various solution 
+algorithms for the CFLP are \citet{Baker}, \citet{VanRoy}, \citet{Pirkul} and 
+\citet{Beasley2}. 
+
+In the CFLP, the demand of a customer can be supplied by more than one 
+facility. However, in some applications, there may be a single source requirement 
+for a customer, which means that the total demand of a customer must be supplied 
+by exactly one facility. When the single source requirement is added to the CFLP, 
+it is called the capacitated facility location problem with single sourcing 
+(CFLPSS). The CFLPSS is more difficult than the CFLP since, while the CFLP is a 
+mixed integer model, the CFLPSS is a pure integer model with same number of
+variables and constraints. In addition, for a given set of open facilities, 
+the CFLP solves a transportation problem to find the assignment of customers to 
+the facilities, but the CFLPSS solves a generalized assignment problem, which is 
+also an NP-hard problem. In the literature, most of the studies use heuristics, 
+especially Lagrangian based heuristics, such as \citet{Klincewicz} and 
+\citet{Sridharan}. \citet{Delmaire} design several metaheuristics and 
+\citet{Ahuja04} develop a neighborhood search algorithm for the problem.
+%Most of the studies use Lagrangean heuristics to solve the problem. 
+%Two of these are \citet{Klincewicz} and \citet{Sridharan}.  
+\citet{Holmberg} develop an exact branch-and-bound algorithm that uses a  
+Lagrangian based heuristic and repeated matching heuristic that solves 
+successive matching problems. They can solve problems up to 
+200 customers and 30 facilities. 
+
+
+
+%[if this is daskinin worku ise koy]
+%\citet{Daskin} gives details of two approaches to solve CFLP with lagrangean relaxation algorithm. 
+%In the first approach, the capacity constraints are relaxed and what is left is an UFL problem to solve. In the second approach,
+%the demand constraints for customers are relaxed and this leaves two subproblems: a continuous
+%knapsack problem and a problem closely related with 0-1 knapsack problem. 
+
+%For the sake of LRS problem, we focus on the minimizing cost objective in our literature survey, 
+%but in variations of location problems, there are different objectives other than minimizing 
+%cost such as minimizing the maximum time to reach a customer or maximizing the number of demands 
+%satisfied within a specified service time. Formulation of the problem may change based on the objective.
+%Some the basic examples are set covering problems and center problems. For the details of each 
+%problem such as their application areas, classifications, formulations and solution methods, 
+%see \citet{Daskin} and \citet {Drezner}. 
+
+%[maybe put another place]
+%(see the book edited by \citet{Drezner95} for a  survey of applications and methods).
+% Considering the variations of 
+%location problem, the complexity of the problem changes from simple linear, single-stage,
+%single-product, uncapacitated, deterministic models to nonlinear probabilistic models (\citet{Klose})
+
+
+\subsection{Vehicle Routing}
+\label{lit-vrp}
+The second component of the LRS problem is how to design the vehicle routes. The 
+classical vehicle routing problem (VRP) finds a set of minimum cost vehicle 
+routes, each of which starts at the depot, visits some customer locations and 
+returns to the depot. There is a large body of literature related to the VRP that 
+describes the many problem variations and solution approaches. The VRP has many 
+variations depending on the characteristics of the vehicles, the facilities and 
+the customers. 
+%Vehicle routing problems vary depending on the characterisitics of the vehicles and the facilities. 
+%\citet{Bodin} give a taxonomy for VRP. 
+For example, the vehicles may be identical or different with respect to capacity 
+limits; the problem may be concerned with delivery only, pick up only or both 
+delivery and pick up; the vehicles might be restricted to serve each customer in 
+a given time window and/or serve according to precedence relations of the customers.
+In addition, the problem may involve a single facility or multiple facilities.  
+\citet {Christofides} surveys the different types of formulations used to model 
+the VRP and the exact and heuristic algorithms designed for the problem prior to 1985. 
+In a recent study, \citet{Toth} give a detailed description of the variants of the 
+VRP and their formulations and they discuss the solution methods that are applied 
+to these variants. 
+\citet{LetchfordG06} review the different formulations and derive
+relationships between these formulations. Using projection, they compare the LP 
+relaxation bounds and show that some valid inequalities in the two index space
+are implied by extra flow variables or set partitioning variables.
+
+To formulate the VRP as an integer program, three different approaches are used in 
+literature. One approach is to define integer variables for each arc or edge in the 
+model representing the number of times the arc or edge is traveled. This type of 
+model, which is called a vehicle flow model, can be divided into two groups: 
+two index formulations and three index formulations (\citet{Laporte2}). In a 
+two index formulation, a flow variable has two indices representing the 
+origin and the destination of the arc and in a three index formulation,
+each variable has an additional index representing the vehicle traveling the arc.  
+Vehicle flow models, especially two index formulations, are very common in the 
+VRP literature. \zaupdate{For capacitated VRP (CVRP), \citet{LetchfordG06}
+investigate the relationship between two index and three index vehicle flow models
+and present some theoretical results. They prove that the 
+three index formulation strengthened with certain classes of valid inequalities
+gives the same lower bound with a two index formulation with simpler constraints.
+Therefore, the LP relaxation bound based on the three index formulation is weaker than
+the LP relaxation bound based on the two index formulation.}
+In addition to the constraints to form feasible routes, the vehicle 
+flow model includes generalized subtour elimination constraints, the number of which 
+grows exponentially with the number of nodes in the problem. There is one subtour 
+elimination constraint for each subset of customers, which forces a lower bound for 
+the number of vehicles exiting the subset based on the minimum number of vehicles 
+necessary to serve the customers in the subset. The exponential number of constraints 
+is handled by considering a relaxation of the model that includes only some of the 
+constraints or by using a branch-and-cut algorithm. \citet*{Miller} introduce a 
+polynomial number of constraints that eliminate subtours, but the LP relaxation of the 
+model with these new constraints is weaker than the model with generalized subtour 
+elimination constraints. \citet{Desrochers3} strengthen the Miller-Tucker-Zemlin 
+subtour elimination constraints by lifting them. They define stronger valid 
+inequalities that can be adapted to variations of the VRP, such as the capacitated 
+VRP (CVRP), the distance constrained VRP (DVRP) and the VRP with time windows (VRPTW).    
+  
+A second modeling approach, developed by \citet{Garvin}, is called a commodity flow 
+model. In this approach, an additional variable for each arc is added to the variables 
+in the vehicle flow model. These additional variables represent the amount of demand 
+that flows along the edges traveled by the vehicles. \citet{LetchfordG06} 
+analyze three different commodity flow models: one commodity, two commodity and multi 
+commodity flow models. In two commodity flow model, in addition to the flow on each arc
+representing the vehicle load, there is a reverse flow equal to the vehicle residual 
+capacity. In multi commodity flow model, demand of each customer represents one commodity
+and flow of each commodity is denoted by different variables on each arc. 
+\citet{Gouveia95} and \citet{LetchfordG06} state some theoretical results about
+the relationship between commodity flow model and two index vehicle flow model.
+No exact solution algorithms for 
+this approach are reported in the literature. Based on the computational experiments, 
+\citet{Gavish} report large gaps between the  LP solutions and the optimal integer 
+solutions when the number of customers are greater than 15. 
+
+A third approach, 
+proposed by \citet{Balinski}, is a set partitioning formulation, in which there is 
+one  variable corresponding to each feasible vehicle route. The model has possibly 
+exponentially large number of binary variables representing whether a specific route is 
+selected or not. Since the feasibility of each route is considered in the process 
+of constructing the set of routes to be included in the model, various routing constraints, 
+such as vehicle capacity, route length restrictions and time windows for the customer 
+nodes, can be included in the model without changing the formulation. Because of the 
+exponentially large number of variables, it is usually solved by a column generation 
+algorithm. The LP relaxation 
+of the model is generally tight (\citet{Toth}). \citet{LetchfordG06} theoretically
+compare the strength of the set partitioning formulation with the two index vehicle 
+flow formulation and prove that the set partitioning variables imply some of the
+valid inequalities in the two index space.
+    
+In reviewing the solution algorithms for the VRP, we highlight those for deterministic, 
+capacitated VRPs. In a capacitated VRP (CVRP), the total demand of a route must be less than 
+the capacity of the vehicle. Both exact methods and heuristic methods have been developed 
+to solve the CVRP. \citet{Laporte2} survey the exact algorithms for solving the VRP. 
+They give a complete analysis of branch-and-bound algorithms, which are the most common 
+way to solve the CVRP. They also describe dynamic programming and integer programming 
+approaches that use different formulations of the problem. 
+In addition to branch-and-bound procedures, 
+\citet{Laporte3} describes set partitioning formulations, column 
+generation procedures and heuristic approaches (e.g. Clark and Wright, tabu search 
+and sweep algorithm) for the problem. 
+
+Branch-and-cut algorithms are very successful in finding optimal solutions for large 
+instances of the symmetric TSP, which is a problem closely related to the CVRP. This 
+success has motivated the development of branch-and-cut algorithms for vehicle flow 
+models of the CVRP. \cite{Toth} describe how to apply a branch-and-cut algorithm to the 
+VRP and the CVRP. Branch-and-cut algorithms incorporate the results of polyhedral studies 
+of the CVRP polytope, valid inequalities (e.g. \citet{Laporte4} and \citet{Laporte5}) and 
+facets of the polytope. The first papers published about the facets of the CVRP polytope 
+were by \citet*{Araque1} and \citet{Araque2}, who  assumed unit demand for customers, and 
+by \citet{Cornuejols93}, who extended the research to general demand. One of the main 
+difficulties with branch-and-cut algorithms is that the separation procedure for the cuts 
+might be NP-hard. To overcome this difficulty, researchers seek polynomial time
+algorithms for exact separation (e.g., \citet{McCormick} and \citet{Blasum}) and
+heuristic separation algorithms (e.g., \citet{Augerat2}, \citet{Ralphs}). 
+%Heuristic separation approaches (e.g., \citet{Augerat2}, \citet{Ralphs}) 
+%are designed to overcome this difficulty. For capacity constraints in the CVRP, \citet{Toth} 
+%note that \citet{McCormick} and \citet{Blasum} define polynomial time algorithms for the 
+%exact separation.   
+ 
+%For set covering or set partitioning-based models of the CVRP, a number of different 
+%approaches are used. 
+Set covering-based formulations are used successfully by \citet{Cullen} 
+to solve the VRP heuristically and by \citet{Agarwal}, \citet{Bixby}, \citet{Hadjiconstantinou} 
+and \citet{Desrochers2} to solve the VRP exactly. The first step for solving a set 
+partitioning-based formulation is to solve the LP relaxation of the model using column 
+generation. The objective of the column generation subproblem (pricing problem) is 
+to construct feasible vehicle routes which include each customer at most once 
+(elementary routes) and satisfy some other constraints required for the feasibility 
+of a route such as vehicle capacity. Since the complexity of the problem of finding 
+elementary routes is NP-hard, it is common to relax this property and solve the set
+partitioning formulation with non elementary routes.
+
+%%%%% ************************* Bi tuhaflik var bu paragrafta *****************************
+%%%%% ???????????????????????????????????????????????????????????????????????? 
+\zaupdate{Read Toth sections and fix the following paragraph. There seems
+to be something wrong}
+
+\citet{Agarwal} use a branch-and-bound algorithm, \citet{Desrochers2} use a 
+branch-and-bound algorithm and dynamic programming, \citet{Bixby} uses a cutting plane 
+algorithm and \citet{Hadjiconstantinou} solve the dual of column generation problem using a 
+dynamic programming heuristic to get the LP relaxation of the problem. For many of the 
+problems, the LP relaxation solution is very close to integer solution. However, even if 
+the LP relaxation is very strong, some branching may be required to obtain an integer 
+solution. Both cutting plane algorithms  (see \citet{Toth} for details) and 
+branch-and-price algorithms (see \citet{Desrochers2}) have been used. 
+%[look at problems that use network problems to solve column generation] 
+
+\zaupdate{\citet{Fukasawa06} combine cutting plane and column generation approach
+by extending the set partitioning formulation for CVRP with
+the two index vehicle flow variables and constraints based on these variables. They
+design a branch, cut and price algorithm which seems to be very successful compared to
+the reported results in the literature.} 
+
+A generalization of the VRP, which is also a special case of our LRS problem, is the Multi-Depot 
+Vehicle Routing Problem (MDVRP). The MDVRP constructs a set of vehicle routes with 
+minimum cost in which each customer is visited by exactly one vehicle and 
+each vehicle route starts and ends at the same depot. Exact solution algorithms are very 
+rare for MDVRP; \citet{Laporte6} and \citet{Laporte7} are the only two papers that report 
+exact solution algorithms for the MDVRP. Both solution methods are based on branch-and-bound 
+algorithms. Many papers develop heuristic algorithms based on construction 
+and improvement techniques (e.g., \citet{Tillman}, \citet{Tillman2}, \citet{Gillet} and 
+\citet{Chao}) and  tabu search (e.g., \citet{Cordeau} and \citet{Renaud}).
+
+%look at literature of renaud and literature of MDVRP inter depot trips by clevier
+
+\subsection{Integrated Facility Location and Routing}
+
+In most facility location problems, the assumption is that customers are served on individual routes 
+or that customers travel to the facilities. For situations in which customers receive service from 
+routes making multiple stops, the assumption will not accurately capture the transportation cost.
+In order to accurately represent the cost of serving customers, we need to know the order of the 
+customers on the route. Hence, the location and routing problems must be solved simultaneously. 
+As early as 1968, \citet{Webb} realized that using straight line trips to each customer versus
+using multiple stop tours resulted in different solutions. \citet{Salhi} also investigated the 
+effect of ignoring the routing of vehicles while deciding the locations of facilities. They show 
+that solving the location and routing problems independently does not always result in  the best 
+solution in terms of cost. Thus, although solving the combined problem may be more difficult than 
+solving the individual ones, it may result in a more cost efficient solution. 
+
+%As the distance of each customer to each facility is a major
+%concern in the formulation, the routing of the vehicle while serving
+%customers is ignored. In transportation networks, because of the
+%interdependency between vehicle routes and the location of the facilities,
+%optimization of these decisions simultanesouly might result less cost and
+%more efficient solution than the solution of location and routing problems
+%indiviually.  Indeeed, 
+%[Webb MHJ. Cost functions in the location of depot for multiple delivery journeys. Operational Research Quarterly
+%    1968;19:311 ­ 20.
+
+\citet{Laporte} reviews the work on deterministic location routing problems; 
+he describes the different formulations of the problem, the solution methods 
+used and the computational results published up to 1988. A more recent paper 
+by \citet{Min} classifies both deterministic and stochastic problems in the LRP 
+literature with respect to problem characteristics and solution methods. They 
+group the LRP papers according to characteristics such as single or multistage, 
+deterministic or stochastic, single or multiple facilities and vehicles, and  
+uncapacitated or capacitated vehicles and facilities. Because the LRP combines two NP-hard
+problems, researchers have developed a wide variety of both heuristic and exact algorithms for 
+the LRP. Most of the heuristic algorithms tend to divide the problem into subproblems. 
+Heuristic algorithms handle these subproblems sequentially or iteratively. Based on \citet{Min2}, 
+for problems with large facility fixed costs and capacitated vehicles, sequential approaches perform 
+computationally better. Some examples of sequential heuristic algorithms are 
+developed by \citet{Perl}, \citet{Hansen} and \citet{Barreto07}.
+\citet{Perl} develop a heuristic for a three index flow formulation of an LRP 
+with capacitated distribution centers and 
+vehicles. They decompose the problem into three subproblems: a multi-depot vehicle 
+dispatch problem, a warehouse location-allocation problem and a multi-depot routing 
+allocation problem. They develop an algorithm 
+that solves the problems sequentially but considers the dependency between the problems.  
+They solve the  multi-depot vehicle dispatch problem and the multi-depot routing 
+allocation problem heuristically and the location-allocation problem exactly. 
+\citet{Hansen} introduce flow variables and flow constraints to the model in 
+\citet{Perl} to get an MILP and solve the new model with a heuristic that is a 
+modification of the heuristic developed by \citet{Perl}. \citet{Barreto07} develop 
+a sequential heuristic algorithm for problems with capacitated facilities and
+capacitated vehicles. In their heuristic, the first step is to solve routing 
+subproblem. They group customers using clustering techniques and design TSP solutions. 
+Then, by assuming each group of customers as a single customer, single source 
+capacitated location routing problem is solved. \citet{Srivastava} presents 3 iterative 
+heuristics called SAV1, SAV2 and CLUST and compares the results with a classical 
+sequential heuristic in which facility locations are determined first and 
+vehicle routes are designed based on open facilities. SAV1 heuristic starts with all 
+depots being open and using a multi depot vehicle routing heuristic calculates 
+approximate routing costs for the facilities. At each step a facility is closed 
+until the problem becomes infeasible. SAV2 heuristic works similar to SAV1 except 
+initially all depots are closed and at each iteration one depot is opened. CLUST
+heuristic generates groups of customers using a minimum spanning tree and a density search 
+clustering technique. Then a depot is selected for each cluster considering the 
+distance between cluster centroid and the depot.
+
+\zaupdate{And finding LB in Albareda Sambola }
+
+
+Exact algorithms for the LRP have been developed mostly for two index vehicle flow formulations. 
+\citet{Laporte81} solve a single depot model with a constraint relaxation method
+and a branch-and-bound algorithm. They report solving problems with 50 customer locations.
+\citet{Laporte83} solve a multi-depot model using a constraint
+relaxation method and Gomory cutting planes to satisfy integrality. They can solve problems
+with at most 40 customer sites. \citet{Laporte86}
+apply a branch-and-cut algorithm to a multi-depot LRP model with vehicle capacity constraints. They
+use subtour elimination constraints and chain barring constraints that guarantee that each route
+starts and ends at same facility. The authors report computational results for problems with 20
+customer locations and 8 depots. \citet{Belenguer06} provided a two-index formulation of
+the LRP with capacitated facilities and capacitated vehicles and
+presented a set of valid inequalities for the problem. They developed
+two branch-and-cut algorithms based on different formulations of the
+problem. They reported that they could solve instances with up to
+32 customers to optimality in less than 70 CPU seconds and could provide
+good lower bounds for the rest of the instances, which had up to 134
+customers.
+%Examples in the 
+%literature include a single depot model by \citet{Laporte81}, a multi-depot model by \citet{Laporte83} 
+%and a multi-depot model with vehicle capacity constraints by \citet{Laporte86}. 
+\citet{Berger} develops a set partitioning-based model for an LRP with route-length constraints and 
+uncapacitated vehicles and facilities. \citet{Berger05} extend the work to develop an exact 
+branch-and-price algorithm in which they solve the pricing problem as an elementary shortest 
+path problem with one resource constraint. They report computational results for problems with 
+100 customers and various distance constraints. 
+
+
+
+\subsection{Vehicle Scheduling}
+
+The third component of the LRS problem is how to assign routes to vehicles, which is known 
+as the vehicle scheduling or loading problem. The (multi-depot) vehicle scheduling problem 
+((MD)VSP) seeks a least-cost assignment of routes (or trips), each with a starting and 
+ending time, to vehicles such that each route is assigned to one vehicle, each vehicle 
+starts a route after the starting time and finishes before the ending time and each vehicle 
+starts from a depot and returns to same depot. In some variations, there are constraints 
+such as depot capacity and upper and lower bounds on the number of vehicles at each depot. 
+The MDVSP is a special case of the LRS problem; given a set of selected facilities and a 
+set of vehicle routes connected to these facilities such that each customer is served by 
+one vehicle, the LRS problem reduces to a MDVSP.  \citet{Carraresi} describe how to convert 
+a single depot VSP to an assignment problem or a minimum cost network flow model 
+and therefore they conclude that the single depot VSP is easy to solve. However, \citet{Bertossi} 
+show that if there are more than 2 depots, the MDVSP is NP-hard. 
+ 
+Both heuristic and exact solution methods are proposed for the MDVSP. \citet{Bodin} 
+propose two heuristics based on decomposing the problem into single depot VSPs.  
+\citet{Bertossi} model the MDVSP by defining an independent problem for each depot and 
+additional constraints to cover each trip exactly once. They relax the additional constraints 
+using a Lagrangian relaxation algorithm and then solve independent VSPs. 
+\citet{DellAmico} propose a heuristic method that guarantees a solution with the minimum 
+number of vehicles. They solve shortest path problems on a graph that includes one 
+node for each route and arcs between two nodes that can be assigned to the same 
+vehicle. A path on the graph represents a vehicle duty.  
+ 
+Several exact algorithms based on different formulations of the problem are 
+proposed. \citet{Carpaneto} use a branch-and-bound algorithm based on additive lower 
+bounds. \citet{Forbes} develop an algorithm using a dual simplex method to solve their 
+three-index integer programming model, which is a multi-commodity network flow problem. 
+\citet{Ribeiro} and \citet{Bianco} use set partitioning-based formulations for which 
+they generate columns and apply a branch-and-bound algorithm to get an integer solution. 
+\citet{Fischetti} design a branch-and-cut algorithm by defining valid inequalities of the MDVSP.  
+
+%[an option]
+%\citet{Bodin} propose two different approaches based on decomposing the problem into simpler problems. The 
+%first approach, called cluster first - schedule second, partitions the trips  into sets for each depot and 
+%solves a single depot VSP. The second approach, called schedule first - cluster second, solves single depot 
+%VSP and then assign the vehicle duties (a duty is the set of trips assigned to a vehicle) to the depots by 
+%considering capacity constraints and the minimum cost objective. \citet{Bertossi} model the MDVSP by 
+%defining an independent problem for each depot and additional constraints to cover each trip exactly once. 
+%They relax the additional constraints using a Lagrangean relaxation algorithm and then solve independent 
+%VSPs. \citet{DellAmico} propose a heuristic method that guarantees a solution with minimum number of vehicles. 
+%They construct a graph including one node for each route and arcs between two nodes that can be assigned to 
+%the same vehicle. At each step of the algorithm, they choose a set of arcs as forbidden arcs and find a 
+%shortest path avoiding these arcs to determine a duty of a vehicle.
+
+
+
+%[OLD LONG VERSION]
+%\citet{Carraresi} describe how to convert a single depot VSP to a network model. They construct a bipartite 
+%network with disjoint node sets of S and T. Both sets S and T include a node representing to a trip or a 
+%task that is assigned to a vehicle.  Arcs in the bipartite graph  are created based on scheduling restrictions 
+%for the trips. They prove that there is a one-to-one correspondence between vehicle schedules and matchings 
+%in the constructed bipartite graph. In addition, by adding some arcs and nodes, they construct another network 
+%in which they prove that each integral feasible flow or assignment corresponds to a feasible vehicle schedule. 
+%Furthermore, they can include costs for arcs to handle different objectives. 
+%Finally, they conclude that since a vehicle scheduling problem can be converted to an assignment or min 
+%cost flow problem, it is easy to solve a VSP. However, if there are more than 2 depots, the MDVSP is proved to 
+%be NP-Hard (\citet{Bertossi}). Therefore, heuristics were proposed in the earliest MDVSP papers.
+
+%\citet{Bodin} propose two different approaches based on decomposing the problem into 
+%simpler problems. The first approach, called cluster first - schedule second, partitions the trips  into sets 
+%for each depot and solves a single depot VSP. If the solution is not feasible with respect to the capacity of 
+%the facility, the clusters are updated and the VSP is resolved. The second approach is schedule first - cluster 
+%second. They solve a single depot VSP and then assign the vehicle duties (a duty is the set of trips assigned 
+%to a vehicle) to the depots by considering capacity constraints and the minimum cost objective. \citet{Bertossi} 
+%model the MDVSP by defining an independent problem for each depot and additional constraints to cover each trip 
+%exactly once. They relax the additional constraints using a Lagrangean relaxation algorithm and then solve 
+%independent single depot vehicle scheduling problems. Later, \citet{DellAmico} propose a heuristic method that 
+%guarantees that the minimum number of vehicles is used. They construct a graph including one node for each trip 
+%and arcs between nodes if the trips can be assigned to the same vehicle. At each step of the algorithm, they 
+%choose a set of arcs as forbidden arcs and find a shortest path avoiding these arcs to determine a duty of a 
+%vehicle.  
+       
+%Several exact algorithms based on different formulations are proposed in literature. \citet{Carpaneto} formulate 
+%the problem as an integer linear programming model and solve the problem using a branch and bound algorithm 
+%based on additive lower bounds. Their formulation includes assignment constraints and flow conservation 
+%constraints to form the paths. To get lower bounds, they combine the bounds obtained from the assignment and the 
+%shortest path relaxations of their model. \citet{Forbes} formulate a three-index integer programming model that 
+%is a multi-commodity network flow problem. They solve the problem using the dual simplex method. \citet{Ribeiro} 
+%formulate a set-partitioning based model and use column generation to find lower bounds. They develop a branch 
+%and bound algorithm to get optimal solutions. \citet{Bianco} also use a set-partitioning based formulation to 
+%model the MDVSP. They generate a good subset of duties by heuristically solving the dual of the LP relaxation 
+%of the model. Finally, they use branch-and-bound to find the optimal solution. \citet{Fischetti} define some 
+%valid ineqaulities of the MDVSP and design a branch-and-cut algorithm. They get near optimal solutions within 
+%their time limits.
+ 
+\subsection{Vehicle Routing and Scheduling}
+\label{lit-vrps}
+In the VRP, there is one-to-one relationship between vehicles and routes, 
+which means that one route is assigned to each vehicle. In a combined vehicle 
+routing and scheduling problem (VRSP), scheduling constraints
+are added to the VRP constraints to change this one-to-one relationship between 
+vehicles and routes. Therefore, the VRSP seek to determine the set of vehicle 
+routes as well as the assignment of these routes to the available vehicles. 
+In the literature, this version of the VRSP is sometimes called the VRP with 
+multiple trips (VRPMT). Only a few papers in the literature address the 
+VRPMT and they only describe heuristic approaches.  
+
+\citet{Taillard} use a three-step algorithm to find good feasible solutions 
+for the VRSP. In the first step, they generate some number of VRP solutions 
+using a tabu search algorithm. In the second step, they select a subset of 
+these routes using an enumerative algorithm and, in the third step, they use 
+a bin packing heuristic to combine the routes in such a way that they will 
+not violate the time constraint and assign them to vehicles. The authors 
+generate test problems with 50 to 199 customers. Feasible solutions are 
+provided for 82 instances out of 104 instances. They report that the cost 
+of the feasible solutions are on the average  within 1.2\%  of the VRP 
+solution obtained by \citet{Rochat}.     
+
+\citet{Brandao} use a tabu search algorithm and the GENI algorithm 
+(developed by \citet{Gendreau} to solve TSP) to solve the VRPMT with time 
+window constraints. They design a three-phase algorithm in which the 
+solution is improved in each phase. The input for the first phase is an 
+initial set of routes constructed using VRP constraints.
+%and input of the a step is created by the previous step. 
+The first phase checks each route in the initial set for the time window 
+infeasibility and, if there is an infeasible route, the route is divided 
+into smaller routes that satisfy the time windows. The second phase 
+constructs a solution with smaller cost by searching the set of routes. 
+Similar to the second phase, the third phase also seeks a solution 
+with lower cost but the solution space is restricted to the feasible 
+space during the search. They evaluate their algorithm by comparing their 
+solutions with manual solutions in a case study. They report on average 
+20\% better solutions. In addition, \citet{Brandao2} solve the instances 
+created by \citet{Taillard}. They can find feasible solutions for 89 
+instances out of 104 instances.     
+
+\citet{Petch} develop a multi-stage heuristic algorithm in which they 
+create vehicle routes and then combine the routes using bin packing 
+heuristics. \citet{Olivera} solve the VRPMT using an adaptive memory 
+algorithm that is an enhancement of tabu search. The basic idea is to 
+construct new solutions using the components of the previously generated 
+solutions. They initialize the memory by generating some feasible 
+solutions to the VRP, which they use to construct feasible assignments 
+of routes to vehicles. Then, they use tabu search to improve the 
+constructed solution. This heuristic differs from the others in that 
+it constructs feasible vehicle assignments in each iteration, 
+while the others only construct the assignment at the final stage. 
+They can find feasible solutions for 95  instances out of 
+104 \citet{Taillard}'s instances. The feasible solutions are on the 
+average within 1.6\% of the best known VRP solutions. In infeasible 
+solutions, in which overtime is used, the solutions provided by 
+\citet{Olivera} are better than the solutions provided by other authors.      
+
+
+
+%Besides scheduling of vehicles, if the problem also seeks for the vehicle routes, then it is called
+%combined vehicle routing and scheduling problem (VRSP) and the problem is NP-hard (\citet{Lenstra}). 
+%The most common VRSP is vehicle routing problem with time windows (VRPTW). In the problem, in addition 
+%to the VRP constraints, each customer has a time interval and must be visited in its time interval. 
+
+%\citet{Toth} give detailed desription of the formulations, solution methods used and computational results obtained 
+%for VRPTW. They present both multicommodity flow model with three index flow variables and set partitioning
+%based model. They survey heuristics algorithms proposed and used to solve VRPTW such as heuristics based on route 
+%contruction, route improvement, combination of these two, metaheuristics such as tabu search, simulated annealing,
+%and genetic search. Decomposition approaches such as Lagrangean relaxation and Danzig Wolfe decomposition
+%algorithms are very common to solve VRPTW. Danzig Wolfe decomposition model is equivalent to set partitioning based 
+%model. 
+
+%[effectiveness of set covering formulations on VRPTW]
+
+%\citet{Desrochers2} solve VRPTW by formulating the problem as a set partitioning model that is equivalent to a set 
+%covering prolem when the triangular inequality is satisfied for the distance matrix. They use column generation
+%algorithm to solve the LP relaxation of their model. A dynamic programming algorithm is used to solve the subproblem
+%that generates columns. The exact subproblem to create columns is an elementary shortest path problem with vehicle 
+%capacity and time window constraints (ESPPTWCC). Ignoring the elementary property of a path, they seek shortest paths that
+%does not include 2-cycles. They use branch and bound algorithm to get optimal or a good upper bound for the 
+%optimal solution. First, they branch on total number of vehicles used and total distance travelled (if distance matrix is 
+%integer), second they branch on the arcs in the network. A score is assigned to each arc based on the flow on the arc. 
+%While choosing arcs to branch on based on their scores, they first consider columns that have cycles, then they 
+%pick arcs from fractional variables. They can solve problems up to 100 customers. 
+
+%\citet{Kohl} solves VRPTW using a Lagrangean relaxation algorithm in which they relax the constraints
+%that say that each customer node must be visited. When they relax these constraints, the remaining 
+%problem is elementary shortest path problem with time window and capacity constraints (ESPPTWCC). For any lagrangian
+%multiplier vector, their subproblem problem decomposes into equivalent ESPPTWCC for each vehicle. Their master problem 
+%is to find the optimal Lagrangean multipliers that maximizes the lower bound of the VRPTW. Similar to 
+%the \citet{Desrochers2}, they solve relaxation of ESPPTWCC, shortest path problem with constraints. 
+%They use several ways to get better paths such as adding new nodes to the network in order to eliminate negative cycles
+%and solve the shortest path with no 2-cycles. They solve their master problem by using both subgradient optimization
+%and bundle method. When they find the optimal lagangean multipliers, they do branch and bound algorithm to get the
+%optimal integer solution. They branch on time windows for the customers by dividing the time window into two and 
+%using these new smaller windows in new nodes. They can solve the problems solved by \citet{Desrochers2} and also some other
+%unsolved problems.    
+   
+%In VRPTW, there is one-to-one relation between vehicles and trips which means that one vehicle is assigned to one
+%route, but in practical applications, the fleet size might be small or while the capacity of trucks are small, 
+%the working hour limit is high enough to schedule more than one trip to one vehicle. This extension of VRP is 
+%actually a VSP and in literature it is called VRP with multiple trips (VRPMT). The study of VRPMT is very limited
+%in literature and furthermore, there is not any paper in literature that we are aware of and that solve the exact VRPMT.  
+   
+
+%\citet{Bodin} define and classify the vehicle scheduling problems. According to their definition, if the vehicles
+%must visit customer nodes at some specified times, then the problem is called as vehicle scheduling problem. 
+%If the problem also must decide the order of customer visits, then the problem is called the combined vehicle routing
+%and scheduling problem. The basic combined vehicle routing and scheduling problem seeks to minimize the total
+%number of vehicles and the total cost of routing and serving to customers subject to
+%scheduling constraints and capacity restrictions.
+%In practical problems, there might be a time window for serving each customer and restrictions for the driver's
+%working hours. Because integer programming formulations are difficult to solve
+%for large instances, heuristic methods are prefered for practical size problems. 
+
+%look-Lenstra and Kan ,{C}omplexity of {V}ehicle {R}outing and {S}cheduling {P}roblems,{1981},{Networks},{11}, {221-228}
+
+
+
+\subsection{Integrated Location, Routing and Scheduling}
+
+The decisions of location and routing are interdependent for the cases in which customers are served
+by routes with multiple stops. In such cases, solving the combined LRP may result in a more cost 
+efficient solution. We can go one step further and say that most LRP papers assume that there is 
+a one-to-one relationship between routes and vehicles.  
+However, it may be that the vehicle capacity restricts the route but the total available 
+time does not. In this case, a vehicle can serve more than one route, and thus, the decision 
+of assigning of routes to vehicles should be optimized together with the decisions of facility 
+location and vehicle routing. Integrating these three decisions gives rise to a class of problems 
+called {\em integrated location routing and scheduling} (LRS) problems.  
+
+As far as we know, the papers by \citet{Lin} and \citet{Lin2} are the only LRS papers to appear in the 
+literature. \citet{Lin} describe an LRS problem, which arises in the delivery of telephone bills, in 
+which they seek to locate facilities and to route and assign vehicles so as to minimize cost. 
+To solve the problem, they develop a heuristic that divides the problem into three phases, facility 
+location, routing and loading, and that iterates through the phases. The location phase determines the set 
+of facilities via enumeration. For a given set of opened facilities, the routing phase constructs vehicle 
+routes using the Clarke and Wright algorithm (\citet{Clarke}) followed by an insertion heuristic and 
+more extensive metaheuristics. The loading phase optimally assigns routes to vehicles considering the 
+time limits. The authors report the development of a branch-and-bound algorithm to solve the exact problem 
+to evaluate their heuristics but they do not provide a formulation. They test their algorithm on five 
+instances with 10-12 customers and 4 potential depots, but the branch-and-bound 
+algorithm can solve only three of the five instances to optimality within the specified time 
+limit. For these instances, they report that their heuristic algorithm can find optimal or good solutions 
+quickly. In addition, they solve a real life instance with 27 customers and 4 depots using their
+heuristic algorithm and compare the results with the management's manual solution. 
+
+
+\citet{Lin2} extend the study by \citet{Lin} to solve a multi-objective LRS problem that considers
+workload balance in terms of total vehicle time and total vehicle load as well as total cost. They
+use the same three-phase heuristic algorithm designed by \citet{Lin}. Since they consider multi-objective
+problems, for each feasible solution in the algorithm, they keep three performance measures, the total cost,
+the difference between the maximum and the minimum vehicle time and the difference between maximum and minimum
+vehicle load. The feasible solutions are evaluated based on these three performance measures and only non-dominated 
+solutions are kept. In addition, they design a tabu search (TS) algorithm  for the routing phase of the algorithm and 
+compare its performance with the simulated annealing (SA) algorithm applied in \citet{Lin}. While the TS algorithm
+and the SA algorithm have similar performance in some instances, the SA algorithm is better than the TS algorithm
+when the number of demand nodes in a route increases. Furthermore, 
+they compare the performance of the algorithm in two approaches: assigning vehicles to routes after 
+the routing phase (sequential approach) and assigning vehicles while constructing routes
+(multiple approach). They conclude that the performance of the approaches depends on the difficulty
+of the instance. The multiple approach is better than the sequential approach when the solution includes
+routes with more demand nodes. 
+They test their algorithm with two sets of real data, one with 27 customers and one with 89 customers, 
+and a set of simulated data including instances with 100 and 200 customers. 
+
+
+%The earliest paper similar to LRS is in 1981 by \citeauthor{Nambiar}. He formulates a 
+%problem in the natural rubber industry that includes capacity restrictions for the facilities 
+%and the vehicles and time constraints on the tours. They formulate a mixed integer program that 
+%seeks the optimal location of facilities, assignment of stations to these 
+%facilities and the number of vehicles as well as their routes. They propose two 
+%different heuristics based on the decomposition of the problem into a facility location part 
+%and a vehicle routing part. In both heuristics, they group the customers according to the 
+%proximity to the facilities, vehicle capacity and time restriction. Then they 
+%use a TSP to find routes for the customers in each group. In one heuristic, they 
+%select the facilities to be open according to minimum cost. In the other heuristic,
+%they solve a simple plant location model. Finally, they use a savings heuristic to 
+%improve the routes in both heuristics.    
+
+\subsection{Summary of Literature}
+
+The LRS problem integrates three NP-hard problems: facility location problem, 
+vehicle routing problem and vehicle scheduling problem. Solving these three
+problems interdependently and simultaneously results in more realistic 
+and cost efficient solutions. However, the combined LRS problem is more difficult 
+than its components. In the literature, there are only two papers investigating the
+LRS problem. These papers only develop heuristic algorithms, they do not provide
+a formulation of the problem, an exact algorithm to find the optimal solution and  
+a lower bound for the optimal solution.
+
+The LRS problem is a generalization of other NP-hard problems such as LRPs, MDVRPs, VRPMTs. 
+There are only few papers solving those problems exactly. For the multi-depot
+LRP, the optimal solutions are reported for instances with uncapacitated vehicles and up to 
+40 customers and instances with capacitated vehicles and up to 20 customers. For the MDVRP, 
+computational results for exact algorithms are provided for instances with up to 50
+customers and 8 depots (with symmetric distance matrix) and  for instances with up to 80
+customers and 3 depots (with asymmetric distance matrix). For the VRPMT, no exact algorithm
+is provided in the literature. Currently, we can solve instances up to 40 customers and 5 facilities.
+%Our goal is to solve instances up to 50 customers and 10 facilities.
+
+%One way to solve the LRS problem is to create smaller problems by fixing some of the decisions. 
+%We can constuct the LRS problem in three ways in terms of subproblems each of which is also NP-hard. 
+%First, for a given set of facilities and vehicle routes, the problem solves a MDVSP. Second, for 
+%a given set of facilities and with no time constraint the problem solves a MDVRP. Third, for a given 
+%set of vehicle assignments, the LRS problem needs to solve a CFLPSS.  In this proposal,
+%we solve the LRS problem using a set partitioning-based model, which is a CFLPSS. We evaluate 
+%all possible set of vehicle assignments and solve the CFLPSS model to get an optimal solution
+%to the LRS problem.   
+       
+
+
+
+

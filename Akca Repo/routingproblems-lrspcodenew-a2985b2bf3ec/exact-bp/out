@@ -1,0 +1,1349 @@
+inside minto.c
+
+MINTO, a Mixed integer Optimizer
+Copyright (C) 1992-2007  --  M.W.P. Savelsbergh, J.T. Linderoth
+
+ILOG CPLEX 9.100, licensed to "lehigh university-bethlehem, pa", options: e m b q use=20 
+num_REQ=3 
+# of columns=33408, # of customers=201661 
+PairNum[0]=3887 
+PairNum[1]=11852 
+PairNum[2]=4490 
+PairNum[3]=8463 
+PairNum[4]=4716 
+NumNZ=470473 ,NumCol=33459 ,NumRow=291 
+Initial upper bound is 7159.000000 
+MINTO: Solving problem p01-l40-v1t1.txt
+MINTO: Problem statistics:
+
+    Number of constraints: 291
+    Number of variables:   33459 (0)
+    Number of nonzero's:   470473
+
+    Number of continuous variables: 0
+    Number of binary variables:     33454
+    Number of integer variables:    5
+
+MINTO: Initialization ... done
+APPL_INIT ... DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Row structure analysis (after preprocessing):
+    Number of constraints of type MIXEQ:        5
+    Number of constraints of type ALLBINUB:     1
+    Number of constraints of type BINSUMVARUB:  5
+    Number of constraints of type BINSUM1UB:    240
+    Number of constraints of type BINSUM1EQ:    40
+
+MINTO control parameters:
+    Objective sense     : minimization
+    Output level        : 2
+    Maximum cpu time    : 0
+    Maximum #nodes      : 1000000
+
+MINTO system function activity levels:
+    Bound improvement   : not active
+    Branching type      : 0
+    Node selection type : 0
+    Preprocessing level : 0
+    Primal heuristic    : active
+    Clique cuts         : not active
+    Implication cuts    : not active
+    Knapsack covers     : not active
+    GUB covers          : not active
+    Flow covers         : not active
+    Row management      : active
+    Restarts            : active
+    Force branching     : 1
+    Advanced basis      : active
+    Names mode level    : 3
+
+APPL_INITLP ... entering a_initlp.c
+DONE
+MINTO: Initialization of root node ... done
+MINTO: Selected node (0,1)
+APPL_NODE ... integrality gap=9999999999999999635896294965248.000000, UB= -9999999999999999635896294965248.000000 
+Lower bound =999999999999999949387135297074018866963645011013410073083904.000000 
+NumEVALNODES = 1 
+DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = -0.000000;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 0 
+number of total labels =322 
+Solving EXACT PRICICING for facility 0 
+number of total labels =500 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =482 
+Y_1_11852: [0:6, 1:11, 11:4, 16:8, 17:3, 20:2, 21:7, 35:10, 36:13, 37:1, ], C=-30.625003, T=140.0
+Y_1_11853: [0:6, 1:12, 11:4, 16:8, 17:3, 20:2, 21:7, 36:10, 37:1, ], C=-18.642966, T=139.0
+Y_1_11854: [1:7, 17:3, 20:4, 24:1, 25:2, 35:6, 36:9, ], C=-11.982037, T=136.0
+Y_1_11855: [0:6, 1:10, 12:3, 16:1, 21:5, 35:9, 36:12, 37:2, 38:7, ], C=-9.144769, T=134.0
+Y_1_11856: [0:7, 1:12, 15:3, 16:1, 20:2, 21:8, 35:6, 36:10, 37:4, ], C=-2.338300, T=131.0
+Number of columns added for facility 1 is 5
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 2 
+number of total labels =397 
+Solving EXACT PRICICING for facility 2 
+number of total labels =595 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =507 
+Y_3_8463: [9:7, 10:10, 11:2, 16:3, 17:1, 18:9, 21:4, 23:11, 24:6, 39:12, ], C=-17.289039, T=139.0
+Y_3_8464: [5:1, 9:7, 10:10, 11:3, 17:4, 18:9, 21:2, 23:11, 24:6, 39:12, ], C=-12.351500, T=138.0
+Y_3_8465: [0:7, 9:11, 10:9, 11:4, 17:3, 21:6, 24:1, 25:2, 39:8, ], C=-8.208659, T=131.0
+Y_3_8466: [0:8, 9:11, 10:7, 11:4, 17:3, 18:6, 21:9, 24:1, 25:2, ], C=-1.515752, T=128.0
+Y_3_8467: [0:4, 10:9, 11:6, 18:8, 21:5, 23:10, 24:1, 25:2, 39:11, ], C=-0.195709, T=131.0
+Number of columns added for facility 3 is 5
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 4 
+number of total labels =246 
+Solving EXACT PRICICING for facility 4 
+number of total labels =322 
+Number of columns found: 10
+DONE: SUCCESS (10)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 1, numsubsetpri = 1
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 14.901297;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =378 
+Y_1_11857: [0:7, 1:10, 15:2, 16:4, 20:3, 21:6, 37:1, 38:8, ], C=-14.737985, T=136.0
+Y_1_11858: [0:8, 1:10, 9:2, 10:4, 11:1, 16:6, 18:3, 21:7, ], C=-4.619488, T=135.0
+Y_1_11859: [0:6, 1:9, 15:2, 16:4, 20:3, 37:1, 38:7, ], C=-0.118497, T=132.0
+Number of columns added for facility 1 is 3
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =391 
+Y_3_8468: [0:8, 11:6, 15:4, 17:2, 18:9, 20:3, 21:7, 24:1, ], C=-15.515859, T=133.0
+Y_3_8469: [0:7, 5:6, 11:4, 15:3, 17:2, 21:8, 24:1, ], C=-1.128473, T=127.0
+Number of columns added for facility 3 is 2
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 2, numsubsetpri = 2
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 11.446637;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =533 
+Y_1_11860: [0:6, 1:11, 13:1, 15:3, 16:8, 21:7, 32:2, 35:10, 37:4, ], C=-18.365267, T=139.0
+Y_1_11861: [0:6, 1:10, 13:1, 15:3, 16:8, 21:7, 32:2, 37:4, ], C=-10.548337, T=138.0
+Y_1_11862: [0:7, 1:11, 15:2, 16:4, 20:3, 21:6, 35:10, 37:1, 38:8, ], C=-7.816929, T=137.0
+Y_1_11863: [0:5, 1:10, 12:3, 16:7, 21:6, 32:2, 35:9, 37:1, ], C=-6.731408, T=124.0
+Number of columns added for facility 1 is 4
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =398 
+Y_3_8470: [5:6, 10:8, 11:2, 16:3, 17:1, 18:9, 21:4, 24:11, 39:7, ], C=-16.922046, T=134.0
+Y_3_8471: [0:9, 5:8, 10:7, 11:4, 15:3, 17:2, 18:6, 24:1, ], C=-2.683201, T=132.0
+Y_3_8472: [5:4, 10:2, 11:7, 16:8, 17:6, 21:9, 24:1, 39:3, ], C=-0.838633, T=129.0
+Number of columns added for facility 3 is 3
+Number of columns found: 7
+DONE: SUCCESS (7)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 3, numsubsetpri = 3
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 10.770966;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =397 
+Y_1_11864: [1:10, 10:3, 12:6, 16:8, 21:4, 37:7, 38:1, 39:2, ], C=-11.070466, T=139.0
+Y_1_11865: [0:3, 1:10, 10:2, 12:6, 16:8, 35:4, 37:7, 38:1, ], C=-10.662227, T=137.0
+Y_1_11866: [0:11, 1:10, 12:1, 16:3, 21:7, 27:6, 35:8, 37:2, 38:5, ], C=-2.969330, T=135.0
+Number of columns added for facility 1 is 3
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =458 
+Y_3_8473: [5:9, 9:12, 10:7, 11:4, 15:3, 17:1, 18:6, 20:2, 24:11, 39:8, ], C=-14.354358, T=130.0
+Y_3_8474: [5:9, 10:7, 11:4, 15:3, 17:1, 18:6, 20:2, 24:11, 39:8, ], C=-9.614666, T=130.0
+Number of columns added for facility 3 is 2
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 4, numsubsetpri = 4
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 15.405475;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =522 
+Y_1_11867: [1:10, 10:3, 12:8, 16:6, 21:4, 35:11, 37:7, 38:1, 39:2, ], C=-8.001750, T=140.0
+Y_1_11868: [1:9, 12:3, 13:1, 16:5, 21:7, 32:2, 35:10, 37:6, ], C=-3.484842, T=132.0
+Number of columns added for facility 1 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =383 
+Y_3_8475: [5:5, 11:11, 17:9, 18:4, 20:10, 21:7, 24:2, 25:1, 27:6, ], C=-7.473060, T=140.0
+Y_3_8476: [11:5, 13:4, 15:2, 17:1, 24:7, 32:3, ], C=-1.737391, T=136.0
+Number of columns added for facility 3 is 2
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 5, numsubsetpri = 5
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 19.310164;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =549 
+Y_1_11869: [0:8, 1:9, 12:3, 13:1, 16:5, 32:2, 37:6, ], C=-6.322828, T=139.0
+Y_1_11870: [0:7, 1:10, 13:2, 14:1, 16:5, 21:6, 32:3, 35:9, ], C=-3.000000, T=135.0
+Y_1_11871: [0:1, 1:11, 5:2, 10:3, 12:8, 16:6, 18:4, 35:10, 37:7, ], C=-0.356809, T=133.0
+Number of columns added for facility 1 is 3
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =400 
+Y_3_8477: [0:7, 5:12, 10:10, 11:4, 18:9, 21:5, 24:2, 25:1, 35:6, 39:11, ], C=-4.473517, T=139.0
+Y_3_8478: [11:5, 15:6, 17:1, 21:8, 24:3, 25:2, 37:7, ], C=-0.972906, T=134.0
+Number of columns added for facility 3 is 2
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 6, numsubsetpri = 6
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 15.629609;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =441 
+Y_1_11872: [9:2, 10:4, 11:1, 12:6, 16:8, 18:3, 35:10, 37:7, ], C=-5.088156, T=137.0
+Y_1_11873: [0:7, 1:11, 11:4, 16:6, 17:3, 20:2, 27:8, 35:10, 37:1, ], C=-0.593250, T=133.0
+Number of columns added for facility 1 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =370 
+Solving EXACT PRICICING for facility 3 
+number of total labels =514 
+Y_3_8479: [10:8, 15:2, 17:1, 18:9, 21:4, 24:7, 25:6, 37:3, ], C=-7.025524, T=139.0
+Y_3_8480: [10:7, 11:4, 15:3, 17:1, 18:6, 20:2, 23:8, 24:11, 39:9, ], C=-4.239012, T=135.0
+Number of columns added for facility 3 is 2
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 7, numsubsetpri = 7
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 21.460366;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =405 
+Y_1_11874: [0:9, 10:2, 11:5, 16:7, 21:8, 24:3, 25:4, 39:1, ], C=-6.165952, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 3 
+number of total labels =470 
+Y_3_8481: [0:7, 5:8, 10:11, 11:1, 17:2, 18:10, 21:6, 24:4, 25:3, ], C=-3.312218, T=139.0
+Y_3_8482: [0:4, 5:11, 10:9, 16:6, 18:8, 21:5, 24:1, 25:2, 39:10, ], C=-0.335465, T=135.0
+Number of columns added for facility 3 is 2
+Number of columns found: 3
+DONE: SUCCESS (3)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 8, numsubsetpri = 8
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 21.759179;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =401 
+Y_1_11875: [1:10, 5:1, 10:2, 12:6, 16:8, 35:4, 37:7, 38:3, ], C=-3.801761, T=137.0
+Y_1_11876: [1:10, 5:3, 10:2, 12:6, 16:8, 21:4, 27:1, 37:7, ], C=-0.114833, T=133.0
+Number of columns added for facility 1 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 3 
+number of total labels =477 
+Y_3_8483: [0:7, 5:6, 11:4, 15:3, 17:1, 20:2, 21:8, 24:10, ], C=-1.566433, T=136.0
+Number of columns added for facility 3 is 1
+Number of columns found: 3
+DONE: SUCCESS (3)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 9, numsubsetpri = 9
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 0.325952;
+v[2] = -0.000000;
+v[3] = 22.812196;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =428 
+Y_1_11877: [0:6, 1:9, 12:3, 13:1, 21:5, 32:2, 38:7, ], C=-0.442259, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 3 
+number of total labels =490 
+Y_3_8484: [5:4, 10:9, 18:8, 23:10, 24:1, 25:2, 27:6, 38:5, 39:11, ], C=-1.000000, T=139.0
+Y_3_8485: [5:11, 10:10, 11:4, 15:3, 17:1, 18:9, 20:2, 24:6, 25:7, ], C=-0.399568, T=137.0
+Y_3_8486: [10:3, 11:10, 15:9, 17:7, 18:5, 20:8, 24:2, 25:1, 39:4, ], C=-0.257859, T=135.0
+Number of columns added for facility 3 is 3
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 10, numsubsetpri = 10
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 0.755062;
+v[2] = -0.000000;
+v[3] = 21.990636;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =385 
+Solving EXACT PRICICING for facility 1 
+number of total labels =564 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 3 
+number of total labels =472 
+Y_3_8487: [0:5, 5:11, 10:9, 18:8, 21:4, 24:2, 25:1, 27:6, 39:10, ], C=-0.893039, T=130.0
+Number of columns added for facility 3 is 1
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 11, numsubsetpri = 11
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 0.752970;
+v[2] = -0.000000;
+v[3] = 21.583711;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 3 
+number of total labels =471 
+Solving EXACT PRICICING for facility 3 
+number of total labels =476 
+Y_3_8488: [11:1, 15:7, 16:8, 17:2, 20:6, 21:9, 24:4, 25:3, ], C=-6.140927, T=140.0
+Number of columns added for facility 3 is 1
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 12, numsubsetpri = 12
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 25.146356;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+number of total labels =480 
+Y_3_8489: [0:7, 11:11, 17:9, 18:4, 20:10, 24:2, 25:1, 27:6, 39:5, ], C=-0.131251, T=138.0
+Number of columns added for facility 3 is 1
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 13, numsubsetpri = 13
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 25.146356;
+v[4] = -0.000000;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+number of total labels =467 
+Solving EXACT PRICICING for facility 3 
+number of total labels =476 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+number of total labels =555 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+number of total labels =563 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+number of total labels =649 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+number of total labels =334 
+Final LP objective: -6899.633190
+No new column is generated
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:1 
+newnode=1 
+ROOT NODE SOLUTION TIME = 21.740000 CPU sec
+DONE: SUCCESS (-7159.000000)
+MINTO: Updating primal (APPL heuristic)
+       Value:     -7159.00  Elapsed time:    21.74  Node:       1
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Primal heuristic ... done
+APPL_DIVIDE ... Branching on V[4]variable
+DONE: SUCCESS (2)
+MINTO: Selected node (1,2)
+APPL_NODE ... integrality gap=3.622947, UB= -7159.000000 
+Lower bound =-6899.633190 
+NumEVALNODES = 2 
+DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:3 
+newnode=1 
+DONE: FAILURE
+APPL_BOUNDS ... V[4]<= 1 
+DONE: SUCCESS (1)
+APPL_DELCONSTRAINTS ... failure since numofconDELETED==0
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Solving LP ... done (-6934.378920)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 14.376060;
+v[4] = -54.688441;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 0 
+number of total labels =326 
+Solving EXACT PRICICING for facility 0 
+number of total labels =558 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =427 
+Y_1_11878: [0:8, 3:6, 12:2, 13:3, 14:5, 16:10, 21:9, 37:1, ], C=-12.642495, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 2 
+number of total labels =324 
+Y_2_4490: [10:8, 11:1, 15:4, 17:2, 20:3, 23:9, 35:5, 39:7, ], C=-3.596420, T=140.0
+Y_2_4491: [0:8, 5:7, 11:1, 15:4, 17:2, 20:3, 27:9, 35:5, ], C=-2.928913, T=138.0
+Number of columns added for facility 2 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =370 
+Solving EXACT PRICICING for facility 3 
+number of total labels =493 
+Y_3_8490: [0:10, 5:9, 10:8, 11:5, 15:4, 18:7, 20:3, 24:1, 25:2, ], C=-2.486993, T=139.0
+Y_3_8491: [0:8, 9:10, 11:6, 18:1, 21:7, 24:11, 27:4, 38:3, 39:2, ], C=-1.815942, T=133.0
+Number of columns added for facility 3 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 4 
+number of total labels =303 
+Solving EXACT PRICICING for facility 4 
+number of total labels =352 
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-6934.147844)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 1, numsubsetpri = 1
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 11.492567;
+v[4] = -56.234167;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =455 
+Y_1_11879: [0:6, 1:9, 12:1, 13:3, 21:7, 32:2, 35:10, 38:5, ], C=-3.067872, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 2 
+number of total labels =346 
+Y_2_4492: [11:5, 15:3, 19:8, 20:4, 28:7, 35:1, 37:2, ], C=-1.848197, T=139.0
+Y_2_4493: [10:8, 11:5, 15:3, 20:4, 23:7, 35:1, 37:2, 39:9, ], C=-0.371522, T=138.0
+Number of columns added for facility 2 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 3 
+number of total labels =513 
+Y_3_8492: [9:6, 10:10, 11:1, 15:2, 17:4, 18:9, 20:3, 23:11, 24:7, 39:12, ], C=-5.940235, T=135.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-6934.106503)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 2, numsubsetpri = 2
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 9.719488;
+v[4] = -56.136117;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =430 
+Solving EXACT PRICICING for facility 1 
+number of total labels =745 
+Y_1_11880: [1:11, 11:1, 12:6, 15:4, 16:8, 17:2, 20:3, 35:10, 37:7, ], C=-4.553163, T=140.0
+Y_1_11881: [0:5, 13:2, 14:3, 16:7, 21:6, 32:1, 35:10, 36:9, ], C=-0.904765, T=139.0
+Number of columns added for facility 1 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 2 
+number of total labels =376 
+Y_2_4494: [5:8, 11:1, 15:4, 17:2, 20:3, 27:9, 35:5, 38:11, 39:7, ], C=-0.624576, T=140.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 3 
+number of total labels =513 
+Solving EXACT PRICICING for facility 3 
+number of total labels =533 
+Y_3_8493: [0:9, 11:6, 17:4, 18:10, 20:3, 21:7, 24:1, 25:2, 35:8, ], C=-3.167815, T=135.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-6934.083934)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 3, numsubsetpri = 3
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 10.548278;
+v[4] = -56.537627;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 1 
+number of total labels =576 
+Y_1_11882: [0:8, 9:2, 10:4, 11:1, 16:6, 18:3, 21:7, 35:11, 36:10, ], C=-3.735332, T=140.0
+Y_1_11883: [0:3, 3:6, 5:2, 14:5, 16:8, 21:9, 27:1, 35:10, 36:12, ], C=-0.820741, T=139.0
+Y_1_11884: [9:2, 10:4, 11:1, 18:3, 21:8, 27:7, 35:9, 38:6, ], C=-0.652730, T=138.0
+Number of columns added for facility 1 is 3
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 2 
+number of total labels =354 
+Solving EXACT PRICICING for facility 2 
+number of total labels =575 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=200 for facility 3 
+number of total labels =478 
+Solving EXACT PRICICING for facility 3 
+number of total labels =467 
+Number of columns found: 3
+DONE: SUCCESS (3)
+MINTO: Solving LP ... done (-6934.083934)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 4, numsubsetpri = 4
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 12.278775;
+v[4] = -56.537627;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 1 
+number of total labels =648 
+Y_1_11885: [0:7, 1:10, 9:3, 10:1, 11:4, 18:2, 21:8, 27:6, ], C=-4.298865, T=140.0
+Y_1_11886: [9:3, 10:1, 11:4, 18:2, 21:9, 27:8, 35:6, 38:7, ], C=-0.900603, T=137.0
+Number of columns added for facility 1 is 2
+Number of columns found: 2
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-6934.083934)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 5, numsubsetpri = 5
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 12.278775;
+v[4] = -56.537627;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 1 
+number of total labels =680 
+Y_1_11887: [1:10, 12:1, 13:3, 21:8, 27:7, 32:2, 35:5, 38:6, ], C=-1.652730, T=140.0
+Number of columns added for facility 1 is 1
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6934.083934)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 6, numsubsetpri = 6
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 12.278775;
+v[4] = -56.537627;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 1 
+number of total labels =622 
+Solving EXACT PRICICING for facility 1 
+number of total labels =711 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+number of total labels =551 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+number of total labels =611 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+number of total labels =476 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+number of total labels =350 
+Final LP objective: -6934.083934
+No new column is generated
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:3 
+newnode=0 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+APPL_DIVIDE ... Branching on Facility 1
+DONE: SUCCESS (2)
+MINTO: Selected node (1,3)
+APPL_NODE ... integrality gap=3.622947, UB= -7159.000000 
+Lower bound =-6899.633190 
+NumEVALNODES = 3 
+DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-6899.633190)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:5 
+newnode=1 
+DONE: FAILURE
+APPL_BOUNDS ... T[4] fixed to 1.000000
+V[4]>= 2 is added 
+Since V[4]>= 2, set T[4]=1 
+DONE: SUCCESS (3)
+APPL_DELCONSTRAINTS ... failure since numofconDELETED==0
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Solving LP ... done (-6909.690349)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -0.000000;
+v[3] = 42.967184;
+v[4] = 78.953451;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 0 
+number of total labels =361 
+Solving EXACT PRICICING for facility 0 
+number of total labels =523 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =491 
+Y_1_11888: [0:10, 5:2, 12:7, 16:5, 21:11, 27:1, 35:9, 37:6, 38:3, ], C=-7.580503, T=136.0
+Y_1_11889: [0:10, 5:2, 12:7, 16:5, 21:9, 27:1, 37:6, 38:3, ], C=-6.580503, T=136.0
+Y_1_11890: [0:8, 1:10, 5:4, 10:2, 16:6, 18:3, 21:7, 38:1, ], C=-3.510407, T=129.0
+Number of columns added for facility 1 is 3
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 2 
+number of total labels =443 
+Solving EXACT PRICICING for facility 2 
+number of total labels =592 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =356 
+Solving EXACT PRICICING for facility 3 
+number of total labels =524 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 4 
+number of total labels =233 
+Solving EXACT PRICICING for facility 4 
+number of total labels =312 
+Number of columns found: 3
+DONE: SUCCESS (3)
+MINTO: Solving LP ... done (-6909.690349)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 1, numsubsetpri = 1
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 7.580503;
+v[2] = -0.000000;
+v[3] = 42.967184;
+v[4] = 78.953451;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =416 
+Y_1_11891: [0:6, 12:3, 16:9, 21:7, 32:2, 37:1, 38:5, ], C=-4.965601, T=140.0
+Y_1_11892: [0:6, 12:1, 13:3, 16:9, 21:7, 32:2, 38:5, ], C=-3.315474, T=139.0
+Number of columns added for facility 1 is 2
+Number of columns found: 2
+DONE: SUCCESS (2)
+MINTO: Solving LP ... done (-6909.690349)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 2, numsubsetpri = 2
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 12.718223;
+v[2] = -0.000000;
+v[3] = 38.936567;
+v[4] = 78.953451;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =423 
+Y_1_11893: [0:6, 1:9, 5:3, 10:2, 21:5, 23:1, 38:7, ], C=-1.860220, T=140.0
+Number of columns added for facility 1 is 1
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6909.690349)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 3, numsubsetpri = 3
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 10.858003;
+v[2] = -0.000000;
+v[3] = 38.936567;
+v[4] = 78.953451;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =434 
+Solving EXACT PRICICING for facility 1 
+number of total labels =533 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+number of total labels =543 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+number of total labels =572 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+number of total labels =429 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+number of total labels =316 
+Final LP objective: -6909.690349
+No new column is generated
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:5 
+newnode=0 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+APPL_DIVIDE ... Branching on V[2]variable
+DONE: SUCCESS (2)
+MINTO: Selected node (2,6)
+APPL_NODE ... integrality gap=3.482465, UB= -7159.000000 
+Lower bound =-6909.690349 
+NumEVALNODES = 4 
+DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-6909.690349)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:7 
+newnode=1 
+DONE: FAILURE
+APPL_BOUNDS ... T[4] fixed to 1.000000
+V[2]<= 1 
+V[4]>= 2 is added 
+Since V[4]>= 2, set T[4]=1 
+DONE: SUCCESS (4)
+APPL_DELCONSTRAINTS ... failure since numofconDELETED==0
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Solving LP ... done (-6972.641242)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -117.600571;
+v[3] = -0.000000;
+v[4] = 8.493655;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 0 
+number of total labels =359 
+Solving EXACT PRICICING for facility 0 
+number of total labels =506 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =327 
+Y_1_11894: [0:8, 17:1, 18:4, 21:9, 24:3, 25:2, 27:7, 35:5, ], C=-9.963586, T=140.0
+Y_1_11895: [0:8, 11:1, 17:2, 21:9, 24:4, 25:3, 27:7, 35:5, ], C=-3.331827, T=136.0
+Number of columns added for facility 1 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 2 
+number of total labels =407 
+Solving EXACT PRICICING for facility 2 
+number of total labels =553 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =442 
+Y_3_8494: [9:10, 11:8, 15:7, 17:5, 19:2, 20:6, 38:1, 39:3, ], C=-14.199828, T=139.0
+Y_3_8495: [5:8, 9:10, 11:5, 19:2, 21:6, 27:7, 38:1, 39:3, ], C=-9.263956, T=135.0
+Y_3_8496: [9:10, 11:8, 17:7, 19:2, 24:5, 25:6, 38:1, 39:3, ], C=-4.739766, T=134.0
+Y_3_8497: [9:10, 10:6, 18:5, 19:1, 21:3, 23:7, 38:2, 39:8, ], C=-4.000000, T=133.0
+Number of columns added for facility 3 is 4
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 4 
+number of total labels =240 
+Solving EXACT PRICICING for facility 4 
+number of total labels =372 
+Number of columns found: 6
+DONE: SUCCESS (6)
+MINTO: Solving LP ... done (-6971.773158)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 1, numsubsetpri = 1
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -116.850446;
+v[3] = -0.000000;
+v[4] = 8.954753;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =346 
+Y_1_11896: [0:7, 17:3, 20:4, 21:6, 24:1, 25:2, 27:8, ], C=-3.534038, T=140.0
+Y_1_11897: [0:6, 1:8, 9:1, 17:3, 21:5, 25:2, ], C=-2.242422, T=139.0
+Y_1_11898: [0:8, 10:4, 17:1, 21:7, 24:3, 25:2, 35:5, ], C=-0.657945, T=137.0
+Number of columns added for facility 1 is 3
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =357 
+Y_3_8498: [0:7, 9:10, 15:3, 17:1, 20:2, 21:6, 27:8, 37:4, ], C=-5.466936, T=138.0
+Y_3_8499: [0:2, 9:11, 10:7, 18:8, 21:1, 23:6, 24:10, 38:3, 39:5, ], C=-2.085938, T=137.0
+Number of columns added for facility 3 is 2
+Number of columns found: 5
+DONE: SUCCESS (5)
+MINTO: Solving LP ... done (-6971.717093)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 2, numsubsetpri = 2
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -116.733708;
+v[3] = -0.000000;
+v[4] = 9.056003;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =364 
+Solving EXACT PRICICING for facility 1 
+number of total labels =596 
+Y_1_11899: [0:8, 10:5, 11:1, 16:10, 18:4, 21:9, 24:3, 25:2, 35:6, ], C=-3.000000, T=140.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =381 
+Y_3_8500: [9:12, 10:9, 11:5, 15:4, 17:2, 18:10, 20:3, 23:8, 25:1, 39:7, ], C=-5.982987, T=140.0
+Y_3_8501: [5:5, 9:10, 10:1, 11:8, 19:2, 21:7, 27:6, 38:3, ], C=-1.497865, T=138.0
+Number of columns added for facility 3 is 2
+Number of columns found: 3
+DONE: SUCCESS (3)
+MINTO: Solving LP ... done (-6971.713734)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 3, numsubsetpri = 3
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -117.197734;
+v[3] = -0.000000;
+v[4] = 8.926691;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 1 
+number of total labels =544 
+Solving EXACT PRICICING for facility 1 
+number of total labels =570 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =402 
+Y_3_8502: [0:2, 5:8, 9:10, 11:4, 18:1, 21:3, 24:11, 27:6, 38:7, ], C=-6.744351, T=136.0
+Number of columns added for facility 3 is 1
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6971.598955)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 4, numsubsetpri = 4
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -117.018685;
+v[3] = -0.000000;
+v[4] = 9.186102;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =293 
+Y_3_8503: [11:8, 17:7, 19:1, 21:3, 24:5, 25:6, 38:2, ], C=-4.782642, T=137.0
+Number of columns added for facility 3 is 1
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6971.598955)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 5, numsubsetpri = 5
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -117.018685;
+v[3] = -0.000000;
+v[4] = 9.186102;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =400 
+Y_3_8504: [0:7, 9:11, 11:9, 15:2, 17:4, 18:6, 20:3, 21:8, 37:1, ], C=-2.582184, T=140.0
+Number of columns added for facility 3 is 1
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6971.579301)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 6, numsubsetpri = 6
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -118.192741;
+v[3] = -0.000000;
+v[4] = 11.175670;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =425 
+Y_3_8505: [0:5, 9:9, 11:7, 19:2, 21:6, 24:10, 38:1, 39:3, ], C=-1.006102, T=138.0
+Number of columns added for facility 3 is 1
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6971.577644)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 7, numsubsetpri = 7
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -116.580068;
+v[3] = -0.000000;
+v[4] = 10.572630;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =326 
+Solving EXACT PRICICING for facility 3 
+number of total labels =507 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+number of total labels =502 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+number of total labels =615 
+Y_1_11900: [0:6, 1:9, 9:3, 17:1, 21:5, 25:2, 35:7, ], C=-1.872367, T=139.0
+Number of columns added for facility 1 is 1
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+number of total labels =585 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+number of total labels =363 
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6971.577644)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 8, numsubsetpri = 8
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = -0.000000;
+v[2] = -116.580068;
+v[3] = -0.000000;
+v[4] = 10.572630;
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+number of total labels =509 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+number of total labels =669 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+number of total labels =594 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 3 
+number of total labels =503 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+number of total labels =368 
+Final LP objective: -6971.577644
+No new column is generated
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:7 
+newnode=0 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+APPL_DIVIDE ... Branching on Facility 2
+DONE: SUCCESS (2)
+MINTO: Selected node (2,7)
+APPL_NODE ... integrality gap=3.482465, UB= -7159.000000 
+Lower bound =-6909.690349 
+NumEVALNODES = 5 
+DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-6909.690349)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:9 
+newnode=1 
+DONE: FAILURE
+APPL_BOUNDS ... T[2] fixed to 1.000000
+T[4] fixed to 1.000000
+V[2]>= 2 is added 
+Since V[2]>= 2, set T[2]=1 
+V[4]>= 2 is added 
+Since V[4]>= 2, set T[4]=1 
+DONE: SUCCESS (6)
+APPL_DELCONSTRAINTS ... failure since numofconDELETED==0
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Solving LP ... done (-6921.321145)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 76.911555;
+v[2] = 133.886074;
+v[3] = 120.516985;
+v[4] = 171.763987;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 0 
+number of total labels =378 
+Solving EXACT PRICICING for facility 0 
+number of total labels =452 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =438 
+Y_1_11901: [0:6, 6:10, 12:1, 16:3, 21:5, 26:11, 36:9, 37:2, 38:7, ], C=-2.817881, T=140.0
+Y_1_11902: [0:11, 6:4, 12:6, 16:8, 21:10, 26:3, 27:1, 35:12, 37:7, 38:2, ], C=-0.817881, T=139.0
+Number of columns added for facility 1 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 2 
+number of total labels =315 
+Y_2_4495: [4:2, 6:4, 9:9, 10:8, 26:5, 33:3, 34:1, 38:11, 39:7, ], C=-1.353771, T=139.0
+Y_2_4496: [0:7, 4:2, 6:4, 19:11, 21:8, 23:12, 26:5, 27:9, 33:3, 34:1, ], C=-1.259075, T=137.0
+Number of columns added for facility 2 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =265 
+Y_3_8506: [10:7, 11:4, 17:3, 18:6, 24:1, 25:2, 27:9, 38:8, ], C=-5.925273, T=125.0
+Y_3_8507: [5:7, 11:4, 17:3, 18:6, 21:9, 24:1, 25:2, 27:8, ], C=-2.439805, T=118.0
+Number of columns added for facility 3 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 4 
+number of total labels =147 
+Y_4_4716: [3:9, 7:6, 10:3, 14:8, 21:4, 38:1, 39:2, ], C=-0.542665, T=135.0
+Number of columns added for facility 4 is 1
+Number of columns found: 7
+DONE: SUCCESS (7)
+MINTO: Solving LP ... done (-6921.321145)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 1, numsubsetpri = 1
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 76.911555;
+v[2] = 133.886074;
+v[3] = 118.077179;
+v[4] = 171.763987;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =476 
+Solving EXACT PRICICING for facility 1 
+number of total labels =480 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 2 
+number of total labels =310 
+Solving EXACT PRICICING for facility 2 
+number of total labels =338 
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =266 
+Y_3_8508: [10:8, 11:4, 15:2, 17:1, 18:9, 24:7, 25:6, 37:3, ], C=-2.000000, T=134.0
+Number of columns added for facility 3 is 1
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 4 
+number of total labels =142 
+Solving EXACT PRICICING for facility 4 
+number of total labels =158 
+Number of columns found: 1
+DONE: SUCCESS (1)
+MINTO: Solving LP ... done (-6921.321145)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 2, numsubsetpri = 2
+solutionstat=1 
+v[0] = -0.000000;
+v[1] = 76.911555;
+v[2] = 133.886074;
+v[3] = 119.968602;
+v[4] = 171.763987;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =286 
+Solving EXACT PRICICING for facility 3 
+number of total labels =312 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 0 
+number of total labels =496 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 1 
+number of total labels =469 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 2 
+number of total labels =340 
+Choose_Cust_Set= 0 
+Solving EXACT PRICICING for facility 4 
+number of total labels =151 
+Final LP objective: -6921.321145
+No new column is generated
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:9 
+newnode=0 
+DONE: FAILURE
+APPL_BOUNDS ... DONE: FAILURE
+APPL_DELCONSTRAINTS ... DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+APPL_DIVIDE ... Branching on V[0]variable
+DONE: SUCCESS (2)
+MINTO: Selected node (3,10)
+APPL_NODE ... integrality gap=3.320001, UB= -7159.000000 
+Lower bound =-6921.321145 
+NumEVALNODES = 6 
+DONE: CONTINUE
+APPL_PREP ... DONE: CONTINUE
+MINTO: Solving LP ... done (-6921.321145)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+DONE: FAILURE
+APPL_PRIMAL ... id:0, counter:11 
+newnode=1 
+DONE: FAILURE
+APPL_BOUNDS ... T[2] fixed to 1.000000
+T[4] fixed to 1.000000
+V[0]<= 0 
+Since V[0]<= 0, set T[0]=0 
+T[0] is fixed to 0.000000
+V[2]>= 2 is added 
+Since V[2]>= 2, set T[2]=1 
+V[4]>= 2 is added 
+Since V[4]>= 2, set T[4]=1 
+DONE: SUCCESS (9)
+APPL_DELCONSTRAINTS ... failure since numofconDELETED==0
+DONE: FAILURE
+APPL_TERMINATENODE ... DONE: FAILURE
+MINTO: Searching through deactivated cuts ... 
+done
+APPL_CONSTRAINTS ... DONE: FAILURE
+MINTO: Generating system cuts ... done
+MINTO: Solving LP ... done (-7181.551469)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 0, numsubsetpri = 0
+solutionstat=1 
+v[0] = 65.912842;
+v[1] = -0.000000;
+v[2] = 51.163760;
+v[3] = -0.000000;
+v[4] = 49.621190;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =410 
+Y_1_11903: [1:11, 4:8, 6:7, 11:3, 15:2, 16:1, 21:4, 26:9, 35:12, 36:6, ], C=-8.360710, T=140.0
+Y_1_11904: [1:10, 6:7, 11:4, 15:1, 17:3, 20:2, 26:8, 35:11, 36:6, ], C=-6.000028, T=133.0
+Y_1_11905: [1:10, 6:7, 15:2, 16:1, 17:4, 20:3, 26:8, 35:11, 36:6, ], C=-5.000028, T=132.0
+Number of columns added for facility 1 is 3
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 2 
+number of total labels =411 
+Solving EXACT PRICICING for facility 2 
+number of total labels =543 
+Y_2_4497: [4:4, 5:8, 6:2, 10:9, 19:13, 23:12, 26:1, 27:7, 33:3, 34:5, 39:10, ], C=-6.610661, T=140.0
+Y_2_4498: [4:1, 8:4, 19:8, 23:7, 26:5, 29:3, 31:2, 38:10, ], C=-1.774339, T=137.0
+Number of columns added for facility 2 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =363 
+Y_3_8509: [9:11, 10:7, 11:4, 17:3, 18:6, 24:1, 25:2, 27:9, 38:8, ], C=-16.978487, T=133.0
+Y_3_8510: [9:11, 10:7, 11:4, 17:3, 18:6, 24:1, 25:2, 38:9, 39:8, ], C=-6.978487, T=131.0
+Y_3_8511: [5:9, 9:11, 10:7, 11:4, 17:3, 18:6, 24:1, 25:2, 39:8, ], C=-1.000000, T=111.0
+Number of columns added for facility 3 is 3
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 4 
+number of total labels =257 
+Y_4_4717: [2:7, 12:1, 15:3, 16:4, 30:6, 32:2, ], C=-5.015088, T=140.0
+Y_4_4718: [2:3, 8:1, 12:5, 15:6, 29:2, 37:7, ], C=-4.196977, T=139.0
+Y_4_4719: [2:7, 12:1, 13:4, 15:2, 30:6, 32:3, ], C=-1.909056, T=132.0
+Number of columns added for facility 4 is 3
+Number of columns found: 11
+DONE: SUCCESS (11)
+MINTO: Solving LP ... done (-7179.191390)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 1, numsubsetpri = 1
+solutionstat=1 
+v[0] = 51.313705;
+v[1] = -0.000000;
+v[2] = 47.173812;
+v[3] = -0.000000;
+v[4] = 52.500072;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =418 
+Y_1_11906: [1:11, 15:2, 16:4, 20:3, 21:9, 27:8, 35:6, 37:1, 38:7, ], C=-10.057144, T=137.0
+Y_1_11907: [1:11, 11:4, 15:1, 16:9, 17:3, 20:2, 21:8, 27:7, 35:6, ], C=-4.625865, T=136.0
+Y_1_11908: [1:11, 11:6, 16:9, 17:7, 20:8, 21:4, 27:3, 35:1, 38:2, ], C=-2.114276, T=135.0
+Number of columns added for facility 1 is 3
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 2 
+number of total labels =490 
+Y_2_4499: [4:4, 19:10, 22:7, 23:9, 26:2, 27:1, 28:6, 33:3, ], C=-4.298001, T=136.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =429 
+Y_3_8512: [9:11, 10:7, 15:4, 17:3, 18:6, 23:8, 24:1, 25:2, 39:9, ], C=-10.803311, T=140.0
+Y_3_8513: [5:7, 9:11, 10:6, 11:4, 17:3, 21:9, 24:1, 25:2, 27:8, ], C=-4.512766, T=134.0
+Y_3_8514: [5:8, 9:10, 10:6, 11:4, 17:3, 18:11, 23:7, 24:1, 25:2, ], C=-2.723831, T=132.0
+Y_3_8515: [5:7, 9:11, 11:4, 17:3, 18:6, 21:9, 24:1, 25:2, 27:8, ], C=-2.148700, T=126.0
+Y_3_8516: [9:11, 10:7, 11:4, 17:3, 18:6, 23:8, 24:1, 25:2, 39:9, ], C=-1.000000, T=116.0
+Number of columns added for facility 3 is 5
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 4 
+number of total labels =245 
+Y_4_4720: [2:6, 3:9, 12:3, 13:4, 14:10, 15:2, 30:7, 37:1, ], C=-3.883405, T=139.0
+Y_4_4721: [2:7, 6:5, 8:1, 26:4, 30:8, 31:2, 33:3, ], C=-1.530014, T=130.0
+Number of columns added for facility 4 is 2
+Number of columns found: 11
+DONE: SUCCESS (11)
+MINTO: Solving LP ... done (-7178.788324)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 2, numsubsetpri = 2
+solutionstat=1 
+v[0] = 49.111984;
+v[1] = -0.000000;
+v[2] = 44.539433;
+v[3] = -0.000000;
+v[4] = 50.547969;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =530 
+Y_1_11909: [1:10, 11:5, 15:2, 16:7, 17:4, 20:3, 21:8, 35:1, 36:12, ], C=-9.353704, T=138.0
+Y_1_11910: [1:8, 6:5, 8:1, 16:10, 21:11, 29:2, 31:3, 33:4, 35:7, ], C=-4.498805, T=137.0
+Y_1_11911: [0:7, 1:10, 15:2, 16:1, 17:4, 20:3, 21:8, 35:6, 36:12, ], C=-1.101400, T=136.0
+Y_1_11912: [1:11, 6:8, 15:5, 17:3, 20:4, 21:2, 26:9, 35:1, 36:7, ], C=-0.007170, T=134.0
+Number of columns added for facility 1 is 4
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 2 
+number of total labels =497 
+Y_2_4500: [4:3, 5:7, 19:11, 23:10, 26:1, 27:8, 28:4, 33:2, 38:13, 39:6, ], C=-1.585524, T=137.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =385 
+Y_3_8517: [5:6, 9:10, 11:4, 17:3, 18:11, 24:1, 25:2, 27:8, 38:7, ], C=-1.317173, T=140.0
+Y_3_8518: [5:8, 9:11, 10:7, 11:4, 17:3, 18:6, 24:1, 25:2, 38:9, ], C=-0.557870, T=135.0
+Y_3_8519: [5:6, 9:10, 11:4, 17:3, 24:1, 25:2, 27:8, 38:7, ], C=-0.496757, T=126.0
+Number of columns added for facility 3 is 3
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 4 
+number of total labels =239 
+Solving EXACT PRICICING for facility 4 
+number of total labels =304 
+Number of columns found: 8
+DONE: SUCCESS (8)
+MINTO: Solving LP ... done (-7176.464851)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... stepcount = 3, numsubsetpri = 3
+solutionstat=1 
+v[0] = 45.163406;
+v[1] = -0.000000;
+v[2] = 48.564928;
+v[3] = -0.000000;
+v[4] = 55.729881;
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 1 
+number of total labels =443 
+Solving EXACT PRICICING for facility 1 
+number of total labels =776 
+Y_1_11913: [1:7, 15:3, 16:10, 17:1, 20:2, 21:9, 35:6, 36:12, 37:4, ], C=-4.381354, T=136.0
+Y_1_11914: [0:7, 1:11, 15:3, 17:1, 20:2, 21:6, 27:8, 35:10, 37:4, ], C=-1.379977, T=131.0
+Number of columns added for facility 1 is 2
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=100 for facility 2 
+number of total labels =513 
+Y_2_4501: [0:8, 4:2, 5:7, 6:4, 19:12, 23:11, 26:5, 27:9, 33:3, 34:1, 38:14, ], C=-2.321566, T=138.0
+Number of columns added for facility 2 is 1
+Choose_Cust_Set= 0 
+Solving PRICICING PROBLEM with max_num_labels=50 for facility 3 
+number of total labels =335 
+Solving EXACT PRICICING for facility 3 
+number of total labels =431 
+Y_3_8520: [0:11, 5:9, 9:13, 10:5, 18:4, 23:6, 24:1, 25:2, 27:10, 39:7, ], C=-1.000000, T=138.0
+Number of columns added for facility 3 is 1
+Number of columns found: 4
+DONE: SUCCESS (4)
+MINTO: Solving LP ... done (-7176.084339)
+APPL_TERMINATELP ... DONE: NO
+APPL_VARIABLES ... 

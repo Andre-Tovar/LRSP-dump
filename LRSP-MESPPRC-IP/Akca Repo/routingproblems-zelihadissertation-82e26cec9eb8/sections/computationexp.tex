@@ -1,0 +1,822 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Computational Experiments} 
+\label{computationalexp}
+In this section, we describe our computational experiments with
+the set partitioning formulation AUG-SPP-LRS and the branch-and-price 
+algorithm described in Section \ref{SolnMethod}. We ran our experiments on a 
+64-node Linux-based Beowulf cluster using condor. 
+
+
+\section{Test Problems from \citet{Lin}}
+To evaluate the performance of our algorithm, we solved the instances
+presented in \citet{Lin}  which is solving single 
+objective location routing and scheduling problem. 
+\citet{Lin} present a real life data with 27 customers and 4 facilities 
+and solve the instance using their heuristic algorithm. They also solve smaller 
+instances that are subsets of the real data using branch and bound algorithm to show 
+the difficulty of the LRSPs. Table \ref{CompLin} compares the results presented by \citet{Lin}
+with the results of our branch and price algorithm. Since the instances
+are not very difficult, to solve these instances we skipped the first step
+and used only step 2 of our branch and price algorithm.  
+As shown in table \ref{CompLin} part (a), branch and bound algorithm cannot solve the 
+instances with 12 customers to the optimality. The computation time increases significantly
+as the number of customer increases from 10 to 12. In the first 3 small instances,
+our computation times are less than 1 minute and in 2 instances out of the first 3, 
+our algorithm is faster than the heuristic presented in \citet{Lin}. For instance 4,
+we can find the optimal cost which is less than the result given in  \citet{Lin} and 
+the computation time is less than 8 minutes.   
+\begin{table}[h!tbp]
+  \begin{center}
+    \caption{Comparing the results with \citet{Lin} and our BP algorithm} \label{CompLin}
+    \begin {tabular}[h]{|c|c|c|c|c|}
+      \hline 
+{\bf Instances} & \multicolumn{2}{|c|}{{\bf Branch \& Bound}} & \multicolumn{2}{|c|}{{\bf Best Heurisitic}} \\\cline{2-5} 
+\mbox{} & {\bf Obj.} & {\bf CPU (s)} & {\bf Obj.} & {\bf CPU (s)}  \\\hline
+1: 4 depots, 10 custs.	&	309,817	&	1155	& 	309,817 & 	0.44 \\\hline
+2: 4 depots, 10 custs.	&	309,808	&	982	&	309,808	&	0.49 	\\\hline
+3: 4 depots, 12 custs.	&	312,036* & 	$>$ 10,000  & 	312,036 &       0.82 	\\\hline
+4: 4 depots, 27 custs.	&       -       &	  -     &       625,752.5 &      6   	\\\hline
+\multicolumn {5}{l}{* Best solution in 10000 CPU seconds in a Pentium III machine.} \\
+\multicolumn{5}{c}{{\bf a. Lin et. al (2002) }} \\
+\end{tabular}
+  \begin {tabular}[h]{|c|c|c|}
+      \hline 
+{\bf Instances} & {\bf Obj.} &  {\bf CPU (s)} \\\hline
+1: 4 depots, 10 custs.	& 309,816	&  0.93 \\\hline
+2: 4 depots, 10 custs.	& 309,808    & 0.32	\\\hline
+3: 4 depots, 12 custs.	& 312,036    & 0.13	\\\hline
+4: 4 depots, 27 custs.	& 625,749	& 439.18 \\\hline
+\multicolumn{3}{c}{{\bf b. 1 Step Branch and Price Algorithm }} 
+\end{tabular}
+%\end{footnotesize}
+\end{center}
+\end{table}
+  
+% \begin{table}
+%\begin{sidewaystable}
+%    \begin{center}
+%    \begin{footnotesize}
+%\caption{Comparing the results with \citet{Lin} and our algorithm}
+%    \begin {tabular}[t]{|c|c|c|c|c|c|c|c|c|}
+%      \hline 
+%{\bf Instances} & \multicolumn{4}{|c|}{{\bf Lin et. al (1992) }} & \multicolumn{4}{|c|}{{\bf Our 2-Step Algorithm}} \\\cline{2-5}
+%\mbox{} & \multicolumn{2}{|c|}{{\bf Branch \& Bound}} & \multicolumn{2}{|c|}{{\bf Best Heurisitic}} &  \multicolumn{4}{|c|}{\mbox{}} \\\cline{2-9} 
+%\mbox{} & {\bf Obj.} & {\bf CPU (s)} & {\bf Obj.} & {\bf CPU (s)} & {\bf Obj.} & {\bf S1-CPU (s)} & {\bf S2-CPU (s)} & {\bf Total CPU} \\\hline
+%1: 4 depots, 10 custs.	&	309,817	&	1155	& 	309,817 & 	0.44  & 309,816	&	0.89	&	0.82	& 1.71	\\\hline
+%2: 4 depots, 10 custs.	&	309,808	&	982	&	309,808	&	0.49  & 309,807.83 &	0.38	&	0.18	& 0.56	\\\hline
+%3: 4 depots, 12 custs.	&	312,036* & 	$>$ 10,000  & 	312,036 &       0.82  & 312,035.83 &	0.17	&       0.08	& 0.25	\\\hline
+%4: 4 depots, 27 custs.	&       -       &	  -     &       625,752.5 &      6     &	625,749	&	2499.54	&	344.02	& 2843.56	\\\hline
+%\multicolumn {9}{l}{* Best solution in 10000 CPU seconds in a Pentium III machine.} 
+%\end{tabular}
+%\end{footnotesize}
+%\end{center}
+%\end{table}
+%\end{sidewaystable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% COMMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\begin{table}
+%\begin{sidewaystable}
+  \begin{center}
+    %    \begin{footnotesize}
+    \caption{Comparing the results with \citet{Lin} and our algorithm} \label{CompLin}
+    \begin {tabular}[t]{|c|c|c|c|c|}
+      \hline 
+{\bf Instances} & \multicolumn{2}{|c|}{{\bf Branch \& Bound}} & \multicolumn{2}{|c|}{{\bf Best Heuristic}} \\\cline{2-5} 
+\mbox{} & {\bf Obj.} & {\bf CPU (s)} & {\bf Obj.} & {\bf CPU (s)}  \\\hline
+1: 4 depots, 10 custs.	&	309,817	&	1155	& 	309,817 & 	0.44 \\\hline
+2: 4 depots, 10 custs.	&	309,808	&	982	&	309,808	&	0.49 	\\\hline
+3: 4 depots, 12 custs.	&	312,036* & 	$>$ 10,000  & 	312,036 &       0.82 	\\\hline
+4: 4 depots, 27 custs.	&       -       &	  -     &       625,752.5 &      6   	\\\hline
+\multicolumn {5}{l}{* Best solution in 10000 CPU seconds in a Pentium III machine.} \\
+\multicolumn{5}{c}{{\bf a. Lin et. al (2002) }} 
+\end{tabular}
+   \begin {tabular}[t]{|c|c|c|c|c|}
+      \hline 
+{\bf Instances} & {\bf Obj.} & {\bf S1-CPU (s)} & {\bf S2-CPU (s)} & {\bf Total CPU} \\\hline
+1: 4 depots, 10 custs.	& 309,816	&	0.89	&	0.82	& 1.71	\\\hline
+2: 4 depots, 10 custs.	& 309,807.83    &	0.38	&	0.18	& 0.56	\\\hline
+3: 4 depots, 12 custs.	& 312,035.83    &	0.17	&       0.08	& 0.25	\\\hline
+4: 4 depots, 27 custs.	& 625,749	&	2499.54	&	344.02	& 2843.56	\\\hline
+\multicolumn{5}{c}{{\bf b. 2 Step Branch and Price Algorithm }} 
+\end{tabular}
+%\end{footnotesize}
+\end{center}
+\end{table}
+%\end{sidewaystable}
+\end{comment}
+
+%\subsubsection{Test Problems Using Perl Instances}
+
+\section{Test Problems Using Cordeau Instances}
+\label{CordeauTest}
+\subsection{Description of the Instances}
+\label{ssec:DesCord}
+
+To create an instance, we need to specify customer and candidate facility locations, 
+customer demands, vehicle capacity, vehicle time limit, facility capacity, 
+and facility and vehicle fixed and variable costs. 
+
+We used four MDVRP benchmark problems (called $p01$, $p03$, $p07$, $p11$) 
+developed by \citet{Cordeau2} to generate customer locations and customer demands. 
+Each of the \citet{Cordeau2} instances that we selected has a different set of customer 
+locations. We did not select instance $p02$ since the instance has the same customer 
+locations with the instance $p01$. Similarly, the instances $p04$, $p05$, $p06$
+and $p07$ and the instances $p08$, $p09$, $p10$ and $p11$ have the same customer locations.
+We generated  8 set of instances with 25 and 40 customers. All of the instances have 
+5 candidate facility locations. We included facility locations given for the related 
+benchmark problem into the facility set and if the number of facilities is less than 
+5 in the corresponding benchmark problem, we generated necessary number of facilities 
+using a uniform distribution on the  
+region where customers are located. We selected the facility capacity considering 
+total demand and requiring at least two facilities to be in the solution.  
+For each set of locations and demands, by using 2 different vehicle capacity 
+values and 2 different vehicle time limits, we generated 32 (4x8) instances with 25 customers
+and 32 instances  with 40 customers. The smallest vehicle capacity 
+for an instance was chosen a value that covers at least one customer or two customers and 
+a customer that has the largest demand. The smallest vehicle time limit was calculated 
+as a value that is greater than two times the distance between every customer and the 
+furthest facility.
+
+Table \ref{probparam} presents parameter values used and explains
+the generation of the instances.   
+% the vehicle capacities, time limits and facility capacities 
+%used for each group of instance.
+\begin {table}[h]
+\begin{center}
+\caption {Generation of instances from \citet{Cordeau2} problems} \label{probparam}
+\begin {tabular}[t]{llll} 
+Inst. Gorup	&	Benchmark Prb.	&	LRSP Instance 	&	Customer Locations and Demands	\\\hline
+1,2	&	p01	&	p01-f, p01-l	&	first and last 25 and 40 customers	\\
+3,4,5	&	p03	&	p03-f, p03-m, p03-l	&	first, middle and last 25 and 40 customers	\\
+6,7,8	&	p07	&	p07-f, p07-s, p07-t	&	first, second and third 25 and 40 customers	\\\hline
+\multicolumn{4}{c}{{\bf a. Customer information }} 
+\end{tabular}
+\begin {tabular}[t]{lccccc} 
+%\multicolumn {6}{c}{{\bf Table 1.} Problem Parameters}\\ \hline
+Inst. Generated Using & Vcap1	& Vcap2	& TimeLimit1 &	TimeLimit2 & Fcap\\\hline
+p01,p07	& 	50	&	70	&	140	&	160	&	250 \\
+p03	&	60	&	80	&	140	&	160	&	250\\
+p11	&	150	&	200	&	240	&	500	&	500\\\hline
+\multicolumn{6}{c}{{\bf b. Parameter information }} 
+\end{tabular}
+\end{center}
+\end {table} 
+
+We named our instances based on the parameters. For example, the instance 
+$p01-f25-v1t1$ was created using the {\em first} 25 customer locations of  
+the \citet{Cordeau} instance called $p01$. The first possible vehicle capacity ($v1=50$) and time limit
+($t1=140$) are used in the instance. Similarly, $p03-l25-v2t2$ was created using the {\em last} 
+25 customer locations of the \citet{Cordeau} instance called $p03$. The second possible vehicle 
+capacity ($v2=80$) and time limit ($t2=160$) are used in the instance.  
+
+To estimate the facility fixed cost, we used the study done by \citet{Burlett}. Assuming
+a 100,000 sq. ft. facility, we estimated that the daily fixed cost of a facility varies 
+between \$1500 and \$2300 depending on the region in which the facility is located. We 
+randomly generated 5 values between 1500 and 2300. We used the same facility fixed 
+costs in all of our instances. We estimated that the 
+daily fixed cost of a mid-size vehicle varies between \$200 and \$250 based on the
+economic life analysis done by  Kenworth Truck Company \citeyearpar{Kenworth}. We used
+the average value \$225 as the fixed cost of a vehicle in all of our instances.  
+The operating cost of a vehicle is estimated to be \$60 per hour. To estimate the
+operating cost, we considered the average vehicle speed, the average amount of 
+fuel consumption, fuel cost and the ratio of our working hour limit to the real
+life working hour limit, which is generally 8 hours. Table \ref{costparam} lists 
+the cost parameters used.  
+%To estimate
+%the operating cost, we assumed that a vehicle travels 25 miles per hour, a vehicle 
+%spends 1 gallon of fuel for every 6 miles, fuel costs vary between \$3.5 and \$6.0 
+%per gallon and the ratio of our travel times to the real travel times is between
+%140/480(8 hours) to 240/480. The last assumption finds the ratio of the working hour limit in the instance
+%to 8 hours, which would be the real life working hour limit. We assumed that the fuel 
+%cost for our travel times, which includes the  ratio of real time to our travel times, 
+%is \$12. These assumptions results an operating cost of \$50 per hour. 
+
+
+\begin {table}[h]
+\begin{center}
+\caption {Cost Parameters} \label{costparam}
+\begin {tabular}[t]{ccccccc} \hline
+%\multicolumn {6}{c}{{\bf Table 1.} Problem Parameters}\\ \hline
+FC1 & FC2 & FC3 & FC4 & FC5 & VF & OC \\\hline
+\$1615 /day  &	\$1845 /day  &	\$1781 /day  &	\$1975 /day  &	\$1753 /day  &   \$225 /day  & \$ 60 /hour  	 \\\hline
+\end{tabular}
+\end{center}
+\end {table} 
+
+The travel time, $t_{ik}$, between each pair of nodes is calculated using 
+Euclidean distance calculations and then rounded to the nearest integer.  
+We run the Floyd-Warshall Algorithm \citep{Ahuja} on the travel time
+matrix to ensure that all travel times satisfy the triangle inequality.
+In our test problems, we assume that the service time at each
+node is zero. 
+%We have used the update rule 
+%that Lin et al used in \cite{Lin} that is assigning the half of the service time of 
+%any node to the incoming arcs to that node and the other half to the
+%outgoing arcs from that node. For example, let $s_{i}$ and $s_{k}$ 
+%be the service times of nodes $i$ and $k$ respectively and $t_{ik}$ be 
+%the travel time between nodes i and k. Basically, 
+%$t'_{ik}=t_{ik}+\frac{1}{2}(s_{i}+s_{k})$ is the updated travel time. 
+    
+%\subsection{Results}
+%In this section, we compare the performance of our heuristics to the optimal
+%solution.  
+
+\subsection{Computational Results}
+In this section, we present the results of our computational experiments. 
+We evaluate the strength of our set partitioning formulation, the performance of 
+our pricing problem, and the performance of our 2-step branch-and-price algorithm. 
+
+\subsubsection{Comparison of Alternative Formulations}
+To compare the strength of the various formulations, we enumerated all possible 
+pairings and solved the formulations using a standard branch-and-bound algorithm.
+Since the number of feasible pairings is large, we are not able to enumerate
+all columns of the instances with 25 customers and 30 customers. Instead, we constructed 
+smaller instances from our test problems by taking the first 20 customer locations.
+For the experiments in this part, we used the instances with 20 customers and
+5 facilities. Since the constraints (\ref{spp_con1}) and (\ref{spp_con2}) are enough to 
+determine the LRS problem, we construct our base formulation ($SPP_B$) from these
+constraints. 
+
+{\bf Experiment 1} To compare the strength of constraints (\ref{relation-Z-T}) and 
+(\ref{relation}) introduced in section \ref{StrongForm} and to verify the 
+value of their contribution to the lower bound of the LRS problem,
+we construct two formulations: $SPP_1$ and $SPP_2$. $SPP_1$ is constructed
+by adding the constraints (\ref{relation-Z-T}) to the $SPP_B$ and $SPP_2$ 
+is constructed by adding the constraints (\ref{relation}) to the $SPP_B$.
+Table \ref{formulations-gr1} shows the constraints (\ref{relation-Z-T}) and
+(\ref{relation}), and lists the constraints in each formulation. 
+
+\begin{table}[h]
+\centering
+\caption{LRS models for Experiment 1}\label{formulations-gr1}
+\begin {tabular}[t]{|l|l|l|}  
+\multicolumn{3}{l}{\mbox{}}\\
+\multicolumn{3}{l}{Const.(\ref{relation-Z-T}): $Z_{jp} \leq T_{j} \ \ \forall j \in M, \forall p \in P_{j}$}\\
+\multicolumn{3}{l}{\mbox{}}\\
+\multicolumn{3}{l}{Const.(\ref{relation}): $\sum_{p \in P_{j}}a_{ipj}Z_{jp} \leq T_{j} \ \ \forall j \in M, \forall i \in N$}\\  
+\multicolumn{3}{l}{\mbox{}}\\
+\hline
+$SPP_B$ & $SPP_1$ & $SPP_2$ \\\hline
+1. SP Const.(\ref{spp_con1}) & 1. SP Const.(\ref{spp_con1}) & 1. SP Const.(\ref{spp_con1}) \\
+2. Fac.Cap.Const.(\ref{spp_con2}) & 2. Fac.Cap.Const.(\ref{spp_con2}) & 2. Fac.Cap.Const.(\ref{spp_con2}) \\
+\mbox{}  & 3. Relation Const.(\ref{relation-Z-T}) &  3. Relation Const.(\ref{relation})\\\hline
+\end{tabular}
+\end{table}
+
+Table \ref{lpbounds-gr1} compares the LP relaxation bounds of $SPP_B$, $SPP_1$, $SPP_2$. In table 
+\ref{lpbounds-gr1}, \%Improv columns for models $SPP_1$ and $SPP_2$ represent the percentage increase
+in the LP relaxation bound with respect to the LP relaxation bound of the base model $SPP_B$. The results 
+suggest that
+the constraints (\ref{relation}) are better than the constraints (\ref{relation-Z-T}), since
+the LP solution of the model $SPP_2$ is higher than the LP solution of the model $SPP_1$ in all
+instances. The model $SPP_2$ improves the LP solution of the base model by 1.7\% to 17\% while 
+the model $SPP_1$ only improves the LP solution of the base model by 0\% to 2\%.   
+
+\begin{table}[h]
+\centering
+\caption{Results of Experiment 1}\label{lpbounds-gr1}
+\begin {tabular}[t]{|c|c|c|c|c|c|c|c|}  
+\hline
+{\bf Data File} & {\bf \# of Col.} & {\bf IP} & {\bf $SPP_B$}& \multicolumn{2}{|c|}{{\bf $SPP_1$}} & \multicolumn{2}{|c|}{{\bf $SPP_2$}}\\ \cline {4-8}
+\mbox{} &  \mbox{} &  \mbox{} &  {\bf LP} & {\bf LP} & {\bf \%Improv.} & {\bf LP} & {\bf \%Improv.} \\\hline
+p01-f20	&	67558	&	4348	&	3273.822	&	3276.9	&	0.09	&	3471.73	&	6.045	\\\hline
+p03-f20	&	52619	&	4394.33	&	3705.03	&	3705.07	&	0	&	3767.8	& 1.69		\\\hline
+p03-l20	&	14779	&	4708.83	&	3552.272	&	3552.61	&	0.01	&	3755.31	&	5.716	\\\hline
+p07-f20	&	68267	&	4357.17	&	2677.031	&	2687.63	&	0.4	&	2813.44	&	5.095	\\\hline
+p11-f20	&	1950	&	5921.5	&	5291.045	&	5308.24	&	0.32	&	5849.5	&	10.555	\\\hline
+p11-l20	&	898	&	8017.5	&	5865.493	&	5987.21	&	2.08	&	6855.28	&	16.875	\\\hline
+\end{tabular}
+\end{table} 
+
+{\bf Experiment 2} After we observing that constraints (\ref{relation}) seem to be better than constraints 
+(\ref{relation-Z-T}), we design experiment 2 to test the strength of constraint (\ref{lb-open-fac}) 
+with respect to the base model and to test the combined affect of constraints (\ref{lb-open-fac}) and (\ref{relation}).
+We construct two formulations: $SPP_3$ and $SPP_4$. $SPP_3$ is constructed
+by adding the constraint (\ref{lb-open-fac}) to the base model $SPP_B$. 
+$SPP_4$ is constructed by adding the constraints (\ref{relation}) to the $SPP_3$.
+Table \ref{formulations-gr2} shows the constraint (\ref{lb-open-fac}) and lists the constraints in each formulation.   
+
+\begin{table}[h]
+\centering
+\caption{LRS models for Experiment 2}\label{formulations-gr2}
+\begin {tabular}[t]{|l|l|l|}  
+\multicolumn{3}{l}{\mbox{}}\\
+\multicolumn{3}{l}{Const.(\ref{lb-open-fac}): $\sum_{j \in M} T_{j} \geq nREQ$ }\\
+\multicolumn{3}{l}{\mbox{}}\\
+\hline
+$SPP_B$ & $SPP_3$ & $SPP_4$ \\\hline
+1. SP Cont.(\ref{spp_con1}) & 1. SP Cont.(\ref{spp_con1}) & 1. SP Cont.(\ref{spp_con1}) \\
+2. Fac.Cap.Const.(\ref{spp_con2}) & 2. Fac.Cap.Const.(\ref{spp_con2}) & 2. Fac.Cap.Const.(\ref{spp_con2}) \\
+\mbox{} & 3. Const.(\ref{lb-open-fac})  & 3. Const.(\ref{lb-open-fac}) \\
+\mbox{} & \mbox{}  & 4. Relation Cont.(\ref{relation})\\\hline
+\end{tabular}
+\end{table}
+
+Table \ref{lpbounds-gr2} presents the percentage improvement in the LP relaxations with
+constraint (\ref{lb-open-fac}) and the percentage improvement in the LP relaxations with
+constraints (\ref{lb-open-fac}) and (\ref{relation}). In table \ref{lpbounds-gr2}, the \%Improv. 
+columns for models $SPP_2$, $SPP_3$ and $SPP_4$ represent the percentage increase
+in the LP solutions with respect to the LP solution of the base model $SPP_B$. 
+The results show that the LP bound improves by 6\% to 59\% with constraint 
+(\ref{lb-open-fac}). When we compare models $SPP_2$ and $SPP_3$, we observe that
+in most instances, constraint (\ref{lb-open-fac}) improves the LP relaxation bound 
+more than the constraints (\ref{relation}) do. The two set of constraints, constraints (\ref{relation}) and
+constraint (\ref{lb-open-fac}) together achieve larger improvement than 
+constraint (\ref{lb-open-fac}) does alone in all instances. The LP relaxation
+solution of the model $SPP_4$ is 10.5\% to 61\% better than the LP
+solution of the base model. 
+
+\begin{sidewaystable}
+%\begin{table}[h]
+\centering
+\caption{Results of Experiment 2}\label{lpbounds-gr2}
+\begin {tabular}[t]{|c|c|c|c|c|c|c|c|c|c|}  
+\hline
+{\bf Data File} & {\bf \# of Col.} & {\bf IP} & {\bf $SPP_B$}& \multicolumn{2}{|c|}{{\bf $SPP_2$}} & \multicolumn{2}{|c|}{{\bf $SPP_3$}} & \multicolumn{2}{|c|}{{\bf $SPP_4$}}\\ \cline {4-10}
+\mbox{} &  \mbox{} &  \mbox{} &  {\bf LP} & {\bf LP} & {\bf \%Improv.} & {\bf LP} & {\bf \%Improv.} & {\bf LP} & {\bf \%Improv.} \\\hline
+p01-f20	&	67558	&	4348	&	3273.822        & 3471.73	& 6.045  & 4251.74	&	29.87	&	4279.88	&	30.73	\\\hline
+p03-f20	&	52619	&	4394.33	&	3705.03	        & 3767.8	& 1.69   &  4371.08	&	17.98	&	4383.24	&	18.31	\\\hline
+p03-l20	&	14779	&	4708.83	&	3552.272	& 3755.31	& 5.716  & 4514.81	&	27.1	&	4656.04	&	31.07	\\\hline
+p07-f20	&	68267	&	4357.17	&	2677.031	& 2813.44	& 5.095  & 4243.97	&	58.53	&	4312.98	&	61.11	\\\hline
+p11-f20	&	1950	&	5921.5	&	5291.045	& 5849.5	& 10.555 & 5623.73	&	6.29	&	5849.5	&	10.55	\\\hline
+p11-l20	&	898	&	8017.5	&	5865.493	& 6855.28	& 16.875 & 7198.17	&	22.72	&	7810.83	&	33.17	\\\hline
+\end{tabular}
+%\end{table} 
+\end{sidewaystable}
+
+Based on the experiments 1 and 2, we conclude that our valid inequalities improve the LP relaxation bound of the model, 
+constraints (\ref{relation}) are better than  constraints (\ref{relation-Z-T}) and the $SPP_4$ formulation, which includes 
+constraints (\ref{lb-open-fac}) and (\ref{relation}), is the best among other models since it has the highest 
+lower bound in all instances. 
+
+
+\qquad
+
+
+\subsubsection{Comparison of ESPPRC Algorithm and Dynamic Programming}
+\label{comp-espprc-dp}
+**** VO cost = 50 is used in this experiments********************************* 
+
+As we mentioned in Section \ref{Solve-pricing}, we can use a DP algorithm to  solve
+a relaxed version of the pricing problem in which we allow customers to be visited
+more than once. However, this weakens the LP relaxation bound. To evaluate empirically how much the bound
+is weakened, we compared the LP relaxation bounds at the root node using the dynamic 
+programming algorithm (DP) and the ESPPRC algorithm. Using the ESPPRC algorithm, we obtain
+the true LP relaxation bound of the LRS model. With the DP algorithm, we obtain a lower 
+bound on the LP relaxation bound since the solution potentially contains customers 
+that are visited more than once. Table \ref{dp-espprc25} and   Table \ref{dp-espprc30} 
+compare the LP relaxation bounds, total number of columns in the solution and the time 
+spent to get the LP bounds. \%Gap represents the percentage gap between the LP relaxation 
+solution obtained using the DP algorithm and the true LP relaxation solution (the LP relaxation obtained 
+using ESPPRC algorithm). Basically, the \%Gap is calculated by dividing the difference between
+the LP relaxation solutions by the true LP relaxation solution and multiplying by 100.  
+
+The \%gap ranges from 0.98\% to 3.23\%. The average gap is 1.7\%  for the 
+instances with 25 customers and 1.81\% for the instances with 30 customers. The 
+ESPPRC algorithm is preferable to the DP algorithm in all of the $p11$ instances. 
+In general (except $p11$ instances), ESPPRC algorithm takes more time than the DP algorithm,
+which is the price we have to pay for a better lower bound. Although in one instance 
+(p01-f25-v2t2) the ESPPRC algorithm took a long time, generally the computation times are 
+not too long for 25 customer instances. Therefore, the ESPPRC algorithm is preferable
+to the DP algorithm. However, in 9 instances out of 24 with 30 customers, the ESPPRC 
+algorithm took more than 2 hours. Hence, with larger instances, depending on the difficulty of the 
+instance,  we may search for ways to improve our current ESPPRC algorithm.
+%using the DP algorithm in combination with the ESPPRC algorithm 
+%to solve the root node sooner.  
+  
+\begin{sidewaystable}
+%\begin{table}
+\centering
+\caption {Root node solutions using the DP algorithm and the ESPPRC algorithm (25 customer instances)} \label{dp-espprc25}
+\begin {tabular}[b]{|c|c|c|c|c|c|c|c|}
+%\multicolumn {}{c}{{\bf Table 4.} Root node solutions using ESPPRC and DP}\\\hline
+\hline
+{\bf Data File} & \multicolumn{3}{|c|}{{\bf DP Algorithm Root Node}} &  \multicolumn {3}{|c|}{{\bf ESPPRC Algorithm Root node}} & {\bf $\%$Gap}\\ \cline {2-7}
+\mbox{} & {\bf LP Relax.} & {\bf $\#$ of Columns} & {\bf	Time (sec.)} &	{\bf LP Relax.}	& {\bf $\#$ of Columns}	& {\bf Time (sec.)} & \mbox{} \\\hline
+p01-f25-v1t1	&	4352.05	&	7557	&	131.74	&	4404.3	&	8889	&	611.5	&	1.19	\\\hline
+p01-f25-v1t2	&	4268.98	&	7667	&	146.49	&	4321.41	&	9317	&	3536.46	&	1.21	\\\hline
+p01-f25-v2t1	&	4218.63	&	11956	&	203.07	&	4266.38	&	13292	&	2278.57	&	1.12	\\\hline
+p01-f25-v2t2	&	4148.12	&	12192	&	274.51	&	4192.23	&	13697	&	18434.96	&	1.05	\\\hline \hline
+p03-f25-v1t1	&	4651.47	&	7814	&	150.67	&	4699.51	&	8705	&	244.01	&	1.02	\\\hline
+p03-f25-v1t2	&	4540.84	&	8297	&	221.43	&	4582.2	&	9347	&	1027.37	&	0.9	\\\hline
+p03-f25-v2t1	&	4446.23	&	11921	&	237.21	&	4492.06	&	12731	&	619.33	&	1.02	\\\hline
+p03-f25-v2t2	&	4349.95	&	12762	&	269.98	&	4404.59	&	13850	&	3577.31	&	1.24	\\\hline \hline
+p03-l25-v1t1	&	4605.93	&	8589	&	142.26	&	4682.91	&	9093	&	118.34	&	1.64	\\\hline
+p03-l25-v1t2	&	4471.96	&	10151	&	148.15	&	4562.92	&	11061	&	750.31	&	1.99	\\\hline
+p03-l25-v2t1	&	4428.19	&	9808	&	216.17	&	4526.2	&	10440	&	334.96	&	2.17	\\\hline
+p03-l25-v2t2	&	4320.83	&	11791	&	295.63	&	4416.08	&	12855	&	1538.03	&	2.16	\\\hline \hline
+p07-f25-v1t1	&	4499.74	&	10275	&	121.52	&	4560.82	&	10979	&	210.08	&	1.34	\\\hline
+p07-f25-v1t2	&	4401.35	&	11132	&	147.76	&	4457.51	&	12049	&	1135.77	&	1.26	\\\hline
+p07-f25-v2t1	&	4310.75	&	12133	&	187.29	&	4408.23	&	12898	&	526.07	&	2.21	\\\hline
+p07-f25-v2t2	&	4232.34	&	13260	&	222.19	&	4303.73	&	14368	&	4139.74	&	1.66	\\\hline \hline
+p11-f25-v1t1	&	7515.63	&	1758	&	205.15	&	7601.51	&	1883	&	0.94	&	1.13	\\\hline
+p11-f25-v1t2	&	7444	&	2335	&	258.47	&	7521.76	&	2540	&	1.59	&	1.03	\\\hline
+p11-f25-v2t1	&	7116.49	&	2495	&	362.47	&	7371.89	&	2629	&	1.53	&	3.46	\\\hline
+p11-f25-v2t2	&	7048.41	&	3396	&	408.73	&	7254.45	&	3606	&	3.12	&	2.84	\\\hline \hline
+p11-l25-v1t1	&	8047.81	&	1086	&	192.4	&	8178.02	&	1153	&	0.52	&	1.59	\\\hline
+p11-l25-v1t2	&	7876.72	&	1497	&	213.78	&	8036.66	&	1563	&	0.84	&	1.99	\\\hline
+p11-l25-v2t1	&	7447.09	&	1490	&	247.02	&	7633.51	&	1565	&	0.81	&	2.44	\\\hline
+p11-l25-v2t2	&	7341.22	&	2087	&	285.32	&	7579.66	&	2168	&	1.34	&	3.15	\\\hline \hline
+\end{tabular}
+\end{sidewaystable} 
+%\end{table}
+
+  
+\begin{sidewaystable}
+%\begin{table}
+\centering
+\caption {Root node solutions using the DP algorithm and the ESPPRC algorithm (30 customer instances)} \label{dp-espprc30}
+\begin {tabular}[b]{|c|c|c|c|c|c|c|c|}
+%\multicolumn {}{c}{{\bf Table 4.} Root node solutions using ESPPRC and DP}\\\hline
+\hline
+{\bf Data File} & \multicolumn{3}{|c|}{{\bf DP Algorithm Root Node}} &  \multicolumn {3}{|c|}{{\bf ESPPRC Algorithm Root node}} & {\bf $\%$Gap}\\ \cline {2-7}
+\mbox{} & {\bf LP Relax.} & {\bf $\#$ of Columns} & {\bf	Time (sec.)} &	{\bf LP Relax.}	& {\bf $\#$ of Columns}	& {\bf Time (sec.)} & \mbox{} \\\hline
+
+p01-f30-v1t1	&	4773.67	&	13840	&	222.04	&	4821.07	&	15203	&	2901.33	&	0.98	\\\hline
+p01-f30-v1t2	&	4666.71	&	14267	&	253.38	&	4715.3	&	15859	&	32779.86	&	1.03	\\\hline
+p01-f30-v2t1	&	4514.93	&	20846	&	378.32	&	4582.27	&	22312	&	11770.67	&	1.47	\\\hline
+p01-f30-v2t2	&	4414.87	&	21405	&	450.19	&	4482.2	&	23361	&	211885.55	&	1.5	\\\hline \hline
+p03-f30-v1t1	&	6403.69	&	13332	&	254.71	&	6467.35	&	14459	&	2194.21	&	0.98	\\\hline
+p03-f30-v1t2	&	6298.48	&	13851	&	233.95	&	6370.12	&	15165	&	28130.43	&	1.12	\\\hline
+p03-f30-v2t1	&	6183.48	&	20904	&	404.95	&	6263.17	&	22392	&	11978.05	&	1.27	\\\hline
+p03-f30-v2t2	&	6099.61	&	21912	&	426.91	&	6193.52	&	23418	&	197927.28	&	1.52	\\\hline \hline
+p03-l30-v1t1	&	4786.72	&	14751	&	297.23	&	4896.04	&	15678	&	788.66	&	2.23	\\\hline
+p03-l30-v1t2	&	4652.91	&	17388	&	354.24	&	4756.95	&	18521	&	5342.55	&	2.19	\\\hline
+p03-l30-v2t1	&	4555.76	&	17407	&	456.01	&	4679.23	&	18641	&	2402.75	&	2.64	\\\hline
+p03-l30-v2t2	&	4453.71	&	20749	&	541.96	&	4562.29	&	22270	&	20511.51	&	2.38	\\\hline \hline
+p07-f30-v1t1	&	4706.19	&	17515	&	218.28	&	4765.63	&	18968	&	1863.84	&	1.25	\\\hline
+p07-f30-v1t2	&	4597.22	&	18563	&	247.78	&	4654.19	&	20190	&	10036.58	&	1.22	\\\hline
+p07-f30-v2t1	&	4474.19	&	21332	&	345.67	&	4558.21	&	22656	&	4517.61	&	1.84	\\\hline
+p07-f30-v2t2	&	4380.11	&	22783	&	377.95	&	4453.2	&	24522	&	84685.95	&	1.64	\\\hline \hline
+p11-f30-v1t1	&	7774.24	&	2055	&	356.58	&	7916.08	&	2169	&	1.8	&	1.79	\\\hline
+p11-f30-v1t2	&	7681.77	&	2809	&	541.54	&	7791.1	&	2985	&	3.06	&	1.4	\\\hline
+p11-f30-v2t1	&	7307.09	&	2628	&	526.21	&	7531.81	&	2834	&	4	&	2.98	\\\hline
+p11-f30-v2t2	&	7239.85	&	3670	&	738.31	&	7469.84	&	3978	&	8.29	&	3.08	\\\hline \hline
+p11-l30-v1t1	&	9804.77	&	2062	&	350.01	&	9929.75	&	2157	&	1.33	&	1.26	\\\hline
+p11-l30-v1t2	&	9657.35	&	2753	&	388.93	&	9837.09	&	2888	&	2.9	&	1.83	\\\hline
+p11-l30-v2t1	&	9386.09	&	2727	&	440.88	&	9645.66	&	2850	&	2.5	&	2.69	\\\hline
+p11-l30-v2t2	&	9112.56	&	3727	&	476.42	&	9416.78	&	3961	&	6.51	&	3.23	\\\hline \hline
+
+\end{tabular}
+\end{sidewaystable} 
+%\end{table}
+
+   
+\subsubsection {Results of 2-Step Branch-and-Price Algorithm}
+
+This experiment is designed to evaluate the performance of the 2-Step branch and price algorithm.
+In this experiment, the first step of the algorithm
+is run with 3 CPU hour time limit and the second step is run with 6 CPU hour time limit. Computational results
+report LP solutions, integrality gaps, IP solutions which are the optimal solutions if the integrality gap is
+0, CPU times of each step and some solution information that includes  number of open facilities and number 
+of vehicles used. 
+ 
+{\bf Instances with 25 Customers}: Table \ref{25Cust_res} presents the computational results for 32 instances 
+(explained in table \ref{probparam}) with 25 customers and 5 facilities.  As seen from the table  
+ \ref{25Cust_res} we can find optimal solutions of 31 instances out of 32 instances in less than 4 hours. 
+For one instance, the algorithm terminates due to the time limit and results an integer 
+solution with an integrality gap of 0.11\%. 
+
+%-Number of nodes vs time!
+%{\bf Comparing Effect of vehicle capacity timelimit}
+%++++++++++++++++++++++++++++++++++++++\\
+%PUT a graph showing the time wrt vehicle capacity and timelimit \\
+%++++++++++++++++++++++++++++++++++++++++
+
+{\bf Instances with 40 Customers}:  
+We also evaluate the performance of 2-Step BP Algorithm for instances (explained in table \ref{probparam}) with 40
+customers and 5 facilities. Problem becomes more difficult when the number of customers increases. 
+Table \ref{40Cust_res2} presents the computational results for the instances with 40 customers and 5 facilities. 
+In 28 instances out of 32, the algorithm finds the LP solution and an IP solution for the LRSP. In 4 instances 
+(p01-f40-v2t2, p03-f40-v2t2, p03-l40-v2t2, p07-t40-v2t2),
+the algorithm could not find the exact LP solution within the time limit. However, in 2 of these 4 instances,
+we could find a lower bound for the LP solution using the solution of exact pricing problem using the
+formula \ref{LPlb} (see \citet{Lubbecke}):
+\begin{equation}
+z_{LB}(LP) = z + \sum_{j \in M}\hat{c}_j \label{LPlb}
+\end{equation}
+where $z$ is the current LP solution of the RMP and $\hat{c}_j$ is the reduced cost of the 
+column for facility $j$ obtained from the exact pricing problem of facility $j$.
+
+The instances (called px-v2t2) with larger time limit and larger vehicle capacity are
+very difficult, to improve the integer solution obtained from the algorithm, we used a simple fact: Every feasible 
+solution for instance  px-v1t1 is also feasible for px-v1t2, px-v2t1 and px-v2t2, and  every feasible 
+solution for instances  px-v2t1 and px-v2t1 is feasible for px-v2t2. Note that in px-v1t1, px-v1t2,
+px-v2t1 and px-v2t2 every parameter is same except the time limit and vehicle capacity. In px-v1t2 and
+px-v2t2 the time limit is larger than the time limit used in px-v1t1 and in px-v2t1.In px-v2t1 and
+px-v2t2 the vehicle capacity is larger than the vehicle capacity used in px-v1t1 and in px-v1t2.
+At the end of algorithm, the condition is checked for px-v2t2 instances and if it applies, the upper bounds 
+obtained from the algorithm is updated. In couple instances in group px-v2t2, because of the difficulty of the
+pricing problems, the upper bound obtained 
+at the end of the algorithm is worse than the best upper bound obtained from instances px-v1t1, px-v1t2
+and px-v2t1. 
+
+As shown in graph \ref{Gapnumber}, in 14 instances the algorithm can find optimal
+solutions or   upper bounds with integrality gaps less than 3\%, in 7 instances gaps are  
+between 3\% and 5\%, in 6 instances the gaps are between 5\% and 7\% and
+in 3 instances the gaps are between 7\% and 10.5\%. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.7]{figs/gapnumber.eps}
+  %\fbox{ \includegraphics[scale=0.5]{figure/pair2.eps}}
+  \caption{Number of instances with 40 customers with gaps in each region} \label{Gapnumber}
+\end{figure}
+
+
+\newpage
+\begin{table}[h!tbp]
+\centering
+\caption{Results for instances with 25 customer 5 facilities}\label{25Cust_res}
+\begin {tabular}[t]{|c|c|c|c|c|c|c|c|c|}  
+\hline
+{\bf Data File} & {\bf LP} & {\bf IP$^1$} & {\bf Gap} & {\bf Nodes} & \multicolumn{3}{|c|}{\bf CPU Time (hr)} & {\bf Soln: \# of} \\\cline{6-8}  
+\mbox{} & \mbox{} & \mbox{} & \mbox{} & \mbox{} &  {\bf Step 1 } & {\bf Step 2} & {\bf Total} & {\bf Fac. - Veh. } \\\hline
+p01-f25-v1t1	&	4504.4	&	4699	&	0	&	27	&	1.22	&	0.13	&	1.36	&	2	-	4	\\
+p01-f25-v1t2	&	4425.79	&	4511	&	0	&	103	&	1.71	&	0.75	&	2.46	&	2	-	4	\\
+p01-f25-v2t1	&	4366.12	&	4425	&	0	&	45	&	1.5	&	0.42	&	1.93	&	2	-	3	\\
+p01-f25-v2t2	&	4295.4	&	4425	&	0	&	39	&	1.03	&	1.83	&	2.87	&	2	-	3	\\
+p01-l25-v1t1	&	4849.78	&	4899	&	0	&	21	&	0.14	&	0.04	&	0.19	&	2	-	5	\\
+p01-l25-v1t2	&	4725.39	&	4815	&	0	&	81	&	0.42	&	0.37	&	0.79	&	2	-	4	\\
+p01-l25-v2t1	&	4668.98	&	4759	&	0	&	147	&	0.54	&	0.53	&	1.07	&	2	-	4	\\
+p01-l25-v2t2	&	4537.07	&	4602	&	0	&	37	&	1.44	&	0.99	&	2.43	&	2	-	5	\\
+p03-f25-v1t1	&	4809.96	&	5062	&	0	&	299	&	1.43	&	0.41	&	1.84	&	2	-	5	\\
+p03-f25-v1t2	&	4701.14	&	4837	&	0	&	105	&	1.28	&	0.22	&	1.5	&	2	-	4	\\
+p03-f25-v2t1	&	4606.09	&	4758	&	0	&	283	&	1.36	&	0.35	&	1.7	&	2	-	4	\\
+p03-f25-v2t2	&	4502.54	&	4742	&	0	&	45	&	1.55	&	1	&	2.54	&	2	-	4	\\
+p03-m25-v1t1	&	4697.37	&	4785	&	0	&	263	&	1.26	&	0.23	&	1.49	&	2	-	4	\\
+p03-m25-v1t2	& 4578.24	&	4785	&	0.11	&	2401	&	3	&	6	&	9	&	2	-	4	\\
+p03-m25-v2t1	&	4485.79	&	4689	&	0	&	59	&	1.33	&	0.44	&	1.77	&	2	-	4	\\
+p03-m25-v2t2	&	4396.12	&	4479	&	0	&	9	&	1.4	&	1.72	&	3.12	&	2	-	3	\\
+p03-l25-v1t1	&	4795.3	&	4842	&	0	&	15	&	0.12	&	0.04	&	0.16	&	2	-	4	\\
+p03-l25-v1t2	&	4670.24	&	4803	&	0	&	37	&	0.29	&	0.24	&	0.53	&	2	-	4	\\
+p03-l25-v2t1	&	4620.67	&	4741	&	0	&	43	&	0.25	&	0.19	&	0.43	&	2	-	4	\\
+p03-l25-v2t2	&	4507.62	&	4655	&	0	&	39	&	0.67	&	0.88	&	1.55	&	2	-	3	\\
+p07-f25-v1t1	&	4642.59	&	4761	&	0	&	51	&	0.21	&	0.16	&	0.37	&	2	-	4	\\
+p07-f25-v1t2	&	4544.45	&	4685	&	0	&	69	&	1.33	&	0.87	&	2.2	&	2	-	3	\\
+p07-f25-v2t1	&	4485.56	&	4703	&	0	&	161	&	1.53	&	0.63	&	2.16	&	2	-	4	\\
+p07-f25-v2t2	&	4388.33	&	4482	&	0	&	125	&	1.03	&	1.04	&	2.08	&	2	-	3	\\
+p07-s25-v1t1	&	5000.13	&	5098	&	0	&	257	&	0.07	&	0.05	&	0.11	&	2	-	5	\\
+p07-s25-v1t2	&	4852.2	&	4889	&	0	&	75	&	0.26	&	0.11	&	0.37	&	2	-	4	\\
+p07-s25-v2t1	&	4739.42	&	4787	&	0	&	23	&	0.08	&	0.04	&	0.12	&	2	-	4	\\
+p07-s25-v2t2	&	4609.82	&	4781	&	0	&	85	&	0.43	&	0.36	&	0.8	&	2	-	4	\\
+p07-t25-v1t1	&	4836.55	&	4898	&	0	&	29	&	0.12	&	0.1	&	0.22	&	2	-	4	\\
+p07-t25-v1t2	&	4703.06	&	4886	&	0	&	467	&	1.92	&	1.35	&	3.27	&	2	-	4	\\
+p07-t25-v2t1	&	4646.18	&	4767	&	0	&	247	&	0.42	&	0.59	&	1.02	&	2	-	4	\\
+p07-t25-v2t2	&	4513.08	&	4592	&	0	&	121	&	1.45	&	2.03	&	3.47	&	2	-	3	\\\hline
+\multicolumn{9}{l}{$^1$Optimal or best IP found by the algorithm within the time limit.}\\
+\end{tabular}
+\end{table} 
+
+
+\newpage
+\begin{table}[h!tbp]
+\centering
+\caption{{\bf Updated} Results for instances with 40 customer 5 facilities}\label{40Cust_res2}
+\begin {tabular}[t]{|c|c|c|c|c|c|c|c|c|}  
+\hline
+{\bf Data File} & {\bf LP} & {\bf IP$^1$} & {\bf Gap} & {\bf Nodes} & \multicolumn{3}{|c|}{\bf CPU Time (hr)} & {\bf Soln: \# of} \\\cline{6-8}  
+\mbox{} & \mbox{} & \mbox{} & \mbox{} & \mbox{} &  {\bf Step 1 } & {\bf Step 2} & {\bf Total} & {\bf Fac. - Veh. } \\\hline
+p01-f40-v1t1	&	6976.02	&	7170	&	0.65\%	&	78	&	3	&	6	&	9	&	5	-	3	\\
+p01-f40-v1t2	&	6826.16	&	7170	&	4.28\%	&	8	&	3	&	6.03	&	9.04	&	5	-	3	\\
+p01-f40-v2t1	&	6700.21	&	7064	&	4.58\%	&	7	&	3	&	6.11	&	9.11	&	5	-	3	\\
+p01-f40-v2t2	&	{\bf 6535.65$^{2}$}	&	6984	&	{\bf 6.41\%}	&	1	&	3	&	6.17	&	9.18	&	5	-	3	\\
+p01-l40-v1t1	&	6899.63	&	7159	&	2.92\%	&	315	&	3	&	6	&	9	&	6	-	3	\\
+p01-l40-v1t2	&	6757.39	&	6934	&	1.25\%	&	15	&	2.98	&	6	&	8.99	&	5	-	3	\\
+p01-l40-v2t1	&	6616.66	&	6830	&	2.06\%	&	11	&	3	&	6.12	&	9.13	&	5	-	3	\\
+p01-l40-v2t2	&	6513.61	&	{\bf 6830$^{3}$}	&	{\bf 4.36\%}	&	2	&	3	&	7.17	&	10.17	&	6	-	3	\\
+p03-f40-v1t1	&	8697.41	&	8780	&	0	&	67	&	2.68	&	4.12	&	6.79	&	5	-	4	\\
+p03-f40-v1t2	&	8578.62	&	8753	&	1.78\%	&	7	&	2.95	&	6.35	&	9.3	&	5	-	4	\\
+p03-f40-v2t1	&	8439	&	8440	&	0.01\%	&	6	&	0.33	&	6.59	&	6.92	&	4	-	3	\\
+p03-f40-v2t2	&	{\bf No Soln}	&	8438	&	\mbox{}	&	1	&	2.01	&	6.15	&	8.15	&	4	-	4	\\
+p03-m40-v1t1	&	7050.88	&	7722	&	6.16\%	&	723	&	3	&	6	&	9	&	8	-	3	\\
+p03-m40-v1t2	&	6907.66	&	7544	&	7.14\%	&	17	&	3	&	6.07	&	9.07	&	6	-	3	\\
+p03-m40-v2t1	&	6793.88	&	7479	&	7.77\%	&	19	&	3	&	6.05	&	9.05	&	5	-	3	\\
+p03-m40-v2t2	&	6655.5	&	7430	&	10.42\%	&	2	&	3	&	6.76	&	9.76	&	6	-	3	\\
+p03-l40-v1t1	&	6920.38	&	7386	&	4.81\%	&	55	&	3	&	6.02	&	9.02	&	6	-	3	\\
+p03-l40-v1t2	&	6771.56	&	7212	&	5.62\%	&	3	&	3	&	6.1	&	9.1	&	8	-	4	\\
+p03-l40-v2t1	&	6662.92	&	7121	&	5.68\%	&	10	&	3	&	6	&	9.01	&	6	-	3	\\
+p03-l40-v2t2	&	{\bf 6533.35$^{2}$}	&	7018	&	{\bf 6.91\%}	&	1	&	3	&	6	&	9	&	4	-	2	\\
+p07-f40-v1t1	&	7053.07	&	7167	&	0	&	105	&	3	&	4.87	&	7.87	&	5	-	3	\\
+p07-f40-v1t2	&	6906.08	&	7340	&	5.24\%	&	19	&	3	&	6.04	&	9.04	&	6	-	3	\\
+p07-f40-v2t1	&	6745.5	&	6977	&	2.54\%	&	22	&	3	&	6.04	&	9.04	&	5	-	3	\\
+p07-f40-v2t2	&	6629.41	&	{\bf 6977$^{3}$}	&	{\bf 4.98\%}	&	2	&	3	&	6.9	&	9.9	&	5	-	3	\\
+p07-s40-v1t1	&	7256.31	&	7343	&	0	&	73	&	1.88	&	0.75	&	2.63	&	6	-	3	\\
+p07-s40-v1t2	&	7091.11	&	7117	&	0	&	23	&	1.19	&	1.7	&	2.89	&	5	-	3	\\
+p07-s40-v2t1	&	6924.49	&	7209	&	2.54\%	&	212	&	3	&	6	&	9	&	6	-	3	\\
+p07-s40-v2t2	&	6762.76	&	7022	&	2.85\%	&	17	&	3	&	6	&	9	&	5	-	3	\\
+p07-t40-v1t1	&	6940.52	&	7255	&	3.45\%	&	43	&	3	&	6.06	&	9.06	&	6	-	3	\\
+p07-t40-v1t2	&	6806.52	&	7058	&	3.56\%	&	2	&	3	&	6.19	&	9.19	&	5	-	3	\\
+p07-t40-v2t1	&	6649.81	&	6663	&	0.19\%	&	4	&	3	&	6.12	&	9.12	&	4	-	3	\\
+p07-t40-v2t2	&	{\bf No Soln}	&	{\bf 6663$^{3}$}	&	\mbox{}	&	1	&	3	&	6	&	9	&	5	-	3	\\\hline
+\multicolumn{9}{l}{$^{1}$ Optimal or best IP found by the algorithm within the time limit.}\\
+\multicolumn{9}{l}{$^{2}$ Lower bound for the LP solution.}\\
+\multicolumn{9}{l}{$^{3}$ IP solution is updated using the instances with smaller vehicle capacity and time limit.}\\
+
+\end{tabular}
+\end{table}  
+
+{\bf Effect of Facility Fixed Costs:} With a subset of  instance group with 40 customers, we measured the
+effect of facility fixed costs on the difficulty of the problem. We used 7 instances in this experiment. 
+We investigated 4 different cases: 1. Base case which is the results in table \ref{40Cust_res2} in
+which the facility fixed costs are generated using a uniform distribution between 1500 and 2300 as explained
+in section \ref{ssec:DesCord}, 2. Half of base case in which the half of the facility fixed costs used in base case
+are used, 3. Same fixed costs case in which the average fixed cost \$1900 is used for every facility, 
+4. 0 Fixed cost case in which the facility fixed costs are zero. Table \ref{CompFacFixedC} shows
+the results of the experiment. 
+ 
+\begin{table}[h!tbp]
+\centering
+\caption{Effect of Facility Fixed Cost}\label{CompFacFixedC}
+\begin {tabular}[t]{|c|c|c|c|c|c|c|c|c|}  
+\hline 
+Instance & \multicolumn{2}{|c|}{1. Base Case} &  \multicolumn{2}{|c|}{2. Half of Base Case}	&  \multicolumn{2}{|c|}{3. Same Fixed Costs Case}	&  \multicolumn{2}{|c|}{4. Zero Fixed Cost} \\\cline{2-9}			
+\mbox{} & Gap &	TCPU (hr)	& Gap &	TCPU (hr)	& Gap & TCPU (hr)	& Gap & TCPU (hr)\\\hline
+p03-f40-v1t1	&	0.00\%	&	6.79	&	0.00\%	&	8.15	&       0.00\%	&	7.41	&	0.00\%	&	4.84	\\
+p03-f40-v1t2	&	1.78\%	&	9.3	&	1.95\%	&	9.16	&	0.00\%	&	5.96	&	0.00\%	&	4.81	\\
+p03-f40-v2t1	&	0.01\%	&	6.92	&	4.45\%	&	9.36	&	0.08\%	&	7.53	&	0.44\%	&	7.58	\\
+p07-f40-v1t1	&	0.00\%	&	7.87	&	0.00\%	&	5.25	&	0.00\%	&	7.41	&	0.00\%	&	6.16	\\
+p07-f40-v1t2	&	5.24\%	&	9.04	&	4.92\%	&	9.04	&	3.19\%	&	9.04	&	12.69\%	&	9.17	\\
+p07-f40-v2t1	&	2.54\%	&	9.04	&	4.18\%	&	9.02	&	2.68\%	&	9.06	&	0.00\%	&	6.07	\\
+p07-f40-v2t2	&	4.98\%	&	9.9	&	7.18\%	&	9.78	&	4.65\%	&	9.32	&	5.95\%	&	10.11	\\\hline
+\end{tabular}
+\end{table}  
+
+**** There is not a significant pattern! What should be our comment? *****
+
+{\bf Comparing Vehicle Fixed Costs:} To see the effect of the magnitude of the vehicle fixed cost,
+we designed an experiment that compares 3 cases using 8 difficult instances with 40 customers and using 
+parameters Vcap2 and timelimit2 (px-v2t2). Note that the instance px-v2t2 is the most difficult instance
+in group px (px-v1t1, px-v1t2, px-v2t1, px-v2t2). The base case is formed with the results in table
+\ref{40Cust_res2} in which we used \$225 as a vehicle cost. We solved the instance group
+for this experiment with vehicle fixed cost of \$110 (Case 2) and with 0 vehicle fixed cost
+(Case 3).  In this experiment, since we only solved a subset of our instance group, 
+we did not update the upper bounds for px-v2t2 instances using the IP solutions
+of instances px-v1t1, px-v1t2 or px-v2t1.  
+ Table \ref{CompVehFixedC} shows the results of the experiment. The results support that
+increasing the vehicle fixed cost increases the difficulty of the problem. While in the base case,
+the algorithm can not find the exact LP solution for 4 instances, in case 2 and 3, LP solutions can be 
+found for all instances. In addition, the gaps for all instances in case 2 is less than the gaps in
+base case. And the gaps for all instances in case 3 is less than the gaps in
+case 3. In case 3 with zero fixed cost, the algorithm can almost find the optimal integer
+solutions.  
+
+
+\begin{table}[h!tbp]
+\centering
+\caption{Effect of Vehicle Fixed Cost}\label{CompVehFixedC}
+\begin {tabular}[t]{|c|c|c|c|c|c|c|}  
+\hline 
+Instance & \multicolumn{2}{|c|}{Base Case: VF=\$225} &  \multicolumn{2}{|c|}{Case 2: VF=\$110}	&  \multicolumn{2}{|c|}{Case 3: VF=\$0} \\\cline{2-7}
+\mbox{} & Exact LP found? & Gap & Exact LP found? & Gap & Exact LP found? & Gap \\\hline
+
+p01-f40-v2t2	&	No	&	-	&	yes	&	4.07\%	&	yes	&	0.53\%	\\
+p01-l40-v2t2	&	yes	&	9.10\%	&	yes	&	0.67\%	&	yes	&	0.03\%	\\
+p03-f40-v2t2	&	No	&	-	&	yes	&	0.14\%	&	yes	&	0.02\%	\\
+p03-m40-v2t2	&	yes	&	10.42\%	&	yes	&	6.98\%	&	yes	&	0.23\%	\\
+p03-l40-v2t2	&	No	&	-	&	yes	&	4.79\%	&	yes	&	0.04\%	\\
+p07-f40-v2t2	&	yes	&	5.29\%	&	yes	&	1.86\%	&	yes	&	0.02\%	\\
+p07-s40-v2t2	&	yes	&	2.85\%	&	yes	&	1.01\%	&	yes	&	0.00\%	\\
+p07-t40-v2t2	&	No	&	-	&	yes	&	2.49\%	&	yes	&	0.28\%	\\\hline
+\end{tabular}
+\end{table}  
+
+
+
+
+
+\begin{comment}
+
+RESULTS FROM PROPOSAL April 2006
+We terminated
+the branch-and-price algorithm when we found the optimal integer solution or we 
+exceeded 8 hours of CPU time.  
+%Table \label{BPAlg25} shows the results for the instances with 
+%25 customers and table  \label{BPAlg30} shows the results for the instances with 30 customers.
+In table  \ref{BPAlg25} and  table \ref{BPAlg30}, we present the results for the instances
+with 25 customers and the results for the instances with 30 customers, respectively. The tables include
+the LP relaxation bound, the optimal or best integer solution, the integrality gap when the branch-and-price
+algorithm terminates, the total number of evaluated nodes in the tree, the total number of columns,
+the time spent to solve the pricing problems, the time spent to solve the master problems
+and the total time. In addition, the tables report  the number of facilities selected, the number of 
+vehicles (pairings) in the integer solution and the average number of customers per vehicle.  
+
+{\bf Instances with 25 customers} We found optimal integer solution for 15 instances (out of 24). The
+integrality gaps for the other 6 instances are less than 0.5\%. We have a 30\% gap in one of the
+instances and less than 5\% gap in the remaining two instances. 
+Except the $p03$ instances, the largest computation time is used for the instances with $v2t2$ 
+(the time limit in $t2$ instances is greater than the time limit in $t1$ instances and the vehicle 
+capacity in $v2$ instances is larger than the vehicle capacity in $v1$ instances). All of the $p03-f25$ 
+instances result in integrality gaps, and among $p03-l25$ instances, $v1t2$ case uses the most  time. 
+In general, the problem becomes more difficult as the time limit and the vehicle capacity increases. 
+
+{\bf Instances with 30 customers} We could not find the LP relaxations of the 4 instances within
+our time limit. We found optimal or best integer solutions with a gap less than 1\% for 12 instances. 
+Our largest integrality gap is 8.2\% for the other instances. All 4 of the instances that could not
+be solved at the root node have time limit $t2$. Three of these 4 instances have vehicle capacity $v2$. 
+Interestingly, for the $p11$ instances, the  $v1t1$ cases are more difficult to solve than the other $p11$ cases. 
+This result shows that the larger vehicle capacity and the time limit are better for $p11$ instances.  
+
+%We have heuristically solved the LRS problem with formulation SPP2. We applied facility 
+%location variable branching and total number of vehicles branching. When there is not any
+%fractional T and nV variable in the solutions of the leaves of the branch-and-price tree, the
+%algorithm terminates and gives the best upper bound as the IP solution. In Table 5, 
+%Gap1 represents the \% gap between the LP relaxation and Best IP, Gap2 represents the \% gap 
+%between the algorithm's Best IP and optimal IP solution. In most of the instances, the best-IP
+%found during the algorithm is equal to the optimal solution of the LRS problem.
+
+\begin{sidewaystable}
+%\begin{table}
+\centering
+\caption{Results of the Branch-and-Price Algorithm for 25 Customers} \label{BPAlg25}
+\begin {tabular}[b]{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+{\bf Data File} & {\bf LP} & {\bf Optimal or} & {\bf \% Int.} & {\bf \# of BB} &{\bf \# of } &  \multicolumn {3}{|c|}{{\bf Times}} & {\bf \# of } & {\bf \# of } & {\bf Avg. \# of } \\\cline {7-9}
+\mbox{}& {\bf Relax.} & {\bf Best IP} & {\bf  Gap} & {\bf Nodes} & {\bf Col.} & {\bf CG} & {\bf LP} & {\bf Total} & {\bf Fac.} & {\bf Veh.}& {\bf Cust./Veh.} \\\hline
+p01-f25-v1t1	&	4404.3	&	4618.83	&	0	&	77	&	10992	&	5037.54	&	72.05	&	13407.03	&	2	&	4	&	6.25	\\\hline
+p01-f25-v1t2	&	4321.41	&	4406.33* &	0.06	&	31	&	11669	&	21429.9	&	45.56	&	28809.06	&	2	&	3	&	8.33	\\\hline
+p01-f25-v2t1	&	4266.38	&	4351.33	&	0	&	53	&	16431	&	13884.42	&	100.67	&	15878.83	&	2	&	3	&	8.33	\\\hline
+p01-f25-v2t2	&	4192.23	&	4353*	&	3.52	&	3	&	14037	&	28407.81	&	22.69	&	28962.15	&	2	&	3	&	8.33	\\\hline \hline
+p03-f25-v1t1	&	4699.51	&	6702.33* &	29.28	&	253	&	13525	&	1853.45	&	175.16	&	28909.78	&	4	&	6	&	4.17	\\\hline
+p03-f25-v1t2	&	4582.2	&	4741*	&	0.18	&	204	&	13308	&	6917.51	&	110.89	&	29171.98	&	2	&	4	&	6.25	\\\hline
+p03-f25-v2t1	&	4492.06	&	4674.33	* &	0.17	&	201	&	16559	&	3556.32	&	159.15	&	28901.44	&	2	&	4	&	6.25	\\\hline
+p03-f25-v2t2	&	4404.59	&	4676.83 *&	4.07	&	15	&	15243	&	21519.04	&	53.74	&	28826.39	&	2	&	4	&	6.25	\\\hline \hline
+p03-l25-v1t1	&	4682.91	&	4721	&	0	&	9	&	9574	&	357.93	&	10.9	&	618.55	&	2	&	4	&	6.25	\\\hline
+p03-l25-v1t2	&	4562.92	&	4707.17* &	0.03	&	203	&	13862	&	6108.67	&	89.66	&	28831.01	&	2	&	4	&	6.25	\\\hline
+p03-l25-v2t1	&	4526.2	&	4653.83	&	0	&	113	&	12189	&	2416.9	&	65.06	&	6205.48	&	2	&	4	&	6.25	\\\hline
+p03-l25-v2t2	&	4416.08	&	4459.33	&	0	&	47	&	15467	&	11040.15	&	59.04	&	18920.63	&	2	&	3	&	8.33	\\\hline \hline
+p07-f25-v1t1	&	4560.82	&	4678.5	&	0	&	99	&	13161	&	1775.92	&	74.73	&	5201.75	&	2	&	4	&	6.25	\\\hline
+p07-f25-v1t2	&	4457.51	&	4527.5	&	0	&	43	&	13761	&	11206.98	&	49.73	&	18776.02	&	2	&	4	&	6.25	\\\hline
+p07-f25-v2t1	&	4408.23	&	4411.83	&	0	&	3	&	12975	&	881.76	&	10.66	&	5585.84	&	2	&	3	&	8.33	\\\hline
+p07-f25-v2t2	&	4303.73	&	4411.83* &	0.43	&	23	&	15781	&	28081.55	&	62.56	&	28885.06	&	2	&	3	&	8.33	\\\hline \hline
+p11-f25-v1t1	&	7601.51	&	7784	&	0	&	43	&	2055	&	5.68	&	1.51	&	24.01	&	3	&	6	&	4.17	\\\hline
+p11-f25-v1t2	&	7521.76	&	7616.5	&	0	&	27	&	2735	&	7.62	&	1.43	&	20.98	&	3	&	6	&	4.17	\\\hline
+p11-f25-v2t1	&	7371.89	&	7500.67	&	0	&	33	&	2897	&	9.34	&	2.23	&	24.6	&	3	&	6	&	4.17	\\\hline
+p11-f25-v2t2	&	7254.45	&	7459.83	&	0	&	341	&	4786	&	67.75	&	36.03	&	2584.29	&	3	&	5	&	5	\\\hline \hline
+p11-l25-v1t1	&	8178.02	&	8443.83	&	0	&	1405	&	1796	&	17.43	&	20.93	&	5100.98	&	4	&	11	&	2.27	\\\hline
+p11-l25-v1t2	&	8036.66	&	8231.67	&	0	&	297	&	2038	&	12.47	&	4.39	&	349.94	&	3	&	7	&	3.57	\\\hline
+p11-l25-v2t1	&	7633.51	&	7916.67	&	0	&	147	&	1993	&	10.47	&	4.31	&	204.51	&	3	&	6	&	4.17	\\\hline
+p11-l25-v2t2	&	7579.66	&	7750.5*	&	0.08	&	2662	&	3752	&	62.27	&	46.43	&	28807.98	&	3	&	6	&	4.17	\\\hline \hline
+\multicolumn{12}{l}{* The best IP}
+\end{tabular}
+%\end{table}
+\end{sidewaystable} 
+
+
+
+\begin{sidewaystable}
+%\begin{table}
+\centering
+\caption{Results of the Branch-and-Price Algorithm for 30 Customers} \label{BPAlg30}
+\begin {tabular}[b]{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+{\bf Data File} & {\bf LP} & {\bf Optimal or} & {\bf \% Int.} & {\bf \# of BB} &{\bf \# of } &  \multicolumn {3}{|c|}{{\bf Times}} & {\bf \# of } & {\bf \# of } & {\bf Avg. \# of } \\\cline {7-9}
+\mbox{}& {\bf Relax.} & {\bf Best IP} & {\bf  Gap} & {\bf Nodes} & {\bf Col.} & {\bf CG} & {\bf LP} & {\bf Total} & {\bf Fac.} & {\bf Veh.}& {\bf Cust./Veh.} \\\hline
+p01-f30-v1t1	&	4821.07	&	4913*	&	0.87	&	101	&	20550	&	16375.4	&	259.83	&	28831.54	&	2	&	7.5	&	6.25	\\\hline
+p01-f30-v1t2	&	-	&		&		&	1	&	15840	&	28834.24	&	27.17	&	28873.28	&		&		&		\\\hline
+p01-f30-v2t1	&	4582.27	&	4944.67* &	7.26	&	3	&	22584	&	21654.47	&	54.48	&	28948.5	&	2	&	6	&	5	\\\hline
+p01-f30-v2t2	&	-	&		&		&	1	&	22160	&	32603.81	&	24.52	&	32636.89	&		&		&		\\\hline \hline
+p03-f30-v1t1	&	6467.35	&	6570.17* &	1.06	&	64	&	16568	&	10499.2	&	76.25	&	29837.43	&	4	&	6	&	5	\\\hline
+p03-f30-v1t2	&	6370.12	&	6574.33* &	3.11	&	2	&	15165	&	25940.42	&	12.38	&	33184.98	&	3	&	7.5	&	6.25	\\\hline
+p03-f30-v2t1	&	6263.17	&	6427.33* &	2.29	&	4	&	22846	&	27591.15	&	37.77	&	29324.21	&	3	&	7.5	&	6.25	\\\hline
+p03-f30-v2t2	&	-	&		&		&	1	&	21642	&	30788.36	&	2.62	&	30792.35	&		&		&		\\\hline \hline
+p03-l30-v1t1	&	4896.04	&	5014.67* &	0.07	&	95	&	17985	&	5829.87	&	132.57	&	28874.86	&	2	&	6	&	5	\\\hline
+p03-l30-v1t2	&	4756.95	&	4905.67* &	2.42	&	33	&	21199	&	25728.99	&	122.48	&	28801.91	&	4	&	4.29	&	3.57	\\\hline
+p03-l30-v2t1	&	4679.23	&	4730.17	&	0	&	65	&	21009	&	14066.54	&	154.32	&	28557.37	&	2	&	7.5	&	6.25	\\\hline
+p03-l30-v2t2	&	4562.29	&	4965.5*	&	8.12	&	2	&	22270	&	23552.23	&	35.4	&	30840.03	&	2	&	6	&	5	\\\hline \hline
+p07-f30-v1t1	&	4765.63	&	4808.33* &	0.05	&	138	&	24113	&	11038.05	&	300.07	&	28859.69	&	2	&	7.5	&	6.25	\\\hline
+p07-f30-v1t2	&	4654.19	&	4882.33* &	4.55	&	6	&	20532	&	21641.46	&	49.52	&	28928.4	&	2	&	7.5	&	6.25	\\\hline
+p07-f30-v2t1	&	4558.21	&	4729.17* &	2.47	&	17	&	23982	&	25993.7	&	129.95	&	28870.75	&	2	&	7.5	&	6.25	\\\hline
+p07-f30-v2t2	&	-	&		&		&	1	&		&	29020.8	&	31.9	&	29059.58	&		&		&		\\\hline \hline
+p11-f30-v1t1	&	7916.08	&	8058*	&	0.29	&	1960	&	4089	&	68.31	&	64.82	&	28816.77	&	3	&	4.29	&	3.57	\\\hline
+p11-f30-v1t2	&	7791.1	&	8036.33* &	0.34	&	1430	&	4893	&	73.86	&	54.74	&	28843.89	&	3	&	4.29	&	3.57	\\\hline
+p11-f30-v2t1	&	7531.81	&	7634.67	&	0	&	137	&	3670	&	32.27	&	6.56	&	585.2	&	3	&	5	&	4.17	\\\hline
+p11-f30-v2t2	&	7469.84	&	7634.67	&	0	&	309	&	5376	&	86.97	&	18.05	&	2743.63	&	3	&	5	&	4.17	\\\hline \hline
+p11-l30-v1t1	&	9929.75	&	10043	&	0	&	525	&	2729	&	24.61	&	7.18	&	2973.63	&	4	&	4.29	&	3.57	\\\hline
+p11-l30-v1t2	&	9837.09	&	9937.33	&	0	&	49	&	3182	&	18.53	&	2.13	&	73.18	&	4	&	4.29	&	3.57	\\\hline
+p11-l30-v2t1	&	9645.66	&	9758.17	&	0	&	127	&	3345	&	34.53	&	6.82	&	331.64	&	4	&	4.29	&	3.57	\\\hline
+p11-l30-v2t2	&	9416.78	&	9500.67	&	0	&	105	&	4488	&	55.82	&	5.75	&	324.02	&	4	&	5	&	4.17	\\\hline \hline
+\multicolumn{12}{l}{- The algorithm cannot find a solution within the time limit}\\
+\multicolumn{12}{l}{* The best IP}
+\end{tabular}
+%\end{table}
+\end{sidewaystable} 
+\end{comment}

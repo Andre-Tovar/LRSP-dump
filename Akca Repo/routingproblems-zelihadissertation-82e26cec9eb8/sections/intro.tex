@@ -1,0 +1,247 @@
+ 
+%\chapter {Introduction and Motivation}
+\section{Introduction} 
+
+Logistics, planning and controlling the efficiency of the flow
+and storage activities in the system, is one of the most important 
+functions of a company. The design of a distribution system begins 
+with the questions of where to locate the facilities and how to 
+allocate customers to the selected facilities. 
+Furthermore, determining how to distribute goods to customers from
+these facilities and how to use vehicles and/or 
+distribution resources efficiently are important
+decisions that arise in the design of logistics systems. 
+
+In this research, we focus on a class of problems that integrates
+the decisions of facility location, vehicle routing, and route assignment 
+and seeks to minimize the total cost. We refer to such problems as location 
+routing and scheduling problems (LRSPs). The LRSP generalizes and subsumes 
+several well-studied problem classes, such as the location and routing problems 
+(LRP), the vehicle routing problem (VRP), the multi-depot VRP (MDVRP), and the 
+VRP with multiple trips (VRPMT). 
+
+Given a set of candidate facility locations 
+and a set of customer locations, the objective of the LRSP is to select a subset 
+of the facilities, construct a set of delivery routes, and assign routes to vehicles 
+in such a way as to minimize total cost subject to satisfaction of the system's constraints. 
+The total cost may include both fixed costs and operating costs of 
+facilities and vehicles. 
+
+The LRSP arises in the context of many delivery problems, 
+such as gas, oil, food, beverage, bill and newspaper delivery.
+In practical applications of the LRS problem, various constraints need to be considered. 
+For example, facilities and vehicles may have capacities, the length of routes may
+be restricted with time limits, service of customers may include both deliveries 
+and pick ups, service to customers might be restricted to occur within time windows, 
+different types of vehicles might be  used, customers might have priorities, and some 
+data such as demand of customers or travel times might be uncertain. 
+In this research, we consider an LRSP with capacity constraints on the 
+facilities and on the vehicles, as well as time constraints on the vehicles. 
+We assume that all data is deterministic, and the problem is either a pick-up or 
+delivery problem. 
+
+
+\section {Motivation}
+The motivation behind the integration of three decisions, facility location, 
+vehicle routing and vehicle scheduling is to improve the efficiency of the 
+solution and yield more accurate and cost-effective solutions. 
+Early in the literature (\citet{Webb} and \citet{Salhi}),
+it has been realized that the location decision and the routing 
+decision are interdependent when customers demand less-than-truckload quantities.
+%and can be served on multiple-stop routes,  
+Therefore, if it is possible to serve customers through routes making multiple stops, 
+the assumption of single-customer routes in location models will not accurately 
+capture the transportation cost. Gas and oil delivery systems, distribution of goods to 
+retailers, and newspaper and bill delivery systems are examples of such systems
+that require routes with multiple stops.
+
+Location and routing models seek to minimize total cost by simultaneously selecting a 
+set of facilities and constructing a set of delivery routes that satisfy the specified 
+system constraints. LRPs, however, implicitly assume that each
+vehicle covers exactly one route. This may potentially overestimate the number of 
+vehicles required and the associated distribution cost. In many cases, it is 
+possible to serve multiple routes with a single vehicle, in which case the 
+decision of assigning routes to vehicles becomes interdependent with
+the location and routing decisions. \citet{Eilon} reports that fixed costs 
+are equal to the eighty percent of total vehicle costs. Therefore, models 
+integrating the scheduling decision and considering the fixed costs of the 
+vehicles may yield more cost efficient solutions. Furthermore, some systems 
+require different types of vehicles, which may have different costs 
+than the multi-purpose vehicles. In such cases, the number of 
+customized vehicles is an important decision for the 
+company. Similarly, if the service to the customer 
+requires a trained worker who is more expensive than a regular driver, then
+the company will want to consider training costs, which are also fixed costs.
+
+Why capturing the costs more accurately is important? 
+Major components of logistics cost are warehousing costs including inventory carrying costs 
+and transportation costs. Based on estimates for the U.S. in 2002, transportation costs 
+were \$577 billion, and inventory carrying costs and warehousing costs were \$298 billion. 
+%and logistics administration costs were \$35 billion. 
+The total logistics costs were \$910 billion, which was equivalent to 8.7\% of the U.S. gross 
+domestic product in 2002 (\citet{MacroSys}). Undeniably, logistics
+costs are very important for the U.S. economy as well as for a company. 
+%That is why logistics has received such attention by researchers and managers.   
+%With an increase in the efficiency of logistics activities, 
+%the related costs will decrease and customer satisfaction will increase. 
+Since the contribution of logistics activities to the GDP is
+large, improvements in the efficiency of the logistics activities will contribute to the 
+growth of the U.S. GDP.  Even a small amount of improvement in distribution systems
+can result in a substantial amount of savings. 
+%Therefore, logistics 
+%decisions are very important and require professional decisions and
+%efficient solution techniques to optimize the best interests.
+
+Another motivation to consider scheduling decisions together with the location
+and routing decisions is to be able include more system constraints to the model. 
+In distribution systems in which  the company has a constant fleet size, the number 
+of vehicles should be considered in the model. To be able to cover all customers,
+it might be necessary to use a vehicle for more than one route. Therefore, the 
+decision of scheduling of vehicles must be considered with the decisions of 
+location and routing.  
+In some systems, there are time constraints for the customers or
+the vehicles. Delivery of some items such as perishable foods, newspapers and
+bills are time sensitive. In addition, the overtime for the workers might
+be expensive, hence the company is not willing to pay overtime driver hours.
+Therefore, while designing the model, time limit for the vehicle routes must be
+considered.   
+
+
+
+
+
+
+
+
+
+\begin{comment}
+Designing a distribution network requires decisions regarding 
+location, routing and scheduling. Companies must decide
+where to locate their facilities, how to serve their customers
+on routes and how to use their vehicles and/or 
+distribution resources efficiently to optimize the flow on their
+distribution networks and to optimize storage costs in their warehouses.  
+\end{comment}
+\begin{comment}
+In this proposal, we study integrated location, routing and scheduling (LRS) problems.
+In general terms, the LRS problem integrates the decisions of determining 
+the optimal number and locations of facilities, determining an optimal set of
+vehicle routes from facilities to customers and determining an optimal assignment
+of routes to vehicles  subject to scheduling constraints. The objective is to minimize 
+the total system cost, which may include both fixed costs and operating costs of 
+facilities and vehicles. LRS problems arise in the context of many delivery problems, 
+such as gas and oil delivery, food and beverage delivery and bill and newspaper delivery.
+The LRS problem generalizes a number of logistics problems including the location
+routing problem (LRP), the multi-depot vehicle routing problem (MDVRP) and the vehicle
+routing problem with multiple trips (VRPMT). 
+
+In practical applications of the LRS problem, various constraints need to be considered. 
+For example, facilities and vehicles may have capacities, the length of routes may
+be restricted by time limits, service of customers may be both deliveries and pick ups, 
+service to customers might be restricted to occur within given time windows, 
+vehicles might be  different types, customers might have priorities, and some 
+data such as demand of customers or travel times might be uncertain. In this 
+proposal, we describe our progress to date on developing models and solution
+algorithms for a deterministic system with capacitated facilities and vehicles and a 
+time restriction for the working hours of the vehicles as scheduling constraint.  
+\end{comment}
+
+\begin{comment}
+\section{Motivation}
+\label{motiv}
+Since logistics systems are very complicated and require many
+different constraints to be considered, it is almost impossible
+to model the exact systems and to optimize them with the current solution 
+methods. Therefore, simpler models are developed to approximate the
+real systems. The  design of a basic logistics system begins with 
+answering questions of (i) where to locate the facilities and 
+(ii) how to allocate customers to these facilities. These can be
+determined using location-allocation models, which are based on the assumption that 
+customers are served individually on out-and-back routes. Location-allocation
+models are not 
+appropriate for situations in which customers have demands that are 
+``less-than-truckload'' and therefore multiple customers can be served on a route 
+by one vehicle. Gas and oil delivery systems, distribution of goods to 
+retailers, and newspaper and bill delivery systems are examples of such systems
+that require routes with multiple stops. 
+
+After determining the location of facilities and the allocation of customers
+to the facilities, we can solve a vehicle routing problem for each facility
+to determine the customer routes with multiple stops. However,  
+the decisions of location and routing are interdependent. 
+To represent the distribution system realistically and to find more cost 
+efficient solutions, the routing decisions should be included in the location-allocation 
+model. Combined location and routing problems consider the multiple stop nature of 
+delivery routes in deciding together the facility locations and the optimal vehicle routes. 
+ 
+Location routing models assume that each vehicle covers one route. Ignoring the 
+possibility that a vehicle may cover more than one route results in a solution that 
+potentially overestimates the number of vehicles required and the associated distribution cost.
+\citet{Eilon} reports that fixed costs are equal to the eighty percent of total vehicle costs.
+Therefore, a more realistic model  must consider the fixed costs of the 
+vehicles to get more cost efficient solutions. Furthermore, some systems require 
+different type of vehicles, which may have different costs than the multi-purpose vehicles. 
+In such cases, the company also must decide the optimal number of customized vehicles 
+necessary to serve its customers. Similarly, if the service to the customer 
+requires a trained worker who is more expensive than a regular driver, then
+the company will want to consider training costs,  which are fixed costs.
+% and want to minimize the total number of trained drivers.    
+
+In distribution systems in which  the company has a constant fleet size, the number 
+of vehicles should be considered in the model. To be able to cover all customers,
+it might be necessary to use a vehicle for more than one route. Therefore, the 
+decision of scheduling of vehicles must be considered with the decisions of 
+location and routing.  
+
+Another motivation to consider scheduling decisions together with the location
+and routing decisions is the time constraints for the customers or
+the vehicles. Delivery of some items such as perishable foods, newspapers and
+bills are time sensitive. In addition, the overtime for the workers might
+be expensive, hence the company is not willing to pay overtime driver hours.
+Therefore, while designing the model, time limit for the vehicle routes must be
+considered.   
+\end{comment}
+
+
+
+%-design of logistic system-->location, routing and scheduling
+%-facility location problems
+%-fixed facilities vehicle routing
+%-location allocation problems
+%-imporatnce of scheduling
+%examples fleet size is constant
+%-save fixed costs 
+%-overtime is expensive
+%-trained drivers
+
+
+%A more realistic distribution system must consider the fixed costs of the vehicles
+%to get more cost efficient solutions. \citet{Eilon} reports that fixed costs are
+%equal to the \%80 of total vehicle costs. Therefore, ignoring the fixed cost of  
+%vehicles results in unrealistic cost estimates for the real system. 
+
+%Combined location and routing problems consider 
+%the multiple stop nature of delivery routes in deciding the facility locations 
+%and the optimal vehicle routes together, but they assume that each vehicle covers one
+%route. Ignoring the possibility that a vehicle may cover more than one route results
+%in a solution that overestimates the number of vehicles required and the 
+%associated distribution cost. The integrated location, routing and scheduling 
+%(LRS) problem simultaneously optimizes the decisions of facility location, vehicle
+%routing and scheduling.
+
+
+%[for motivation--> from Petch and Salhi sayfa 70 e bak]
+
+%motivation-most of the real life applications fleet size is constantyou need 
+%to assign more than one task to a vehicle.  
+
+%also look at multiobjective LRS paper 
+
+%Since the transportation costs are huge, even a small percentage of 
+%reduction in cost may cause large savings. Although in literature, 
+%some of the constraints of real-life problems are relaxed to get 
+%simpler models, it has been realized that consideration of integrated  
+%decisions and combined optimization of these decisions may result more efficient 
+%solutions. In the real world, the decisions of locating facilities, 
+%determining routes from facilities to customers and scheduling the vehicles
+%are interdependent.

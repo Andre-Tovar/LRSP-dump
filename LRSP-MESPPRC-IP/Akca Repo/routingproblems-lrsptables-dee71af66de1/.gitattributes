@@ -1,0 +1,12 @@
+* text=auto !eol
+/3PhaseAlgorithmLowLL.pdf -text
+/BidirecOldPri.pdf -text
+/CompNewPricingProbs25.pdf -text svneol=unset#unset
+/CompNewPricingProbs40-1.pdf -text
+/CompNewPricingProbs40-2.pdf -text svneol=unset#unset
+/LLimitComp.pdf -text svneol=unset#unset
+/new2StepPricing -text
+/new2StepPricing25.pdf -text
+/new2StepPricing40.pdf -text
+/vbranch25.pdf -text svneol=unset#unset
+/vbranch40.pdf -text

@@ -1,0 +1,7 @@
+* text=auto !eol
+/F-n135-k7.ps -text
+/M-n101-k10-2.ps -text
+/M-n101-k10.ps -text
+/parallel.eps -text
+/talk.ps -text
+/talk.tex -text

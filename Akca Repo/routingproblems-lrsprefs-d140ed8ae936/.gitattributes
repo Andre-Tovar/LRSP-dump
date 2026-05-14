@@ -1,0 +1,21 @@
+* text=auto !eol
+/AltinkemerGavish.pdf -text
+/BrandaoMercer98.pdf -text
+/Crowder1.pdf -text svneol=unset#unset
+/DECOMP04-tkr.pdf -text
+/DecompDynamiccutGen-tkr2.pdf -text
+/FarisNemhauser.pdf -text svneol=unset#unset
+/FixdChargeProbValidIneqPadbergVanRoy85.pdf -text svneol=unset#unset
+/GeneralizedAssignPrbValidInqFacets-GottliebRao.pdf -text
+/LRS-LinChow02.pdf -text svneol=unset#unset
+/OliveraViera07.pdf -text svneol=unset#unset
+/PetchSalhi03.pdf -text svneol=unset#unset
+/PetchSalhi2007.pdf -text svneol=unset#unset
+/ShortestPathResourcek-cycle_irnich2006.pdf -text svneol=unset#unset
+/SymmetryhelpsRighiniSalani.pdf -text
+/TaillardLaporte96.pdf -text
+/VRPTW_desroisers.pdf -text svneol=unset#unset
+/espprc.pdf -text
+/larsen99vrptw.pdf -text
+/rcespp-RighiniSalani05.pdf -text
+/taillard95vrpmt.pdf -text

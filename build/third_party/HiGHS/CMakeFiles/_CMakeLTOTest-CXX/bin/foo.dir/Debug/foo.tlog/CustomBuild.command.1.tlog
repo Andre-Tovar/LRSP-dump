@@ -1,0 +1,10 @@
+^C:\USERS\2027A\DESKTOP\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\BUILD\THIRD_PARTY\HIGHS\CMAKEFILES\_CMAKELTOTEST-CXX\SRC\CMAKELISTS.TXT
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/CMakeFiles/_CMakeLTOTest-CXX/src -BC:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/CMakeFiles/_CMakeLTOTest-CXX/bin --check-stamp-file C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build/third_party/HiGHS/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

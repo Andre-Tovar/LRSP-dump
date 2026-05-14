@@ -1,0 +1,262 @@
+[
+  {
+    "instance_name": "synth_n4_f2_s1000",
+    "customer_count": 4,
+    "facility_count": 2,
+    "seed": 1000,
+    "facilities": [
+      {
+        "facility_id": 5,
+        "phase1_route_count": 10,
+        "phase1_time": 0.0014265999998315237,
+        "phase2_dp_time": 0.0029253000029711984,
+        "phase2_ip_time": 0.060265699998126365,
+        "phase2_dp_objective": 275.5991975022008,
+        "phase2_ip_objective": 275.5991975022008
+      },
+      {
+        "facility_id": 6,
+        "phase1_route_count": 10,
+        "phase1_time": 0.0013632000045618042,
+        "phase2_dp_time": 0.0029662000015378,
+        "phase2_ip_time": 0.059131199996045325,
+        "phase2_dp_objective": 275.5991975022008,
+        "phase2_ip_objective": 275.5991975022008
+      }
+    ]
+  },
+  {
+    "instance_name": "synth_n4_f2_s1001",
+    "customer_count": 4,
+    "facility_count": 2,
+    "seed": 1001,
+    "facilities": [
+      {
+        "facility_id": 5,
+        "phase1_route_count": 10,
+        "phase1_time": 0.0014272999978857115,
+        "phase2_dp_time": 0.002772399995592423,
+        "phase2_ip_time": 0.058999600005336106,
+        "phase2_dp_objective": 275.5991975022008,
+        "phase2_ip_objective": 275.5991975022008
+      },
+      {
+        "facility_id": 6,
+        "phase1_route_count": 10,
+        "phase1_time": 0.0014128000038908795,
+        "phase2_dp_time": 0.0032202000002143905,
+        "phase2_ip_time": 0.05821039999864297,
+        "phase2_dp_objective": 275.5991975022008,
+        "phase2_ip_objective": 275.5991975022008
+      }
+    ]
+  },
+  {
+    "instance_name": "synth_n5_f2_s1000",
+    "customer_count": 5,
+    "facility_count": 2,
+    "seed": 1000,
+    "facilities": [
+      {
+        "facility_id": 6,
+        "phase1_route_count": 15,
+        "phase1_time": 0.0037613000022247434,
+        "phase2_dp_time": 0.016007899997930508,
+        "phase2_ip_time": 0.061199600000691134,
+        "phase2_dp_objective": 327.17261183599084,
+        "phase2_ip_objective": 327.17261183599084
+      },
+      {
+        "facility_id": 7,
+        "phase1_route_count": 16,
+        "phase1_time": 0.0036379000011947937,
+        "phase2_dp_time": 0.017653700000664685,
+        "phase2_ip_time": 0.06281680000392953,
+        "phase2_dp_objective": 329.6401373176262,
+        "phase2_ip_objective": 329.6401373176262
+      }
+    ]
+  },
+  {
+    "instance_name": "synth_n5_f2_s1001",
+    "customer_count": 5,
+    "facility_count": 2,
+    "seed": 1001,
+    "facilities": [
+      {
+        "facility_id": 6,
+        "phase1_route_count": 15,
+        "phase1_time": 0.003569799999240786,
+        "phase2_dp_time": 0.01637289999780478,
+        "phase2_ip_time": 0.06596930000523571,
+        "phase2_dp_objective": 327.17261183599084,
+        "phase2_ip_objective": 327.17261183599084
+      },
+      {
+        "facility_id": 7,
+        "phase1_route_count": 16,
+        "phase1_time": 0.0035701999950106256,
+        "phase2_dp_time": 0.018035900000541005,
+        "phase2_ip_time": 0.06422200000088196,
+        "phase2_dp_objective": 329.6401373176262,
+        "phase2_ip_objective": 329.6401373176262
+      }
+    ]
+  },
+  {
+    "instance_name": "synth_n6_f2_s1000",
+    "customer_count": 6,
+    "facility_count": 2,
+    "seed": 1000,
+    "facilities": [
+      {
+        "facility_id": 7,
+        "phase1_route_count": 22,
+        "phase1_time": 0.008263800002168864,
+        "phase2_dp_time": 0.15433019999909448,
+        "phase2_ip_time": 0.058226299996022135,
+        "phase2_dp_objective": 363.7625394083966,
+        "phase2_ip_objective": 363.7625394083966
+      },
+      {
+        "facility_id": 8,
+        "phase1_route_count": 23,
+        "phase1_time": 0.008292500002426095,
+        "phase2_dp_time": 0.17774359999748413,
+        "phase2_ip_time": 0.058821099999477156,
+        "phase2_dp_objective": 363.76253940839655,
+        "phase2_ip_objective": 363.7625394083966
+      }
+    ]
+  },
+  {
+    "instance_name": "synth_n6_f2_s1001",
+    "customer_count": 6,
+    "facility_count": 2,
+    "seed": 1001,
+    "facilities": [
+      {
+        "facility_id": 7,
+        "phase1_route_count": 22,
+        "phase1_time": 0.007849699999496806,
+        "phase2_dp_time": 0.15422299999772804,
+        "phase2_ip_time": 0.05879289999575121,
+        "phase2_dp_objective": 363.7625394083966,
+        "phase2_ip_objective": 363.7625394083966
+      },
+      {
+        "facility_id": 8,
+        "phase1_route_count": 23,
+        "phase1_time": 0.008161600002495106,
+        "phase2_dp_time": 0.1764227000021492,
+        "phase2_ip_time": 0.05916599999909522,
+        "phase2_dp_objective": 363.76253940839655,
+        "phase2_ip_objective": 363.7625394083966
+      }
+    ]
+  },
+  {
+    "instance_name": "synth_n7_f2_s1000",
+    "customer_count": 7,
+    "facility_count": 2,
+    "seed": 1000,
+    "facilities": [
+      {
+        "facility_id": 8,
+        "phase1_route_count": 31,
+        "phase1_time": 0.016117500003019813,
+        "phase2_dp_time": 2.0980278000060935,
+        "phase2_ip_time": 0.06460109999898123,
+        "phase2_dp_objective": 418.5239243997443,
+        "phase2_ip_objective": 418.5239243997443
+      },
+      {
+        "facility_id": 9,
+        "phase1_route_count": 32,
+        "phase1_time": 0.016770299997006077,
+        "phase2_dp_time": 2.421593400002166,
+        "phase2_ip_time": 0.06459809999796562,
+        "phase2_dp_objective": 419.8175670480464,
+        "phase2_ip_objective": 419.8175670480464
+      }
+    ]
+  },
+  {
+    "instance_name": "synth_n7_f2_s1001",
+    "customer_count": 7,
+    "facility_count": 2,
+    "seed": 1001,
+    "facilities": [
+      {
+        "facility_id": 8,
+        "phase1_route_count": 31,
+        "phase1_time": 0.01650089999748161,
+        "phase2_dp_time": 2.0937505000038072,
+        "phase2_ip_time": 0.06445050000183983,
+        "phase2_dp_objective": 418.5239243997443,
+        "phase2_ip_objective": 418.5239243997443
+      },
+      {
+        "facility_id": 9,
+        "phase1_route_count": 32,
+        "phase1_time": 0.017077700002118945,
+        "phase2_dp_time": 2.35086830000364,
+        "phase2_ip_time": 0.06705939999665134,
+        "phase2_dp_objective": 419.8175670480464,
+        "phase2_ip_objective": 419.8175670480464
+      }
+    ]
+  },
+  {
+    "instance_name": "synth_n8_f2_s1000",
+    "customer_count": 8,
+    "facility_count": 2,
+    "seed": 1000,
+    "facilities": [
+      {
+        "facility_id": 9,
+        "phase1_route_count": 40,
+        "phase1_time": 0.030283899999631103,
+        "phase2_dp_time": 32.14959140000428,
+        "phase2_ip_time": 0.06299379999836674,
+        "phase2_dp_objective": 447.4784179920266,
+        "phase2_ip_objective": 447.4784179920266
+      },
+      {
+        "facility_id": 10,
+        "phase1_route_count": 37,
+        "phase1_time": 0.030075699993176386,
+        "phase2_dp_time": 20.836577100002614,
+        "phase2_ip_time": 0.0619901000027312,
+        "phase2_dp_objective": 447.4784179920266,
+        "phase2_ip_objective": 447.4784179920266
+      }
+    ]
+  },
+  {
+    "instance_name": "synth_n8_f2_s1001",
+    "customer_count": 8,
+    "facility_count": 2,
+    "seed": 1001,
+    "facilities": [
+      {
+        "facility_id": 9,
+        "phase1_route_count": 40,
+        "phase1_time": 0.0298010999977123,
+        "phase2_dp_time": 36.57604580000043,
+        "phase2_ip_time": 0.06202300000586547,
+        "phase2_dp_objective": 447.4784179920266,
+        "phase2_ip_objective": 447.4784179920266
+      },
+      {
+        "facility_id": 10,
+        "phase1_route_count": 37,
+        "phase1_time": 0.02998959999968065,
+        "phase2_dp_time": 20.650495100002445,
+        "phase2_ip_time": 0.061092700001609046,
+        "phase2_dp_objective": 447.4784179920266,
+        "phase2_ip_objective": 447.4784179920266
+      }
+    ]
+  }
+]

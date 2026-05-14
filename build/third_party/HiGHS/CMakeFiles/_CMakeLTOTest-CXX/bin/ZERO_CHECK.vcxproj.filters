@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\2027a\Desktop\LRSP-MESPPRC-IP\LRSP-MESPPRC-IP\build\third_party\HiGHS\CMakeFiles\_CMakeLTOTest-CXX\bin\CMakeFiles\74575aaa350fd05fc5a804e73d2e2cfe\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{C0C2149C-D09B-37EC-A329-650568444064}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

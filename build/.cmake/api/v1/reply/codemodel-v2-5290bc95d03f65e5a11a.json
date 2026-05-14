@@ -1,0 +1,820 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "Threads::Threads::@79c05b813a290356dfad",
+					"jsonFile" : "target-Threads__Threads-Debug-6c8f8ecc7c3b338b12d0.json",
+					"name" : "Threads::Threads",
+					"projectIndex" : 1
+				}
+			],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f6f22219c74102c3da70.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						5,
+						6
+					]
+				},
+				{
+					"build" : "third_party/HiGHS",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS-Debug-c67cceb36c7a72da747e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"build" : "third_party/HiGHS/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS.src-Debug-5e81359e1ca50123bd15.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/src",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "third_party/HiGHS/app",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS.app-Debug-32616fd396050719b240.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/app",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "third_party/HiGHS/examples",
+					"jsonFile" : "directory-third_party.HiGHS.examples-Debug-a67ec535e8de3edd1e3f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/examples"
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "mespprc_native",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						5,
+						6
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "HIGHS",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Debug-e74cd5205464963ddb8b.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@56f9d28844e2c8552c06",
+					"jsonFile" : "target-ALL_BUILD-Debug-768b9987e1ceb7956a58.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Debug-8bbda5a07d20a088ac4f.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "highs::@79c05b813a290356dfad",
+					"jsonFile" : "target-highs-Debug-53cb2c8af4a53a2e3e84.json",
+					"name" : "highs",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "highs-bin::@8b9e4dbb4cb0f55f42f5",
+					"jsonFile" : "target-highs-bin-Debug-dc2916f9105f77c5dd78.json",
+					"name" : "highs-bin",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mespprc_csmoke::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mespprc_csmoke-Debug-5dc10e47a780cd4a92e2.json",
+					"name" : "mespprc_csmoke",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mespprc_native::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mespprc_native-Debug-b073076866f33533a0ae.json",
+					"name" : "mespprc_native",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "Threads::Threads::@79c05b813a290356dfad",
+					"jsonFile" : "target-Threads__Threads-Release-6c8f8ecc7c3b338b12d0.json",
+					"name" : "Threads::Threads",
+					"projectIndex" : 1
+				}
+			],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-f6f22219c74102c3da70.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						5,
+						6
+					]
+				},
+				{
+					"build" : "third_party/HiGHS",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS-Release-5a9b44973040d88a423b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"build" : "third_party/HiGHS/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS.src-Release-5e81359e1ca50123bd15.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/src",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "third_party/HiGHS/app",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS.app-Release-c99cb6dfe6b0c9f0ebf2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/app",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "third_party/HiGHS/examples",
+					"jsonFile" : "directory-third_party.HiGHS.examples-Release-a67ec535e8de3edd1e3f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/examples"
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "mespprc_native",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						5,
+						6
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "HIGHS",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Release-e74cd5205464963ddb8b.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@56f9d28844e2c8552c06",
+					"jsonFile" : "target-ALL_BUILD-Release-768b9987e1ceb7956a58.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Release-8bbda5a07d20a088ac4f.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "highs::@79c05b813a290356dfad",
+					"jsonFile" : "target-highs-Release-fd1bd748666408a21350.json",
+					"name" : "highs",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "highs-bin::@8b9e4dbb4cb0f55f42f5",
+					"jsonFile" : "target-highs-bin-Release-5cb12efbcca99f80e23d.json",
+					"name" : "highs-bin",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mespprc_csmoke::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mespprc_csmoke-Release-b7d593716b3c1d4414f9.json",
+					"name" : "mespprc_csmoke",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mespprc_native::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mespprc_native-Release-7334d27030e44a190e41.json",
+					"name" : "mespprc_native",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "Threads::Threads::@79c05b813a290356dfad",
+					"jsonFile" : "target-Threads__Threads-MinSizeRel-6c8f8ecc7c3b338b12d0.json",
+					"name" : "Threads::Threads",
+					"projectIndex" : 1
+				}
+			],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-MinSizeRel-f6f22219c74102c3da70.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						5,
+						6
+					]
+				},
+				{
+					"build" : "third_party/HiGHS",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS-MinSizeRel-f45e078890c1213e332e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"build" : "third_party/HiGHS/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS.src-MinSizeRel-5e81359e1ca50123bd15.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/src",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "third_party/HiGHS/app",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS.app-MinSizeRel-3249578036e19bf4f497.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/app",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "third_party/HiGHS/examples",
+					"jsonFile" : "directory-third_party.HiGHS.examples-MinSizeRel-a67ec535e8de3edd1e3f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/examples"
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "mespprc_native",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						5,
+						6
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "HIGHS",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-e74cd5205464963ddb8b.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@56f9d28844e2c8552c06",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-768b9987e1ceb7956a58.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-MinSizeRel-8bbda5a07d20a088ac4f.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "highs::@79c05b813a290356dfad",
+					"jsonFile" : "target-highs-MinSizeRel-4fd72de7ef6a39ccb7a9.json",
+					"name" : "highs",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "highs-bin::@8b9e4dbb4cb0f55f42f5",
+					"jsonFile" : "target-highs-bin-MinSizeRel-c40bda87da57ae60c21e.json",
+					"name" : "highs-bin",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mespprc_csmoke::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mespprc_csmoke-MinSizeRel-f5d3c7c774b64caf41ed.json",
+					"name" : "mespprc_csmoke",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mespprc_native::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mespprc_native-MinSizeRel-ee9f2c0a2b16886796f0.json",
+					"name" : "mespprc_native",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "Threads::Threads::@79c05b813a290356dfad",
+					"jsonFile" : "target-Threads__Threads-RelWithDebInfo-6c8f8ecc7c3b338b12d0.json",
+					"name" : "Threads::Threads",
+					"projectIndex" : 1
+				}
+			],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-RelWithDebInfo-f6f22219c74102c3da70.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						5,
+						6
+					]
+				},
+				{
+					"build" : "third_party/HiGHS",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS-RelWithDebInfo-aceb7c174e04fd4b0b8e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"build" : "third_party/HiGHS/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS.src-RelWithDebInfo-5e81359e1ca50123bd15.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/src",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "third_party/HiGHS/app",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.HiGHS.app-RelWithDebInfo-25f13f52c235bd1a3a43.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/app",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "third_party/HiGHS/examples",
+					"jsonFile" : "directory-third_party.HiGHS.examples-RelWithDebInfo-a67ec535e8de3edd1e3f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "third_party/HiGHS/examples"
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "mespprc_native",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						5,
+						6
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "HIGHS",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-e74cd5205464963ddb8b.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@56f9d28844e2c8552c06",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-768b9987e1ceb7956a58.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-RelWithDebInfo-8bbda5a07d20a088ac4f.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "highs::@79c05b813a290356dfad",
+					"jsonFile" : "target-highs-RelWithDebInfo-fa6ad81e5e5b443e8f2b.json",
+					"name" : "highs",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "highs-bin::@8b9e4dbb4cb0f55f42f5",
+					"jsonFile" : "target-highs-bin-RelWithDebInfo-04fe4d8b413a15cb18bc.json",
+					"name" : "highs-bin",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mespprc_csmoke::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mespprc_csmoke-RelWithDebInfo-1e2b2a9d7c6e5f6a3fed.json",
+					"name" : "mespprc_csmoke",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mespprc_native::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mespprc_native-RelWithDebInfo-cf2e4114149827c163a0.json",
+					"name" : "mespprc_native",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/build",
+		"source" : "C:/Users/2027a/Desktop/LRSP-MESPPRC-IP/LRSP-MESPPRC-IP/mespprc_native"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}
