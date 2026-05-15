@@ -1,5 +1,6 @@
 @echo off
-REM Build mespprc_native using the bundled VS Build Tools toolchain.
+REM Build lrsp_native (and its mespprc_native dependency) using the bundled
+REM VS Build Tools toolchain.
 REM
 REM Usage:
 REM   scripts\build.bat              -- configure (if needed) and build

@@ -20,7 +20,8 @@ LRSP_Final_Package/
 │
 ├── lrsp_solver/               # Python LRSP solver — column generation
 │   ├── *.py                   # solver, master, pricing, instance, etc.
-│   └── instance_db/           # 234-cell test corpus (Akca .txt + .lrsp.json)
+│   └── instance_db/           # 369-instance LRSP corpus (Akca .txt + .lrsp.json);
+│                              #   234 of them form the dense-sweep cell grid
 │
 ├── mespprc/                   # Python MESPPRC pricing — equivalence oracle
 │   ├── *.py                   # phase1 (DP labelling), phase2 DP/IP
@@ -43,13 +44,11 @@ LRSP_Final_Package/
 │   ├── _native.py             # ctypes binding mirroring mespprc.h
 │   └── CMakeLists.txt
 │
-├── tests/                     # Cross-cutting test suite (pytest)
-│   ├── test_lrsp_solver.py    # Python LRSP smoke
-│   ├── test_mespprc_c.py      # C ABI smoke
-│   ├── test_phase1_semantics.py / test_phase2_*.py
-│   ├── test_mespprc_lrsp_pricing.py
-│   ├── test_mespprc_vrp_pricing.py
-│   └── lrsp/                  # CG / master / pricing unit tests
+├── tests/                     # Pure-Python test suite (pytest, no C build needed)
+│   ├── test.py                # MESPPRC Phase 1 + Phase 2 DP smoke
+│   ├── test_phase1_semantics.py / test_phase2_covering.py / test_phase2_ip.py
+│   ├── test_instance_generator.py / test_label_semantics.py
+│   └── lrsp/                  # LRSP CG / master / pricing unit tests
 │
 ├── results/                   # Every experimental run, by study
 │   ├── lrsp_dp_vs_ip_dense/         # 30-second budget dense sweep + hybrid v1-v3
@@ -165,16 +164,17 @@ uv run --with scikit-learn --with numpy python lrsp_native/scripts/train_hybrid_
 C CLI:
 
 ```bash
-build/bin/run_lrsp.exe \
+lrsp_native/build/bin/run_lrsp.exe \
     --instance lrsp_solver/instance_db/instances/lrsp_n010_f03_moderate_s1.txt \
     --pricing hybrid \
     --time-limit-seconds 600
 ```
 
-`--pricing` accepts `dp`, `ip`, or `hybrid` (the per-instance v4 tree).
-The hybrid engine is the recommended default; see "Pricing engines"
-in [`lrsp_native/README.md`](lrsp_native/README.md) for the decision
-rule.
+`--pricing` accepts `dp`, `ip`, or `hybrid` (the per-instance v4 tree
+shown above). The hybrid engine is the recommended default; the
+decision rule and its derivation are documented in
+[`lrsp_native/include/lrsp.h`](lrsp_native/include/lrsp.h) and analysed
+in [`results/lrsp_dp_vs_ip_dense_600s/README.md`](results/lrsp_dp_vs_ip_dense_600s/README.md).
 
 Python:
 
@@ -188,22 +188,43 @@ print(result.integer_objective)
 
 ## Tests
 
-```bash
-# Python LRSP + MESPPRC + cross-equivalence (uses both Python and C):
-pytest tests/
+**1. Pure-Python suite** — no C build required (`pytest.ini` scopes
+discovery to `tests/`):
 
-# C smoke tests (after building):
+```bash
+pytest
+```
+
+This runs the Python MESPPRC unit tests (Phase 1 / Phase 2 semantics,
+covering, IP) and the LRSP unit tests under `tests/lrsp/` (column
+generation, master problem, pricing interface, instance loading).
+
+**2. C↔Python MESPPRC equivalence** — after building the C components:
+
+```bash
+pytest mespprc_native/tests        # loads mespprc_native.dll, compares to mespprc/
+```
+
+**3. C smoke / unit tests** — after building:
+
+```bash
 lrsp_native/build/bin/lrsp_csmoke.exe
-lrsp_native/build/bin/lrsp_test_instance_io.exe
+lrsp_native/build/bin/lrsp_test_instance_io.exe lrsp_native/tests/p11-f25-v1t1.txt
 lrsp_native/build/bin/lrsp_test_column.exe
 lrsp_native/build/bin/lrsp_test_master_smoke.exe
 lrsp_native/build/bin/lrsp_test_pricing_dump.exe
-mespprc_native/build/bin/csmoke.exe
+mespprc_native/build/bin/mespprc_csmoke.exe
 ```
 
-The Python suite validates that `lrsp_native` and `lrsp_solver` produce
-the same root-LP and integer objectives within 1e-6 on every test
-instance.
+**4. C↔Python LRSP equivalence** — asserts `lrsp_native` and
+`lrsp_solver` produce the same root-LP and integer objectives within
+1e-6 on a shared Akca instance:
+
+```bash
+uv run --with pulp --with numpy python \
+    lrsp_native/scripts/validate_against_python.py \
+    --instance lrsp_native/tests/p11-f25-v1t1.txt --pricing dp
+```
 
 ## Reproducing the experimental studies
 
@@ -265,4 +286,4 @@ from an estimated 80+ hours to ~7 hours.
 
 LRSP formulation: Akca / Berger / Ralphs (see `docs/` for citations).
 HiGHS LP/MIP solver: included under its own license at
-`mespprc_native/third_party/HiGHS/LICENSE`.
+`mespprc_native/third_party/HiGHS/LICENSE.txt`.

@@ -42,9 +42,14 @@ Tests (under `tests/`):
 | [`tests/lrsp/test_master_problem.py`](../tests/lrsp/test_master_problem.py) | Master feasibility, integer solve, deduplication. |
 | [`tests/lrsp/test_column_generation.py`](../tests/lrsp/test_column_generation.py) | CG loop mechanics on synthetic instances. |
 | [`tests/lrsp/test_pricing_interface.py`](../tests/lrsp/test_pricing_interface.py) | `PricingProblem` / `PricingResult` validation. |
-| [`tests/test_lrsp_solver.py`](../tests/test_lrsp_solver.py) | End-to-end solve; DP and IP must agree on objective. |
-| [`tests/lrsp_dp_vs_ip_benchmark_chart.py`](../tests/lrsp_dp_vs_ip_benchmark_chart.py) | Benchmark harness across many Akca instances; produces CSV + matplotlib chart. |
-| [`tests/test_mespprc_lrsp_pricing.py`](../tests/test_mespprc_lrsp_pricing.py) | Pricing-engine integration. |
+
+> Note (package cleanup): the original inspection also listed
+> `tests/test_lrsp_solver.py`, `tests/test_mespprc_lrsp_pricing.py`, and the
+> `tests/lrsp_dp_vs_ip_benchmark_chart.py` harness. Those targeted a pre-port
+> solver architecture (`mespprc_lrsp`, `lrsp_solver.pricing_adapter`,
+> `build_akca_style_instance`) that no longer exists; they were removed from
+> this package. Current LRSP coverage lives under `tests/lrsp/`, and the
+> DP-vs-IP studies are driven by `lrsp_native/scripts/paper_lrsp_dp_vs_ip*.py`.
 
 ## 2. Master problem — formulation as we will port it
 
