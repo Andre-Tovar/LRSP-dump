@@ -1,0 +1,8 @@
+method,instance,n_customers,n_facilities,n_periods,total_time,pricing_time,master_time,iterations,columns_generated,objective,status,notes,regime,seed,root_lp_objective,phase2_pairing_columns
+dp,p11-f25-v1t1,25,5,,5.727400,3.257700,0.020000,10,,8579.915458,lp_optimal,reached_optimality=1,,,8462.083206,
+ip,p11-f25-v1t1,25,5,,5.915500,3.603000,0.024400,10,,8579.915458,lp_optimal,reached_optimality=1,,,8462.083206,
+dp,p11-f30-v1t1,30,5,,15.939800,15.841300,0.033200,12,,8780.479445,lp_optimal,reached_optimality=1,,,8757.634451,
+ip,p11-f30-v1t1,30,5,,16.624900,16.511400,0.035900,12,,8780.479445,lp_optimal,reached_optimality=1,,,8757.634451,
+ip,p11-f30-v2t2,30,5,,297.551800,294.269100,0.045100,13,,8421.879352,lp_optimal,reached_optimality=1,,,8037.243319,
+dp,p11-l30-v1t1,30,5,,24.187500,24.065900,0.030600,12,,11314.573897,lp_optimal,reached_optimality=1,,,11283.585584,
+ip,p11-l30-v1t1,30,5,,24.189800,24.066000,0.031200,12,,11314.573897,lp_optimal,reached_optimality=1,,,11283.585584,
